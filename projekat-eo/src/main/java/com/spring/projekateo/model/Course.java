@@ -22,28 +22,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "course")
 public class Course {
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="course_id",unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "course_code", unique = true, nullable = false)
+	@Column(name = "code", unique = true, nullable = false)
 	private String courseCode;
 	
-	@Column(name = "course_name", nullable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 	
 	@Column(name = "ESPB", nullable = false)
 	private int ESPB;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
-	@JsonIgnore
 	private Set<Exam> exams = new HashSet<Exam>();
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable( name = "teacher_courses", joinColumns = @JoinColumn(name = "course_id") ,inverseJoinColumns = @JoinColumn(name = "teacher_id"))
-	private Set<Teacher> teachers = new HashSet<Teacher>();
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
+	private Set<CourseTeacher> courseTeacher = new HashSet<CourseTeacher>();
 
 	public Course() {
 		
@@ -89,12 +86,12 @@ public class Course {
 		this.exams = exams;
 	}
 
-	public Set<Teacher> getTeachers() {
-		return teachers;
+	public Set<CourseTeacher> getCourseTeacher() {
+		return courseTeacher;
 	}
 
-	public void setTeachers(Set<Teacher> teachers) {
-		this.teachers = teachers;
+	public void setCourseTeacher(Set<CourseTeacher> courseTeacher) {
+		this.courseTeacher = courseTeacher;
 	}
 	
 	

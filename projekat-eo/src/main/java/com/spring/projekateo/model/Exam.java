@@ -29,6 +29,9 @@ public class Exam {
 	 @Column(name = "grade", nullable = false)
 	 private int grade;
 	 
+	 @Column(name = "price", nullable = false)
+	 private double price;
+	 
 	 @ManyToOne
 	 @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
 	 private Student student;
@@ -38,7 +41,11 @@ public class Exam {
 	 private Course course;
 	 
 	 
-	 //pitati kako za time ispita
+	 //pitati kako za vrijeme ispita
+	 
+	public Exam() {
+			
+	}
 
 	public Integer getId() {
 		return id;
@@ -70,6 +77,14 @@ public class Exam {
 
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public Student getStudent() {
