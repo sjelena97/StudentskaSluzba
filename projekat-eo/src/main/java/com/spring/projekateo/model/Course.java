@@ -10,13 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "course")
@@ -28,7 +23,7 @@ public class Course {
 	private Integer id;
 	
 	@Column(name = "code", unique = true, nullable = false)
-	private String courseCode;
+	private String code;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -40,7 +35,10 @@ public class Course {
 	private Set<Exam> exams = new HashSet<Exam>();
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
-	private Set<CourseTeacher> courseTeacher = new HashSet<CourseTeacher>();
+	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
+	
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
+	private Set<Teaching> teachings = new HashSet<Teaching>();
 
 	public Course() {
 		
@@ -54,12 +52,12 @@ public class Course {
 		this.id = id;
 	}
 
-	public String getCourseCode() {
-		return courseCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {
@@ -86,14 +84,20 @@ public class Course {
 		this.exams = exams;
 	}
 
-	public Set<CourseTeacher> getCourseTeacher() {
-		return courseTeacher;
+	public Set<Enrollment> getEnrollments() {
+		return enrollments;
 	}
 
-	public void setCourseTeacher(Set<CourseTeacher> courseTeacher) {
-		this.courseTeacher = courseTeacher;
+	public void setEnrollments(Set<Enrollment> enrollments) {
+		this.enrollments = enrollments;
 	}
-	
-	
+
+	public Set<Teaching> getTeachings() {
+		return teachings;
+	}
+
+	public void setTeachings(Set<Teaching> teachings) {
+		this.teachings = teachings;
+	}
 
 }

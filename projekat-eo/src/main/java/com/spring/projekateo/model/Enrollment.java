@@ -1,5 +1,7 @@
 package com.spring.projekateo.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,29 +12,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "document")
-public class Document {
-
+@Table(name = "enrollment")
+public class Enrollment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="document_id",unique = true, nullable = false)
+	@Column(name="enrollment_id",unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "title", nullable=false)
-	private String title;
+	@Column(name = "startDate", nullable = false)
+	private Date startDate;
 	
-	@Column(name="url", nullable=false)
-	private String url;
-
+	@Column(name = "endDate", nullable = false)
+	private Date endDate;
+	
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
 	private Student student;
 	
 	@ManyToOne
-	@JoinColumn(name = "type_id", referencedColumnName = "document_type_id", nullable = false)
-	private DocumentType type;
+	@JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
+	private Course course;
 	
-	public Document() {
+	public Enrollment() {
 		
 	}
 
@@ -44,20 +46,20 @@ public class Document {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getUrl() {
-		return url;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Student getStudent() {
@@ -68,11 +70,12 @@ public class Document {
 		this.student = student;
 	}
 
-	public DocumentType getType() {
-		return type;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setType(DocumentType type) {
-		this.type = type;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
+
 }

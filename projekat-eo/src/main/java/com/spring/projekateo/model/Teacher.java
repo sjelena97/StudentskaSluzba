@@ -10,23 +10,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher extends User{
+public class Teacher{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="teacher_id",unique = true, nullable = false)
 	private Integer id;
 	
+	@OneToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+	private User user;
+	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "teacher")
-	private Set<CourseTeacher> courseTeacher = new HashSet<CourseTeacher>();
+	private Set<Teaching> teachings = new HashSet<Teaching>();
 
 	public Teacher() {
 		
@@ -40,12 +43,20 @@ public class Teacher extends User{
 		this.id = id;
 	}
 
-	public Set<CourseTeacher> getCourseTeacher() {
-		return courseTeacher;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCourseTeacher(Set<CourseTeacher> courseTeacher) {
-		this.courseTeacher = courseTeacher;
-	}	
+	public void setUser(User user) {
+		this.user = user;
+	}
 
+	public Set<Teaching> getTeachings() {
+		return teachings;
+	}
+
+	public void setTeachings(Set<Teaching> teachings) {
+		this.teachings = teachings;
+	}
+	
 }

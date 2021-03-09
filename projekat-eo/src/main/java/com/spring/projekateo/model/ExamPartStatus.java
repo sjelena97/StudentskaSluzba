@@ -14,21 +14,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "authority")
-public class Authority {
+@Table(name = "exam_part_status")
+public class ExamPartStatus {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="authority_id", unique = true, nullable = false)
+	@Column(name="exam_part_status_id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name="name", nullable = false)
+	@Column(name = "name", nullable=false)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "authority")
-	private Set<User> users = new HashSet<User>();
+	@Column(name = "code", unique = true, nullable=false)
+	private String code;
 	
-	public Authority() {
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "status")
+	private Set<ExamPart> parts = new HashSet<ExamPart>();
+	
+	public ExamPartStatus() {
 		
 	}
 
@@ -48,5 +51,20 @@ public class Authority {
 		this.name = name;
 	}
 
-	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Set<ExamPart> getParts() {
+		return parts;
+	}
+
+	public void setParts(Set<ExamPart> parts) {
+		this.parts = parts;
+	}
+
 }

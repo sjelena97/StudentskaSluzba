@@ -1,14 +1,18 @@
 package com.spring.projekateo.model;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,18 +23,12 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="exam_id",unique = true, nullable = false)
 	private Integer id;
-	
-	 @Column(name = "date", nullable = false)
-	 private  Date date;
 	 
 	 @Column(name = "points", nullable = false)
 	 private int points;
 	 
 	 @Column(name = "grade", nullable = false)
 	 private int grade;
-	 
-	 @Column(name = "price", nullable = false)
-	 private double price;
 	 
 	 @ManyToOne
 	 @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
@@ -40,8 +38,12 @@ public class Exam {
 	 @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
 	 private Course course;
 	 
+	 @ManyToOne
+	 @JoinColumn(name = "exam_period_id", referencedColumnName = "exam_period_id", nullable = false)
+	 private ExamPeriod period;
 	 
-	 //pitati kako za vrijeme ispita
+	 @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "exam")
+	 private Set<ExamPart> parts = new HashSet<ExamPart>();
 	 
 	public Exam() {
 			
@@ -53,14 +55,6 @@ public class Exam {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public int getPoints() {
@@ -79,14 +73,6 @@ public class Exam {
 		this.grade = grade;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public Student getStudent() {
 		return student;
 	}
@@ -103,4 +89,20 @@ public class Exam {
 		this.course = course;
 	}
 
+	public ExamPeriod getExamPeriod() {
+		return period;
+	}
+
+	public void setExamPeriod(ExamPeriod period) {
+		this.period = period;
+	}
+
+	public Set<ExamPart> getParts() {
+		return parts;
+	}
+
+	public void setParts(Set<ExamPart> parts) {
+		this.parts = parts;
+	}
+	
 }

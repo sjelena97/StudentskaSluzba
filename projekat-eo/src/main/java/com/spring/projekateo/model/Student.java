@@ -10,33 +10,39 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "student")
-public class Student extends User{
+public class Student{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="student_id",unique = true, nullable = false)
+	@Column(name="student_id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name="index",nullable = false)
-	private String index;
+	@Column(name="cardName", unique = true, nullable = false)
+	private String cardName;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Exam> exams = new HashSet<Exam>();
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
-	private Set<Payment> payments = new HashSet<Payment>();
-	
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Document> documents = new HashSet<Document>();
 	
-	//pitati za pohadjanje predmeta
+	@OneToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "account_id", referencedColumnName = "account_id",nullable = false)
+	private Account account;
+	
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
+	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
+	
+	@OneToOne(cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+	private User user;
 	
 	public Student() {
 		
@@ -50,12 +56,12 @@ public class Student extends User{
 		this.id = id;
 	}
 
-	public String getIndex() {
-		return index;
+	public String getCardName() {
+		return cardName;
 	}
 
-	public void setIndex(String index) {
-		this.index = index;
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
 	}
 
 	public Set<Exam> getExams() {
@@ -64,6 +70,38 @@ public class Student extends User{
 
 	public void setExams(Set<Exam> exams) {
 		this.exams = exams;
+	}
+
+	public Set<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Set<Document> documents) {
+		this.documents = documents;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Set<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(Set<Enrollment> enrollments) {
+		this.enrollments = enrollments;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

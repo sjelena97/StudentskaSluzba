@@ -30,8 +30,8 @@ public class Payment {
 	private String purpose;
 
 	@ManyToOne
-	@JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
-	private Student student;
+	@JoinColumn(name = "account_id", referencedColumnName = "account_id", nullable = false)
+	private Account account;
 	
 	public Payment() {
 		
@@ -69,11 +69,12 @@ public class Payment {
 		this.purpose = purpose;
 	}
 
-	public Student getStudent() {
-		return student;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
+
 }

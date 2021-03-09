@@ -14,21 +14,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "authority")
-public class Authority {
+@Table(name = "document_type")
+public class DocumentType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="authority_id", unique = true, nullable = false)
+	@Column(name="document_type_id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name="name", nullable = false)
+	@Column(name = "name", nullable=false)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "authority")
-	private Set<User> users = new HashSet<User>();
+	@Column(name = "code", unique = true, nullable=false)
+	private String code;
 	
-	public Authority() {
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "type")
+	private Set<Document> documents = new HashSet<Document>();
+	
+	public DocumentType() {
 		
 	}
 
@@ -48,5 +51,19 @@ public class Authority {
 		this.name = name;
 	}
 
-	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Set<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Set<Document> documents) {
+		this.documents = documents;
+	}
 }
