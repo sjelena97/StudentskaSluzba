@@ -32,9 +32,6 @@ public class Course {
 	private int ESPB;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
-	private Set<Exam> exams = new HashSet<Exam>();
-	
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
 	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
@@ -74,14 +71,6 @@ public class Course {
 
 	public void setESPB(int eSPB) {
 		ESPB = eSPB;
-	}
-
-	public Set<Exam> getExams() {
-		return exams;
-	}
-
-	public void setExams(Set<Exam> exams) {
-		this.exams = exams;
 	}
 
 	public Set<Enrollment> getEnrollments() {

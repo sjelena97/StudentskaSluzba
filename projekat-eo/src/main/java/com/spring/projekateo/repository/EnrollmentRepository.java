@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.spring.projekateo.model.Enrollment;
-import com.spring.projekateo.model.Exam;
+import com.spring.projekateo.model.Student;
 
-public interface ExamRepository extends JpaRepository<Exam, Long>{
+public interface EnrollmentRepository extends JpaRepository<Enrollment, Long>{
 
-	List<Exam> findAllByEnrollment(Enrollment enrollment);
+	List<Enrollment> findAllByStudent(Student student);
 
 }

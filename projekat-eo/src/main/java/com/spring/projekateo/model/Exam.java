@@ -31,12 +31,8 @@ public class Exam {
 	 private int grade;
 	 
 	 @ManyToOne
-	 @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-	 private Student student;
-	 
-	 @ManyToOne
-	 @JoinColumn(name = "course_id", referencedColumnName = "course_id")
-	 private Course course;
+	 @JoinColumn(name = "enrollment_id", referencedColumnName = "enrollment_id")
+	 private Enrollment enrollment;
 	 
 	 @ManyToOne
 	 @JoinColumn(name = "exam_period_id", referencedColumnName = "exam_period_id", nullable = false)
@@ -73,20 +69,20 @@ public class Exam {
 		this.grade = grade;
 	}
 
-	public Student getStudent() {
-		return student;
+	public Enrollment getEnrollment() {
+		return enrollment;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setEnrollment(Enrollment enrollment) {
+		this.enrollment = enrollment;
 	}
 
-	public Course getCourse() {
-		return course;
+	public ExamPeriod getPeriod() {
+		return period;
 	}
 
-	public void setCourse(Course course) {
-		this.course = course;
+	public void setPeriod(ExamPeriod period) {
+		this.period = period;
 	}
 
 	public ExamPeriod getExamPeriod() {

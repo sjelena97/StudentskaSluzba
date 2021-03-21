@@ -28,9 +28,6 @@ public class Student{
 	private String cardName;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
-	private Set<Exam> exams = new HashSet<Exam>();
-	
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Document> documents = new HashSet<Document>();
 	
 	@OneToOne(cascade = { CascadeType.ALL })
@@ -62,14 +59,6 @@ public class Student{
 
 	public void setCardName(String cardName) {
 		this.cardName = cardName;
-	}
-
-	public Set<Exam> getExams() {
-		return exams;
-	}
-
-	public void setExams(Set<Exam> exams) {
-		this.exams = exams;
 	}
 
 	public Set<Document> getDocuments() {
