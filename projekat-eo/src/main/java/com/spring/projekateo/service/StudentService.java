@@ -6,4 +6,6 @@ public interface StudentService {
 
 	Student findById(Integer id);
 
+	Student save(Student user);
+
 }
