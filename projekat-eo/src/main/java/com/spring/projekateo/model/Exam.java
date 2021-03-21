@@ -31,11 +31,11 @@ public class Exam {
 	 private int grade;
 	 
 	 @ManyToOne
-	 @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
+	 @JoinColumn(name = "student_id", referencedColumnName = "student_id")
 	 private Student student;
 	 
 	 @ManyToOne
-	 @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
+	 @JoinColumn(name = "course_id", referencedColumnName = "course_id")
 	 private Course course;
 	 
 	 @ManyToOne

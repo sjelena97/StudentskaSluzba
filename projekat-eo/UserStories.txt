@@ -1,25 +1,22 @@
 AS A <PERSON>, I < WANT TO >, <SO THAT>.
 
-As a Student, I want to see list of finished exams, so that I know what exams are remaining.
-As a Student, I want to see list of courses, so that I know which courses I'm attending.
-As a Student, I want to see list of my payments and expenses, so that I have insight into my costs, payments and account balance.
-As a Student, I want to see my account data, so that I know they are correct and edit them.
-As a Student, I want to see list of my documents, so that I can download them.
-As a Student, I want to sign up for the exam, so that I can take it and maybe pass it. 
-As a Student, I want to see list of my signed exams, so that I know what when and where the exam will be held.
+As a Student, I want to see list of finished exams, so that I know what exams are remaining and which exams are signed. J
+As a Student, I want to see list of courses, so that I know which courses I'm attending. D
+As a Student, I want to see list of my payments and expenses, so that I have insight into my costs, payments and account balance. J
+As a Student, I want to see my account data, so that I know they are correct and edit them. D
+As a Student, I want to see list of my documents, so that I can download them. J
+As a Student, I want to sign up for the exam, so that I can take it and maybe pass it.  D
 
-As a Teacher, I want to see list of my courses, so that I know which courses I'm teaching.
-As a Teacher, I want to see my account data, so that I know they are correct and edit them.
-As a Teacher, I want to see list of exams on courses, so that I know what when and where the exam will be held.
-As a Teacher, I want to edit data of exam that is finished, so that I can enter points and grade for all students. 
+As a Teacher, I want to see list of my courses, so that I know which courses I'm teaching. D
+As a Teacher, I want to see my account data, so that I know they are correct and edit them. J
+As a Teacher, I want to see list of exams on courses, so that I know what when and where the exam will be held. D
+As a Teacher, I want to edit data of exam that is finished, so that I can enter points and grade for all students. J
 
-As an Administrator, I want to see student/teacher data, so that I could edit or delete them.
-As an Administrator, I want to see student account balance, so that I can update account balance.
-As an Administrator, I want to see course information, so that I could edit or delete them.
-As an Administrator, I want to see list of exams on course, so that I can set date and time or cancel it.
-As an Administrator, I want to see list of courses, so that I can add or delete course.
-As an Administrator, I want to see list of teachers on course, so that I can add, edit or delete teacher. 
-As an Administrator, I want to see list of students on course, so that I can add, edit or delete student. 
-As an Administrator, I want to see list of exams on course, so that I can add, edit or delete exam. 
-As an Administrator, I want to see list of documents, so that I have insight into all documents of student and update them. 
-
+As an Administrator, I want to see student/teacher data, so that I could edit or delete them. D
+As an Administrator, I want to see student account balance, so that I can update account balance. J
+As an Administrator, I want to see course information, so that I could edit or delete them. D
+As an Administrator, I want to see list of exams on course, so that I can set date and time or cancel it(crud). J
+As an Administrator, I want to see list of courses, so that I can add or delete course. D
+As an Administrator, I want to see list of teachers on course, so that I can add, edit or delete teacher. J
+As an Administrator, I want to see list of students on course, so that I can add, edit or delete student. D
+As an Administrator, I want to see list of documents, so that I have insight into all documents of student and update them. J
