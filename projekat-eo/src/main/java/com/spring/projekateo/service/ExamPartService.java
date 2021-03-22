@@ -8,4 +8,6 @@ public interface ExamPartService {
 
 	ExamPart save(ExamPart examPart);
 
+	ExamPart add(ExamPart newExamPart);
+
 }

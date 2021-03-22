@@ -24,22 +24,22 @@ public class Exam {
 	@Column(name="exam_id",unique = true, nullable = false)
 	private Integer id;
 	 
-	 @Column(name = "points", nullable = false)
-	 private int points;
+	@Column(name = "points")
+	private int points;
 	 
-	 @Column(name = "grade", nullable = false)
-	 private int grade;
+	@Column(name = "grade")
+	private int grade;
 	 
-	 @ManyToOne
-	 @JoinColumn(name = "enrollment_id", referencedColumnName = "enrollment_id")
-	 private Enrollment enrollment;
+	@ManyToOne
+	@JoinColumn(name = "enrollment_id", referencedColumnName = "enrollment_id")
+	private Enrollment enrollment;
 	 
-	 @ManyToOne
-	 @JoinColumn(name = "exam_period_id", referencedColumnName = "exam_period_id", nullable = false)
-	 private ExamPeriod period;
+	@ManyToOne
+	@JoinColumn(name = "exam_period_id", referencedColumnName = "exam_period_id", nullable = false)
+	private ExamPeriod period;
 	 
-	 @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "exam")
-	 private Set<ExamPart> parts = new HashSet<ExamPart>();
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "exam")
+	private Set<ExamPart> parts = new HashSet<ExamPart>();
 	 
 	public Exam() {
 			

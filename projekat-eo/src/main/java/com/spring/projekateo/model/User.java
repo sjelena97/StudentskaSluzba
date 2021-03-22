@@ -40,8 +40,8 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
 	
-	 @Column(name = "active", nullable = false)
-	 private boolean active = true;
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
 	
 	public Integer getId() {
 		return id;

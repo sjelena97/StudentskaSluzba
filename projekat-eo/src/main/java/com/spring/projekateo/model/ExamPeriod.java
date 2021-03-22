@@ -35,6 +35,9 @@ public class ExamPeriod {
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "period")
 	private Set<Exam> exams = new HashSet<Exam>();
 	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
+	
 	public ExamPeriod() {
 		
 	}
@@ -78,5 +81,15 @@ public class ExamPeriod {
 	public void setExams(Set<Exam> exams) {
 		this.exams = exams;
 	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	
 
 }
