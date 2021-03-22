@@ -16,6 +16,11 @@ public class TeachingServiceImpl implements TeachingService {
     TeachingRepository teachingRepository;
 	
 	@Override
+	public Teaching findById(Integer id) {
+		return teachingRepository.findById(id);
+	}
+	
+	@Override
     public List<Teaching> getAllTeachingsByTeacher(Teacher teacher){
 		List<Teaching> allTeachings = teachingRepository.findAllByTeacher(teacher);
         return allTeachings;

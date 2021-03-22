@@ -15,9 +15,35 @@ public class DocumentServiceImpl implements DocumentService{
     DocumentRepository documentRepository;
 	
 	@Override
+	public Document findById(Integer id) {
+		return documentRepository.findById(id);
+	}
+	
+	@Override
     public List<Document> getAllDocumentsByStudent(Student student){
 		List<Document> allDocuments = documentRepository.findAllByStudent(student);
         return allDocuments;
+	}
+	
+	@Override
+	public Document save(Document document) {
+		return documentRepository.save(document);
+	}
+	
+	@Override
+	public void remove(Document document)  {
+		documentRepository.delete(document);
+	}
+	
+	public Document add(Document newDocument) {
+		Document d = new Document();
+		d.setTitle(newDocument.getTitle());
+		d.setUrl(newDocument.getUrl());
+		d.setType(newDocument.getType());
+		d.setStudent(newDocument.getStudent());
+		
+		d = this.documentRepository.save(d);
+		return d;
 	}
 
 }

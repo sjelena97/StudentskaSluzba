@@ -14,4 +14,6 @@ public interface TeachingRepository extends JpaRepository<Teaching, Long> {
 
 	List<Teaching> findAllByCourse(Course course);
 
+	Teaching findById(Integer id);
+
 }

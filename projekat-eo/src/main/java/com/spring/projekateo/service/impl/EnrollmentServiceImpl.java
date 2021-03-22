@@ -16,6 +16,11 @@ public class EnrollmentServiceImpl implements EnrollmentService{
     EnrollmentRepository enrollmentRepository;
 	
 	@Override
+	public Enrollment findById(Integer id) {
+		return enrollmentRepository.findById(id);
+	}
+	
+	@Override
     public List<Enrollment> getAllEnrollmentsByStudent(Student student){
 		List<Enrollment> allEnrollments = enrollmentRepository.findAllByStudent(student);
         return allEnrollments;

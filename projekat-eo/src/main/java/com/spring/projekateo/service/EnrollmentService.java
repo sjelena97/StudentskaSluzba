@@ -16,4 +16,6 @@ public interface EnrollmentService {
 
 	void remove(Enrollment enrollment);
 
+	Enrollment findById(Integer id);
+
 }

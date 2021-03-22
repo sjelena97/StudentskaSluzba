@@ -25,6 +25,8 @@ public class ExamServiceImpl implements ExamService{
         return allExams;
 	}
 	
+	//daj sve ispite za course
+	
 	@Override
 	public Exam save(Exam exam) {
 		return examRepository.save(exam);

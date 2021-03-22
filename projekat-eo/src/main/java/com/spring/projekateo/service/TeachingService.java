@@ -18,4 +18,6 @@ public interface TeachingService {
 
 	void remove(Teaching teaching);
 
+	Teaching findById(Integer id);
+
 }
