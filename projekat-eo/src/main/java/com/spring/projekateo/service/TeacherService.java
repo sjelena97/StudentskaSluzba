@@ -15,4 +15,6 @@ public interface TeacherService {
 
 	List<Teacher> getAllTeachersByTeaching(Teaching teaching);
 
+	List<Teacher> getAllTeachers();
+
 }

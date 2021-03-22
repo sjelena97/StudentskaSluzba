@@ -1,5 +1,7 @@
 package com.spring.projekateo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spring.projekateo.model.Student;
@@ -33,6 +35,12 @@ public class StudentServiceImpl implements StudentService{
 		
 		s = this.studentRepository.save(s);
 		return s;
+	}
+	
+	@Override
+    public List<Student> getAllStudents(){
+		List<Student> allStudents= studentRepository.findAll();
+        return allStudents;
 	}
 	
 }

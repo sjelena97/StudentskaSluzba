@@ -1,5 +1,7 @@
 package com.spring.projekateo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -38,6 +40,12 @@ public class UserServiceImpl implements UserService{
 		
 		u = this.userRepository.save(u);
 		return u;
+	}
+	
+	@Override
+    public List<User> getAllUsers(){
+		List<User> allUsers= userRepository.findAll();
+        return allUsers;
 	}
 
 }
