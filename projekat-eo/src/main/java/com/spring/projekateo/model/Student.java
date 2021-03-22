@@ -41,6 +41,9 @@ public class Student{
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
 	private User user;
 	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
+	
 	public Student() {
 		
 	}
@@ -91,6 +94,14 @@ public class Student{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }

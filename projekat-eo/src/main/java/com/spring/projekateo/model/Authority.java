@@ -25,8 +25,9 @@ public class Authority {
 	@Column(name="name", nullable = false)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "authority")
-	private Set<User> users = new HashSet<User>();
+	@OneToMany(mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
+
 	
 	public Authority() {
 		
@@ -48,5 +49,12 @@ public class Authority {
 		this.name = name;
 	}
 
+	public Set<UserAuthority> getUserAuthorities() {
+		return userAuthorities;
+	}
+
+	public void setUserAuthorities(Set<UserAuthority> userAuthorities) {
+		this.userAuthorities = userAuthorities;
+	}
 	
 }

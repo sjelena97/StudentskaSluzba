@@ -8,4 +8,6 @@ public interface TeacherService {
 
 	Teacher save(Teacher teacher);
 
+	Teacher add(Teacher newTeacher);
+
 }

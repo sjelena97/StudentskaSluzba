@@ -1,13 +1,16 @@
 package com.spring.projekateo.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,9 +37,11 @@ public class User {
 	@JsonIgnore
 	private String password;
 	
-	@ManyToOne
-	@JoinColumn(name = "authority_id", referencedColumnName = "authority_id", nullable = false)
-	private Authority authority;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
+	
+	 @Column(name = "active", nullable = false)
+	 private boolean active = true;
 	
 	public Integer getId() {
 		return id;
@@ -78,13 +83,20 @@ public class User {
 		this.password = password;
 	}
 
-	public Authority getAuthority() {
-		return authority;
+	public Set<UserAuthority> getUserAuthorities() {
+		return userAuthorities;
 	}
 
-	public void setAuthority(Authority authority) {
-		this.authority = authority;
+	public void setUserAuthorities(Set<UserAuthority> userAuthorities) {
+		this.userAuthorities = userAuthorities;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
 }

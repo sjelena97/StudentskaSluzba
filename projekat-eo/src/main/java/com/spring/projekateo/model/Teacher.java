@@ -28,6 +28,9 @@ public class Teacher{
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
 	private User user;
 	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
+	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "teacher")
 	private Set<Teaching> teachings = new HashSet<Teaching>();
 
@@ -57,6 +60,14 @@ public class Teacher{
 
 	public void setTeachings(Set<Teaching> teachings) {
 		this.teachings = teachings;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }

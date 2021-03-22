@@ -8,4 +8,6 @@ public interface StudentService {
 
 	Student save(Student student);
 
+	Student add(Student newStudent);
+
 }

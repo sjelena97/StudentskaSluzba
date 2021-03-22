@@ -8,4 +8,6 @@ public interface UserService {
 
 	User findById(Integer id);
 
+	User add(User newUser);
+
 }

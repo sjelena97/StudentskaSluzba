@@ -20,7 +20,19 @@ public class StudentServiceImpl implements StudentService{
 	public Student save(Student student) {
 		return studentRepository.save(student);
 	}
-
 	
-
+	//ovdje treba studentDTO a ne student
+	@Override
+	public Student add(Student newStudent) {
+		Student s = new Student();
+		s.setCardName(newStudent.getCardName());
+		s.setUser(newStudent.getUser());
+		s.setAccount(newStudent.getAccount());
+		s.setDocuments(newStudent.getDocuments());
+		s.setEnrollments(newStudent.getEnrollments());
+		
+		s = this.studentRepository.save(s);
+		return s;
+	}
+	
 }
