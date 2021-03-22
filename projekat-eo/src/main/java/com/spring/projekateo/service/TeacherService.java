@@ -6,4 +6,6 @@ public interface TeacherService {
 
 	Teacher findById(Integer id);
 
+	Teacher save(Teacher teacher);
+
 }

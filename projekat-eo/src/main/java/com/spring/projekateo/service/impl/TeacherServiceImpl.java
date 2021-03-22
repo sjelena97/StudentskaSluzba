@@ -15,4 +15,11 @@ public class TeacherServiceImpl implements TeacherService {
 	public Teacher findById(Integer id) {
 		return teacherRepository.findById(id);
 	}
+	
+	@Override
+	public Teacher save(Teacher teacher) {
+		return teacherRepository.save(teacher);
+	}
+
+	
 }
