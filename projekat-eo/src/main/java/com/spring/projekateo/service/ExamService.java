@@ -9,4 +9,8 @@ public interface ExamService {
 
 	List<Exam> getAllExamsByEnrollment(Enrollment enrollment);
 
+	Exam findById(Integer id);
+
+	Exam save(Exam exam);
+
 }

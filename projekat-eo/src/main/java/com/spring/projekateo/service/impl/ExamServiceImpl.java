@@ -15,9 +15,19 @@ public class ExamServiceImpl implements ExamService{
     ExamRepository examRepository;
 	
 	@Override
+	public Exam findById(Integer id) {
+		return examRepository.findById(id);
+	}
+	
+	@Override
     public List<Exam> getAllExamsByEnrollment(Enrollment enrollment){
 		List<Exam> allExams = examRepository.findAllByEnrollment(enrollment);
         return allExams;
+	}
+	
+	@Override
+	public Exam save(Exam exam) {
+		return examRepository.save(exam);
 	}
 
 }
