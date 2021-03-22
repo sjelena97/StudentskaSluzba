@@ -1,6 +1,8 @@
 package com.spring.projekateo.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spring.projekateo.model.Course;
@@ -34,6 +36,12 @@ public class CourseServiceImpl implements CourseService{
 		
 		c = this.courseRepository.save(c);
 		return c;
+	}
+	
+	@Override
+    public List<Course> getAllCourses(){
+		List<Course> allCourses= courseRepository.findAll();
+        return allCourses;
 	}
 
 }
