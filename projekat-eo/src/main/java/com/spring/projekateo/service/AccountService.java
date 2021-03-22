@@ -9,4 +9,6 @@ public interface AccountService {
 
 	Account findAccountByStudent(Student student);
 
+	Account save(Account account);
+
 }

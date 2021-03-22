@@ -21,5 +21,10 @@ public class AccountServiceImpl implements AccountService{
 	public Account findAccountByStudent(Student student){
 		return accountRepository.findByStudent(student);
 	}
+	
+	@Override
+	public Account save(Account account) {
+		return accountRepository.save(account);
+	}
 
 }
