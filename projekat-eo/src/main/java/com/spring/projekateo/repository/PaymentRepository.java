@@ -1,6 +1,6 @@
 package com.spring.projekateo.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,6 +9,6 @@ import com.spring.projekateo.model.Payment;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long>{
 
-	List<Payment> findAllByAccount(Account account);
+	Set<Payment> findAllByAccount(Account account);
 
 }

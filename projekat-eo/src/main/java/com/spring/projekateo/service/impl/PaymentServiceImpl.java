@@ -1,6 +1,6 @@
 package com.spring.projekateo.service.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,8 +15,8 @@ public class PaymentServiceImpl implements PaymentService{
     PaymentRepository paymentRepository;
 	
 	@Override
-    public List<Payment> getAllPaymentsByAccount(Account account){
-		List<Payment> allPayments = paymentRepository.findAllByAccount(account);
+    public Set<Payment> getAllPaymentsByAccount(Account account){
+		Set<Payment> allPayments = paymentRepository.findAllByAccount(account);
         return allPayments;
 	}
 
