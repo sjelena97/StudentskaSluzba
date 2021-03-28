@@ -3,6 +3,7 @@ package com.spring.projekateo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.spring.projekateo.model.User;
@@ -21,6 +22,15 @@ public class UserServiceImpl implements UserService{
 	public User findById(Integer id) {
 		return userRepository.findById(id);
 	}
+	
+
+	@Override
+	public User findByUsername(String username) throws UsernameNotFoundException {
+		User u = userRepository.findByUsername(username);
+		return u;
+	}
+	
+	
 	
 	@Override
 	public User save(User user) {
