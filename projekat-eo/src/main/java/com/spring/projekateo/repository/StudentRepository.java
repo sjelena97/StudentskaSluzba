@@ -7,5 +7,6 @@ import com.spring.projekateo.model.Student;
 public interface StudentRepository extends JpaRepository<Student, Long>{
 	
 	Student findById(Integer id);
+	Student findByCardName(String cardName);
 
 }

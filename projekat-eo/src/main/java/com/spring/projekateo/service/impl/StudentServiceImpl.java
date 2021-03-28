@@ -42,5 +42,11 @@ public class StudentServiceImpl implements StudentService{
 		List<Student> allStudents= studentRepository.findAll();
         return allStudents;
 	}
+
+	@Override
+	public Student findByCardName(String cardName) {
+		Student s = studentRepository.findByCardName(cardName);
+		return s;
+	}
 	
 }
