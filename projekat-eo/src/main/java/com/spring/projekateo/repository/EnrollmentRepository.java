@@ -1,6 +1,6 @@
 package com.spring.projekateo.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,9 +10,9 @@ import com.spring.projekateo.model.Student;
 
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long>{
 
-	List<Enrollment> findAllByStudent(Student student);
+	Set<Enrollment> findAllByStudent(Student student);
 
-	List<Enrollment> findAllByCourse(Course course);
+	Set<Enrollment> findAllByCourse(Course course);
 
 	Enrollment findById(Integer id);
 

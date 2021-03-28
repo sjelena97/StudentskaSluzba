@@ -1,6 +1,6 @@
 package com.spring.projekateo.service;
 
-import java.util.List;
+import java.util.Set;
 
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
@@ -8,9 +8,9 @@ import com.spring.projekateo.model.Student;
 
 public interface EnrollmentService {
 
-	List<Enrollment> getAllEnrollmentsByStudent(Student student);
+	Set<Enrollment> getAllEnrollmentsByStudent(Student student);
 
-	List<Enrollment> getAllEnrollmentsByCourse(Course course);
+	Set<Enrollment> getAllEnrollmentsByCourse(Course course);
 
 	Enrollment save(Enrollment enrollment);
 

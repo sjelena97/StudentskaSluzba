@@ -1,6 +1,6 @@
 package com.spring.projekateo.service.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,14 +21,14 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 	}
 	
 	@Override
-    public List<Enrollment> getAllEnrollmentsByStudent(Student student){
-		List<Enrollment> allEnrollments = enrollmentRepository.findAllByStudent(student);
+    public Set<Enrollment> getAllEnrollmentsByStudent(Student student){
+		Set<Enrollment> allEnrollments = enrollmentRepository.findAllByStudent(student);
         return allEnrollments;
 	}
 	
 	@Override
-    public List<Enrollment> getAllEnrollmentsByCourse(Course course){
-		List<Enrollment> allEnrollments = enrollmentRepository.findAllByCourse(course);
+    public Set<Enrollment> getAllEnrollmentsByCourse(Course course){
+		Set<Enrollment> allEnrollments = enrollmentRepository.findAllByCourse(course);
         return allEnrollments;
 	}
 	
