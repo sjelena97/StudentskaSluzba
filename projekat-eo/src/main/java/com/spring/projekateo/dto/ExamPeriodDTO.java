@@ -1,12 +1,12 @@
 package com.spring.projekateo.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 
 import com.spring.projekateo.model.ExamPeriod;
 
-public class ExamPeriodDTO {
+public class ExamPeriodDTO implements Serializable {
 
 	private Integer id;
 	

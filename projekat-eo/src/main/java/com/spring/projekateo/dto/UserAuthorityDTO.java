@@ -2,7 +2,6 @@ package com.spring.projekateo.dto;
 
 import java.io.Serializable;
 
-import com.spring.projekateo.model.User;
 import com.spring.projekateo.model.UserAuthority;
 
 public class UserAuthorityDTO implements Serializable {
