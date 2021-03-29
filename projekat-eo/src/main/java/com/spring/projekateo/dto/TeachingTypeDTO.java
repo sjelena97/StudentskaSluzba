@@ -1,9 +1,6 @@
 package com.spring.projekateo.dto;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-
 import com.spring.projekateo.model.TeachingType;
 
 public class TeachingTypeDTO implements Serializable {

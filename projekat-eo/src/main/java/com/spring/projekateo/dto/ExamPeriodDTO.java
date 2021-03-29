@@ -15,21 +15,25 @@ public class ExamPeriodDTO implements Serializable {
 	private Date startDate;
 	
 	private Date endDate;
+	
+	private boolean active;
+
 
 	public ExamPeriodDTO() {
 		super();
 	}
 
-	public ExamPeriodDTO(Integer id, String name, Date startDate, Date endDate) {
+	public ExamPeriodDTO(Integer id, String name, Date startDate, Date endDate, boolean active) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.active = active;
 	}
 	
 	public ExamPeriodDTO(ExamPeriod examPeriod) {
-		this(examPeriod.getId(), examPeriod.getName(),examPeriod.getStartDate(),examPeriod.getEndDate()); 
+		this(examPeriod.getId(), examPeriod.getName(),examPeriod.getStartDate(),examPeriod.getEndDate(),examPeriod.isActive()); 
 	}
 
 	public Integer getId() {
@@ -63,6 +67,15 @@ public class ExamPeriodDTO implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 	
 	
 }
