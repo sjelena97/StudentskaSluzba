@@ -8,7 +8,8 @@ import com.spring.projekateo.model.UserAuthority;
 public class UserAuthorityDTO implements Serializable {
 	
 	private Integer id;
-	private User user;
+	private UserDTO user;
+	private AuthorityDTO authority;
 	
 	
 	public UserAuthorityDTO() {
@@ -16,14 +17,17 @@ public class UserAuthorityDTO implements Serializable {
 	}
 
 
-	public UserAuthorityDTO(Integer id, User user) {
+	public UserAuthorityDTO(Integer id, UserDTO user, AuthorityDTO authority) {
 		super();
 		this.id = id;
 		this.user = user;
+		this.authority = authority;
 	}
-	
+
+
+
 	public UserAuthorityDTO(UserAuthority userAuthority) {
-		this(userAuthority.getId(), userAuthority.getUser());
+		this(userAuthority.getId(), new UserDTO(userAuthority.getUser()), new AuthorityDTO(userAuthority.getAuthority()));
 	}
 
 
@@ -37,15 +41,26 @@ public class UserAuthorityDTO implements Serializable {
 	}
 
 
-	public User getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
 
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	
+
+
+	public AuthorityDTO getAuthority() {
+		return authority;
+	}
+
+
+	public void setAuthority(AuthorityDTO authority) {
+		this.authority = authority;
+	}
+
+
 	
 	
 
