@@ -1,6 +1,6 @@
 package com.spring.projekateo.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,7 +9,7 @@ import com.spring.projekateo.model.Student;
 
 public interface DocumentRepository extends JpaRepository<Document, Long>{
 
-	List<Document> findAllByStudent(Student student);
+	Set<Document> findAllByStudent(Student student);
 
 	Document findById(Integer id);
 

@@ -1,13 +1,13 @@
 package com.spring.projekateo.service;
 
-import java.util.List;
+import java.util.Set;
 
 import com.spring.projekateo.model.Document;
 import com.spring.projekateo.model.Student;
 
 public interface DocumentService {
 
-	List<Document> getAllDocumentsByStudent(Student student);
+	Set<Document> getAllDocumentsByStudent(Student student);
 
 	Document findById(Integer id);
 

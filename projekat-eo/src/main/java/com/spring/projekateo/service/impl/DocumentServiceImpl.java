@@ -1,6 +1,6 @@
 package com.spring.projekateo.service.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,8 +20,8 @@ public class DocumentServiceImpl implements DocumentService{
 	}
 	
 	@Override
-    public List<Document> getAllDocumentsByStudent(Student student){
-		List<Document> allDocuments = documentRepository.findAllByStudent(student);
+    public Set<Document> getAllDocumentsByStudent(Student student){
+		Set<Document> allDocuments = documentRepository.findAllByStudent(student);
         return allDocuments;
 	}
 	
