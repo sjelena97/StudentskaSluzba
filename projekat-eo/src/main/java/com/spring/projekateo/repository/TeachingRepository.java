@@ -1,6 +1,6 @@
 package com.spring.projekateo.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,9 +10,9 @@ import com.spring.projekateo.model.Teaching;
 
 public interface TeachingRepository extends JpaRepository<Teaching, Long> {
 
-	List<Teaching> findAllByTeacher(Teacher teacher);
+	Set<Teaching> findAllByTeacher(Teacher teacher);
 
-	List<Teaching> findAllByCourse(Course course);
+	Set<Teaching> findAllByCourse(Course course);
 
 	Teaching findById(Integer id);
 

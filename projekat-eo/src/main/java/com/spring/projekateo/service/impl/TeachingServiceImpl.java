@@ -1,6 +1,6 @@
 package com.spring.projekateo.service.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,14 +21,14 @@ public class TeachingServiceImpl implements TeachingService {
 	}
 	
 	@Override
-    public List<Teaching> getAllTeachingsByTeacher(Teacher teacher){
-		List<Teaching> allTeachings = teachingRepository.findAllByTeacher(teacher);
+    public Set<Teaching> getAllTeachingsByTeacher(Teacher teacher){
+		Set<Teaching> allTeachings = teachingRepository.findAllByTeacher(teacher);
         return allTeachings;
 	}
 	
 	@Override
-    public List<Teaching> getAllTeachingsByCourse(Course course){
-		List<Teaching> allTeachings = teachingRepository.findAllByCourse(course);
+    public Set<Teaching> getAllTeachingsByCourse(Course course){
+		Set<Teaching> allTeachings = teachingRepository.findAllByCourse(course);
         return allTeachings;
 	}
 	
