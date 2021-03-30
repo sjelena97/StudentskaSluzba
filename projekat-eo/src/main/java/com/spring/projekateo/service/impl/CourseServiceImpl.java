@@ -20,23 +20,17 @@ public class CourseServiceImpl implements CourseService{
 	}
 	
 	@Override
+	public Course findCourseByCode(String code) {
+		return courseRepository.findByCode(code);
+	}
+	
+	
+	
+	@Override
 	public Course save(Course course) {
 		return courseRepository.save(course);
 	}
 	
-	//ovdje treba courseDTO, a ne Course
-	@Override
-	public Course add(Course newCourse) {
-		Course c = new Course();
-		c.setCode(newCourse.getCode());
-		c.setName(newCourse.getName());
-		c.setESPB(newCourse.getESPB());
-		c.setEnrollments(newCourse.getEnrollments());
-		c.setTeachings(newCourse.getTeachings());
-		
-		c = this.courseRepository.save(c);
-		return c;
-	}
 	
 	@Override
     public List<Course> getAllCourses(){

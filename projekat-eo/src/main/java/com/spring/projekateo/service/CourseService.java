@@ -10,8 +10,8 @@ public interface CourseService {
 
 	Course save(Course course);
 
-	Course add(Course newCourse);
-
 	List<Course> getAllCourses();
+
+	Course findCourseByCode(String code);
 
 }

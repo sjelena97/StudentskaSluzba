@@ -8,4 +8,6 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
 
 	Course findById(Integer id);
 
+	Course findByCode(String code);
+
 }

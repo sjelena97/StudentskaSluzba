@@ -31,6 +31,9 @@ public class Course {
 	@Column(name = "ESPB", nullable = false)
 	private int ESPB;
 	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
+	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
 	private Set<Enrollment> enrollments = new HashSet<Enrollment>();
 	
@@ -88,5 +91,14 @@ public class Course {
 	public void setTeachings(Set<Teaching> teachings) {
 		this.teachings = teachings;
 	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 
 }
