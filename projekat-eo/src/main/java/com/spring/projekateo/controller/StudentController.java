@@ -38,6 +38,7 @@ public class StudentController {
 		}
 		
 		student.setCardName(studentDTO.getCardName());
+		student.setActive(studentDTO.isActive());
 		student = studentService.save(student);
 		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);	
 		 
