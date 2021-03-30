@@ -42,17 +42,6 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 		enrollmentRepository.delete(enrollment);
 	}
 	
-	public Enrollment add(Enrollment newEnrollment) {
-		Enrollment e = new Enrollment();
-		e.setStartDate(newEnrollment.getStartDate());
-		e.setEndDate(newEnrollment.getEndDate());
-		e.setStudent(newEnrollment.getStudent());
-		e.setCourse(newEnrollment.getCourse());
-		
-		e = this.enrollmentRepository.save(e);
-		return e;
-	}
-	
 	
 
 }
