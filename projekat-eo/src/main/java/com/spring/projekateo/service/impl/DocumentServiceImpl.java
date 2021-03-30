@@ -3,12 +3,14 @@ package com.spring.projekateo.service.impl;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.Document;
 import com.spring.projekateo.model.Student;
 import com.spring.projekateo.repository.DocumentRepository;
 import com.spring.projekateo.service.DocumentService;
 
+@Service
 public class DocumentServiceImpl implements DocumentService{
 	
 	@Autowired

@@ -1,5 +1,7 @@
 package com.spring.projekateo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.DocumentDTO;
+import com.spring.projekateo.dto.DocumentTypeDTO;
 import com.spring.projekateo.model.Document;
 import com.spring.projekateo.model.DocumentType;
 import com.spring.projekateo.model.Student;
@@ -36,10 +39,22 @@ public class DocumentController {
     private StudentService studentService;
 	
 	@GetMapping("/getAllDocumentsForStudent/{student_id}")
-	public Set<Document> getAllDocumentsForStudent(@PathVariable("student_id") int student_id){
+	public ResponseEntity<List<DocumentDTO>> getAllDocumentsForStudent(@PathVariable("student_id") int student_id){
 			Student student = studentService.findById(student_id);
 		 	Set<Document> documents = documentService.getAllDocumentsByStudent(student);
-		    return documents; 
+		 	List<DocumentDTO> documentsDTO = new ArrayList<>();
+			for (Document d : documents) {
+				DocumentDTO documentDTO = new DocumentDTO();
+				documentDTO.setId(d.getId());
+				documentDTO.setTitle(d.getTitle());
+				documentDTO.setUrl(d.getUrl());
+				documentDTO.setType(new DocumentTypeDTO(d.getType()));
+				documentDTO.setActive(d.isActive());
+				//we leave student field empty
+				
+				documentsDTO.add(documentDTO);
+			}
+			return new ResponseEntity<>(documentsDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping("/addDocument/{student_id}")

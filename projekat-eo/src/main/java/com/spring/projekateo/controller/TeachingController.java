@@ -1,5 +1,7 @@
 package com.spring.projekateo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.projekateo.dto.CourseDTO;
+import com.spring.projekateo.dto.TeacherDTO;
 import com.spring.projekateo.dto.TeachingDTO;
+import com.spring.projekateo.dto.TeachingTypeDTO;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Teacher;
 import com.spring.projekateo.model.Teaching;
@@ -41,18 +46,44 @@ public class TeachingController {
 	private TeachingTypeService teachingTypeService;
 	
 	@GetMapping("/getAllTeachingsForTeacher/{teacher_id}") 
-	public Set<Teaching> getAllTeachingsForTeacher(@PathVariable("teacher_id") int teacher_id) {
+	public ResponseEntity<List<TeachingDTO>> getAllTeachingsForTeacher(@PathVariable("teacher_id") int teacher_id) {
 		Teacher teacher = teacherService.findById(teacher_id);
 	 	Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
-	    return teachings; 
+	 	List<TeachingDTO> teachingsDTO = new ArrayList<>();
+		for (Teaching t : teachings) {
+			TeachingDTO teachingDTO = new TeachingDTO();
+			teachingDTO.setId(t.getId());
+			teachingDTO.setStartDate(t.getStartDate());
+			teachingDTO.setEndDate(t.getEndDate());
+			teachingDTO.setCourse(new CourseDTO(t.getCourse()));
+			teachingDTO.setType(new TeachingTypeDTO(t.getType()));
+			teachingDTO.setActive(t.isActive());
+			//we leave teacher field empty
+			
+			teachingsDTO.add(teachingDTO);
+		}
+		return new ResponseEntity<>(teachingsDTO, HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/getAllTeachingsForCourse/{course_id}") 
-	public Set<Teaching> getAllTeachingsForCourse(@PathVariable("course_id") int course_id) {
+	public ResponseEntity<List<TeachingDTO>> getAllTeachingsForCourse(@PathVariable("course_id") int course_id) {
 		Course course = courseService.findById(course_id);
 	 	Set<Teaching> teachings = teachingService.getAllTeachingsByCourse(course);
-	    return teachings; 
+	 	List<TeachingDTO> teachingsDTO = new ArrayList<>();
+		for (Teaching t : teachings) {
+			TeachingDTO teachingDTO = new TeachingDTO();
+			teachingDTO.setId(t.getId());
+			teachingDTO.setStartDate(t.getStartDate());
+			teachingDTO.setEndDate(t.getEndDate());
+			teachingDTO.setTeacher(new TeacherDTO(t.getTeacher()));
+			teachingDTO.setType(new TeachingTypeDTO(t.getType()));
+			teachingDTO.setActive(t.isActive());
+			//we leave course field empty
+			
+			teachingsDTO.add(teachingDTO);
+		}
+		return new ResponseEntity<>(teachingsDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping("/addTeaching/{course_id}")

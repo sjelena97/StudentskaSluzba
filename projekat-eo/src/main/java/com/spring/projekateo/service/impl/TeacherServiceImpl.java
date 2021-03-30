@@ -3,12 +3,14 @@ package com.spring.projekateo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.Teacher;
 import com.spring.projekateo.model.Teaching;
 import com.spring.projekateo.repository.TeacherRepository;
 import com.spring.projekateo.service.TeacherService;
 
+@Service
 public class TeacherServiceImpl implements TeacherService {
 
 	@Autowired

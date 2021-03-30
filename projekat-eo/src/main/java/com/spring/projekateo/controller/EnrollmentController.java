@@ -1,5 +1,7 @@
 package com.spring.projekateo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.CourseDTO;
 import com.spring.projekateo.dto.EnrollmentDTO;
-import com.spring.projekateo.dto.TeachingDTO;
+import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Student;
-import com.spring.projekateo.model.Teacher;
-import com.spring.projekateo.model.Teaching;
-import com.spring.projekateo.model.TeachingType;
 import com.spring.projekateo.service.CourseService;
 import com.spring.projekateo.service.EnrollmentService;
 import com.spring.projekateo.service.StudentService;
@@ -41,17 +40,41 @@ public class EnrollmentController {
 	private CourseService courseService;
 	
 	@GetMapping("/getAllEnrollmentsForStudent/{student_id}")
-	public Set<Enrollment> getAllEnrollmentsForStudent(@PathVariable("student_id") int student_id){
+	public ResponseEntity<List<EnrollmentDTO>> getAllEnrollmentsForStudent(@PathVariable("student_id") int student_id){
 			Student student = studentService.findById(student_id);
 		 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
-		    return enrollments; 
+		 	List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
+			for (Enrollment e: enrollments) {
+				EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
+				enrollmentDTO.setId(e.getId());
+				enrollmentDTO.setStartDate(e.getStartDate());
+				enrollmentDTO.setEndDate(e.getEndDate());
+				enrollmentDTO.setCourse(new CourseDTO(e.getCourse()));
+				enrollmentDTO.setActive(e.isActive());
+				//we leave student field empty
+				
+				enrollmentsDTO.add(enrollmentDTO);
+			}
+			return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAllEnrollmentsForCourse/{course_id}") 
-	public Set<Enrollment> getAllEnrollmentsForCourse(@PathVariable("course_id") int course_id) {
+	public ResponseEntity<List<EnrollmentDTO>> getAllEnrollmentsForCourse(@PathVariable("course_id") int course_id) {
 		Course course = courseService.findById(course_id);
 	 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByCourse(course);
-	    return enrollments; 
+	 	List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
+		for (Enrollment e: enrollments) {
+			EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
+			enrollmentDTO.setId(e.getId());
+			enrollmentDTO.setStartDate(e.getStartDate());
+			enrollmentDTO.setEndDate(e.getEndDate());
+			enrollmentDTO.setStudent(new StudentDTO(e.getStudent()));
+			enrollmentDTO.setActive(e.isActive());
+			//we leave course field empty
+			
+			enrollmentsDTO.add(enrollmentDTO);
+		}
+		return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping("/addEnrollment/{course_id}")
