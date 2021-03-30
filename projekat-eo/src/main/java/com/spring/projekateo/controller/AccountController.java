@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.AccountDTO;
+import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.model.Account;
 import com.spring.projekateo.model.Student;
 import com.spring.projekateo.service.AccountService;
@@ -50,5 +51,5 @@ public class AccountController {
 		return new ResponseEntity<AccountDTO>(new AccountDTO(account), HttpStatus.OK);	
 
 	}
-
+	
 }

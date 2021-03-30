@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.UserDTO;
 import com.spring.projekateo.model.User;
-import com.spring.projekateo.model.UserAuthority;
 import com.spring.projekateo.service.UserService;
 
 @RestController
