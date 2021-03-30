@@ -12,22 +12,24 @@ public class DocumentDTO implements Serializable{
 	private String url;
 	private StudentDTO student;
 	private DocumentTypeDTO type;
+	private boolean active;
 	
 	public DocumentDTO() {
 		super();
 	}
 
-	public DocumentDTO(Integer id, String title, String url, StudentDTO student, DocumentTypeDTO type) {
+	public DocumentDTO(Integer id, String title, String url, StudentDTO student, DocumentTypeDTO type, boolean active) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.url = url;
 		this.student = student;
 		this.type = type;
+		this.active = active;
 	}
 	
 	public DocumentDTO(Document document) {
-		this(document.getId(), document.getTitle(), document.getUrl(), new StudentDTO(document.getStudent()), new DocumentTypeDTO(document.getType()));
+		this(document.getId(), document.getTitle(), document.getUrl(), new StudentDTO(document.getStudent()), new DocumentTypeDTO(document.getType()), document.isActive());
 		
 	}
 
@@ -70,10 +72,13 @@ public class DocumentDTO implements Serializable{
 	public void setType(DocumentTypeDTO type) {
 		this.type = type;
 	}
-	
-	
 
+	public boolean isActive() {
+		return active;
+	}
 
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
-
 }

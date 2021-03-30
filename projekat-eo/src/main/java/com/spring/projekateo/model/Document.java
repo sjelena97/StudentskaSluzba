@@ -32,6 +32,9 @@ public class Document {
 	@JoinColumn(name = "type_id", referencedColumnName = "document_type_id", nullable = false)
 	private DocumentType type;
 	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
+	
 	public Document() {
 		
 	}
@@ -75,4 +78,13 @@ public class Document {
 	public void setType(DocumentType type) {
 		this.type = type;
 	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 }

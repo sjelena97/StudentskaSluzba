@@ -5,8 +5,6 @@ import java.util.Date;
 
 import com.spring.projekateo.model.Teaching;
 
-
-
 public class TeachingDTO implements Serializable {
 
 	private Integer id;

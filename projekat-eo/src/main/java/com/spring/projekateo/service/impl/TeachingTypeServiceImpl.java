@@ -12,8 +12,8 @@ public class TeachingTypeServiceImpl implements TeachingTypeService{
 	TeachingTypeRepository teachingTypeRepository;
 	
 	@Override
-	public TeachingType findById(Integer teachingId){
-		return teachingTypeRepository.findById(teachingId);
+	public TeachingType findById(Integer typeId){
+		return teachingTypeRepository.findById(typeId);
 	}
 
 }
