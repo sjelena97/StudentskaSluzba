@@ -12,8 +12,6 @@ public interface TeachingService {
 
 	Set<Teaching> getAllTeachingsByCourse(Course course);
 
-	Teaching add(Teaching newTeaching);
-
 	Teaching save(Teaching teaching);
 
 	void remove(Teaching teaching);

@@ -20,13 +20,15 @@ public class TeachingDTO implements Serializable {
 	private CourseDTO course;
 	
 	private TeachingTypeDTO type;
+	
+	private boolean active;
 
 	public TeachingDTO() {
 		super();
 	}
 
 	public TeachingDTO(Integer id, Date startDate, Date endDate, TeacherDTO teacher, CourseDTO course,
-			TeachingTypeDTO type) {
+			TeachingTypeDTO type, boolean active) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
@@ -34,10 +36,11 @@ public class TeachingDTO implements Serializable {
 		this.teacher = teacher;
 		this.course = course;
 		this.type = type;
+		this.active = active;
 	}
 	
 	public TeachingDTO(Teaching teaching) {
-		this(teaching.getId(),teaching.getStartDate(),teaching.getEndDate(),new TeacherDTO(teaching.getTeacher()),new CourseDTO(teaching.getCourse()),new TeachingTypeDTO(teaching.getType()));
+		this(teaching.getId(),teaching.getStartDate(),teaching.getEndDate(),new TeacherDTO(teaching.getTeacher()),new CourseDTO(teaching.getCourse()),new TeachingTypeDTO(teaching.getType()), teaching.isActive());
 	}
 
 	public Integer getId() {
@@ -87,6 +90,13 @@ public class TeachingDTO implements Serializable {
 	public void setType(TeachingTypeDTO type) {
 		this.type = type;
 	}
-	
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
 }

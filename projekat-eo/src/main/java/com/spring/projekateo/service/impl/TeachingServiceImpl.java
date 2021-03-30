@@ -42,19 +42,5 @@ public class TeachingServiceImpl implements TeachingService {
 		teachingRepository.delete(teaching);
 	}
 	
-	//teachingDTO
-	@Override
-	public Teaching add(Teaching newTeaching) {
-		Teaching t = new Teaching();
-		t.setStartDate(newTeaching.getStartDate());
-		t.setEndDate(newTeaching.getEndDate());
-		t.setCourse(newTeaching.getCourse());
-		t.setTeacher(newTeaching.getTeacher());
-		t.setType(newTeaching.getType());
-		
-		t = this.teachingRepository.save(t);
-		return t;
-	}
-	
 }
 

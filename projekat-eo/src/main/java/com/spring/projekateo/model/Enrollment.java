@@ -28,7 +28,7 @@ public class Enrollment {
 	@Column(name = "startDate", nullable = false)
 	private Date startDate;
 	
-	@Column(name = "endDate", nullable = false)
+	@Column(name = "endDate")
 	private Date endDate;
 	
 	@ManyToOne
@@ -41,6 +41,9 @@ public class Enrollment {
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "enrollment")
 	private Set<Exam> exams = new HashSet<Exam>();
+	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
 	
 	public Enrollment() {
 		
@@ -92,6 +95,14 @@ public class Enrollment {
 
 	public void setExams(Set<Exam> exams) {
 		this.exams = exams;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }

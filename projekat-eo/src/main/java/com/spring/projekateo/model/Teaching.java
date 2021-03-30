@@ -23,7 +23,7 @@ public class Teaching {
 	@Column(name = "startDate", nullable = false)
 	private Date startDate;
 	
-	@Column(name = "endDate", nullable = false)
+	@Column(name = "endDate")
 	private Date endDate;
 	
 	@ManyToOne
@@ -37,6 +37,9 @@ public class Teaching {
 	@ManyToOne
 	@JoinColumn(name = "type_id", referencedColumnName = "teaching_type_id", nullable = false)
 	private TeachingType type;
+	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
 	
 	public Teaching() {
 		
@@ -88,6 +91,14 @@ public class Teaching {
 
 	public void setType(TeachingType type) {
 		this.type = type;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }
