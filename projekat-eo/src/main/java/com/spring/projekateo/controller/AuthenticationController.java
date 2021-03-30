@@ -35,7 +35,7 @@ public class AuthenticationController {
 	// Prvi endpoint koji pogadja korisnik kada se loguje.
 	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
 	@PostMapping("/login")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody Map<String, String> userCredentials) {
+	public ResponseEntity<?> login(@RequestBody Map<String, String> userCredentials) {
 
 		 String username = userCredentials.get("username");
          String password = userCredentials.get("password");

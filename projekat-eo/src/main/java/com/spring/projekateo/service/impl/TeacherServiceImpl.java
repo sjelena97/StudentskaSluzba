@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.Teacher;
-import com.spring.projekateo.model.Teaching;
 import com.spring.projekateo.repository.TeacherRepository;
 import com.spring.projekateo.service.TeacherService;
 
@@ -19,12 +18,6 @@ public class TeacherServiceImpl implements TeacherService {
 	@Override
 	public Teacher findById(Integer id) {
 		return teacherRepository.findById(id);
-	}
-	
-	@Override
-    public List<Teacher> getAllTeachersByTeaching(Teaching teaching){
-		List<Teacher> allTeachers = teacherRepository.findAllByTeaching(teaching);
-        return allTeachers;
 	}
 	
 	@Override
