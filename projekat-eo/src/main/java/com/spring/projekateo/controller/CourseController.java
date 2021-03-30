@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +55,28 @@ public class CourseController {
 		c = this.courseService.save(c);
 				
 		return new ResponseEntity<CourseDTO>(new CourseDTO(c), HttpStatus.CREATED);	
+	}
+	
+	@PutMapping("/updateCourse/{course_id}")
+	public ResponseEntity<CourseDTO> updateCourse(@RequestBody CourseDTO courseDTO, @PathVariable("course_id") int course_id){
+
+		Course course = courseService.findById(courseDTO.getId());
+		if (course == null) {
+			return new ResponseEntity<CourseDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Course course1 = courseService.findCourseByCode(courseDTO.getCode());
+		if (course1 != null) {
+			return new ResponseEntity<CourseDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		course.setCode(courseDTO.getCode());
+		course.setName(courseDTO.getName());
+		course.setESPB(courseDTO.getESPB());
+		
+		course = this.courseService.save(course);
+		
+		return new ResponseEntity<CourseDTO>(new CourseDTO(course), HttpStatus.OK);	
 	}
 	
 	
