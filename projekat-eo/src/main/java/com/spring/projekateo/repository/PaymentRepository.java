@@ -11,4 +11,6 @@ public interface PaymentRepository extends JpaRepository<Payment, Long>{
 
 	Set<Payment> findAllByAccount(Account account);
 
+	Payment findById(Integer paymentId);
+
 }
