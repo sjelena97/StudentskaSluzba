@@ -76,6 +76,7 @@ public class CourseController {
 		course.setCode(courseDTO.getCode());
 		course.setName(courseDTO.getName());
 		course.setESPB(courseDTO.getESPB());
+		course.setActive(courseDTO.isActive());
 
 		course = this.courseService.save(course);
 

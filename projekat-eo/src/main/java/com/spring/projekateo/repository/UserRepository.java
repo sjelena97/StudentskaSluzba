@@ -8,8 +8,6 @@ import com.spring.projekateo.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	User save(User user);
-
 	User findById(Integer id);
 
 	List<User> findAll();

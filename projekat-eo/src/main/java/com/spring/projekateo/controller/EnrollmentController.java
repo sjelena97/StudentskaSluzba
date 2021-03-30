@@ -120,6 +120,7 @@ public class EnrollmentController {
 		enrollment.setStartDate(enrollmentDTO.getStartDate());
 		enrollment.setEndDate(enrollmentDTO.getEndDate());
 		enrollment.setStudent(student);
+		enrollment.setActive(enrollmentDTO.isActive());
 		
 		enrollment = enrollmentService.save(enrollment);
 		
