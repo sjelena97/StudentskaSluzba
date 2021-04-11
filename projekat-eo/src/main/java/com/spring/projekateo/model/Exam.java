@@ -33,6 +33,14 @@ public class Exam {
 	@ManyToOne
 	@JoinColumn(name = "enrollment_id", referencedColumnName = "enrollment_id")
 	private Enrollment enrollment;
+	
+	@ManyToOne
+	@JoinColumn(name = "teaching_id", referencedColumnName = "teaching_id")
+	private Teaching teaching;
+	
+	@ManyToOne
+	@JoinColumn(name = "course_id", referencedColumnName = "course_id")
+	private Course course;
 	 
 	@ManyToOne
 	@JoinColumn(name = "exam_period_id", referencedColumnName = "exam_period_id", nullable = false)
@@ -75,6 +83,22 @@ public class Exam {
 
 	public void setEnrollment(Enrollment enrollment) {
 		this.enrollment = enrollment;
+	}
+
+	public Teaching getTeaching() {
+		return teaching;
+	}
+
+	public void setTeaching(Teaching teaching) {
+		this.teaching = teaching;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	public ExamPeriod getPeriod() {

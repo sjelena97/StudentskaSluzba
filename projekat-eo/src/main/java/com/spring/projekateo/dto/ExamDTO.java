@@ -13,6 +13,10 @@ public class ExamDTO implements Serializable {
 	private Integer grade;
 	 
 	private EnrollmentDTO enrollment;
+	
+	private TeachingDTO teaching;
+	
+	private CourseDTO course;
 	 
 	private ExamPeriodDTO period;
 
@@ -20,17 +24,19 @@ public class ExamDTO implements Serializable {
 		super();
 	}
 
-	public ExamDTO(Integer id, Integer points, Integer grade, EnrollmentDTO enrollment, ExamPeriodDTO period) {
+	public ExamDTO(Integer id, Integer points, Integer grade, EnrollmentDTO enrollment, TeachingDTO teaching, CourseDTO course, ExamPeriodDTO period) {
 		super();
 		this.id = id;
 		this.points = points;
 		this.grade = grade;
 		this.enrollment = enrollment;
+		this.teaching = teaching;
+		this.course = course;
 		this.period = period;
 	}
 	
 	public ExamDTO(Exam exam) {
-		this(exam.getId(),exam.getPoints(),exam.getGrade(),new EnrollmentDTO(exam.getEnrollment()), new ExamPeriodDTO(exam.getPeriod()));
+		this(exam.getId(),exam.getPoints(),exam.getGrade(), new EnrollmentDTO(exam.getEnrollment()), new TeachingDTO(exam.getTeaching()), new CourseDTO(exam.getCourse()), new ExamPeriodDTO(exam.getPeriod()));
 	}
 
 	public Integer getId() {
@@ -63,6 +69,22 @@ public class ExamDTO implements Serializable {
 
 	public void setEnrollment(EnrollmentDTO enrollment) {
 		this.enrollment = enrollment;
+	}
+
+	public TeachingDTO getTeaching() {
+		return teaching;
+	}
+
+	public void setTeaching(TeachingDTO teaching) {
+		this.teaching = teaching;
+	}
+
+	public CourseDTO getCourse() {
+		return course;
+	}
+
+	public void setCourse(CourseDTO course) {
+		this.course = course;
 	}
 
 	public ExamPeriodDTO getPeriod() {

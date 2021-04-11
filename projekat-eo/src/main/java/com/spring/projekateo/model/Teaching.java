@@ -1,14 +1,19 @@
 package com.spring.projekateo.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +34,9 @@ public class Teaching {
 	@ManyToOne
 	@JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id", nullable = false)
 	private Teacher teacher;
+	
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "enrollment")
+	private Set<Exam> exams = new HashSet<Exam>();
 	
 	@ManyToOne
 	@JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
@@ -75,6 +83,14 @@ public class Teaching {
 
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+
+	public Set<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(Set<Exam> exams) {
+		this.exams = exams;
 	}
 
 	public Course getCourse() {

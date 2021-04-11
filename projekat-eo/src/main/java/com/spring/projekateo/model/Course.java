@@ -39,6 +39,9 @@ public class Course {
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "course")
 	private Set<Teaching> teachings = new HashSet<Teaching>();
+	
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "enrollment")
+	private Set<Exam> exams = new HashSet<Exam>();
 
 	public Course() {
 		
@@ -99,6 +102,13 @@ public class Course {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
+	public Set<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(Set<Exam> exams) {
+		this.exams = exams;
+	}
 
 }
