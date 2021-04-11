@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -79,6 +81,22 @@ public class ExamController {
 				
 			}
 			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateExam/{exam_id}")
+	public ResponseEntity<ExamDTO> updateExam(@RequestBody ExamDTO examDTO, @PathVariable("exam_id") int exam_id){
+		//a exam must exist
+		Exam exam = examService.findById(exam_id);
+		if (exam == null) {
+			return new ResponseEntity<ExamDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		exam.setGrade(examDTO.getGrade());
+		exam.setPoints(examDTO.getPoints());
+
+		exam = examService.save(exam);
+		
+		return new ResponseEntity<ExamDTO>(new ExamDTO(exam), HttpStatus.OK);	
 	}
 	
 }

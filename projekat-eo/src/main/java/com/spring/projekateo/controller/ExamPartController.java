@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -86,6 +88,23 @@ public class ExamPartController {
 				
 			}
 			return new ResponseEntity<>(examPartsDTO, HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateExamPart/{exam_part_id}")
+	public ResponseEntity<ExamPartDTO> updateExamPart(@RequestBody ExamPartDTO examPartDTO, @PathVariable("exam_part_id") int exam_part_id){
+		//a exam part must exist
+		ExamPart examPart = examPartService.findById(exam_part_id);
+		if (examPart == null) {
+			return new ResponseEntity<ExamPartDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		examPart.setPoints(examPartDTO.getPoints());
+		examPart.setDate(examPartDTO.getDate());
+		examPart.setLocation(examPartDTO.getLocation());
+
+		examPart = examPartService.save(examPart);
+		
+		return new ResponseEntity<ExamPartDTO>(new ExamPartDTO(examPart), HttpStatus.OK);	
 	}
 
 }
