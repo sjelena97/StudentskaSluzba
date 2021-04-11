@@ -23,16 +23,4 @@ public class ExamPartServiceImpl implements ExamPartService{
 		return examPartRepository.save(examPart);
 	}
 	
-	//exampartDTO
-	@Override
-	public ExamPart add(ExamPart newExamPart) {
-		ExamPart ep = new ExamPart();
-		ep.setDate(newExamPart.getDate());
-		ep.setLocation(newExamPart.getLocation());
-		ep.setExam(newExamPart.getExam());
-		ep.setType(newExamPart.getType());
-		
-		ep = this.examPartRepository.save(ep);
-		return ep;
-	}
 }

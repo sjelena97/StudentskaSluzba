@@ -33,16 +33,5 @@ public class ExamServiceImpl implements ExamService{
 	public Exam save(Exam exam) {
 		return examRepository.save(exam);
 	}
-	
-	//examDTO
-	@Override
-	public Exam add(Exam newExam) {
-		Exam e = new Exam();
-		e.setExamPeriod(newExam.getExamPeriod());
-		e.setParts(newExam.getParts());
-		
-		e = this.examRepository.save(e);
-		return e;
-	}
 
 }
