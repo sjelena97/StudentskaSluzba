@@ -5,6 +5,7 @@ import java.util.Set;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
+import com.spring.projekateo.model.ExamPeriod;
 
 public interface ExamService {
 
@@ -17,5 +18,7 @@ public interface ExamService {
 	Set<Exam> getAllExamsByCourse(Course course);
 
 	void remove(Exam exam);
+
+	Set<Exam> getAllExamsByExamPeriod(ExamPeriod examPeriod);
 
 }

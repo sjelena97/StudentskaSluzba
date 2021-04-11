@@ -116,6 +116,26 @@ public class ExamController {
 			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAllExamsByExamPeriod/{exam_period_id}")
+	public ResponseEntity<List<ExamDTO>> getAllExamsByExamPeriod(@PathVariable("exam_period_id") int exam_period_id){
+			ExamPeriod period = examPeriodService.findById(exam_period_id);
+		 	Set<Exam> exams = examService.getAllExamsByExamPeriod(period);
+		 	List<ExamDTO> examsDTO = new ArrayList<>();
+			for (Exam e: exams) {
+				ExamDTO examDTO = new ExamDTO();
+				examDTO.setId(e.getId());
+				examDTO.setPoints(e.getPoints());
+				examDTO.setGrade(e.getGrade());
+				examDTO.setTeaching(new TeachingDTO(e.getTeaching()));
+				examDTO.setCourse(new CourseDTO(e.getCourse()));
+				examDTO.setEnrollment(new EnrollmentDTO(e.getEnrollment()));
+				//we leave period field empty
+				
+				examsDTO.add(examDTO);
+			}
+			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
+	}
+	
 	@PostMapping("/addExam/{course_id}/{exam_period_id}")
 	public ResponseEntity<ExamDTO> createExam(@PathVariable("course_id") int course_id, @PathVariable("exam_period_id") int exam_period_id) {
 		 

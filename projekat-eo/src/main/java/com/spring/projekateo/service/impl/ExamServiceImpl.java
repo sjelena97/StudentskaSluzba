@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
+import com.spring.projekateo.model.ExamPeriod;
 import com.spring.projekateo.repository.ExamRepository;
 import com.spring.projekateo.service.ExamService;
 
@@ -31,6 +32,12 @@ public class ExamServiceImpl implements ExamService{
 	@Override
     public Set<Exam> getAllExamsByCourse(Course course){
 		Set<Exam> allExams = examRepository.findAllByCourse(course);
+        return allExams;
+	}
+	
+	@Override
+    public Set<Exam> getAllExamsByExamPeriod(ExamPeriod examPeriod){
+		Set<Exam> allExams = examRepository.findAllByExamPeriod(examPeriod);
         return allExams;
 	}
 	
