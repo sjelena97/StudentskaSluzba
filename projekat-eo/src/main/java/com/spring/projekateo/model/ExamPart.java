@@ -20,7 +20,7 @@ public class ExamPart {
 	@Column(name="exam_part_id",unique = true, nullable = false)
 	private Integer id;
 	 
-	@Column(name = "points", nullable = false)
+	@Column(name = "points")
 	private int points;
 	 
 	@Column(name = "date", nullable = false)
@@ -38,7 +38,7 @@ public class ExamPart {
 	private ExamPartType type;
 	
 	@ManyToOne
-	@JoinColumn(name = "status_id", referencedColumnName = "exam_part_status_id", nullable = false)
+	@JoinColumn(name = "status_id", referencedColumnName = "exam_part_status_id")
 	private ExamPartStatus status;
 	
 	public ExamPart() {

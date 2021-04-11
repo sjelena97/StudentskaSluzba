@@ -8,21 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.CourseDTO;
+import com.spring.projekateo.dto.EnrollmentDTO;
 import com.spring.projekateo.dto.ExamDTO;
 import com.spring.projekateo.dto.ExamPeriodDTO;
 import com.spring.projekateo.dto.TeachingDTO;
+import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
+import com.spring.projekateo.model.ExamPeriod;
 import com.spring.projekateo.model.Student;
+import com.spring.projekateo.service.CourseService;
 import com.spring.projekateo.service.EnrollmentService;
+import com.spring.projekateo.service.ExamPeriodService;
 import com.spring.projekateo.service.ExamService;
 import com.spring.projekateo.service.StudentService;
 
@@ -34,10 +41,16 @@ public class ExamController {
 	private ExamService examService;
 	
 	@Autowired
+	private ExamPeriodService examPeriodService;
+	
+	@Autowired
     private EnrollmentService enrollmentService;
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	@GetMapping("/getAllExamsByEnrollment/{enrollment_id}")
 	public ResponseEntity<List<ExamDTO>> getAllExamsByEnrollment(@PathVariable("enrollment_id") int enrollment_id){
@@ -83,6 +96,47 @@ public class ExamController {
 			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAllExamsByCourse/{course_id}")
+	public ResponseEntity<List<ExamDTO>> getAllExamsByCourse(@PathVariable("course_id") int course_id){
+			Course course = courseService.findById(course_id);
+		 	Set<Exam> exams = examService.getAllExamsByCourse(course);
+		 	List<ExamDTO> examsDTO = new ArrayList<>();
+			for (Exam e: exams) {
+				ExamDTO examDTO = new ExamDTO();
+				examDTO.setId(e.getId());
+				examDTO.setPoints(e.getPoints());
+				examDTO.setGrade(e.getGrade());
+				examDTO.setTeaching(new TeachingDTO(e.getTeaching()));
+				examDTO.setPeriod(new ExamPeriodDTO(e.getExamPeriod()));
+				examDTO.setEnrollment(new EnrollmentDTO(e.getEnrollment()));
+				//we leave course field empty
+				
+				examsDTO.add(examDTO);
+			}
+			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
+	}
+	
+	@PostMapping("/addExam/{course_id}/{exam_period_id}")
+	public ResponseEntity<ExamDTO> createExam(@PathVariable("course_id") int course_id, @PathVariable("exam_period_id") int exam_period_id) {
+		 
+		Course course = courseService.findById(course_id);
+		if (course == null) {
+			return new ResponseEntity<ExamDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		ExamPeriod examPeriod = examPeriodService.findById(exam_period_id);
+		if (examPeriod == null) {
+			return new ResponseEntity<ExamDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Exam exam = new Exam();
+		exam.setExamPeriod(examPeriod);
+		exam.setCourse(course);
+				
+		exam = examService.save(exam);
+		return new ResponseEntity<ExamDTO>(new ExamDTO(exam), HttpStatus.CREATED);	
+	}
+	
 	@PutMapping("/updateExam/{exam_id}")
 	public ResponseEntity<ExamDTO> updateExam(@RequestBody ExamDTO examDTO, @PathVariable("exam_id") int exam_id){
 		//a exam must exist
@@ -97,6 +151,37 @@ public class ExamController {
 		exam = examService.save(exam);
 		
 		return new ResponseEntity<ExamDTO>(new ExamDTO(exam), HttpStatus.OK);	
+	}
+	
+	@PutMapping("/updateExamPeriod/{exam_id}/{exam_period_id}")
+	public ResponseEntity<ExamDTO> updateExamPeriod(@RequestBody ExamDTO examDTO, @PathVariable("exam_id") int exam_id, @PathVariable("exam_period_id") int exam_period_id){
+		//a exam must exist
+		Exam exam = examService.findById(exam_id);
+		if (exam == null) {
+			return new ResponseEntity<ExamDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		ExamPeriod examPeriod = examPeriodService.findById(exam_period_id);
+		if (examPeriod == null) {
+			return new ResponseEntity<ExamDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		exam.setPeriod(examPeriod);
+
+		exam = examService.save(exam);
+		
+		return new ResponseEntity<ExamDTO>(new ExamDTO(exam), HttpStatus.OK);	
+	}
+	
+	@DeleteMapping("/deleteExam/{exam_id}")
+	public ResponseEntity<Void> deleteExam(@PathVariable("exam_id") int exam_id){
+		Exam exam = examService.findById(exam_id);
+		if (exam != null){
+			examService.remove(exam);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {		
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

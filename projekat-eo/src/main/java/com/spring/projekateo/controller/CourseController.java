@@ -51,7 +51,7 @@ public class CourseController {
 		c.setName(courseDTO.getName());
 		c.setESPB(courseDTO.getESPB());
 
-		c = this.courseService.save(c);
+		c = courseService.save(c);
 
 		return new ResponseEntity<CourseDTO>(new CourseDTO(c), HttpStatus.CREATED);
 	}
@@ -60,7 +60,7 @@ public class CourseController {
 	public ResponseEntity<CourseDTO> updateCourse(@RequestBody CourseDTO courseDTO,
 			@PathVariable("course_id") int course_id) {
 
-		Course course = courseService.findById(courseDTO.getId());
+		Course course = courseService.findById(course_id);
 		if (course == null) {
 			return new ResponseEntity<CourseDTO>(HttpStatus.BAD_REQUEST);
 		}
@@ -78,7 +78,7 @@ public class CourseController {
 		course.setESPB(courseDTO.getESPB());
 		course.setActive(courseDTO.isActive());
 
-		course = this.courseService.save(course);
+		course = courseService.save(course);
 
 		return new ResponseEntity<CourseDTO>(new CourseDTO(course), HttpStatus.OK);
 	}

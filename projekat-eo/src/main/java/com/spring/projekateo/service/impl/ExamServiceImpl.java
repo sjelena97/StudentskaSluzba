@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
 import com.spring.projekateo.repository.ExamRepository;
@@ -27,11 +28,20 @@ public class ExamServiceImpl implements ExamService{
         return allExams;
 	}
 	
-	//daj sve ispite za course
+	@Override
+    public Set<Exam> getAllExamsByCourse(Course course){
+		Set<Exam> allExams = examRepository.findAllByCourse(course);
+        return allExams;
+	}
 	
 	@Override
 	public Exam save(Exam exam) {
 		return examRepository.save(exam);
+	}
+	
+	@Override
+	public void remove(Exam exam) {
+		examRepository.delete(exam);
 	}
 
 }

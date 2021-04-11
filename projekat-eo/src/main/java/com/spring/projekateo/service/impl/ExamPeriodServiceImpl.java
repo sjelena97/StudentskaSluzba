@@ -1,5 +1,7 @@
 package com.spring.projekateo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,16 +25,10 @@ public class ExamPeriodServiceImpl implements ExamPeriodService{
 		return examPeriodRepository.save(examPeriod);
 	}
 	
-	//examPeriodDTO
 	@Override
-	public ExamPeriod add(ExamPeriod newExamPeriod) {
-		ExamPeriod ep = new ExamPeriod();
-		ep.setStartDate(newExamPeriod.getStartDate());
-		ep.setEndDate(newExamPeriod.getEndDate());
-		ep.setName(newExamPeriod.getName());
-		
-		ep = this.examPeriodRepository.save(ep);
-		return ep;
+    public List<ExamPeriod> getAllExamPeriods(){
+		List<ExamPeriod> allPeriods= examPeriodRepository.findAll();
+        return allPeriods;
 	}
-
+	
 }

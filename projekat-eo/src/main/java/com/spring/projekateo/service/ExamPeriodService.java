@@ -1,5 +1,7 @@
 package com.spring.projekateo.service;
 
+import java.util.List;
+
 import com.spring.projekateo.model.ExamPeriod;
 
 public interface ExamPeriodService {
@@ -8,6 +10,6 @@ public interface ExamPeriodService {
 
 	ExamPeriod save(ExamPeriod examPeriod);
 
-	ExamPeriod add(ExamPeriod newExamPeriod);
+	List<ExamPeriod> getAllExamPeriods();
 
 }

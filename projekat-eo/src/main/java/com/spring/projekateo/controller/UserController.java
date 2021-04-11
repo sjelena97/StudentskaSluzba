@@ -46,6 +46,7 @@ public class UserController {
 		if(userDTO.getPassword() != null) {
 			user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 		}
+		
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);	
 		

@@ -32,4 +32,9 @@ public class ExamPartServiceImpl implements ExamPartService{
         return allExamParts;
 	}
 	
+	@Override
+	public void remove(ExamPart examPart) {
+		examPartRepository.delete(examPart);
+	}
+	
 }

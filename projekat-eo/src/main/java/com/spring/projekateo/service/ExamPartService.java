@@ -13,4 +13,6 @@ public interface ExamPartService {
 
 	Set<ExamPart> getAllExamPartsByExam(Exam exam);
 
+	void remove(ExamPart examPart);
+
 }
