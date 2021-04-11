@@ -1,6 +1,6 @@
 package com.spring.projekateo.service.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ public class ExamServiceImpl implements ExamService{
 	}
 	
 	@Override
-    public List<Exam> getAllExamsByEnrollment(Enrollment enrollment){
-		List<Exam> allExams = examRepository.findAllByEnrollment(enrollment);
+    public Set<Exam> getAllExamsByEnrollment(Enrollment enrollment){
+		Set<Exam> allExams = examRepository.findAllByEnrollment(enrollment);
         return allExams;
 	}
 	
