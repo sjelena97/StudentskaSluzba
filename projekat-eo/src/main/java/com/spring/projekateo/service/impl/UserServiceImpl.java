@@ -39,21 +39,6 @@ public class UserServiceImpl implements UserService{
 		return userRepository.save(user);
 	}
 	
-	//ovdje treba UserDTO a ne User
-	@Override
-	public User add(User newUser) {
-		User u = new User();
-		u.setFirstName(newUser.getFirstName());
-		u.setLastName(newUser.getLastName());
-		u.setUsername(newUser.getUsername());
-		// prije nego sto postavimo lozinku u atribut hesiramo je
-		u.setPassword(passwordEncoder.encode(newUser.getPassword())); 
-		u.setUserAuthorities(newUser.getUserAuthorities());
-		
-		u = this.userRepository.save(u);
-		return u;
-	}
-	
 	@Override
     public List<User> getAllUsers(){
 		List<User> allUsers= userRepository.findAll();

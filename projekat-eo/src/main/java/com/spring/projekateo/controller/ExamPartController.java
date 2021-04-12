@@ -137,15 +137,15 @@ public class ExamPartController {
 		return new ResponseEntity<ExamPartDTO>(new ExamPartDTO(examPart), HttpStatus.OK);	
 	}
 	
-	@PutMapping("/updateExamPartType/{exam_part_id}/{exam_part_type_id}")
-	public ResponseEntity<ExamPartDTO> updateExamPartType(@RequestBody ExamPartDTO examPartDTO, @PathVariable("exam_part_id") int exam_part_id, @PathVariable("exam_part_type_id") int exam_part_type_id){
+	@PutMapping("/updateExamPartType/{exam_part_id}/{exam_part_type_code}")
+	public ResponseEntity<ExamPartDTO> updateExamPartType(@RequestBody ExamPartDTO examPartDTO, @PathVariable("exam_part_id") int exam_part_id, @PathVariable("exam_part_type_code") String exam_part_type_code){
 		//a exam part must exist
 		ExamPart examPart = examPartService.findById(exam_part_id);
 		if (examPart == null) {
 			return new ResponseEntity<ExamPartDTO>(HttpStatus.BAD_REQUEST);
 		}
 		
-		ExamPartType examType = examPartTypeService.findById(exam_part_type_id);
+		ExamPartType examType = examPartTypeService.findByCode(exam_part_type_code);
 		if (examType == null) {
 			return new ResponseEntity<ExamPartDTO>(HttpStatus.BAD_REQUEST);
 		}

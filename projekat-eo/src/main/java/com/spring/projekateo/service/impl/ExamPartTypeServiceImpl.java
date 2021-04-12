@@ -17,5 +17,10 @@ public class ExamPartTypeServiceImpl implements ExamPartTypeService{
 	public ExamPartType findById(Integer id) {
 		return examPartTypeRepository.findById(id);
 	}
+	
+	@Override
+	public ExamPartType findByCode(String code) {
+		return examPartTypeRepository.findByCode(code);
+	}
 
 }

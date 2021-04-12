@@ -10,8 +10,6 @@ public interface StudentService {
 
 	Student save(Student student);
 
-	Student add(Student newStudent);
-
 	List<Student> getAllStudents();
 
 	Student findByCardName(String cardName);

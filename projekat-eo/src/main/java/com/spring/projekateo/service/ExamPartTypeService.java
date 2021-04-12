@@ -6,4 +6,6 @@ public interface ExamPartTypeService {
 
 	ExamPartType findById(Integer id);
 
+	ExamPartType findByCode(String code);
+
 }

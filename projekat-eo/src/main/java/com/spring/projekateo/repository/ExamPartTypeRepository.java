@@ -8,4 +8,6 @@ public interface ExamPartTypeRepository extends JpaRepository<ExamPartType, Long
 
 	ExamPartType findById(Integer id);
 
+	ExamPartType findByCode(String code);
+
 }

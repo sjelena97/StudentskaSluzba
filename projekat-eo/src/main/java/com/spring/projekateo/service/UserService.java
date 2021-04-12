@@ -12,8 +12,6 @@ public interface UserService {
 
 	User findById(Integer id);
 
-	User add(User newUser);
-
 	List<User> getAllUsers();
 
 	User findByUsername(String username) throws UsernameNotFoundException;

@@ -24,17 +24,6 @@ public class TeacherServiceImpl implements TeacherService {
 	public Teacher save(Teacher teacher) {
 		return teacherRepository.save(teacher);
 	}
-
-	//ovdje umjesto teacher bice teacherDTO
-	@Override
-	public Teacher add(Teacher newTeacher) {
-		Teacher t = new Teacher();
-		t.setUser(newTeacher.getUser());
-		t.setTeachings(newTeacher.getTeachings());
-		
-		t = this.teacherRepository.save(t);
-		return t;
-	}
 	
 	@Override
     public List<Teacher> getAllTeachers(){
