@@ -27,11 +27,15 @@ import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
 import com.spring.projekateo.model.ExamPeriod;
 import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.Teacher;
+import com.spring.projekateo.model.Teaching;
 import com.spring.projekateo.service.CourseService;
 import com.spring.projekateo.service.EnrollmentService;
 import com.spring.projekateo.service.ExamPeriodService;
 import com.spring.projekateo.service.ExamService;
 import com.spring.projekateo.service.StudentService;
+import com.spring.projekateo.service.TeacherService;
+import com.spring.projekateo.service.TeachingService;
 
 @RestController
 @RequestMapping(value = "/exams", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,6 +55,12 @@ public class ExamController {
 	
 	@Autowired
 	private CourseService courseService;
+	
+	@Autowired
+	private TeachingService teachingService;
+	
+	@Autowired
+	private TeacherService teacherService;
 	
 	@GetMapping("/getAllExamsByEnrollment/{enrollment_id}")
 	public ResponseEntity<List<ExamDTO>> getAllExamsByEnrollment(@PathVariable("enrollment_id") int enrollment_id){
@@ -135,6 +145,53 @@ public class ExamController {
 			}
 			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
 	}
+	
+
+@GetMapping("/getAllExamsByTeaching/{teaching_id}")
+	public ResponseEntity<List<ExamDTO>> getAllExamsByTeaching(@PathVariable("teaching_id") int teaching_id){
+			Teaching teaching = teachingService.findById(teaching_id);
+		 	Set<Exam> exams = examService.getAllExamsByTeaching(teaching);
+		 	List<ExamDTO> examsDTO = new ArrayList<>();
+			for (Exam e: exams) {
+				ExamDTO examDTO = new ExamDTO();
+				examDTO.setId(e.getId());
+				examDTO.setPoints(e.getPoints());
+				examDTO.setGrade(e.getGrade());
+				examDTO.setEnrollment(new EnrollmentDTO(e.getEnrollment()));
+				examDTO.setPeriod(new ExamPeriodDTO(e.getExamPeriod()));
+				examDTO.setCourse(new CourseDTO(e.getCourse()));
+				//we leave teaching field empty
+				
+				examsDTO.add(examDTO);
+			}
+			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllExamsByTeacher/{teacher_id}")
+	public ResponseEntity<List<ExamDTO>> getAllExamsByTeacher(@PathVariable("teacher_id") int teacher_id){
+			Teacher teacher = teacherService.findById(teacher_id);
+			Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
+			List<ExamDTO> examsDTO = new ArrayList<>();
+			for(Teaching t : teachings) {
+				Set<Exam> exams = examService.getAllExamsByTeaching(t);
+				for (Exam ex: exams) {
+					ExamDTO examDTO = new ExamDTO();
+					examDTO.setId(ex.getId());
+					examDTO.setPoints(ex.getPoints());
+					examDTO.setGrade(ex.getGrade());
+					examDTO.setEnrollment(new EnrollmentDTO(ex.getEnrollment()));
+					examDTO.setPeriod(new ExamPeriodDTO(ex.getExamPeriod()));
+					examDTO.setCourse(new CourseDTO(ex.getCourse()));
+					//we leave teaching field empty
+					
+					examsDTO.add(examDTO);
+				}
+				
+			}
+			return new ResponseEntity<>(examsDTO, HttpStatus.OK);
+	}
+
+
 	
 	@PostMapping("/addExam/{course_id}/{exam_period_id}")
 	public ResponseEntity<ExamDTO> createExam(@PathVariable("course_id") int course_id, @PathVariable("exam_period_id") int exam_period_id) {
