@@ -9,6 +9,7 @@ import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
 import com.spring.projekateo.model.ExamPeriod;
+import com.spring.projekateo.model.Teaching;
 import com.spring.projekateo.repository.ExamRepository;
 import com.spring.projekateo.service.ExamService;
 
@@ -50,5 +51,12 @@ public class ExamServiceImpl implements ExamService{
 	public void remove(Exam exam) {
 		examRepository.delete(exam);
 	}
+	
+	@Override
+    public Set<Exam> getAllExamsByTeaching(Teaching teaching){
+		Set<Exam> allExams = examRepository.findAllByTeaching(teaching);
+        return allExams;
+	}
+
 
 }

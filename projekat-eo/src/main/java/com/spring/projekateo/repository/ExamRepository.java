@@ -8,6 +8,7 @@ import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
 import com.spring.projekateo.model.ExamPeriod;
+import com.spring.projekateo.model.Teaching;
 
 public interface ExamRepository extends JpaRepository<Exam, Long>{
 
@@ -18,5 +19,7 @@ public interface ExamRepository extends JpaRepository<Exam, Long>{
 	Set<Exam> findAllByCourse(Course course);
 
 	Set<Exam> findAllByExamPeriod(ExamPeriod examPeriod);
+
+	Set<Exam> findAllByTeaching(Teaching teaching);
 
 }

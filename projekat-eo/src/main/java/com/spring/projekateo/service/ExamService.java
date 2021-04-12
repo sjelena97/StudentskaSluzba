@@ -6,6 +6,7 @@ import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
 import com.spring.projekateo.model.ExamPeriod;
+import com.spring.projekateo.model.Teaching;
 
 public interface ExamService {
 
@@ -20,5 +21,7 @@ public interface ExamService {
 	void remove(Exam exam);
 
 	Set<Exam> getAllExamsByExamPeriod(ExamPeriod examPeriod);
+
+	Set<Exam> getAllExamsByTeaching(Teaching teaching);
 
 }
