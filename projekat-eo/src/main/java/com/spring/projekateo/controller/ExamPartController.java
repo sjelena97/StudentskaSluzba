@@ -23,10 +23,12 @@ import com.spring.projekateo.dto.ExamPartTypeDTO;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Exam;
 import com.spring.projekateo.model.ExamPart;
+import com.spring.projekateo.model.ExamPartStatus;
 import com.spring.projekateo.model.ExamPartType;
 import com.spring.projekateo.model.Student;
 import com.spring.projekateo.service.EnrollmentService;
 import com.spring.projekateo.service.ExamPartService;
+import com.spring.projekateo.service.ExamPartStatusService;
 import com.spring.projekateo.service.ExamPartTypeService;
 import com.spring.projekateo.service.ExamService;
 import com.spring.projekateo.service.StudentService;
@@ -49,6 +51,9 @@ public class ExamPartController {
 	
 	@Autowired
 	private ExamPartService examPartService;
+	
+	@Autowired
+	private ExamPartStatusService examPartStatusService;
 	
 	@GetMapping("/getAllExamPartsByExam/{exam_id}")
 	public ResponseEntity<List<ExamPartDTO>> getAllExamPartsByExam(@PathVariable("exam_id") int exam_id){
@@ -155,6 +160,28 @@ public class ExamPartController {
 		examPart = examPartService.save(examPart);
 		
 		return new ResponseEntity<ExamPartDTO>(new ExamPartDTO(examPart), HttpStatus.OK);	
+	}
+	
+	@PutMapping("/updateExamPartStatus/{exam_part_id}/{exam_part_status_code}")
+	public ResponseEntity<ExamPartDTO> updateExamPartStatus(@RequestBody ExamPartDTO examPartDTO,
+			@PathVariable("exam_part_id") int exam_part_id,
+			@PathVariable("exam_part_status_code") String exam_part_status_code) {
+		// a exam part must exist
+		ExamPart examPart = examPartService.findById(exam_part_id);
+		if (examPart == null) {
+			return new ResponseEntity<ExamPartDTO>(HttpStatus.BAD_REQUEST);
+		}
+
+		ExamPartStatus examStatus = examPartStatusService.findByCode(exam_part_status_code);
+		if (examStatus == null) {
+			return new ResponseEntity<ExamPartDTO>(HttpStatus.BAD_REQUEST);
+		}
+
+		examPart.setStatus(examStatus);
+
+		examPart = examPartService.save(examPart);
+
+		return new ResponseEntity<ExamPartDTO>(new ExamPartDTO(examPart), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteExamPart/{exam_part_id}")
