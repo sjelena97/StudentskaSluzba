@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SluzbaHeaderComponent } from './components/sluzba-header/sluzba-header.component';
 import { SluzbaProfileComponent } from './components/sluzba-profile/sluzba-profile.component';
+import { SluzbaNavbarComponent } from './components/sluzba-navbar/sluzba-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SluzbaHeaderComponent,
-    SluzbaProfileComponent
+    SluzbaProfileComponent,
+    SluzbaNavbarComponent
   ],
   imports: [
     BrowserModule,
