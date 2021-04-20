@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+/*--------------------------------------------------------------
+## Fonts
+--------------------------------------------------------------*/
+@font-face {
+	font-family: 'Roboto';
+	font-weight: normal;
+	src: url('assets/fonts/Roboto-Regular.woff2') format('woff2'),
+		url('assets/fonts/Roboto-Regular.woff') format('woff');
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 300;
+	src: url('assets/fonts/Roboto-Light.woff2') format('woff2'),
+		url('assets/fonts/Roboto-Light.woff') format('woff');
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 100;
+	src: url('assets/fonts/Roboto-Thin.woff2') format('woff2'),
+		url('assets/fonts/Roboto-Thin.woff') format('woff');
+	font-style: normal;
+}
+
+body {
+	font-family: 'Roboto', sans-serif !important;
+}
