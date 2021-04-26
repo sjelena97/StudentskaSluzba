@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,11 +11,16 @@ import { SluzbaNavbarComponent } from './components/sluzba-navbar/sluzba-navbar.
 import { RouterModule, Routes } from '@angular/router';
 import { SluzbaLoginComponent } from './components/sluzba-login/sluzba-login.component';
 import { SluzbaNotFoundPageComponent } from './components/sluzba-not-found-page/sluzba-not-found-page.component';
+import { SluzbaCoursesComponent } from './components/sluzba-courses/sluzba-courses.component';
+import { SluzbaCoursesServiceService } from './components/sluzba-courses/sluzba-courses-service.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes = [
   { path: 'main', component: SluzbaLoginComponent },
   { path: 'profile',      component: SluzbaProfileComponent},
+  { path: 'courses',      component: SluzbaCoursesComponent},
   { path: '',
     redirectTo: '/main',
     pathMatch: 'full'
@@ -30,16 +36,20 @@ const appRoutes: Routes = [
     SluzbaNavbarComponent,
     SluzbaLoginComponent,
     SluzbaNotFoundPageComponent,
+    SluzbaCoursesComponent,
   ],
   imports: [
     BrowserModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [SluzbaCoursesServiceService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
