@@ -38,7 +38,7 @@ public class ExamServiceImpl implements ExamService{
 	
 	@Override
     public Set<Exam> getAllExamsByExamPeriod(ExamPeriod examPeriod){
-		Set<Exam> allExams = examRepository.findAllByExamPeriod(examPeriod);
+		Set<Exam> allExams = examRepository.findAllByPeriod(examPeriod);
         return allExams;
 	}
 	
