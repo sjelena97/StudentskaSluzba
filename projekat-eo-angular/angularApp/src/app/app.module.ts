@@ -15,12 +15,18 @@ import { SluzbaCoursesComponent } from './components/sluzba-courses/sluzba-cours
 import { SluzbaCoursesServiceService } from './components/sluzba-courses/sluzba-courses-service.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtUtilsService } from './services/auth/jwt-utils.service';
+import { TokenInterceptorService } from './services/auth/token-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthenticationServiceService } from './services/auth/authentication-service.service';
+import { CanActivateAuthGuardService } from './services/auth/can-activate-auth.guard.service';
+
 
 
 const appRoutes: Routes = [
   { path: 'main', component: SluzbaLoginComponent },
-  { path: 'profile',      component: SluzbaProfileComponent},
-  { path: 'courses',      component: SluzbaCoursesComponent},
+  { path: 'profile', component: SluzbaProfileComponent},
+  { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: '',
     redirectTo: '/main',
     pathMatch: 'full'
@@ -49,7 +55,17 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [SluzbaCoursesServiceService],
+  providers: [
+    SluzbaCoursesServiceService,
+    AuthenticationServiceService,
+    CanActivateAuthGuardService,
+    JwtUtilsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+  ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
