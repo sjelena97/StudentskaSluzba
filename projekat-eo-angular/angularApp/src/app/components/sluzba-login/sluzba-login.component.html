@@ -1,14 +1,14 @@
 <!-- Default form login -->
 <div id="loginContainer" class="container">
-<form class="text-center border border-light p-5">
+<form class="text-center border border-light p-5" (ngSubmit)="login()">
 
-    <p>Sign in</p>
+    <p>Login</p>
   
-    <!-- Email -->
-    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4 cs-12" placeholder="E-mail">
+    <!-- Username -->
+    <input type="text" id="username" class="form-control mb-4 cs-12" name="username" [(ngModel)]="user.username" placeholder="Username" required autofocus>
   
     <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4 s-12" placeholder="Password">
+    <input type="password" id="inputPassword" class="form-control mb-4 s-12" name="password" [(ngModel)]="user.password" placeholder="Password"  required>
   
     <div class="row" style="margin: auto; max-width: 100%;">
         <div class="col-7" style="margin: auto; height: max-content;"></div>
@@ -22,12 +22,17 @@
     
     <div class="row" style="margin: auto; max-width: 100%;">
         <div class="col-12" style="margin: auto; height: max-content;">
-            <input _ngcontent-serverapp-c171="" type="submit" mdbbtn="" color="default" mdbwaveseffect="" value="Login" class="waves-light btn-default btn">
+            <!-- Sign in button -->
+            <button class="waves-light btn-default btn" type="submit" color="default">Sign in</button>
         </div>
     </div>
   
-    <!-- Sign in button -->
+  
+
   
   </form>
+  <div *ngIf=wrongUsernameOrPass class="alert alert-warning box-msg" role="alert">
+    Wrong username or password.
+  </div>
 </div>
   <!-- Default form login -->
