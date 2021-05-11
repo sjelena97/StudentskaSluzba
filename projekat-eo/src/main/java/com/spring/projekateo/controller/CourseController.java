@@ -27,7 +27,6 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 
-	@PreAuthorize("hasAnyAuthority('STUDENT, TEACHER , ADMIN')")
 	@GetMapping("/getAllCourses")
 	public ResponseEntity<List<CourseDTO>> getAllCourses() {
 		List<Course> courses = courseService.getAllCourses();
