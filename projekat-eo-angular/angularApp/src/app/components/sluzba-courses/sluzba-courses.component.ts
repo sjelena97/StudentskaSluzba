@@ -38,10 +38,7 @@ const COURSES: Course[] = [
 })
 export class SluzbaCoursesComponent implements OnInit {
 
-  page = 1;
-  pageSize = 4;
   courses: Course[];
-  collectionSize : number = 0;
 
   subscription: Subscription;
 
@@ -53,22 +50,11 @@ export class SluzbaCoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourses();
-    this.getCollectionSize();
   }
 
   getCourses() {
     this.courseService.getCourses().subscribe(res =>
       this.courses = res.body);
-  }
-
-  getCollectionSize(){
-    this.collectionSize = this.courses.length;
-  }
-
-  refreshCourses() {
-    this.courses = this.courses
-      .map((course, i) => ({id: i + 1, ...course}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
   isLoggedIn():boolean{

@@ -22,7 +22,7 @@ export class SluzbaCoursesServiceService {
   
   getCourses(): Observable<HttpResponse<Course[]>> {
       const url = `${this.coursesUrl}/getAllCourses`;
-      return this.http.get<Course[]>(this.coursesUrl, {observe: 'response'});
+      return this.http.get<Course[]>(url, {observe: 'response'});
   }
 
 }
