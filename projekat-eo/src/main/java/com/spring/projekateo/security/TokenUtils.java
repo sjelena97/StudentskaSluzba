@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class TokenUtils {
 	private Claims getClaimsFromToken(String token) {
 		Claims claims;
 		try {
-			claims = Jwts.parser().setSigningKey(this.secret)
+			claims = Jwts.parser().setSigningKey(this.secret.getBytes("UTF-8"))
 					.parseClaimsJws(token).getBody();
 		} catch (Exception e) {
 			claims = null;
@@ -65,14 +66,37 @@ public class TokenUtils {
 				&& !isTokenExpired(token);
 	}
 	
+	private Date generateCurrentDate() {
+        return new Date(System.currentTimeMillis());
+    }
+
+    private Date generateExpirationDate() {
+        return new Date(System.currentTimeMillis() + (this.expiration * 1000));
+    }
+	
 	public String generateToken(UserDetails userDetails) {
-		Map<String, Object> claims = new HashMap<String, Object>();
-		claims.put("sub", userDetails.getUsername());
-		claims.put("created", new Date(System.currentTimeMillis()));
-		return Jwts.builder().setClaims(claims)
-				.setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
-				.signWith(SignatureAlgorithm.HS512, secret).compact();
-	}
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("sub", userDetails.getUsername());
+        claims.put("role", userDetails.getAuthorities());
+        claims.put("created", this.generateCurrentDate());
+        return this.generateToken(claims);
+    }
+
+    private String generateToken(Map<String, Object> claims) {
+        try {
+            return Jwts.builder()
+                    .setClaims(claims)
+                    .setExpiration(this.generateExpirationDate())
+                    .signWith(SignatureAlgorithm.HS512, this.secret.getBytes("UTF-8"))
+                    .compact();
+        } catch (UnsupportedEncodingException ex) {
+            return Jwts.builder()
+                    .setClaims(claims)
+                    .setExpiration(this.generateExpirationDate())
+                    .signWith(SignatureAlgorithm.HS512, this.secret)
+                    .compact();
+        }
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.spring.projekateo.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.projekateo.dto.TokenDTO;
 import com.spring.projekateo.security.TokenUtils;
 
 //Kontroler zaduzen za autentifikaciju korisnika
@@ -43,11 +46,16 @@ public class AuthenticationController {
          System.out.println(username + ' ' + password + " credentials");
          
          try {
- 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
- 					username, password);
-             Authentication authentication = authenticationManager.authenticate(token);
-             UserDetails details = userDetailsService.loadUserByUsername(username);
-             return new ResponseEntity<String>(tokenUtils.generateToken(details), HttpStatus.OK);
+             TokenDTO token = new TokenDTO();
+             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+             String tokenValue = this.tokenUtils.generateToken(userDetails);
+             token.setToken(tokenValue);
+
+             Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+
+             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+             return new ResponseEntity<>(token, HttpStatus.OK);
          } catch (Exception ex) {
              return new ResponseEntity<String>("Invalid login", HttpStatus.BAD_REQUEST);
          }

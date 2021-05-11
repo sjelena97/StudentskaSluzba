@@ -18,7 +18,7 @@ public interface ExamRepository extends JpaRepository<Exam, Long>{
 
 	Set<Exam> findAllByCourse(Course course);
 
-	Set<Exam> findAllByExamPeriod(ExamPeriod examPeriod);
+	Set<Exam> findAllByPeriod(ExamPeriod examPeriod);
 
 	Set<Exam> findAllByTeaching(Teaching teaching);
 
