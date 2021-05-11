@@ -8,3 +8,8 @@ INSERT INTO AUTHORITY (authority_id, name) VALUES (3, 'ADMIN');
 INSERT INTO USER_AUTHORITY (id, authority_id, user_id) VALUES (1, 1, 1);
 INSERT INTO USER_AUTHORITY (id, authority_id, user_id) VALUES (2, 2, 2);
 INSERT INTO USER_AUTHORITY (id, authority_id, user_id) VALUES (3, 3, 2);
+
+INSERT INTO COURSE (course_id, espb, code, name) VALUES (1, 6, 'EO', 'eObrazovanje');
+INSERT INTO COURSE (course_id, espb, code, name) VALUES (2, 6, 'EU', 'eUprava');
+INSERT INTO COURSE (course_id, espb, code, name) VALUES (3, 8, 'M1', 'Matematika 1');
+
