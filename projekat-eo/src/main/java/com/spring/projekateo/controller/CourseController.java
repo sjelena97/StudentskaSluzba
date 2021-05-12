@@ -1,13 +1,14 @@
 package com.spring.projekateo.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.CourseDTO;
+import com.spring.projekateo.dto.EnrollmentDTO;
 import com.spring.projekateo.model.Course;
+import com.spring.projekateo.model.Enrollment;
+import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.CourseService;
+import com.spring.projekateo.service.EnrollmentService;
+import com.spring.projekateo.service.StudentService;
+import com.spring.projekateo.service.UserService;
 
 @RestController
 @RequestMapping(value = "/courses", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -26,6 +34,15 @@ public class CourseController {
 
 	@Autowired
 	private CourseService courseService;
+	
+	@Autowired
+    private EnrollmentService enrollmentService;
+	
+	@Autowired
+    private StudentService studentService;
+	
+	@Autowired
+    private UserService userService;
 
 	@GetMapping("/getAllCourses")
 	public ResponseEntity<List<CourseDTO>> getAllCourses() {
@@ -36,6 +53,29 @@ public class CourseController {
 			coursesDTO.add(new CourseDTO(c));
 		}
 		return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllCoursesForStudent/{username}")
+	public ResponseEntity<List<CourseDTO>> getAllCoursesForStudent(@PathVariable("username") String username){
+			User user = userService.findByUsername(username);
+			Student student = studentService.findByUser(user);
+			Set<Course> courses = new HashSet<Course>();
+		 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+		 	for (Enrollment e: enrollments) {
+		 		courses.add(e.getCourse());
+			}
+		 	List<CourseDTO> coursesDTO = new ArrayList<>();
+			for (Course c: courses) {
+				CourseDTO courseDTO = new CourseDTO();
+				courseDTO.setId(c.getId());
+				courseDTO.setName(c.getName());
+				courseDTO.setCode(c.getCode());
+				courseDTO.setESPB(c.getESPB());
+				courseDTO.setActive(c.isActive());
+				
+				coursesDTO.add(courseDTO);
+			}
+			return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
 
 	@PostMapping("/addCourse")

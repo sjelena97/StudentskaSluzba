@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,6 +26,18 @@ public class UserController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@GetMapping("getUserByUsername/{username}")
+	public ResponseEntity<UserDTO> getUserByUsername(@PathVariable("username") String username) {
+		User user = userService.findByUsername(username);
+		if (user == null) {
+			System.out.println("User is null");
+			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			System.out.println("user founded");
+			return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);
+		}
+	}
 
 	@PutMapping("updateUser/{user_id}")
 	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @PathVariable("user_id") int id) {
