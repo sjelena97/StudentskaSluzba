@@ -5,9 +5,9 @@
             <div class="col-3" style="margin: auto; height: max-content;">
               <img src="assets/images/logo.jpg" class="logo" alt="StudentskaSluzba"/>
             </div>
-            <div class="col-6" style="margin: auto; height: max-content;">
+            <div *ngIf="isLoggedIn()" class="col-6" style="margin: auto; height: max-content;">
               <p style="text-align: center; font-size: 2.5vw; font-weight: bold;">Student service</p>
-              <p style="text-align: center; font-size: 1.5vw;">Pero Peric SF100/2018</p>
+              <p style="text-align: center; font-size: 1.5vw;">{{ user.firstName }} {{ user.lastName }}</p>
             </div>
             <div class="col-3" style="margin: auto; height: max-content;">
             </div>

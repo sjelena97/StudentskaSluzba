@@ -20,6 +20,8 @@ import { TokenInterceptorService } from './services/auth/token-interceptor.servi
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationServiceService } from './services/auth/authentication-service.service';
 import { CanActivateAuthGuardService } from './services/auth/can-activate-auth.guard.service';
+import { SluzbaStudentComponent } from './components/sluzba-student/sluzba-student.component';
+import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
 
 
 
@@ -43,6 +45,8 @@ const appRoutes: Routes = [
     SluzbaLoginComponent,
     SluzbaNotFoundPageComponent,
     SluzbaCoursesComponent,
+    SluzbaStudentComponent,
+    SluzbaUserComponent,
   ],
   imports: [
     BrowserModule,
