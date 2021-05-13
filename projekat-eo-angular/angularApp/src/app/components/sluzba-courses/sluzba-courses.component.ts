@@ -11,25 +11,6 @@ interface Course {
   ESPB: number;
 }
 
-const COURSES: Course[] = [
-  {
-    name: 'Baze podataka',
-    ESPB: 6
-  },
-  {
-    name: 'Matematika 1',
-    ESPB: 8
-  },
-  {
-    name: 'Osnove programiranja',
-    ESPB: 8
-  },
-  {
-    name: 'Matematika 2',
-    ESPB: 8
-  }
-];
-
 
 @Component({
   selector: 'app-sluzba-courses',

@@ -16,9 +16,7 @@ export class AuthenticationServiceService {
     return this.http.post(this.loginPath, JSON.stringify({ username, password }), { headers })
       .map((res: any) => {
         let token = res && res['token'];
-        console.log('super');
         if (token) {
-          console.log('setuj currentUser-a');
           localStorage.setItem('currentUser', JSON.stringify({
             username: username,
             roles: this.jwtUtilsService.getRoles(token),
@@ -27,7 +25,6 @@ export class AuthenticationServiceService {
           return true;
         }
         else {
-          console.log('false');
           return false;
         }
       })
@@ -59,6 +56,15 @@ export class AuthenticationServiceService {
   getCurrentUser() {
     if (localStorage.currentUser) {
       return JSON.parse(localStorage.currentUser);
+    }
+    else {
+      return undefined;
+    }
+  }
+
+  getCurrentUserUsername() {
+    if (localStorage.currentUser) {
+      return JSON.parse(localStorage.currentUser.username);
     }
     else {
       return undefined;
