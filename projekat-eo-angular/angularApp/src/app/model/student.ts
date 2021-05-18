@@ -1,15 +1,18 @@
 export class Student implements StudentInterface{
 	public id: number;
-	public cardNumber: string;
+	public cardName: string;
+	public account: Account;
 		
 	constructor(studentCfg:StudentInterface)
 	{	
 		this.id = studentCfg.id;
-		this.cardNumber = studentCfg.cardNumber;		
+		this.cardName = studentCfg.cardName;
+		this.account = studentCfg.account;	
 	}
 }
 
 interface StudentInterface{
 	id?: number;
-	cardNumber: string;
+	cardName: string;
+	account: Account;
 }

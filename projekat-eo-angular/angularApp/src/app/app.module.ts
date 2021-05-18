@@ -20,8 +20,8 @@ import { TokenInterceptorService } from './services/auth/token-interceptor.servi
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationServiceService } from './services/auth/authentication-service.service';
 import { CanActivateAuthGuardService } from './services/auth/can-activate-auth.guard.service';
-import { SluzbaStudentComponent } from './components/sluzba-student/sluzba-student.component';
-import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
+import { SluzbaPaymentsComponent } from './components/sluzba-payments/sluzba-payments.component';
+import { SluzbaDocumentsComponent } from './components/sluzba-documents/sluzba-documents.component';
 
 
 
@@ -29,6 +29,8 @@ const appRoutes: Routes = [
   { path: 'main', component: SluzbaLoginComponent },
   { path: 'profile', component: SluzbaProfileComponent},
   { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'payments', component: SluzbaPaymentsComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'documents', component: SluzbaDocumentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: '',
     redirectTo: '/main',
     pathMatch: 'full'
@@ -45,19 +47,15 @@ const appRoutes: Routes = [
     SluzbaLoginComponent,
     SluzbaNotFoundPageComponent,
     SluzbaCoursesComponent,
-    SluzbaStudentComponent,
-    SluzbaUserComponent,
+    SluzbaPaymentsComponent,
+    SluzbaDocumentsComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    AppRoutingModule
   ],
   providers: [
     SluzbaCoursesServiceService,

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light" style="background-color: white !important;">
-    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" style="display: none;" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,14 +9,14 @@
             <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Docs</a>
+            <li *ngIf="isStudent()" class="nav-item">
+            <a class="nav-link" routerLink="/documents" href="#">Docs</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Courses</a>
+            <a class="nav-link" routerLink="/courses" href="#">Courses</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="#">Payments</a>
+            <li *ngIf="isStudent()" class="nav-item ">
+                <a class="nav-link" routerLink="/payments" href="#">Payments</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,9 +32,9 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <mdb-icon fas icon="user"></mdb-icon>Profile<span class="caret"></span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">My account</a>
-            <a class="dropdown-item" href="#">Log out</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: unset;">
+            <a class="dropdown-item" routerLink="/profile" href="#">My account</a>
+            <a class="dropdown-item" (click)="logout()" href="#">Log out</a>
             </div>
         </li>
         </ul>

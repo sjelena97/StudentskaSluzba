@@ -1,7 +1,10 @@
 li {
     background-color: #FAFAFA;
     margin-right: 1vw;
-    width: 6vw;
+    width: 9vw;
     text-align: center;
     list-style: none;
+}
+.navbar {
+	padding: .5rem 0rem !important;
 }

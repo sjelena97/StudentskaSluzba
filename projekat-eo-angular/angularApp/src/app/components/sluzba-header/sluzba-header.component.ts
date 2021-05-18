@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user';
-import { Student } from 'src/app/model/student';
-import { SluzbaUserServiceService } from '../sluzba-user/sluzba-user-service.service';
-import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
+import { SluzbaHeaderServiceService } from './sluzba-header-service.service';
+import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
+
+interface User {
+  id?: number;
+  username: string;
+  firstName: string;
+  lastName: string;
+}
 
 @Component({
   selector: 'app-sluzba-header',
@@ -13,19 +21,30 @@ export class SluzbaHeaderComponent implements OnInit {
 
   user: User;
 
-  constructor(private userService: SluzbaUserServiceService, private authService: AuthenticationServiceService) { }
+  subscription: Subscription;
+
+  constructor(private headerService: SluzbaHeaderServiceService, private router: Router, private authService: AuthenticationServiceService) {
+    this.subscription = headerService.RegenerateData$.subscribe(() =>
+      this.getUser()
+    );
+  }
 
   ngOnInit(): void {
     this.getUser();
   }
 
   getUser() {
-    this.userService.getUser().subscribe(res => 
+    this.headerService.getUser().subscribe(res =>
       this.user = res.body);
   }
 
+
   isLoggedIn():boolean{
     return this.authService.isLoggedIn();
+  }
+
+  isStudent():boolean{
+    return this.authService.isStudent();
   }
 
 }

@@ -62,6 +62,30 @@ export class AuthenticationServiceService {
     }
   }
 
+  isStudent(): boolean {
+    if (localStorage.currentUser) {
+      var user = JSON.parse(localStorage.currentUser);
+      if (user.roles[0].some(t=>t.authority === "STUDENT")) return true;
+      else return false;
+    }
+  }
+
+  isTeacher(): boolean {
+    if (localStorage.currentUser) {
+      var user = JSON.parse(localStorage.currentUser);
+      if (user.roles[0].some(t=>t.authority === "TEACHER")) return true;
+      else return false;
+    }
+  }
+
+  isAdmin(): boolean {
+    if (localStorage.currentUser) {
+      var user = JSON.parse(localStorage.currentUser);
+      if (user.roles[0].some(t=>t.authority === "ADMIN")) return true;
+      else return false;
+    }
+  }
+
   getCurrentUserUsername() {
     if (localStorage.currentUser) {
       return JSON.parse(localStorage.currentUser.username);
