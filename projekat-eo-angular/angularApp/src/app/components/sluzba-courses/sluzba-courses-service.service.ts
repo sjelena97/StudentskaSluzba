@@ -8,7 +8,6 @@ import { Course } from '../../model/course';
 @Injectable()
 export class SluzbaCoursesServiceService {
 
-
   private coursesUrl = 'courses';
 
   constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
@@ -24,7 +23,7 @@ export class SluzbaCoursesServiceService {
   getCourses(): Observable<HttpResponse<Course[]>> {
       let username = this.authService.getCurrentUser().username;
       console.log("username: " + username);
-      const url = `${this.coursesUrl}/getAllCoursesForStudent/${username}`;
+      const url = `${this.coursesUrl}/getAllCoursesForUser/${username}`;
       return this.http.get<Course[]>(url, {observe: 'response'});
   }
 
