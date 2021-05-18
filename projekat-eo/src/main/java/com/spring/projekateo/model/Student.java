@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "student")
 public class Student{
@@ -30,7 +32,7 @@ public class Student{
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "student")
 	private Set<Document> documents = new HashSet<Document>();
 	
-	@OneToOne(cascade = { CascadeType.ALL })
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", referencedColumnName = "account_id",nullable = false)
 	private Account account;
 	

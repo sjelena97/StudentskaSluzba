@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.TokenDTO;
+import com.spring.projekateo.dto.UserDTO;
+import com.spring.projekateo.model.User;
 import com.spring.projekateo.security.TokenUtils;
+import com.spring.projekateo.service.UserService;
 
 //Kontroler zaduzen za autentifikaciju korisnika
 @RestController
@@ -46,17 +49,19 @@ public class AuthenticationController {
          System.out.println(username + ' ' + password + " credentials");
          
          try {
+
+             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+
+             SecurityContextHolder.getContext().setAuthentication(authentication);
+             
              TokenDTO token = new TokenDTO();
              UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
              String tokenValue = this.tokenUtils.generateToken(userDetails);
              token.setToken(tokenValue);
-
-             Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-
-             SecurityContextHolder.getContext().setAuthentication(authentication);
-
+           
              return new ResponseEntity<>(token, HttpStatus.OK);
          } catch (Exception ex) {
+        	 System.out.println(ex.getMessage());
              return new ResponseEntity<String>("Invalid login", HttpStatus.BAD_REQUEST);
          }
          

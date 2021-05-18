@@ -9,7 +9,30 @@ INSERT INTO USER_AUTHORITY (id, authority_id, user_id) VALUES (1, 1, 1);
 INSERT INTO USER_AUTHORITY (id, authority_id, user_id) VALUES (2, 2, 2);
 INSERT INTO USER_AUTHORITY (id, authority_id, user_id) VALUES (3, 3, 2);
 
+INSERT INTO ACCOUNT (account_id, balance) VALUES (1, 500);
+
+INSERT INTO STUDENT (student_id, card_name, account_id, user_id) VALUES (1, 'SF36/2018', 1, 1);
+
+INSERT INTO TEACHER (teacher_id, user_id) VALUES (1, 2);
+
 INSERT INTO COURSE (course_id, espb, code, name) VALUES (1, 6, 'EO', 'eObrazovanje');
 INSERT INTO COURSE (course_id, espb, code, name) VALUES (2, 6, 'EU', 'eUprava');
 INSERT INTO COURSE (course_id, espb, code, name) VALUES (3, 8, 'M1', 'Matematika 1');
 
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date) VALUES (1, 1, 1, '2020-10-01', '2021-06-01');
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date) VALUES (2, 1, 2, '2020-10-01', '2021-06-01');
+
+INSERT INTO TEACHING_TYPE (teaching_type_id, code, name) VALUES (1, 'L', 'LECTURER');
+INSERT INTO TEACHING_TYPE (teaching_type_id, code, name) VALUES (2, 'TA', 'TEACHING ASSISTANT');
+INSERT INTO TEACHING_TYPE (teaching_type_id, code, name) VALUES (3, 'LA', 'LABORATORY ASSISTANT');
+INSERT INTO TEACHING_TYPE (teaching_type_id, code, name) VALUES (4, 'D', 'DEMONSTRATOR');
+
+INSERT INTO TEACHING (teaching_id, teacher_id, course_id, type_id, start_date, end_date) VALUES (1, 1, 3, 1, '2020-10-01', '2021-06-01');
+
+INSERT INTO PAYMENT (payment_id, amount, date, purpose, account_id) VALUES (1, 2500, '2020-12-15', 'uplata: overa semestra', 1);
+INSERT INTO PAYMENT (payment_id, amount, date, purpose, account_id) VALUES (2, -2000, '2020-12-20', 'overa semestra', 1);
+
+INSERT INTO DOCUMENT_TYPE (document_type_id, code, name) VALUES (1, 'F', 'FORM');
+INSERT INTO DOCUMENT_TYPE (document_type_id, code, name) VALUES (2, 'D', 'DIPLOMA');
+
+INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id) VALUES (1, 'Diploma', 'C:/Users/Jelena', 1, 2);

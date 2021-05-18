@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.projekateo.dto.PaymentDTO;
 import com.spring.projekateo.model.Account;
 import com.spring.projekateo.model.Payment;
+import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.AccountService;
 import com.spring.projekateo.service.PaymentService;
+import com.spring.projekateo.service.StudentService;
+import com.spring.projekateo.service.UserService;
 
 @RestController
 @RequestMapping(value = "/payments", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,9 +37,20 @@ public class PaymentController {
 	@Autowired
     private PaymentService paymentService;
 	
-	@GetMapping("/getAllPaymentsForAccount/{account_id}")
-	public  ResponseEntity<List<PaymentDTO>> getAllPaymentsForAccount(@PathVariable("account_id") int account_id){
-			Account account = accountService.findById(account_id);
+	@Autowired
+    private UserService userService;
+	
+	@Autowired
+    private StudentService studentService;
+	
+	@GetMapping("/getAllPaymentsForUser/{username}")
+	public  ResponseEntity<List<PaymentDTO>> getAllPaymentsForAccount(@PathVariable("username") String username){
+			User user = userService.findByUsername(username);
+			Student student = studentService.findByUser(user);
+			if(student == null) {
+				return new ResponseEntity<List<PaymentDTO>>(HttpStatus.BAD_REQUEST);
+			}
+			Account account = accountService.findById(student.getAccount().getId());
 		 	Set<Payment> payments = paymentService.getAllPaymentsByAccount(account);
 		 	List<PaymentDTO> paymentsDTO = new ArrayList<>();
 			for (Payment p : payments) {

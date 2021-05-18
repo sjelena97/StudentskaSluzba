@@ -3,6 +3,7 @@ package com.spring.projekateo.service;
 import java.util.List;
 
 import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.User;
 
 public interface StudentService {
 
@@ -13,5 +14,7 @@ public interface StudentService {
 	List<Student> getAllStudents();
 
 	Student findByCardName(String cardName);
+
+	Student findByUser(User user);
 
 }
