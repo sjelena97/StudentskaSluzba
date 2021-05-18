@@ -3,12 +3,14 @@ import { HttpResponse, HttpClient } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
-import { Course } from '../../model/course';
+import { Payment } from '../../model/payment';
 
-@Injectable()
-export class SluzbaCoursesServiceService {
+@Injectable({
+  providedIn: 'root'
+})
+export class SluzbaPaymentsServiceService {
 
-  private coursesUrl = 'courses';
+  private paymentsUrl = 'payments';
 
   constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
 
@@ -20,11 +22,10 @@ export class SluzbaCoursesServiceService {
       this.RegenerateData.next();
   }
   
-  getCourses(): Observable<HttpResponse<Course[]>> {
+  getPayments(): Observable<HttpResponse<Payment[]>> {
       let username = this.authService.getCurrentUser().username;
       console.log("username: " + username);
-      const url = `${this.coursesUrl}/getAllCoursesForUser/${username}`;
-      return this.http.get<Course[]>(url, {observe: 'response'});
+      const url = `${this.paymentsUrl}/getAllPaymentsForUser/${username}`;
+      return this.http.get<Payment[]>(url, {observe: 'response'});
   }
-
 }

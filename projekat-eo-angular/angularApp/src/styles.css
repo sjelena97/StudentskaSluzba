@@ -29,3 +29,9 @@
 body {
 	font-family: 'Roboto', sans-serif !important;
 }
+
+
+.container {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}

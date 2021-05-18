@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SluzbaUserComponent } from './sluzba-user.component';
+import { SluzbaDocumentsComponent } from './sluzba-documents.component';
 
-describe('SluzbaUserComponent', () => {
-  let component: SluzbaUserComponent;
-  let fixture: ComponentFixture<SluzbaUserComponent>;
+describe('SluzbaDocumentsComponent', () => {
+  let component: SluzbaDocumentsComponent;
+  let fixture: ComponentFixture<SluzbaDocumentsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SluzbaUserComponent ]
+      declarations: [ SluzbaDocumentsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SluzbaUserComponent);
+    fixture = TestBed.createComponent(SluzbaDocumentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

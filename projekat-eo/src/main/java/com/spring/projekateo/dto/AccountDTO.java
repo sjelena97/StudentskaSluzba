@@ -8,22 +8,20 @@ public class AccountDTO implements Serializable{
 	
 	private Integer id;
 	private double balance;
-	private StudentDTO student;
 	
 	public AccountDTO() {
 		super();
 	}
 	
-	public AccountDTO(Integer id, double balance, StudentDTO student) {
+	public AccountDTO(Integer id, double balance) {
 		super();
 		this.id = id;
 		this.balance = balance;
-		this.student = student;
 	}
 
 	
 	public AccountDTO(Account account) {
-		this(account.getId(), account.getBalance(), new StudentDTO(account.getStudent()));
+		this(account.getId(), account.getBalance());
 	}
 
 	public Integer getId() {
@@ -40,14 +38,6 @@ public class AccountDTO implements Serializable{
 
 	public void setBalance(double balance) {
 		this.balance = balance;
-	}
-
-	public StudentDTO getStudent() {
-		return student;
-	}
-
-	public void setStudent(StudentDTO student) {
-		this.student = student;
 	}
 	
 }

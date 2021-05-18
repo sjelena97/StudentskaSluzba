@@ -1,0 +1,23 @@
+<div class="col-md-12">
+    <app-sluzba-header></app-sluzba-header>
+</div>
+<div *ngIf="isLoggedIn()" class= "col-md-12" style="padding-top: 2%;">
+    <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Purpose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let payment of payments">
+          <th scope="row">{{ payment.id }}</th>
+          <td>{{ payment.date | date  }}</td>
+          <td>{{ payment.amount | number }}</td>
+          <td>{{ payment.purpose }}</td>
+        </tr>
+        </tbody>
+      </table>
+</div>
