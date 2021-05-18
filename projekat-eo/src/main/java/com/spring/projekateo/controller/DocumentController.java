@@ -21,9 +21,11 @@ import com.spring.projekateo.dto.DocumentTypeDTO;
 import com.spring.projekateo.model.Document;
 import com.spring.projekateo.model.DocumentType;
 import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.DocumentService;
 import com.spring.projekateo.service.DocumentTypeService;
 import com.spring.projekateo.service.StudentService;
+import com.spring.projekateo.service.UserService;
 
 @RestController
 @RequestMapping(value = "/documents", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,11 +38,18 @@ public class DocumentController {
     private DocumentTypeService documentTypeService;
 	
 	@Autowired
+    private UserService userService;
+	
+	@Autowired
     private StudentService studentService;
 	
-	@GetMapping("/getAllDocumentsForStudent/{student_id}")
-	public ResponseEntity<List<DocumentDTO>> getAllDocumentsForStudent(@PathVariable("student_id") int student_id){
-			Student student = studentService.findById(student_id);
+	@GetMapping("/getAllDocumentsForUser/{username}")
+	public ResponseEntity<List<DocumentDTO>> getAllDocumentsForStudent(@PathVariable("username") String username){
+			User user = userService.findByUsername(username);
+			Student student = studentService.findByUser(user);
+			if(student == null) {
+				return new ResponseEntity<List<DocumentDTO>>(HttpStatus.BAD_REQUEST);
+			}
 		 	Set<Document> documents = documentService.getAllDocumentsByStudent(student);
 		 	List<DocumentDTO> documentsDTO = new ArrayList<>();
 			for (Document d : documents) {

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +29,19 @@ public class StudentController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("getStudentByUsername/{username}")
+	public ResponseEntity<StudentDTO> getStudentByUsername(@PathVariable("username") String username) {
+		User user = userService.findByUsername(username);
+		Student student = studentService.findByUser(user);
+		if (student == null) {
+			System.out.println("Student is null");
+			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			System.out.println("student founded");
+			return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);
+		}
+	}
 	
 	@PutMapping(value = "updateStudent/{student_id}")
 	public ResponseEntity<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO , @PathVariable("student_id") int id) {

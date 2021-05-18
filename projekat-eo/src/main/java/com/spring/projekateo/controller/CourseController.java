@@ -18,14 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.CourseDTO;
-import com.spring.projekateo.dto.EnrollmentDTO;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.Teacher;
+import com.spring.projekateo.model.Teaching;
 import com.spring.projekateo.model.User;
+import com.spring.projekateo.model.UserAuthority;
 import com.spring.projekateo.service.CourseService;
 import com.spring.projekateo.service.EnrollmentService;
 import com.spring.projekateo.service.StudentService;
+import com.spring.projekateo.service.TeacherService;
+import com.spring.projekateo.service.TeachingService;
 import com.spring.projekateo.service.UserService;
 
 @RestController
@@ -42,6 +46,12 @@ public class CourseController {
     private StudentService studentService;
 	
 	@Autowired
+    private TeacherService teacherService;
+	
+	@Autowired
+    private TeachingService teachingService;
+	
+	@Autowired
     private UserService userService;
 
 	@GetMapping("/getAllCourses")
@@ -55,15 +65,27 @@ public class CourseController {
 		return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getAllCoursesForStudent/{username}")
-	public ResponseEntity<List<CourseDTO>> getAllCoursesForStudent(@PathVariable("username") String username){
+	@GetMapping("/getAllCoursesForUser/{username}")
+	public ResponseEntity<List<CourseDTO>> getAllCoursesForUser(@PathVariable("username") String username){
 			User user = userService.findByUsername(username);
-			Student student = studentService.findByUser(user);
+			Set<UserAuthority> authorities = user.getUserAuthorities();
 			Set<Course> courses = new HashSet<Course>();
-		 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
-		 	for (Enrollment e: enrollments) {
-		 		courses.add(e.getCourse());
+			for(UserAuthority ua : authorities) {
+				if(ua.getAuthority().getName().equalsIgnoreCase("STUDENT")){
+					Student student = studentService.findByUser(user);
+				 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+				 	for (Enrollment e: enrollments) {
+				 		courses.add(e.getCourse());
+					}
+				}else if(ua.getAuthority().getName().equalsIgnoreCase("TEACHER")) {
+					Teacher teacher = teacherService.findByUser(user);
+				 	Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
+				 	for (Teaching t: teachings) {
+				 		courses.add(t.getCourse());
+					}
+				}
 			}
+			
 		 	List<CourseDTO> coursesDTO = new ArrayList<>();
 			for (Course c: courses) {
 				CourseDTO courseDTO = new CourseDTO();
