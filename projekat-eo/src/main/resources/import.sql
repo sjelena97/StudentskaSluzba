@@ -15,9 +15,9 @@ INSERT INTO STUDENT (student_id, card_name, account_id, user_id) VALUES (1, 'SF3
 
 INSERT INTO TEACHER (teacher_id, user_id) VALUES (1, 2);
 
-INSERT INTO COURSE (course_id, espb, code, name) VALUES (1, 6, 'EO', 'eObrazovanje');
-INSERT INTO COURSE (course_id, espb, code, name) VALUES (2, 6, 'EU', 'eUprava');
-INSERT INTO COURSE (course_id, espb, code, name) VALUES (3, 8, 'M1', 'Matematika 1');
+INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (1, 6, 'EO', 'eObrazovanje', 1);
+INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (2, 6, 'EU', 'eUprava', 1);
+INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (3, 8, 'M1', 'Matematika 1', 1);
 
 INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date) VALUES (1, 1, 1, '2020-10-01', '2021-06-01');
 INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date) VALUES (2, 1, 2, '2020-10-01', '2021-06-01');

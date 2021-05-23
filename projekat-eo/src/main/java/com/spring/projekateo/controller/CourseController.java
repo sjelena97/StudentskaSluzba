@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.CourseDTO;
+import com.spring.projekateo.dto.UserDTO;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Student;
@@ -65,17 +66,27 @@ public class CourseController {
 		return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping("getCourseById/{course_id}")
+	public ResponseEntity<CourseDTO> getCourseById(@PathVariable("course_id") int course_id) {
+		Course course = courseService.findById(course_id);
+		if (course == null) {
+			return new ResponseEntity<CourseDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<CourseDTO>(new CourseDTO(course), HttpStatus.OK);
+		}
+	}
+
+	
 	@GetMapping("/getAllCoursesForUser/{username}")
 	public ResponseEntity<List<CourseDTO>> getAllCoursesForUser(@PathVariable("username") String username){
 			User user = userService.findByUsername(username);
 			Set<UserAuthority> authorities = user.getUserAuthorities();
 			Set<Course> courses = new HashSet<Course>();
 			for(UserAuthority ua : authorities) {
-				if(ua.getAuthority().getName().equalsIgnoreCase("STUDENT")){
-					Student student = studentService.findByUser(user);
-				 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
-				 	for (Enrollment e: enrollments) {
-				 		courses.add(e.getCourse());
+				if(ua.getAuthority().getName().equalsIgnoreCase("ADMIN")){
+				 	List<Course> allCourses = courseService.getAllCourses();
+				 	for (Course c: allCourses) {
+				 		courses.add(c);
 					}
 				}else if(ua.getAuthority().getName().equalsIgnoreCase("TEACHER")) {
 					Teacher teacher = teacherService.findByUser(user);
@@ -83,19 +94,27 @@ public class CourseController {
 				 	for (Teaching t: teachings) {
 				 		courses.add(t.getCourse());
 					}
+				}else if(ua.getAuthority().getName().equalsIgnoreCase("STUDENT")){
+					Student student = studentService.findByUser(user);
+				 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+				 	for (Enrollment e: enrollments) {
+				 		courses.add(e.getCourse());
+					}
 				}
 			}
 			
 		 	List<CourseDTO> coursesDTO = new ArrayList<>();
 			for (Course c: courses) {
-				CourseDTO courseDTO = new CourseDTO();
-				courseDTO.setId(c.getId());
-				courseDTO.setName(c.getName());
-				courseDTO.setCode(c.getCode());
-				courseDTO.setESPB(c.getESPB());
-				courseDTO.setActive(c.isActive());
-				
-				coursesDTO.add(courseDTO);
+				if(c.isActive()) {
+					CourseDTO courseDTO = new CourseDTO();
+					courseDTO.setId(c.getId());
+					courseDTO.setName(c.getName());
+					courseDTO.setCode(c.getCode());
+					courseDTO.setESPB(c.getESPB());
+					courseDTO.setActive(c.isActive());
+					
+					coursesDTO.add(courseDTO);
+				}
 			}
 			return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
@@ -145,5 +164,20 @@ public class CourseController {
 
 		return new ResponseEntity<CourseDTO>(new CourseDTO(course), HttpStatus.OK);
 	}
+	
+	@PutMapping("/deleteCourse/{course_id}")
+	public ResponseEntity<Void> deleteCourse(@PathVariable("course_id") int course_id) {
+
+		Course course = courseService.findById(course_id);
+		if (course != null){
+			course.setActive(false);
+			course = courseService.save(course);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {		
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
+
 
 }
