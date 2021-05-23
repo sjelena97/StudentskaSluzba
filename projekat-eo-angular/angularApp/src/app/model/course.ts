@@ -1,18 +1,24 @@
 export class Course implements CourseInterface{
 	public id: number;
 	public name: string;
-    public ESPB: number;
+	public code: string;
+    public espb: number;
+	public active: boolean;
 		
 	constructor(courseCfg: CourseInterface)
 	{	
 		this.id = courseCfg.id;
 		this.name = courseCfg.name;
-        this.ESPB = courseCfg.ESPB;
+		this.code = courseCfg.code;
+        this.espb = courseCfg.espb;
+		this.active = courseCfg.active;
 	}
 }
 
 interface CourseInterface {
 	id?: number;
 	name: string;
-    ESPB: number;
+	code: string;
+    espb: number;
+	active: boolean;
 }

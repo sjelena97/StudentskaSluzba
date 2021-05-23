@@ -126,4 +126,18 @@ public class EnrollmentController {
 		
 		return new ResponseEntity<EnrollmentDTO>(new EnrollmentDTO(enrollment), HttpStatus.OK);	
 	}
+	
+	@PutMapping("/deleteEnrollment/{enrollment_id}")
+	public ResponseEntity<Void> deleteEnrollment(@PathVariable("enrollment_id") int enrollment_id) {
+
+		Enrollment enrollment = enrollmentService.findById(enrollment_id);
+		if (enrollment != null){
+			enrollment.setActive(false);
+			enrollment = enrollmentService.save(enrollment);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {		
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
 }

@@ -22,21 +22,11 @@ import { AuthenticationServiceService } from './services/auth/authentication-ser
 import { CanActivateAuthGuardService } from './services/auth/can-activate-auth.guard.service';
 import { SluzbaPaymentsComponent } from './components/sluzba-payments/sluzba-payments.component';
 import { SluzbaDocumentsComponent } from './components/sluzba-documents/sluzba-documents.component';
+import { SluzbaStudentsComponent } from './components/sluzba-students/sluzba-students.component';
+import { SluzbaTeachersComponent } from './components/sluzba-teachers/sluzba-teachers.component';
+import { SluzbaCourseDetailsComponent } from './components/sluzba-course-details/sluzba-course-details.component';
+import { SluzbaEnrollmentsComponent } from './components/sluzba-enrollments/sluzba-enrollments.component';
 
-
-
-const appRoutes: Routes = [
-  { path: 'main', component: SluzbaLoginComponent },
-  { path: 'profile', component: SluzbaProfileComponent},
-  { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
-  { path: 'payments', component: SluzbaPaymentsComponent, canActivate: [CanActivateAuthGuardService]},
-  { path: 'documents', component: SluzbaDocumentsComponent, canActivate: [CanActivateAuthGuardService]},
-  { path: '',
-    redirectTo: '/main',
-    pathMatch: 'full'
-  },
-  { path: '**', component: SluzbaNotFoundPageComponent }
-];
 
 @NgModule({
   declarations: [
@@ -49,6 +39,10 @@ const appRoutes: Routes = [
     SluzbaCoursesComponent,
     SluzbaPaymentsComponent,
     SluzbaDocumentsComponent,
+    SluzbaStudentsComponent,
+    SluzbaTeachersComponent,
+    SluzbaCourseDetailsComponent,
+    SluzbaEnrollmentsComponent,
   ],
   imports: [
     BrowserModule,

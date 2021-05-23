@@ -24,4 +24,8 @@ export class SluzbaNavbarComponent implements OnInit {
     return this.authenticationService.isStudent();
   }
 
+  isAdmin():boolean{
+    return this.authenticationService.isAdmin();
+  }
+
 }
