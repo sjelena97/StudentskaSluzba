@@ -1,5 +1,8 @@
 package com.spring.projekateo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.projekateo.dto.CourseDTO;
 import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.model.Account;
+import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Student;
 import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.StudentService;
@@ -29,6 +34,17 @@ public class StudentController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("/getAllStudents")
+	public ResponseEntity<List<StudentDTO>> getAllStudents() {
+		List<Student> students = studentService.getAllStudents();
+		// convert students to DTOs
+		List<StudentDTO> studentsDTO = new ArrayList<>();
+		for (Student s : students) {
+			studentsDTO.add(new StudentDTO(s));
+		}
+		return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
+	}
 	
 	@GetMapping("getStudentByUsername/{username}")
 	public ResponseEntity<StudentDTO> getStudentByUsername(@PathVariable("username") String username) {
