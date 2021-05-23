@@ -8,6 +8,7 @@
           <th scope="col">#</th>
           <th scope="col">Course name</th>
           <th scope="col">ECTS</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -15,7 +16,21 @@
           <th scope="row">{{ course.id }}</th>
           <td>{{ course.name }}</td>
           <td>{{ course.espb | number }}</td>
+          <td *ngIf="isAdmin()">
+            <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(course)">
+              <span class="fa fa-edit" aria-hidden="true"></span>
+            </button>
+      
+            <button type="button" class="btn btn-primary" aria-label="Delete" (click)="deleteCourse(course.id)">
+              <span class="fa fa-trash" aria-hidden="true"></span>
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>
+      <div *ngIf="isAdmin()" class="right">
+        <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAdd()">
+          <span class="fa fa-plus" aria-hidden="true"></span>
+        </button>
+      </div> 
 </div>

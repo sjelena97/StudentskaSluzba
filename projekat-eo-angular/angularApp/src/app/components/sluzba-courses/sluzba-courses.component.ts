@@ -8,7 +8,7 @@ import { AuthenticationServiceService } from 'src/app/services/auth/authenticati
 interface Course {
   id?: number;
   name: string;
-  ESPB: number;
+  espb: number;
 }
 
 
@@ -40,5 +40,23 @@ export class SluzbaCoursesComponent implements OnInit {
 
   isLoggedIn():boolean{
     return this.authService.isLoggedIn();
+  }
+
+  isAdmin():boolean{
+    return this.authService.isAdmin();
+  }
+
+  gotoAdd(): void {
+    this.router.navigate(['/addCourse']);
+  }
+
+  gotoEdit(course: Course): void {
+    this.router.navigate(['/editCourse', course.id]);
+  }
+
+  deleteCourse(courseId: number): void {
+    this.courseService.deleteCourse(courseId).subscribe(
+      () => this.getCourses()
+    );
   }
 }
