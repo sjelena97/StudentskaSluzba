@@ -29,7 +29,7 @@
       <table class="table table-bordered">
         <tr *ngFor="let enrollment of enrollments">
           <td>
-            {{enrollment.student.firstName}} {{enrollment.student.lastName}} {{enrollment.student.cardNumber}}
+            {{enrollment.student.user.firstName}} {{enrollment.student.user.lastName}} {{enrollment.student.cardName}}
              [Since {{enrollment.startDate | date: 'dd.MM.yyyy'}} until {{enrollment.endDate | date: 'dd.MM.yyyy'}}]
           </td>
           <td>
