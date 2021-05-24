@@ -7,6 +7,7 @@ import { SluzbaCoursesServiceService } from '../sluzba-courses/sluzba-courses-se
 import { Course } from 'src/app/model/course';
 import { Enrollment } from 'src/app/model/enrollment';
 import { SluzbaEnrollmentsServiceService } from '../sluzba-enrollments/sluzba-enrollments-service.service';
+import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
 
 @Component({
   selector: 'app-sluzba-course-details',
@@ -27,7 +28,7 @@ export class SluzbaCourseDetailsComponent implements OnInit {
   mode: string = 'ADD';
 
   constructor(private courseService: SluzbaCoursesServiceService, private enrollmentService: SluzbaEnrollmentsServiceService,
-    private route: ActivatedRoute, private location: Location, private router: Router) {
+    private route: ActivatedRoute, private location: Location, private router: Router, private authService: AuthenticationServiceService) {
     enrollmentService.RegenerateData$.subscribe(() =>
       this.getEnrollments()
     );
@@ -74,6 +75,11 @@ export class SluzbaCourseDetailsComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  
+  isAdmin():boolean{
+    return this.authService.isAdmin();
   }
 
   gotoAddEnrollment(): void {
