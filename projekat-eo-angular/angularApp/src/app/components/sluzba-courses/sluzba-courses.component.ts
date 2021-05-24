@@ -54,9 +54,11 @@ export class SluzbaCoursesComponent implements OnInit {
     this.router.navigate(['/editCourse', course.id]);
   }
 
-  deleteCourse(courseId: number): void {
+  deleteCourse(courseId: number, courseName: string): void {
+    if(confirm("Are you sure to delete course " + courseName + "?")){
     this.courseService.deleteCourse(courseId).subscribe(
       () => this.getCourses()
     );
+    }
   }
 }
