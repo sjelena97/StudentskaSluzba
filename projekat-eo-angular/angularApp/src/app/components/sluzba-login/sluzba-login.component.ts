@@ -30,7 +30,7 @@ export class SluzbaLoginComponent implements OnInit {
     this.authenticationService.login(this.user.username, this.user.password).subscribe(
       (loggedIn:boolean) => {
         if(loggedIn){
-          this.router.navigate(['/courses']);
+          this.router.navigate(['/dashboard']);
         }
       }
     ,

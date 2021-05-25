@@ -8,7 +8,7 @@ import { User } from '../../model/user';
 @Injectable({
   providedIn: 'root'
 })
-export class SluzbaHeaderServiceService {
+export class SluzbaSidebarServiceService {
 
   private usersUrl = 'users';
 
@@ -28,4 +28,5 @@ export class SluzbaHeaderServiceService {
       const url = `${this.usersUrl}/getUserByUsername/${username}`;
       return this.http.get<User>(url, {observe: 'response'});
   }
+  
 }
