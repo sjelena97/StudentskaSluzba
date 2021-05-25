@@ -11,9 +11,11 @@ import { CanActivateAuthGuardService } from './services/auth/can-activate-auth.g
 import { SluzbaNotFoundPageComponent } from './components/sluzba-not-found-page/sluzba-not-found-page.component';
 import { SluzbaTeachersComponent } from './components/sluzba-teachers/sluzba-teachers.component';
 import { SluzbaCourseDetailsComponent } from './components/sluzba-course-details/sluzba-course-details.component';
+import { SluzbaHomeComponent } from './components/sluzba-home/sluzba-home.component';
 
 const routes: Routes = [
-  { path: 'main', component: SluzbaLoginComponent },
+  { path: 'dashboard', component: SluzbaHomeComponent },
+  { path: 'login', component: SluzbaLoginComponent },
   { path: 'profile', component: SluzbaProfileComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'payments', component: SluzbaPaymentsComponent, canActivate: [CanActivateAuthGuardService]},
@@ -23,7 +25,7 @@ const routes: Routes = [
   { path: 'addCourse', component: SluzbaCourseDetailsComponent },
   { path: 'editCourse/:id', component: SluzbaCourseDetailsComponent },
   { path: '',
-    redirectTo: '/main',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: '**', component: SluzbaNotFoundPageComponent }

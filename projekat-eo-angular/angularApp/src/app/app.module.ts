@@ -4,9 +4,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SluzbaHeaderComponent } from './components/sluzba-header/sluzba-header.component';
 import { SluzbaProfileComponent } from './components/sluzba-profile/sluzba-profile.component';
-import { SluzbaNavbarComponent } from './components/sluzba-navbar/sluzba-navbar.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { SluzbaLoginComponent } from './components/sluzba-login/sluzba-login.component';
@@ -26,14 +24,14 @@ import { SluzbaStudentsComponent } from './components/sluzba-students/sluzba-stu
 import { SluzbaTeachersComponent } from './components/sluzba-teachers/sluzba-teachers.component';
 import { SluzbaCourseDetailsComponent } from './components/sluzba-course-details/sluzba-course-details.component';
 import { SluzbaEnrollmentsComponent } from './components/sluzba-enrollments/sluzba-enrollments.component';
-
+import { SluzbaHomeComponent } from './components/sluzba-home/sluzba-home.component';
+import { SluzbaNavbarComponent } from './components/sluzba-navbar/sluzba-navbar.component';
+import { SluzbaSidebarComponent } from './components/sluzba-sidebar/sluzba-sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SluzbaHeaderComponent,
     SluzbaProfileComponent,
-    SluzbaNavbarComponent,
     SluzbaLoginComponent,
     SluzbaNotFoundPageComponent,
     SluzbaCoursesComponent,
@@ -43,13 +41,17 @@ import { SluzbaEnrollmentsComponent } from './components/sluzba-enrollments/sluz
     SluzbaTeachersComponent,
     SluzbaCourseDetailsComponent,
     SluzbaEnrollmentsComponent,
+    SluzbaHomeComponent,
+    SluzbaNavbarComponent,
+    SluzbaSidebarComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [
     SluzbaCoursesServiceService,

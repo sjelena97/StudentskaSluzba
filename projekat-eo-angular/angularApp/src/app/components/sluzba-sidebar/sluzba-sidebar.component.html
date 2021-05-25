@@ -1,0 +1,30 @@
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a routerLink="/dashboard" href="#" class="simple-text">
+            <div class="logo-img">
+                <img src="assets/img/logo.jpeg" class="logo" alt="StudentskaSluzba"/>
+            </div>
+            Student service
+        </a>
+    </div>
+    <ul class="nav responsive-nav">
+        <li *ngIf="isMobileMenu()">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-dashboard"></i>
+				<p class="hidden-lg hidden-md">{{ user? user.firstName : ""  }} {{ user? user.lastName : ""  }}</p>
+            </a>
+        </li>
+        <li *ngIf="isMobileMenu()">
+            <a class="dropdown-item" (click)="logout()" href="#">Log out</a>
+        </li>
+        <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
+        <ng-container routerLinkActive="active" *ngFor="let menuItem of menuItems" class=" {{menuItem.class}} ">
+            <li *ngIf="[menuItem.if]">
+                <a *ngIf="[menuItem.if]" [routerLink]="[menuItem.path]">
+                    <i class="{{menuItem.icon}}"></i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li> 
+         </ng-container>
+    </ul>
+</div>

@@ -1,49 +1,37 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light" style="background-color: white !important;">
-    <a class="navbar-brand" style="display: none;" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-        <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto" >
-            <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li *ngIf="isStudent()" class="nav-item">
-            <a class="nav-link" routerLink="/documents" href="#">Docs</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" routerLink="/courses" href="#">Courses</a>
-            </li>
-            <li *ngIf="isStudent()" class="nav-item ">
-                <a class="nav-link" routerLink="/payments" href="#">Payments</a>
-            </li>
-            <li *ngIf="isAdmin()" class="nav-item">
-                <a class="nav-link" routerLink="/students" href="#">Students</a>
-            </li>
-            <li *ngIf="isAdmin()" class="nav-item">
-                <a class="nav-link" routerLink="/teachers" href="#">Teachers</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Exams
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Signing exam</a>
-                </div>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-right">
-        <li> 
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <mdb-icon fas icon="user"></mdb-icon>Profile<span class="caret"></span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="left: unset;">
-            <a class="dropdown-item" routerLink="/profile" href="#">My account</a>
-            <a class="dropdown-item" (click)="logout()" href="#">Log out</a>
-            </div>
-        </li>
-        </ul>
+<nav class="navbar navbar-default" *ngIf="isLoggedIn()">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" >{{getTitle()}}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-dashboard"></i>
+                        <p class="hidden-lg hidden-md">{{getTitle()}}</p>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        {{ user? user.firstName : ""  }} {{ user? user.lastName : ""  }}
+                    </a>
+                </li>
+                <li>
+                    <a  (click)="logout()" href="#">
+                        Log out
+                    </a>
+                </li>
+                <li class="separator hidden-lg hidden-md"></li>
+            </ul>
         </div>
     </div>
-  </nav>
+</nav>

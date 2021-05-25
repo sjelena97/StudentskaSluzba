@@ -1,20 +1,14 @@
 <div class="container">
-   <!-- Static navbar -->
-   <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a *ngIf="!loggedIn()" (click)="login()">login</a>
-          </li>
-          <li>
-            <a *ngIf="loggedIn()" (click)="logout()">logout</a>
-          </li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
+  <div class="wrapper">
+    <div *ngIf="isLoggedIn()" class="sidebar" data-color="azure" data-image="">
+        <app-sluzba-sidebar></app-sluzba-sidebar>
+        <div class="sidebar-background" style="background-image: url(assets/img/sidebar-4.jpg)"></div>
     </div>
-    <!--/.container-fluid -->
-  </nav>
-  <router-outlet></router-outlet>
+  
+    <div class="main-panel">
+        <app-sluzba-navbar></app-sluzba-navbar>
+        <router-outlet></router-outlet>
+    </div>
+  
+  </div>
 </div>
