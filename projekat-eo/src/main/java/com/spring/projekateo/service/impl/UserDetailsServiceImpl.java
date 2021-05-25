@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.User;
-import com.spring.projekateo.model.UserAuthority;
 import com.spring.projekateo.repository.UserRepository;
 
 @Service
@@ -32,9 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
     } else {
     	List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-    	for (UserAuthority ua: user.getUserAuthorities()) {
-    		grantedAuthorities.add(new SimpleGrantedAuthority(ua.getAuthority().getName()));
-    	}
+    	grantedAuthorities.add(new SimpleGrantedAuthority(user.getAuthority().getName()));
     	
     	//Java 1.8 way   	
     	/*List<GrantedAuthority> grantedAuthorities = user.getUserAuthorities().stream()
