@@ -1,23 +1,37 @@
-<div *ngIf="isLoggedIn() && isAdmin()" class= "col-md-12" style="padding-top: 2%;">
-    <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Firstname</th>
-          <th scope="col">Lastname</th>
-          <th scope="col">Username</th>
-          <th scope="col">Cardname</th>
+<div *ngIf="isLoggedIn()  && isAdmin()" class= "main-content" style="padding-top: 2%;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+            <!--         <div class="header">
+                          <h4 class="title">Striped Table with Hover</h4>
+                          <p class="category">Here is a subtitle for this table</p>
+                      </div> -->
+          <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+              <table class="table table-hover" style="text-align: center;">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Firstname</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Cardname</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let student of students">
-          <th scope="row">{{ student.id }}</th>
-          <td>{{ student.user.firstName }}</td>
-          <td>{{ student.user.lastName }}</td>
-          <td>{{ student.user.username }}</td>
-          <td>{{ student.cardName }}</td>
-        </tr>
-        </tbody>
-      </table>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let student of students">
+                  <th scope="row">{{ student.id }}</th>
+                  <td>{{ student.user.firstName }}</td>
+                  <td>{{ student.user.lastName }}</td>
+                  <td>{{ student.user.username }}</td>
+                  <td>{{ student.cardName }}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

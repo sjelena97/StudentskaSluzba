@@ -1,20 +1,34 @@
-<div *ngIf="isLoggedIn()" class= "col-md-12" style="padding-top: 2%;">
-    <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Date</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Purpose</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let payment of payments">
-          <th scope="row">{{ payment.id }}</th>
-          <td>{{ payment.date | date  }}</td>
-          <td>{{ payment.amount | number }}</td>
-          <td>{{ payment.purpose }}</td>
-        </tr>
-        </tbody>
-      </table>
+<div *ngIf="isLoggedIn()" class= "main-content" style="padding-top: 2%;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+          <!--         <div class="header">
+                        <h4 class="title">Striped Table with Hover</h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div> -->
+        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+            <table class="table table-hover" style="text-align: center;">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Purpose</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let payment of payments">
+                <th scope="row">{{ payment.id }}</th>
+                <td>{{ payment.date | date  }}</td>
+                <td>{{ payment.amount | number }}</td>
+                <td>{{ payment.purpose }}</td>
+              </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

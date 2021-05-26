@@ -1,20 +1,33 @@
-<div *ngIf="isLoggedIn()" class= "col-md-12" style="padding-top: 2%;">
-    <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Type</th>
-          <th scope="col">Download</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let document of documents">
-          <th scope="row">{{ document.id }}</th>
-          <td>{{ document.title  }}</td>
-          <td>{{ document.type.name  }}</td>
-          <td><a href="#">Download</a></td>
-        </tr>
-        </tbody>
-      </table>
+<div *ngIf="isLoggedIn()" class= "main-content" style="padding-top: 2%;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+           <!--         <div class="header">
+                        <h4 class="title">Striped Table with Hover</h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div> -->
+        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+            <table class="table table-hover" style="text-align: center;">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Download</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let document of documents">
+                <th scope="row">{{ document.id }}</th>
+                <td>{{ document.title  }}</td>
+                <td>{{ document.type.name  }}</td>
+                <a href="#">Download</a></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
