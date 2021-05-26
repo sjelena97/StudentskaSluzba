@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn()" class= "col-md-8" style="margin-top: 2%; margin: auto; border-radius: 20px; border: 3px double #CED4DA; width: 70%; background-color: #FAFAFA;">
+<!--<div *ngIf="isLoggedIn()" class= "col-md-8" style="margin-top: 2%; margin: auto; border-radius: 20px; border: 3px double #CED4DA; width: 70%; background-color: #FAFAFA;">
     <div class="row" style="margin: auto; max-width: 100%;">
         <div class="col-12">
             <h3 style="text-align: center; font-size: 1.5vw; font-weight: bold; padding-top: 1%;">User information</h3>
@@ -50,5 +50,128 @@
         <div class="col-6"  style="margin: auto; text-align: center; padding-right: 15%; " >
             <p style="text-align: center; font-size: 1.5vw; font-weight: bold; padding-top: 1%; padding-bottom: 3%;">{{ student? student.account.balance : "" }}</p>
         </div> 
+    </div>
+</div> -->
+
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Profile</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div *ngIf="isStudent()" class="row">
+                            
+                                <div  class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" placeholder="Username" value='{{ user? user.username : "" }}'>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Cardname</label>
+                                        <input type="text" class="form-control" placeholder="Cardname" value='{{ student? student.cardName : "" }}'>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="!isStudent()" class="row">
+                            
+                                <div  class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" placeholder="Username" value='{{ user? user.username : "" }}'>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" placeholder="First name" value='{{ user? user.firstName : "" }}'>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Last Name" value='{{ user? user.lastName : "" }}'>
+                                    </div>
+                                </div>
+                            </div>
+<!-- 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" placeholder="City" value="Mike">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="number" class="form-control" placeholder="ZIP Code">
+                                    </div>
+                                </div>
+                            </div>
+ -->
+                            <button *ngIf="isAdmin()" type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                    </div>
+                    <div class="content">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="assets/img/faces/face-6.jpg" alt="..."/>
+
+                                <h4 class="title">{{ user? user.firstName : "" }}  {{ user? user.lastName : "" }}  <br />
+                                    <small>{{ user? user.username : "" }}</small><BR>
+                                    <small *ngIf="isStudent()">Balance: 500RSD</small>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -63,4 +63,9 @@ export class SluzbaProfileComponent implements OnInit {
     return this.authService.isStudent();
   }
 
+  
+  isAdmin():boolean{
+    return this.authService.isAdmin();
+  }
+
 }
