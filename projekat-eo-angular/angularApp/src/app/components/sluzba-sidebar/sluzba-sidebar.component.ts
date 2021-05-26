@@ -12,26 +12,23 @@ declare interface RouteInfo {
     title: string;
     icon: string;
     class: string;
-    if: string;
 }
+
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'pe-7s-graph', class: '', if:'' },
-    { path: '/profile', title: 'User Profile',  icon:'pe-7s-user', class: '',  if: '' },
-    { path: '/courses', title: 'Courses List',  icon:'pe-7s-notebook', class: '',  if: '' },
-    { path: '/payments', title: 'Payments',  icon:'pe-7s-cash paymants', class: '',  if: 'isStudent()' },
-    { path: '/documents', title: 'Documents',  icon:'pe-7s-note2', class: '', if: 'isStudent()' },
-    { path: '/students', title: 'Students',  icon:'pe-7s-users', class: '', if: 'isAdmin()' },
-    { path: '/teachers', title: 'Teachers',  icon:'pe-7s-users', class: '', if: 'isAdmin()' },
+    { path: '/dashboard', title: 'Dashboard',  icon: 'pe-7s-graph', class: ''},
+    { path: '/profile', title: 'User Profile',  icon:'pe-7s-user', class: ''},
+    { path: '/courses', title: 'Courses List',  icon:'pe-7s-notebook', class: ''},
+    { path: '/payments', title: 'Payments',  icon:'pe-7s-cash paymants', class: ''},
+    { path: '/documents', title: 'Documents',  icon:'pe-7s-note2', class: ''},
+    { path: '/students', title: 'Students',  icon:'pe-7s-users', class: ''},
+    { path: '/teachers', title: 'Teachers',  icon:'pe-7s-users', class: ''},
 ];
 
 @Component({
   selector: 'app-sluzba-sidebar',
-  templateUrl: './sluzba-sidebar.component.html',
-  styleUrls: ['./sluzba-sidebar.component.css']
+  templateUrl: './sluzba-sidebar.component.html'
 })
 export class SluzbaSidebarComponent implements OnInit {
-
-  menuItems: any[];
 
   user: User;
 
@@ -46,7 +43,6 @@ export class SluzbaSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
 
   isMobileMenu() {

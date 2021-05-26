@@ -12,6 +12,7 @@ import { SluzbaNotFoundPageComponent } from './components/sluzba-not-found-page/
 import { SluzbaTeachersComponent } from './components/sluzba-teachers/sluzba-teachers.component';
 import { SluzbaCourseDetailsComponent } from './components/sluzba-course-details/sluzba-course-details.component';
 import { SluzbaHomeComponent } from './components/sluzba-home/sluzba-home.component';
+import { SluzbaSidebarComponent } from './components/sluzba-sidebar/sluzba-sidebar.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },

@@ -9,9 +9,8 @@ import { User } from 'src/app/model/user';
 import { SluzbaNavbarServiceService } from './sluzba-navbar-service.service';
 
 @Component({
-  selector: 'app-sluzba-navbar',
-  templateUrl: './sluzba-navbar.component.html',
-  styleUrls: ['./sluzba-navbar.component.css']
+  selector: 'navbar-cmp',
+  templateUrl: './sluzba-navbar.component.html'
 })
 export class SluzbaNavbarComponent implements OnInit {
 
