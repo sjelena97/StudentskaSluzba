@@ -1,5 +1,7 @@
 package com.spring.projekateo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class TeachingTypeServiceImpl implements TeachingTypeService{
 	@Override
 	public TeachingType findById(Integer typeId){
 		return teachingTypeRepository.findById(typeId);
+	}
+	
+	@Override
+    public List<TeachingType> getAllTeachingTypes(){
+		List<TeachingType> allTeachingTypes= teachingTypeRepository.findAll();
+        return allTeachingTypes;
 	}
 
 }

@@ -72,16 +72,18 @@ public class TeachingController {
 	 	Set<Teaching> teachings = teachingService.getAllTeachingsByCourse(course);
 	 	List<TeachingDTO> teachingsDTO = new ArrayList<>();
 		for (Teaching t : teachings) {
-			TeachingDTO teachingDTO = new TeachingDTO();
-			teachingDTO.setId(t.getId());
-			teachingDTO.setStartDate(t.getStartDate());
-			teachingDTO.setEndDate(t.getEndDate());
-			teachingDTO.setTeacher(new TeacherDTO(t.getTeacher()));
-			teachingDTO.setType(new TeachingTypeDTO(t.getType()));
-			teachingDTO.setActive(t.isActive());
-			//we leave course field empty
-			
-			teachingsDTO.add(teachingDTO);
+			if(t.isActive()) {
+				TeachingDTO teachingDTO = new TeachingDTO();
+				teachingDTO.setId(t.getId());
+				teachingDTO.setStartDate(t.getStartDate());
+				teachingDTO.setEndDate(t.getEndDate());
+				teachingDTO.setTeacher(new TeacherDTO(t.getTeacher()));
+				teachingDTO.setType(new TeachingTypeDTO(t.getType()));
+				teachingDTO.setActive(t.isActive());
+				//we leave course field empty
+				
+				teachingsDTO.add(teachingDTO);
+			}
 		}
 		return new ResponseEntity<>(teachingsDTO, HttpStatus.OK);
 	}
@@ -138,6 +140,20 @@ public class TeachingController {
 		teaching = teachingService.save(teaching);
 		
 		return new ResponseEntity<TeachingDTO>(new TeachingDTO(teaching), HttpStatus.OK);	
+	}
+	
+	@PutMapping("/deleteTeaching/{teaching_id}")
+	public ResponseEntity<Void> deleteTeaching(@PathVariable("teaching_id") int teaching_id) {
+
+		Teaching teaching = teachingService.findById(teaching_id);
+		if (teaching != null){
+			teaching.setActive(false);
+			teaching = teachingService.save(teaching);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {		
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 }

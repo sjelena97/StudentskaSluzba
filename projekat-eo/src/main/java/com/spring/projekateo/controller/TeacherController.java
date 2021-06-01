@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.dto.TeacherDTO;
-import com.spring.projekateo.model.Student;
 import com.spring.projekateo.model.Teacher;
 import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.TeacherService;
