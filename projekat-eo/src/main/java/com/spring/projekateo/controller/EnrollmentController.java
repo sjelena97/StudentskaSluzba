@@ -64,15 +64,17 @@ public class EnrollmentController {
 	 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByCourse(course);
 	 	List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
 		for (Enrollment e: enrollments) {
-			EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
-			enrollmentDTO.setId(e.getId());
-			enrollmentDTO.setStartDate(e.getStartDate());
-			enrollmentDTO.setEndDate(e.getEndDate());
-			enrollmentDTO.setStudent(new StudentDTO(e.getStudent()));
-			enrollmentDTO.setActive(e.isActive());
-			//we leave course field empty
-			
-			enrollmentsDTO.add(enrollmentDTO);
+			if(e.isActive()) {
+				EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
+				enrollmentDTO.setId(e.getId());
+				enrollmentDTO.setStartDate(e.getStartDate());
+				enrollmentDTO.setEndDate(e.getEndDate());
+				enrollmentDTO.setStudent(new StudentDTO(e.getStudent()));
+				enrollmentDTO.setActive(e.isActive());
+				//we leave course field empty
+				
+				enrollmentsDTO.add(enrollmentDTO);
+			}
 		}
 		return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
 	}

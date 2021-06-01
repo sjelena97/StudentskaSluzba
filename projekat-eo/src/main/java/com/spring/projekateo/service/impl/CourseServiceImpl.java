@@ -2,14 +2,10 @@ package com.spring.projekateo.service.impl;
 
 
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.Course;
-import com.spring.projekateo.model.Enrollment;
-import com.spring.projekateo.model.Student;
 import com.spring.projekateo.repository.CourseRepository;
 import com.spring.projekateo.service.CourseService;
 
