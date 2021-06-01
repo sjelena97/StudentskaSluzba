@@ -1,3 +1,4 @@
+import { Account } from "./account";
 import { User } from "./user";
 
 export class Student implements StudentInterface{

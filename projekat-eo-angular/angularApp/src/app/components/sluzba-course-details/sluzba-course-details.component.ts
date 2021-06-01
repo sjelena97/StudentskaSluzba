@@ -8,6 +8,8 @@ import { Course } from 'src/app/model/course';
 import { Enrollment } from 'src/app/model/enrollment';
 import { SluzbaEnrollmentsServiceService } from '../sluzba-enrollments/sluzba-enrollments-service.service';
 import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
+import { Teaching } from 'src/app/model/teaching';
+import { SluzbaTeachingsServiceService } from '../sluzba-teachings/sluzba-teachings-service.service';
 
 @Component({
   selector: 'app-sluzba-course-details',
@@ -24,13 +26,17 @@ export class SluzbaCourseDetailsComponent implements OnInit {
   });
 
   enrollments: Enrollment[];
+  teachings: Teaching[];
 
   mode: string = 'ADD';
 
-  constructor(private courseService: SluzbaCoursesServiceService, private enrollmentService: SluzbaEnrollmentsServiceService,
+  constructor(private courseService: SluzbaCoursesServiceService, private enrollmentService: SluzbaEnrollmentsServiceService, private teachingService: SluzbaTeachingsServiceService,
     private route: ActivatedRoute, private location: Location, private router: Router, private authService: AuthenticationServiceService) {
     enrollmentService.RegenerateData$.subscribe(() =>
       this.getEnrollments()
+    );
+    teachingService.RegenerateData$.subscribe(() =>
+      this.getTeachings()
     );
   }
 
@@ -43,6 +49,7 @@ export class SluzbaCourseDetailsComponent implements OnInit {
         .subscribe(res => {
           this.course = res.body;
           this.getEnrollments();
+          this.getTeachings();
         });
     }
   }
@@ -50,6 +57,11 @@ export class SluzbaCourseDetailsComponent implements OnInit {
   private getEnrollments(): void {
     this.courseService.getCourseEnrollments(this.course.id).subscribe(res =>
       this.enrollments = res.body);
+  }
+
+  private getTeachings(): void {
+    this.courseService.getCourseTeachings(this.course.id).subscribe(res =>
+      this.teachings = res.body);
   }
 
 
@@ -89,6 +101,16 @@ export class SluzbaCourseDetailsComponent implements OnInit {
   deleteEnrollment(enrollmentId: number): void {
     this.enrollmentService.deleteEnrollment(enrollmentId).subscribe(
       () => this.getEnrollments()
+    );
+  }
+
+  gotoAddTeaching(): void {
+    this.router.navigate(['/addTeaching'], { queryParams: { courseId: this.course.id } });
+  }
+
+  deleteTeaching(teachingId: number): void {
+    this.teachingService.deleteTeaching(teachingId).subscribe(
+      () => this.getTeachings()
     );
   }
 

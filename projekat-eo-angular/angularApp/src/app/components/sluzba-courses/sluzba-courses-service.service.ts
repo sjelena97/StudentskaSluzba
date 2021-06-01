@@ -5,12 +5,14 @@ import {Observable, Subject} from 'rxjs';
 import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
 import { Course } from '../../model/course';
 import { Enrollment } from 'src/app/model/enrollment';
+import { Teaching } from 'src/app/model/teaching';
 
 @Injectable()
 export class SluzbaCoursesServiceService {
 
   private coursesUrl = 'courses';
   private enrollmentsUrl = 'enrollments';
+  private teachingsUrl = 'teachings';
 
   constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
 
@@ -52,6 +54,11 @@ export class SluzbaCoursesServiceService {
   getCourseEnrollments(courseId: number): Observable<HttpResponse<Enrollment[]>> {
     const url = `${this.enrollmentsUrl}/getAllEnrollmentsForCourse/${courseId}`;
     return this.http.get<Enrollment[]>(url, {observe: 'response'});
+  }
+
+  getCourseTeachings(courseId: number): Observable<HttpResponse<Teaching[]>> {
+    const url = `${this.teachingsUrl}/getAllTeachingsForCourse/${courseId}`;
+    return this.http.get<Teaching[]>(url, {observe: 'response'});
   }
 
 }

@@ -13,6 +13,8 @@ import { SluzbaTeachersComponent } from './components/sluzba-teachers/sluzba-tea
 import { SluzbaCourseDetailsComponent } from './components/sluzba-course-details/sluzba-course-details.component';
 import { SluzbaHomeComponent } from './components/sluzba-home/sluzba-home.component';
 import { SluzbaSidebarComponent } from './components/sluzba-sidebar/sluzba-sidebar.component';
+import { SluzbaEnrollmentsComponent } from './components/sluzba-enrollments/sluzba-enrollments.component';
+import { SluzbaTeachingsComponent } from './components/sluzba-teachings/sluzba-teachings.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'teachers', component: SluzbaTeachersComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'addCourse', component: SluzbaCourseDetailsComponent },
   { path: 'editCourse/:id', component: SluzbaCourseDetailsComponent },
+  { path: 'addEnrollment', component: SluzbaEnrollmentsComponent },
+  { path: 'addTeaching', component: SluzbaTeachingsComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'

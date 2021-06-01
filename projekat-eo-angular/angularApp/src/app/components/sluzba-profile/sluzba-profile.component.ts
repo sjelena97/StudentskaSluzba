@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { SluzbaProfileServiceService } from './sluzba-profile-service.service';
 import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
+import { Account } from 'src/app/model/account';
 
 interface User {
   id?: number;

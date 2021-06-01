@@ -20,8 +20,9 @@ export class SluzbaEnrollmentsServiceService {
       this.RegenerateData.next();
   }
   
-  addEnrollment(enrollment: Enrollment): Observable<HttpResponse<Enrollment>> {
-      return this.http.post<Enrollment>(this.enrollmentsUrl, enrollment, {observe: 'response'});
+  addEnrollment(enrollment: Enrollment, courseId: number): Observable<HttpResponse<Enrollment>> {
+    const urlPost = `${this.enrollmentsUrl}/addEnrollment/${courseId}`;
+    return this.http.post<Enrollment>(urlPost, enrollment, {observe: 'response'});
   }
   
   deleteEnrollment(enrollmentId: number): Observable<HttpResponse<any>> {

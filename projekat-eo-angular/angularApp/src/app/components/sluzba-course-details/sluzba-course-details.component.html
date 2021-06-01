@@ -57,6 +57,31 @@
               </div>
             </div>
         </div>
+        <div class="col-md-12">
+          <div class="card" style="padding-left: 10px;">
+            <div>
+              <h3>Teachers</h3>
+              <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddTeaching()">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div  class="content table-responsive table-full-width" style="padding-top: 2%;">
+            <table class="table table-bordered">
+              <tr *ngFor="let teaching of teachings">
+                <td>
+                  {{teaching.type.name}} {{teaching.teacher.user.firstName}} {{teaching.teacher.user.lastName}}
+                  [Since {{teaching.startDate | date: 'dd.MM.yyyy'}} until {{teaching.endDate | date: 'dd.MM.yyyy'}}]
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger right" aria-label="Delete" (click)="deleteTeaching(teaching.id)">
+                    <span class="fa fa-trash" aria-hidden="true"></span>
+                  </button>
+                </td>
+              </tr>
+            </table>   
+            </div>
+          </div>
+      </div>
       </div>
       <div *ngIf="isAdmin()" >
         <button class="btn btn-success" (click)="save()">OK</button>
