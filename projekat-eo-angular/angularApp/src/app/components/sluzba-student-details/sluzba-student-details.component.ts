@@ -24,7 +24,8 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     user: new User({
       username: '',
       firstName: '',
-      lastName: ''
+      lastName: '',
+      password: ''
     })
   });
 
