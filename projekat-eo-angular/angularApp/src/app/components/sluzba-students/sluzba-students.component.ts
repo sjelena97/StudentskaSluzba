@@ -38,6 +38,23 @@ export class SluzbaStudentsComponent implements OnInit {
       this.students = res.body);
   }
 
+  
+  gotoAdd(): void {
+    this.router.navigate(['/addStudent']);
+  }
+
+  gotoEdit(student: Student): void {
+    this.router.navigate(['/editStudent', student.id]);
+  }
+
+  deleteStudent(studentId: number, studentFirstName: string, studentLastName: string): void {
+    if(confirm("Are you sure to delete student " + studentFirstName + " " + studentLastName + "?")){
+    this.studentService.deleteStudent(studentId).subscribe(
+      () => this.getStudents()
+    );
+    }
+  }
+
   isLoggedIn():boolean{
     return this.authService.isLoggedIn();
   }

@@ -28,6 +28,7 @@ import { SluzbaHomeComponent } from './components/sluzba-home/sluzba-home.compon
 import { SluzbaNavbarComponent } from './components/sluzba-navbar/sluzba-navbar.component';
 import { SluzbaSidebarComponent } from './components/sluzba-sidebar/sluzba-sidebar.component';
 import { SluzbaTeachingsComponent } from './components/sluzba-teachings/sluzba-teachings.component';
+import { SluzbaStudentDetailsComponent } from './components/sluzba-student-details/sluzba-student-details.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SluzbaTeachingsComponent } from './components/sluzba-teachings/sluzba-t
     SluzbaHomeComponent,
     SluzbaNavbarComponent,
     SluzbaSidebarComponent,
-    SluzbaTeachingsComponent
+    SluzbaTeachingsComponent,
+    SluzbaStudentDetailsComponent
   ],
   imports: [
     FormsModule,
