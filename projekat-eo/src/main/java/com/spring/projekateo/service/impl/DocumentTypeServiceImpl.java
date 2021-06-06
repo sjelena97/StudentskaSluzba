@@ -1,5 +1,7 @@
 package com.spring.projekateo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class DocumentTypeServiceImpl implements DocumentTypeService{
 	@Override
 	public DocumentType findById(Integer typeId){
 		return documentTypeRepository.findById(typeId);
+	}
+	
+	@Override
+    public List<DocumentType> getAllDocumentTypes(){
+		List<DocumentType> allDocumentTypes= documentTypeRepository.findAll();
+        return allDocumentTypes;
 	}
 
 }

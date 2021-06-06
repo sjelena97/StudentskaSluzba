@@ -40,5 +40,5 @@ INSERT INTO PAYMENT (payment_id, amount, date, purpose, account_id) VALUES (3, 1
 INSERT INTO DOCUMENT_TYPE (document_type_id, code, name) VALUES (1, 'F', 'FORM');
 INSERT INTO DOCUMENT_TYPE (document_type_id, code, name) VALUES (2, 'D', 'DIPLOMA');
 
-INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id) VALUES (1, 'Diploma', 'C:/Users/Jelena', 1, 2);
-INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id) VALUES (2, 'Diploma', 'C:/Users/Jelena', 2, 2);
+INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id, active) VALUES (1, 'Diploma', 'C:/Users/Jelena', 1, 2, 1);
+INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id, active) VALUES (2, 'Diploma', 'C:/Users/Jelena', 2, 2, 1);
