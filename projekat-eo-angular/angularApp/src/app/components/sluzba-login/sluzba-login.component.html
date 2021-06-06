@@ -31,11 +31,11 @@
 </div> 
  -->
 
- <div class="login">
+<!--  <div class="login">
     <div class="account-login">
        <form class="login-form" (ngSubmit)="login()">
           <div class="form-group">
-             <input type="text" name="username"  placeholder="Username" [(ngModel)]="user.username" class="form-control"  required autofocus>
+             <input type="text" class="form-control" name="username"  placeholder="Username" [(ngModel)]="user.username"   required autofocus>
           </div>
           <div class="form-group">
              <input type="password" name="password" placeholder="Password"  [(ngModel)]="user.password" placeholder="Password"  required  class="form-control">
@@ -49,4 +49,28 @@
         Wrong username or password.
       </div>
     </div>
-</div>
+</div> --> 
+
+ <div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h1 class="text-center">Login</h1>
+      <form  (ngSubmit)="login()">
+      <div class="input-group">
+        <input type="text" class="form-control" name="username"  placeholder="Username" [(ngModel)]="user.username"   required autofocus>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+      </div>
+      <div class="input-group">
+        <input type="password" class="form-control" name="password" placeholder="Password"  [(ngModel)]="user.password" placeholder="Password"  required />
+        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      </div>
+      <p class="text-center">Are you forgot your password? <a href="#">Click here</a></p>
+      <button class="btn btn-default">Login</button>
+    </form>
+    <div *ngIf=wrongUsernameOrPass class="alert alert-warning box-msg" role="alert">
+      Wrong username or password.
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div> 
