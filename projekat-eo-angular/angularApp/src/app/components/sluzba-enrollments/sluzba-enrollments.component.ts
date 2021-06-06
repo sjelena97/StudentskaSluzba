@@ -41,7 +41,8 @@ export class SluzbaEnrollmentsComponent implements OnInit {
         user: new User({
           username: '',
           firstName: '',
-          lastName: ''
+          lastName: '',
+          password: ''
         })
       }),
       course: new Course({
