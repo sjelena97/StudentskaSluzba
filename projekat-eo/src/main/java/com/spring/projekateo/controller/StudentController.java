@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.model.Account;
+import com.spring.projekateo.model.Authority;
 import com.spring.projekateo.model.Student;
 import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.AccountService;
+import com.spring.projekateo.service.AuthorityService;
 import com.spring.projekateo.service.StudentService;
 import com.spring.projekateo.service.UserService;
 
@@ -37,6 +39,9 @@ public class StudentController {
 	
 	@Autowired
     private AccountService accountService;
+	
+	@Autowired
+    private AuthorityService authorityService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -114,11 +119,16 @@ public class StudentController {
 		Student student = new Student();
 		student.setCardName(newStudent.getCardName());
 		User user = new User();
+		Authority authority = authorityService.findByName("STUDENT");
+		if(authority == null) {
+			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
+		}
 		user.setFirstName(newStudent.getUser().getFirstName());
 		user.setLastName(newStudent.getUser().getLastName());
 		user.setUsername(newStudent.getUser().getUsername());
 		// pre nego sto postavimo lozinku u atribut hesiramo je
 		user.setPassword(passwordEncoder.encode(newStudent.getUser().getPassword()));
+		user.setAuthority(authority);
 		user = userService.save(user);
 		student.setUser(user);
 		Account account = new Account();

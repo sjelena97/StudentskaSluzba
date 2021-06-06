@@ -6,4 +6,6 @@ public interface AuthorityService {
 
 	Authority findById(Integer authorityId);
 
+	Authority findByName(String name);
+
 }

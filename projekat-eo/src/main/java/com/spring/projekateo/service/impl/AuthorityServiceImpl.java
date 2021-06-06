@@ -17,5 +17,10 @@ public class AuthorityServiceImpl implements AuthorityService{
 	public Authority findById(Integer authorityId){
 		return authorityRepository.findById(authorityId);
 	}
+	
+	@Override
+	public Authority findByName(String name){
+		return authorityRepository.findByName(name);
+	}
 
 }

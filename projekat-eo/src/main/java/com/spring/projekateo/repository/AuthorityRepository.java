@@ -8,4 +8,6 @@ public interface AuthorityRepository extends JpaRepository<Authority, Long>{
 
 	Authority findById(Integer authorityId);
 
+	Authority findByName(String name);
+
 }
