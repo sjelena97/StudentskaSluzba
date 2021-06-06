@@ -4,11 +4,15 @@ import { Router } from '@angular/router';
 
 import { SluzbaDocumentsServiceService } from './sluzba-documents-service.service';
 import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
+import { Student } from 'src/app/model/student';
+import { DocumentType } from 'src/app/model/document-type';
 
 interface Document {
   id?: number;
   title: string;
+  url: string;
   type: DocumentType;
+  student: Student;
 }
 
 @Component({

@@ -66,6 +66,40 @@ public class DocumentController {
 			return new ResponseEntity<>(documentsDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAllDocumentsForStudent/{student_id}")
+	public ResponseEntity<List<DocumentDTO>> getAllDocumentsForStudentById(@PathVariable("student_id") int student_id){
+			Student student = studentService.findById(student_id);
+			if(student == null) {
+				return new ResponseEntity<List<DocumentDTO>>(HttpStatus.BAD_REQUEST);
+			}
+		 	Set<Document> documents = documentService.getAllDocumentsByStudent(student);
+		 	List<DocumentDTO> documentsDTO = new ArrayList<>();
+			for (Document d : documents) {
+				if(d.isActive()) {
+					DocumentDTO documentDTO = new DocumentDTO();
+					documentDTO.setId(d.getId());
+					documentDTO.setTitle(d.getTitle());
+					documentDTO.setUrl(d.getUrl());
+					documentDTO.setType(new DocumentTypeDTO(d.getType()));
+					documentDTO.setActive(d.isActive());
+					//we leave student field empty
+					
+					documentsDTO.add(documentDTO);
+				}
+			}
+			return new ResponseEntity<>(documentsDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("getDocumentById/{document_id}")
+	public ResponseEntity<DocumentDTO> getDocumentById(@PathVariable("document_id") int document_id) {
+		Document document = documentService.findById(document_id);
+		if (document == null) {
+			return new ResponseEntity<DocumentDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<DocumentDTO>(new DocumentDTO(document), HttpStatus.OK);
+		}
+	}
+	
 	@PostMapping("/addDocument/{student_id}")
 	public ResponseEntity<DocumentDTO> createDocument(@RequestBody DocumentDTO newDocument, @PathVariable("student_id") int student_id) {
 		 
@@ -108,6 +142,20 @@ public class DocumentController {
 		document = documentService.save(document);
 		
 		return new ResponseEntity<DocumentDTO>(new DocumentDTO(document), HttpStatus.OK);	
+	}
+	
+	@PutMapping("/deleteDocument/{document_id}")
+	public ResponseEntity<Void> deleteDocument(@PathVariable("document_id") int document_id) {
+
+		Document document = documentService.findById(document_id);
+		if (document != null){
+			document.setActive(false);
+			document = documentService.save(document);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {		
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 
 }

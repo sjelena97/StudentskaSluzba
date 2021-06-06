@@ -8,6 +8,8 @@ import { Account } from 'src/app/model/account';
 import { Student } from 'src/app/model/student';
 import { User } from 'src/app/model/user';
 import { SluzbaStudentsServiceService } from '../sluzba-students/sluzba-students-service.service';
+import { Document } from 'src/app/model/document';
+import { SluzbaDocumentsServiceService } from '../sluzba-documents/sluzba-documents-service.service';
 
 @Component({
   selector: 'app-sluzba-student-details',
@@ -29,9 +31,11 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     })
   });
 
+  documents: Document[];
+
   mode: string = 'ADD';
 
-  constructor(private studentService: SluzbaStudentsServiceService,
+  constructor(private studentService: SluzbaStudentsServiceService, private documentService: SluzbaDocumentsServiceService,
     private route: ActivatedRoute, private location: Location, private router: Router, private authService: AuthenticationServiceService) {
   }
 
@@ -43,8 +47,14 @@ export class SluzbaStudentDetailsComponent implements OnInit {
           this.studentService.getStudent(+params['id'])))
         .subscribe(res => {
           this.student = res.body;
+          this.getDocuments();
         });
     }
+  }
+
+  private getDocuments(): void {
+    this.studentService.getStudentDocuments(this.student.id).subscribe(res =>
+      this.documents = res.body);
   }
 
 
@@ -66,6 +76,21 @@ export class SluzbaStudentDetailsComponent implements OnInit {
         this.studentService.announceChange();
         this.goBack();
       });
+  }
+
+  gotoAddDocument(): void {
+    this.router.navigate(['/addDocument'], { queryParams: { studentId: this.student.id } });
+  }
+
+  
+  gotoEditDocument(document: Document): void {
+    this.router.navigate(['/editDocument', document.id]);
+  }
+
+  deleteDocument(documentId: number): void {
+    this.documentService.deleteDocument(documentId).subscribe(
+      () => this.getDocuments()
+    );
   }
 
   goBack(): void {
