@@ -35,7 +35,7 @@ export class SluzbaDocumentDetailsServiceService {
   }
 
   addDocument(document: Document): Observable<HttpResponse<Document>> {
-    const urlPost = `${this.documentUrl}/addDocument`;
+    const urlPost = `${this.documentUrl}/addDocument/${document.student.id}`;
     return this.http.post<Document>(urlPost, document, {observe: 'response'});
   } 
 
