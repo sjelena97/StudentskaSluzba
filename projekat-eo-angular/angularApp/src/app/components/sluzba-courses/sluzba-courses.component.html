@@ -1,48 +1,44 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-         <!--         <div class="header">
-                      <h4 class="title">Striped Table with Hover</h4>
-                      <p class="category">Here is a subtitle for this table</p>
-                  </div> -->
-      <div *ngIf="isLoggedIn()" class="content table-responsive table-full-width" style="padding-top: 2%;">
-          <table class="table table-hover" style="text-align: center;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div *ngIf="isLoggedIn()" class="content table-responsive table-full-width" style="padding-top: 2%;">
+            <table class="table table-hover" style="text-align: center;">
               <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Course name</th>
-                <th scope="col">ECTS</th>
-                <th></th>
-              </tr>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Course name</th>
+                  <th scope="col">ECTS</th>
+                  <th></th>
+                </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let course of courses">
-                <th scope="row">{{ course.id }}</th>
-                <td>{{ course.name }}</td>
-                <td>{{ course.espb | number }}</td>
-                <td *ngIf="isAdmin()">
-                  <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(course)">
-                    <span class="fa fa-edit" aria-hidden="true"></span>
-                  </button>
-            
-                  <button type="button" class="btn btn-danger" aria-label="Delete" (click)="deleteCourse(course.id, course.name)">
-                    <span class="fa fa-trash" aria-hidden="true"></span>
-                  </button>
-                </td>
-              </tr>
+                <tr *ngFor="let course of courses">
+                  <th scope="row">{{ course.id }}</th>
+                  <td>{{ course.name }}</td>
+                  <td>{{ course.espb | number }}</td>
+                  <td *ngIf="isAdmin()">
+                    <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(course)">
+                      <span class="fa fa-edit" aria-hidden="true"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger" aria-label="Delete"
+                      (click)="deleteCourse(course.id, course.name)">
+                      <span class="fa fa-trash" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             </table>
-            
+          </div>
+        </div>
+        <div *ngIf="isAdmin()" class="right">
+          <button type="button" class="btn btn-success" aria-label="Add" (click)="gotoAdd()">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
     </div>
-    <div *ngIf="isAdmin()" class="right">
-      <button type="button" class="btn btn-success" aria-label="Add" (click)="gotoAdd()">
-        <span class="fa fa-plus" aria-hidden="true"></span>
-      </button>
-    </div> 
   </div>
- 
 </div>
-  

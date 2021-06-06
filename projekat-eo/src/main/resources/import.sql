@@ -10,8 +10,8 @@ INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id
 INSERT INTO ACCOUNT (account_id, balance) VALUES (1, 500);
 INSERT INTO ACCOUNT (account_id, balance) VALUES (2, 1000);
 
-INSERT INTO STUDENT (student_id, card_name, account_id, user_id) VALUES (1, 'SF36/2018', 1, 1);
-INSERT INTO STUDENT (student_id, card_name, account_id, user_id) VALUES (2, 'SF56/2018', 2, 3);
+INSERT INTO STUDENT (student_id, card_name, account_id, user_id, active) VALUES (1, 'SF36/2018', 1, 1, 1);
+INSERT INTO STUDENT (student_id, card_name, account_id, user_id, active) VALUES (2, 'SF56/2018', 2, 3, 1);
 
 INSERT INTO TEACHER (teacher_id, user_id) VALUES (1, 4);
 
