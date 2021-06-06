@@ -102,7 +102,7 @@ public class DocumentController {
 	
 	@PostMapping("/addDocument/{student_id}")
 	public ResponseEntity<DocumentDTO> createDocument(@RequestBody DocumentDTO newDocument, @PathVariable("student_id") int student_id) {
-		 
+		System.out.println(newDocument.getUrl());
 		Student student = studentService.findById(student_id);
 		if (student == null) {
 			return new ResponseEntity<DocumentDTO>(HttpStatus.BAD_REQUEST);
@@ -113,7 +113,7 @@ public class DocumentController {
 		}
 		Document document = new Document();
 		document.setTitle(newDocument.getTitle());
-		document.setUrl(document.getUrl());
+		document.setUrl(newDocument.getUrl());
 		document.setStudent(student);
 		document.setType(type);
 				
