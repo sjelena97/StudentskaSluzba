@@ -11,7 +11,7 @@
                                 class="form-control" id="field1c" name="field1">
                             <label for="field2c" class="form-control-label">Lastname</label>
                             <input type="text" [(ngModel)]="student.user.lastName" placeholder="Lastname"
-                                class="form-control" id="fieldc" name="field2">
+                                class="form-control" id="field2c" name="field2">
                             <label for="field3c" class="form-control-label">Username</label>
                             <input type="text" [(ngModel)]="student.user.username" placeholder="Username"
                                 class="form-control" id="field3c" name="field3">
@@ -23,6 +23,39 @@
                                 class="form-control" id="field5c" name="field5">
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="student.id">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="padding-left: 10px;">
+                        <div>
+                            <h3>Documents</h3>
+                            <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddDocument()">
+                                <span class="fa fa-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+                            <table class="table table-bordered">
+                                <tr *ngFor="let document of documents">
+                                    <td>
+                                        {{ document.type.name }} {{document.title}}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" aria-label="Edit"
+                                            (click)="gotoEditDocument(document)">
+                                            <span class="fa fa-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger right" aria-label="Delete"
+                                            (click)="deleteDocument(document.id)">
+                                            <span class="fa fa-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
