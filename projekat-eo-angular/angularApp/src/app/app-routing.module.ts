@@ -17,6 +17,7 @@ import { SluzbaEnrollmentsComponent } from './components/sluzba-enrollments/sluz
 import { SluzbaTeachingsComponent } from './components/sluzba-teachings/sluzba-teachings.component';
 import { SluzbaStudentDetailsComponent } from './components/sluzba-student-details/sluzba-student-details.component';
 import { SluzbaDocumentDetailsComponent } from './components/sluzba-document-details/sluzba-document-details.component';
+import { SluzbaPaymentDetailsComponent } from './components/sluzba-payment-details/sluzba-payment-details.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
@@ -35,6 +36,8 @@ const routes: Routes = [
   { path: 'editStudent/:id', component: SluzbaStudentDetailsComponent },
   { path: 'addDocument', component: SluzbaDocumentDetailsComponent },
   { path: 'editDocument/:id', component: SluzbaDocumentDetailsComponent },
+  { path: 'addPayment', component: SluzbaPaymentDetailsComponent },
+  { path: 'editPayment/:id', component: SluzbaPaymentDetailsComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'

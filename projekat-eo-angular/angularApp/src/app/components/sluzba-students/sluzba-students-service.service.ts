@@ -5,6 +5,7 @@ import {Observable, Subject} from 'rxjs';
 import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
 import { Student } from '../../model/student';
 import { Document } from 'src/app/model/document';
+import { Payment } from 'src/app/model/payment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class SluzbaStudentsServiceService {
 
   private studentsUrl = 'students';
   private documentsUrl = 'documents';
+  private paymentsUrl = 'payments';
 
   constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
 
@@ -52,6 +54,11 @@ export class SluzbaStudentsServiceService {
   getStudentDocuments(studentId: number): Observable<HttpResponse<Document[]>> {
     const url = `${this.documentsUrl}/getAllDocumentsForStudent/${studentId}`;
     return this.http.get<Document[]>(url, {observe: 'response'});
+  }
+
+  getAccountPayments(accountId: number): Observable<HttpResponse<Payment[]>> {
+    const url = `${this.paymentsUrl}/getAllPaymentsForAccount/${accountId}`;
+    return this.http.get<Payment[]>(url, {observe: 'response'});
   }
 
 }

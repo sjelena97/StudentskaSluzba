@@ -1,15 +1,21 @@
 export class Account implements AccountInterface{
 	public id: number;
-	public balance: number;
+	public bankAccount: string;
+	public model: string;
+	public personalCallToNumber: string;
 		
 	constructor(accountCfg:AccountInterface)
 	{	
 		this.id = accountCfg.id;
-		this.balance = accountCfg.balance;	
+		this.bankAccount = accountCfg.bankAccount;
+		this.model = accountCfg.model;
+		this.personalCallToNumber = accountCfg.personalCallToNumber;
 	}
 }
 
 interface AccountInterface{
 	id?: number;
-	balance: number;
+	bankAccount: string;
+	model: string;
+	personalCallToNumber: string;
 }
