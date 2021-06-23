@@ -128,6 +128,21 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     );
   }
 
+/*   gotoAddPayment(): void {
+    this.router.navigate(['/addPayment'], { queryParams: { accountId: this.student.account.id } });
+  }
+
+  
+  gotoEditPayment(payment: Payment): void {
+    this.router.navigate(['/editPayment', payment.id]);
+  }
+
+  deletePayment(paymentId: number): void {
+    this.paymentService.deletePayment(paymentId).subscribe(
+      () => this.getPayments()
+    );
+  }
+ */
   goBack(): void {
     this.location.back();
   }
