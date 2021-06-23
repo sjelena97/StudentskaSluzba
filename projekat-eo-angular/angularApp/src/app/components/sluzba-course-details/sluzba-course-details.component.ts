@@ -98,20 +98,27 @@ export class SluzbaCourseDetailsComponent implements OnInit {
     this.router.navigate(['/addEnrollment'], { queryParams: { courseId: this.course.id } });
   }
 
-  deleteEnrollment(enrollmentId: number): void {
+  deleteEnrollment(enrollmentId: number, studentName: string, studentLastName: string, courseName: string): void {
+    if(confirm("Are you sure to delete student " + studentName + " " + studentLastName + " from course " + courseName+ "?" )){
     this.enrollmentService.deleteEnrollment(enrollmentId).subscribe(
       () => this.getEnrollments()
     );
+    }
   }
 
   gotoAddTeaching(): void {
     this.router.navigate(['/addTeaching'], { queryParams: { courseId: this.course.id } });
   }
 
-  deleteTeaching(teachingId: number): void {
+  deleteTeaching(teachingId: number, teacherName: String, teacherLastName: String, courseName: string): void {
+    if(confirm("Are you sure to delete teacher " + teacherName + " " + teacherLastName + " from course" + courseName + "?")){
     this.teachingService.deleteTeaching(teachingId).subscribe(
       () => this.getTeachings()
     );
+    }
   }
 
 }
+
+
+
