@@ -32,11 +32,20 @@ export class SluzbaProfileComponent implements OnInit {
   available: 0 | number;
 
   subscription: Subscription;
+  public showPassword: boolean;
+  public showPassword2: boolean;
+
 
   constructor(private profileService: SluzbaProfileServiceService, private authenticationService:AuthenticationServiceService, private accountService: SluzbaAccountServiceService, private router: Router, private authService: AuthenticationServiceService) {
     this.subscription = profileService.RegenerateData$.subscribe(() =>
       this.getUser()
     );
+  }
+
+  isShowDiv = false;
+   
+  toggleDisplayDiv() {
+    this.isShowDiv = !this.isShowDiv;
   }
 
   ngOnInit(): void {
