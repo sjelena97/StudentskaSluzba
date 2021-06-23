@@ -97,11 +97,19 @@ public class StudentController {
 		
 		student.setCardName(studentDTO.getCardName());
 		student.setActive(studentDTO.isActive());
+		
 		User user = student.getUser();
 		user.setFirstName(studentDTO.getUser().getFirstName());
 		user.setLastName(studentDTO.getUser().getLastName());
 		user.setUsername(studentDTO.getUser().getUsername());
 		student.setUser(user);
+		
+		Account account = student.getAccount();
+		account.setBankAccount(studentDTO.getAccount().getBankAccount());
+		account.setModel(studentDTO.getAccount().getModel());
+		account.setPersonalCallToNumber(studentDTO.getAccount().getPersonalCallToNumber());
+		student.setAccount(account);
+		
 		student = studentService.save(student);
 		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);	
 	}
@@ -132,7 +140,9 @@ public class StudentController {
 		user = userService.save(user);
 		student.setUser(user);
 		Account account = new Account();
-		account.setBalance(newStudent.getAccount().getBalance());
+		account.setBankAccount(newStudent.getAccount().getBankAccount());
+		account.setModel(newStudent.getAccount().getModel());
+		account.setPersonalCallToNumber(newStudent.getAccount().getPersonalCallToNumber());
 		account = accountService.save(account);
 		student.setAccount(account);
 		student = studentService.save(student);
