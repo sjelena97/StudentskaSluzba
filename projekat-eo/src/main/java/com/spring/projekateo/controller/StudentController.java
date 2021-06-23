@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.StudentDTO;
+import com.spring.projekateo.dto.UserDTO;
 import com.spring.projekateo.model.Account;
 import com.spring.projekateo.model.Authority;
 import com.spring.projekateo.model.Student;
@@ -91,6 +92,12 @@ public class StudentController {
 		if(!studentDTO.getCardName().equalsIgnoreCase(student.getCardName())) {
 			Student student2 = studentService.findByCardName(studentDTO.getCardName());
 			if(student2 != null) {
+				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
+			}
+		}
+		if(!studentDTO.getUser().getUsername().equalsIgnoreCase(studentDTO.getUser().getUsername())) {
+			User user2 = userService.findByUsername(studentDTO.getUser().getUsername());
+			if(user2 != null) {
 				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 			}
 		}
