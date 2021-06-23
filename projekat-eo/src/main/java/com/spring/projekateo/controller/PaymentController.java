@@ -44,7 +44,7 @@ public class PaymentController {
     private StudentService studentService;
 	
 	@GetMapping("/getAllPaymentsForUser/{username}")
-	public  ResponseEntity<List<PaymentDTO>> getAllPaymentsForAccount(@PathVariable("username") String username){
+	public  ResponseEntity<List<PaymentDTO>> getAllPaymentsForUser(@PathVariable("username") String username){
 			User user = userService.findByUsername(username);
 			Student student = studentService.findByUser(user);
 			if(student == null) {
@@ -65,6 +65,38 @@ public class PaymentController {
 			}
 			return new ResponseEntity<>(paymentsDTO, HttpStatus.OK);
 	}
+	
+	@GetMapping("/getAllPaymentsForAccount/{account_id}")
+	public ResponseEntity<List<PaymentDTO>> getAllPaymentsForAccount(@PathVariable("account_id") int account_id){
+			Account account = accountService.findById(account_id);
+			if(account == null) {
+				return new ResponseEntity<List<PaymentDTO>>(HttpStatus.BAD_REQUEST);
+			}
+		 	Set<Payment> payments = paymentService.getAllPaymentsByAccount(account);
+		 	List<PaymentDTO> paymentsDTO = new ArrayList<>();
+			for (Payment p : payments) {
+				PaymentDTO paymentDTO = new PaymentDTO();
+				paymentDTO.setId(p.getId());
+				paymentDTO.setAmount(p.getAmount());
+				paymentDTO.setDate(p.getDate());
+				paymentDTO.setPurpose(p.getPurpose());
+				//we leave account field empty
+				
+				paymentsDTO.add(paymentDTO);
+			}
+			return new ResponseEntity<>(paymentsDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("getPaymentById/{payment_id}")
+	public ResponseEntity<PaymentDTO> getPaymentById(@PathVariable("payment_id") int payment_id) {
+		Payment payment = paymentService.findById(payment_id);
+		if (payment == null) {
+			return new ResponseEntity<PaymentDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<PaymentDTO>(new PaymentDTO(payment), HttpStatus.OK);
+		}
+	}
+	
 	
 	@PostMapping("/addPayment/{account_id}")
 	public ResponseEntity<PaymentDTO> createPayment(@RequestBody PaymentDTO newPayment, @PathVariable("account_id") int account_id) {

@@ -23,10 +23,6 @@ export class SluzbaEnrollmentsComponent implements OnInit {
   enrollment: Enrollment;
   students: Student[];
 
-  // for date picker values
-  ngbStartDate: NgbDateStruct;
-  ngbEndDate: NgbDateStruct;
-
   constructor(private route: ActivatedRoute, private courseService: SluzbaCoursesServiceService,
     private studentService: SluzbaStudentsServiceService, private enrollmentService: SluzbaEnrollmentsServiceService,
     private location: Location) {
@@ -36,7 +32,9 @@ export class SluzbaEnrollmentsComponent implements OnInit {
       student: new Student({
         cardName: '',
         account: new Account({
-          balance: 0
+          bankAccount:'',
+          model: '',
+          personalCallToNumber:''
         }),
         user: new User({
           username: '',
@@ -67,10 +65,6 @@ export class SluzbaEnrollmentsComponent implements OnInit {
   }
 
   add(): void {
-    // convert NgbDateStruct dates to Date objects
-    this.enrollment.startDate = new Date(this.ngbStartDate.year, this.ngbStartDate.month-1, this.ngbStartDate.day);
-    this.enrollment.endDate = new Date(this.ngbEndDate.year, this.ngbEndDate.month-1, this.ngbEndDate.day);
-
     this.enrollmentService.addEnrollment(this.enrollment, this.enrollment.course.id)
       .subscribe(enrollment => {
         this.enrollmentService.announceChange();

@@ -1,38 +1,32 @@
 <div>
-    <h3>Enroll students in course {{enrollment.course.name}} </h3>
+  <h3>Enroll students in course {{enrollment.course.name}} </h3>
+</div>
+<div>
+
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="enrollment.student">
+      <option *ngFor="let s of students" [ngValue]="s">{{s.user.firstName}} {{s.user.lastName}} {{s.cardName}}</option>
+    </select>
   </div>
-  <div>
-  
-      <div class="form-group">
-        <select class="form-control" [(ngModel)]="enrollment.student">
-              <option *ngFor="let s of students" [ngValue]="s">{{s.user.firstName}} {{s.user.lastName}} {{s.cardName}}</option>
-            </select>
-      </div>
-  
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="ngbStartDate" 
-            ngbDatepicker #d1="ngbDatepicker">
-          <button class="input-group-addon" (click)="d1.toggle()" type="button">
-          <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"> </i> 
-        </button>
-        </div>
-      </div>
-      
-  
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="ngbEndDate" 
-            ngbDatepicker #d2="ngbDatepicker">
-          <button class="input-group-addon" (click)="d2.toggle()" type="button">
-         <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"> </i> 
-        </button>
-        </div>
-      </div> 
-  
-  
+
+  <div class="form-group">
+    <div class="input-group">
+      <input type="date" placeholder="yyyy-mm-dd" [ngModel]="enrollment.startDate | date:'yyyy-MM-dd'" (ngModelChange)="enrollment.startDate=$event" class="form-control" id="field1c"
+            name="dp1">
+    </div>
   </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" type="button" (click)="add()">OK</button>
-    <button class="btn btn-primary" type="button" (click)="goBack()">Cancel</button>
-  </div> 
+
+
+  <div class="form-group">
+    <div class="input-group">
+      <input type="date" placeholder="yyyy-mm-dd" [ngModel]="enrollment.endDate | date:'yyyy-MM-dd'" (ngModelChange)="enrollment.endDate=$event" class="form-control" id="field2c"
+      name="dp2">
+    </div>
+  </div>
+
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" (click)="add()">OK</button>
+  <button class="btn btn-primary" type="button" (click)="goBack()">Cancel</button>
+</div>

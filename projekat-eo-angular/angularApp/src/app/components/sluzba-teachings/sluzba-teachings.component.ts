@@ -25,10 +25,6 @@ export class SluzbaTeachingsComponent implements OnInit {
   teachers: Teacher[];
   types: TeachingType[];
 
-  // for date picker values
-  ngbStartDate: NgbDateStruct;
-  ngbEndDate: NgbDateStruct;
-
   constructor(private route: ActivatedRoute, private courseService: SluzbaCoursesServiceService,
     private teacherService: SluzbaTeachersServiceService, private teachingService: SluzbaTeachingsServiceService,
     private location: Location) {
@@ -72,10 +68,6 @@ export class SluzbaTeachingsComponent implements OnInit {
   }
 
   add(): void {
-    // convert NgbDateStruct dates to Date objects
-    this.teaching.startDate = new Date(this.ngbStartDate.year, this.ngbStartDate.month-1, this.ngbStartDate.day);
-    this.teaching.endDate = new Date(this.ngbEndDate.year, this.ngbEndDate.month-1, this.ngbEndDate.day);
-
     this.teachingService.addTeaching(this.teaching, this.teaching.course.id)
       .subscribe(teaching => {
         this.teachingService.announceChange();

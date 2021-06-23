@@ -30,6 +30,57 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="padding-left: 10px;">
+                        <h3>Account</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="field6c" class="form-control-label">Bank account</label>
+                                <input type="text" [(ngModel)]="student.account.bankAccount" placeholder="Bank account"
+                                    class="form-control" id="field6c" name="field6">
+                                <label for="field7c" class="form-control-label">Model</label>
+                                <input type="text" [(ngModel)]="student.account.model" placeholder="Model"
+                                    class="form-control" id="field7c" name="field7">
+                                <label for="field8c" class="form-control-label">Personal call to number</label>
+                                <input type="text" [(ngModel)]="student.account.personalCallToNumber" placeholder="Personal call to number"
+                                    class="form-control" id="field8c" name="field8">
+                                <label for="field9c" class="form-control-label">Available funds</label>
+                                <p class="form-control" id="field9c" name="field9">{{ available }}</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="padding-left: 10px;">
+                        <div>
+                            <h3>Payments</h3>
+                            <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddPayment()">
+                                <span class="fa fa-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+                            <table class="table table-bordered">
+                                <tr *ngFor="let payment of payments">
+                                    <td>
+                                        {{payment.date | date }} | {{ payment.purpose }} | {{payment.amount | number }}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" aria-label="Edit"
+                                            (click)="gotoEditPayment(payment)">
+                                            <span class="fa fa-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger right" aria-label="Delete"
+                                            (click)="deletePayment(payment.id)">
+                                            <span class="fa fa-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card" style="padding-left: 10px;">
                         <div>
                             <h3>Documents</h3>
                             <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddDocument()">

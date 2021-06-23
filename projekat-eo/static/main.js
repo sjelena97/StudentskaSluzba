@@ -474,8 +474,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sluzba_teachings_service_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sluzba-teachings-service.service */ "Q89E");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "1kSV");
-
 
 
 
@@ -490,24 +488,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SluzbaTeachingsComponent_option_6_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const t_r4 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngValue", t_r4);
+    const t_r2 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngValue", t_r2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", t_r4.user.firstName, " ", t_r4.user.lastName, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", t_r2.user.firstName, " ", t_r2.user.lastName, "");
 } }
 function SluzbaTeachingsComponent_option_11_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const tt_r5 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngValue", tt_r5);
+    const tt_r3 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngValue", tt_r3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](tt_r5.name);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](tt_r3.name);
 } }
 class SluzbaTeachingsComponent {
     constructor(route, courseService, teacherService, teachingService, location) {
@@ -546,9 +544,6 @@ class SluzbaTeachingsComponent {
         this.teachingService.getTeachingTypes().subscribe(res => this.types = res.body);
     }
     add() {
-        // convert NgbDateStruct dates to Date objects
-        this.teaching.startDate = new Date(this.ngbStartDate.year, this.ngbStartDate.month - 1, this.ngbStartDate.day);
-        this.teaching.endDate = new Date(this.ngbEndDate.year, this.ngbEndDate.month - 1, this.ngbEndDate.day);
         this.teachingService.addTeaching(this.teaching, this.teaching.course.id)
             .subscribe(teaching => {
             this.teachingService.announceChange();
@@ -560,8 +555,7 @@ class SluzbaTeachingsComponent {
     }
 }
 SluzbaTeachingsComponent.ɵfac = function SluzbaTeachingsComponent_Factory(t) { return new (t || SluzbaTeachingsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_courses_sluzba_courses_service_service__WEBPACK_IMPORTED_MODULE_7__["SluzbaCoursesServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_teachers_sluzba_teachers_service_service__WEBPACK_IMPORTED_MODULE_8__["SluzbaTeachersServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_teachings_service_service__WEBPACK_IMPORTED_MODULE_9__["SluzbaTeachingsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_10__["Location"])); };
-SluzbaTeachingsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaTeachingsComponent, selectors: [["app-sluzba-teachings"]], decls: 29, vars: 7, consts: [[1, "form-group"], [1, "form-control", 3, "ngModel", "ngModelChange"], [3, "ngValue", 4, "ngFor", "ngForOf"], [1, "input-group"], ["placeholder", "yyyy-mm-dd", "name", "dp1", "ngbDatepicker", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["d1", "ngbDatepicker"], ["type", "button", 1, "input-group-addon", 3, "click"], [1, "fa", "fa-calendar", 2, "width", "1.2rem", "height", "1rem", "cursor", "pointer"], ["placeholder", "yyyy-mm-dd", "name", "dp2", "ngbDatepicker", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["d2", "ngbDatepicker"], [1, "modal-footer"], ["type", "button", 1, "btn", "btn-primary", 3, "click"], [3, "ngValue"]], template: function SluzbaTeachingsComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+SluzbaTeachingsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaTeachingsComponent, selectors: [["app-sluzba-teachings"]], decls: 25, vars: 13, consts: [[1, "form-group"], [1, "form-control", 3, "ngModel", "ngModelChange"], [3, "ngValue", 4, "ngFor", "ngForOf"], [1, "input-group"], ["type", "date", "placeholder", "yyyy-mm-dd", "id", "field1c", "name", "dp1", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "date", "placeholder", "yyyy-mm-dd", "id", "field2c", "name", "dp2", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "modal-footer"], ["type", "button", 1, "btn", "btn-primary", 3, "click"], [3, "ngValue"]], template: function SluzbaTeachingsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h3");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
@@ -585,35 +579,29 @@ SluzbaTeachingsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "input", 4, 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaTeachingsComponent_Template_input_ngModelChange_14_listener($event) { return ctx.ngbStartDate = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "button", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaTeachingsComponent_Template_button_click_16_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6); const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](15); return _r2.toggle(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](17, "i", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "input", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaTeachingsComponent_Template_input_ngModelChange_14_listener($event) { return ctx.teaching.startDate = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](15, "date");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "input", 8, 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaTeachingsComponent_Template_input_ngModelChange_20_listener($event) { return ctx.ngbEndDate = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "button", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaTeachingsComponent_Template_button_click_22_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6); const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](21); return _r3.toggle(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](23, "i", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "input", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaTeachingsComponent_Template_input_ngModelChange_18_listener($event) { return ctx.teaching.endDate = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](19, "date");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "button", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaTeachingsComponent_Template_button_click_25_listener() { return ctx.add(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "OK");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "button", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaTeachingsComponent_Template_button_click_21_listener() { return ctx.add(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "OK");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "button", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaTeachingsComponent_Template_button_click_27_listener() { return ctx.goBack(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Cancel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "button", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaTeachingsComponent_Template_button_click_23_listener() { return ctx.goBack(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Cancel");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
@@ -628,10 +616,10 @@ SluzbaTeachingsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.types);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.ngbStartDate);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.ngbEndDate);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_11__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbInputDatepicker"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ɵangular_packages_forms_forms_x"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtdGVhY2hpbmdzLmNvbXBvbmVudC5jc3MifQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](15, 7, ctx.teaching.startDate, "yyyy-MM-dd"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](19, 10, ctx.teaching.endDate, "yyyy-MM-dd"));
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_11__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ɵangular_packages_forms_forms_x"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["DatePipe"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtdGVhY2hpbmdzLmNvbXBvbmVudC5jc3MifQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SluzbaTeachingsComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -791,7 +779,7 @@ class SluzbaDocumentDetailsServiceService {
         return this.http.get(url, { observe: 'response' });
     }
     addDocument(document) {
-        const urlPost = `${this.documentUrl}/addDocument`;
+        const urlPost = `${this.documentUrl}/addDocument/${document.student.id}`;
         return this.http.post(urlPost, document, { observe: 'response' });
     }
     editDocument(document) {
@@ -872,6 +860,7 @@ class SluzbaStudentsServiceService {
         this.authService = authService;
         this.studentsUrl = 'students';
         this.documentsUrl = 'documents';
+        this.paymentsUrl = 'payments';
         this.RegenerateData = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.RegenerateData$ = this.RegenerateData.asObservable();
     }
@@ -900,6 +889,10 @@ class SluzbaStudentsServiceService {
     }
     getStudentDocuments(studentId) {
         const url = `${this.documentsUrl}/getAllDocumentsForStudent/${studentId}`;
+        return this.http.get(url, { observe: 'response' });
+    }
+    getAccountPayments(accountId) {
+        const url = `${this.paymentsUrl}/getAllPaymentsForAccount/${accountId}`;
         return this.http.get(url, { observe: 'response' });
     }
 }
@@ -1027,8 +1020,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function SluzbaLoginComponent_div_12_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 10);
+function SluzbaLoginComponent_div_21_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, " Wrong username or password. ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
@@ -1058,41 +1051,55 @@ class SluzbaLoginComponent {
     }
 }
 SluzbaLoginComponent.ɵfac = function SluzbaLoginComponent_Factory(t) { return new (t || SluzbaLoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticationServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"])); };
-SluzbaLoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaLoginComponent, selectors: [["app-sluzba-login"]], decls: 13, vars: 3, consts: [[1, "login"], [1, "account-login"], [1, "login-form", 3, "ngSubmit"], [1, "form-group"], ["type", "text", "name", "username", "placeholder", "Username", "required", "", "autofocus", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "password", "placeholder", "Password", "placeholder", "Password", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "remember"], ["href", "#", 1, "pull-right"], [1, "btn"], ["class", "alert alert-warning box-msg", "role", "alert", 4, "ngIf"], ["role", "alert", 1, "alert", "alert-warning", "box-msg"]], template: function SluzbaLoginComponent_Template(rf, ctx) { if (rf & 1) {
+SluzbaLoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaLoginComponent, selectors: [["app-sluzba-login"]], decls: 23, vars: 3, consts: [[1, "container"], [1, "row"], [1, "col-md-3"], [1, "col-md-6"], [1, "text-center"], [3, "ngSubmit"], [1, "input-group"], ["type", "text", "name", "username", "placeholder", "Username", "required", "", "autofocus", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "input-group-addon"], [1, "glyphicon", "glyphicon-user"], ["type", "password", "name", "password", "placeholder", "Password", "placeholder", "Password", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "glyphicon", "glyphicon-lock"], ["href", "#"], [1, "btn", "btn-default"], ["class", "alert alert-warning box-msg", "role", "alert", 4, "ngIf"], ["role", "alert", 1, "alert", "alert-warning", "box-msg"]], template: function SluzbaLoginComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "form", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function SluzbaLoginComponent_Template_form_ngSubmit_2_listener() { return ctx.login(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "input", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaLoginComponent_Template_input_ngModelChange_4_listener($event) { return ctx.user.username = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "h1", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Login");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "input", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaLoginComponent_Template_input_ngModelChange_6_listener($event) { return ctx.user.password = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "form", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function SluzbaLoginComponent_Template_form_ngSubmit_6_listener() { return ctx.login(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "a", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Forgot Password?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "input", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaLoginComponent_Template_input_ngModelChange_8_listener($event) { return ctx.user.username = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "span", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "span", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Login");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "input", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaLoginComponent_Template_input_ngModelChange_12_listener($event) { return ctx.user.password = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "span", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](14, "span", 11);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, SluzbaLoginComponent_div_12_Template, 2, 0, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "p", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Are you forgot your password? ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "a", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Click here");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "button", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Login");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](21, SluzbaLoginComponent_div_21_Template, 2, 0, "div", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.user.username);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.user.password);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.wrongUsernameOrPass);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"]], styles: ["/* #loginContainer {\r\n    margin: auto;\r\n    max-width: 40%;\r\n    background-color: #FAFAFA;\r\n    margin-top: 10%;\r\n    padding-top: 3vw;\r\n    padding-bottom: 3vw;\r\n    max-height: 200vw;\r\n    border-radius: .625rem;\r\n    border:1px solid #ced4da;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n}\r\n\r\n\r\n.btn {\r\n    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);\r\n    padding: .84rem 2.14rem;\r\n    font-size: 1rem;\r\n    transition: .2s ease-in-out;\r\n    margin: .375rem;\r\n    border: 0;\r\n    border-radius: .125rem;\r\n    cursor: pointer;\r\n    text-transform: uppercase;\r\n    white-space: normal;\r\n    word-wrap: break-word;\r\n    color: inherit;\r\n}\r\n\r\n.btn-default {\r\n    background-color: #2bbbad!important;\r\n    color: #fff;\r\n}\r\n\r\n#forgot{\r\n    padding-left: 0 !important;\r\n    padding-right: 0 !important;\r\n    text-align: right;\r\n}\r\n*/\r\n.main-panel {\r\n    width: 100% !important;\r\n}\r\n* {\r\n    margin: 0px;\r\n    padding: 0px;\r\n    }\r\n.login {\r\n    background:  #2F89C6 75%;\r\n    height: 100vh;\r\n    width: 100%;\r\n    justify-content: center;\r\n    align-items: center;\r\n    display: flex;\r\n    }\r\n.account-login {\r\n    width: 500px;\r\n    }\r\n.form-control:focus {\r\n    box-shadow: none;\r\n    }\r\np a {\r\n    padding-left: 2px;\r\n    }\r\n.account-login h1 {\r\n    font-size: 25px;\r\n    text-align: left;\r\n    color: #fff;\r\n    text-transform: uppercase;\r\n    font-weight: bold;\r\n    border-radius: 5px;\r\n    }\r\n.login-form input {\r\n    width: 100%;\r\n    position: relative;\r\n    padding: 3px;\r\n    box-shadow: none;\r\n    height: 63px;\r\n    border-radius: 0px;\r\n    }\r\n.login-form {\r\n    background: #fff;\r\n    float: left;\r\n    width: 100%;\r\n    padding: 40px;\r\n    border-radius: 5px;\r\n    box-shadow: -4px 3px 49px 15px rgba(255,255,255,0.73);\r\n    -webkit-box-shadow: -4px 3px 49px 15px rgba(255,255,255,0.73);\r\n    -moz-box-shadow: -4px 3px 49px 15\r\n    }\r\nbutton.btn {\r\n    width: 100%;\r\n    background-color: #009cff;\r\n    font-size: 20px;\r\n    padding: 11px;\r\n    color: #fff;\r\n    border: 0px;\r\n    cursor: pointer;\r\n    margin: 10px 0px 20px;\r\n    }\r\nbutton:hover{\r\n        background-color: #009cff;\r\n    }\r\np {\r\n    float: left;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-size: 14px;\r\n    }\r\n.remember {\r\n    float: left;\r\n    width: 100%;\r\n    margin: 10px 0 0;\r\n    }\r\n/* Customize the label (the container) */\r\n.custom-checkbox {\r\n    display: block;\r\n    position: relative;\r\n    padding-left: 27px;\r\n    margin-bottom: 12px;\r\n    cursor: pointer;\r\n    font-size: 13px;\r\n    -webkit-user-select: none;\r\n    user-select: none;\r\n    font-weight: normal;\r\n    padding-top: 2px;\r\n    float: left;\r\n    }\r\n/* Hide the browser's default checkbox */\r\n.custom-checkbox input {\r\n    position: absolute;\r\n    opacity: 0;\r\n    cursor: pointer;\r\n    height: 0;\r\n    width: 0;\r\n    }\r\n/* Create a custom checkbox */\r\n.custom-checkbox .checkmark {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    height: 20px;\r\n    width: 20px;\r\n    background-color: #bfbcbc;\r\n    }\r\n/* On mouse-over, add a grey background color */\r\n.custom-checkbox:hover input ~ .checkmark {\r\n    background-color: #747474;\r\n    }\r\n/* When the checkbox is checked, add a blue background */\r\n.custom-checkbox input:checked ~ .checkmark {\r\n    background-color: #2196F3;\r\n    }\r\n/* Create the checkmark/indicator (hidden when not checked) */\r\n.checkmark:after {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: none;\r\n    }\r\n/* Show the checkmark when checked */\r\n.custom-checkbox input:checked ~ .checkmark:after {\r\n    display: block;\r\n    }\r\n/* Style the checkmark/indicator */\r\n.custom-checkbox .checkmark:after {\r\n    left: 9px;\r\n    top: 5px;\r\n    width: 5px;\r\n    height: 10px;\r\n    border: solid white;\r\n    border-width: 0 3px 3px 0;\r\n    transform: rotate(45deg);\r\n    }\r\n@media (max-width: 767px){\r\n    .account-login {\r\n        width: 90%;\r\n      }\r\n    }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNsdXpiYS1sb2dpbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0EwQ0M7QUFDRDtJQUNJLHNCQUFzQjtBQUMxQjtBQUNBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWjtBQUNBO0lBQ0Esd0JBQXdCO0lBQ3hCLGFBQWE7SUFDYixXQUFXO0lBQ1gsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixhQUFhO0lBQ2I7QUFDQTtJQUNBLFlBQVk7SUFDWjtBQUNBO0lBQ0EsZ0JBQWdCO0lBQ2hCO0FBQ0E7SUFDQSxpQkFBaUI7SUFDakI7QUFDQTtJQUNBLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLHlCQUF5QjtJQUN6QixpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCO0FBQ0E7SUFDQSxXQUFXO0lBQ1gsa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQjtBQUNBO0lBQ0EsZ0JBQWdCO0lBQ2hCLFdBQVc7SUFDWCxXQUFXO0lBQ1gsYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixxREFBcUQ7SUFDckQsNkRBQTZEO0lBQzdEO0lBQ0E7QUFDQTtJQUNBLFdBQVc7SUFDWCx5QkFBeUI7SUFDekIsZUFBZTtJQUNmLGFBQWE7SUFDYixXQUFXO0lBQ1gsV0FBVztJQUNYLGVBQWU7SUFDZixxQkFBcUI7SUFDckI7QUFDQTtRQUNJLHlCQUF5QjtJQUM3QjtBQUVBO0lBQ0EsV0FBVztJQUNYLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsZUFBZTtJQUNmO0FBQ0E7SUFDQSxXQUFXO0lBQ1gsV0FBVztJQUNYLGdCQUFnQjtJQUNoQjtBQUNBLHdDQUF3QztBQUN4QztJQUNBLGNBQWM7SUFDZCxrQkFBa0I7SUFDbEIsa0JBQWtCO0lBQ2xCLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2YsZUFBZTtJQUNmLHlCQUF5QjtJQUd6QixpQkFBaUI7SUFDakIsbUJBQW1CO0lBQ25CLGdCQUFnQjtJQUNoQixXQUFXO0lBQ1g7QUFDQSx3Q0FBd0M7QUFDeEM7SUFDQSxrQkFBa0I7SUFDbEIsVUFBVTtJQUNWLGVBQWU7SUFDZixTQUFTO0lBQ1QsUUFBUTtJQUNSO0FBQ0EsNkJBQTZCO0FBQzdCO0lBQ0Esa0JBQWtCO0lBQ2xCLE1BQU07SUFDTixPQUFPO0lBQ1AsWUFBWTtJQUNaLFdBQVc7SUFDWCx5QkFBeUI7SUFDekI7QUFDQSwrQ0FBK0M7QUFDL0M7SUFDQSx5QkFBeUI7SUFDekI7QUFDQSx3REFBd0Q7QUFDeEQ7SUFDQSx5QkFBeUI7SUFDekI7QUFDQSw2REFBNkQ7QUFDN0Q7SUFDQSxXQUFXO0lBQ1gsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYjtBQUNBLG9DQUFvQztBQUNwQztJQUNBLGNBQWM7SUFDZDtBQUNBLGtDQUFrQztBQUNsQztJQUNBLFNBQVM7SUFDVCxRQUFRO0lBQ1IsVUFBVTtJQUNWLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIseUJBQXlCO0lBR3pCLHdCQUF3QjtJQUN4QjtBQUNBO0lBQ0E7UUFDSSxVQUFVO01BQ1o7SUFDRiIsImZpbGUiOiJzbHV6YmEtbG9naW4uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qICNsb2dpbkNvbnRhaW5lciB7XHJcbiAgICBtYXJnaW46IGF1dG87XHJcbiAgICBtYXgtd2lkdGg6IDQwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNGQUZBRkE7XHJcbiAgICBtYXJnaW4tdG9wOiAxMCU7XHJcbiAgICBwYWRkaW5nLXRvcDogM3Z3O1xyXG4gICAgcGFkZGluZy1ib3R0b206IDN2dztcclxuICAgIG1heC1oZWlnaHQ6IDIwMHZ3O1xyXG4gICAgYm9yZGVyLXJhZGl1czogLjYyNXJlbTtcclxuICAgIGJvcmRlcjoxcHggc29saWQgI2NlZDRkYTtcclxufVxyXG5cclxuYSB7XHJcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbn1cclxuXHJcblxyXG4uYnRuIHtcclxuICAgIGJveC1zaGFkb3c6IDAgMnB4IDVweCAwIHJnYigwIDAgMCAvIDE2JSksIDAgMnB4IDEwcHggMCByZ2IoMCAwIDAgLyAxMiUpO1xyXG4gICAgcGFkZGluZzogLjg0cmVtIDIuMTRyZW07XHJcbiAgICBmb250LXNpemU6IDFyZW07XHJcbiAgICB0cmFuc2l0aW9uOiAuMnMgZWFzZS1pbi1vdXQ7XHJcbiAgICBtYXJnaW46IC4zNzVyZW07XHJcbiAgICBib3JkZXI6IDA7XHJcbiAgICBib3JkZXItcmFkaXVzOiAuMTI1cmVtO1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICAgIHdoaXRlLXNwYWNlOiBub3JtYWw7XHJcbiAgICB3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7XHJcbiAgICBjb2xvcjogaW5oZXJpdDtcclxufVxyXG5cclxuLmJ0bi1kZWZhdWx0IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyYmJiYWQhaW1wb3J0YW50O1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbn1cclxuXHJcbiNmb3Jnb3R7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDAgIWltcG9ydGFudDtcclxuICAgIHBhZGRpbmctcmlnaHQ6IDAgIWltcG9ydGFudDtcclxuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xyXG59XHJcbiovXHJcbi5tYWluLXBhbmVsIHtcclxuICAgIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XHJcbn0gXHJcbioge1xyXG4gICAgbWFyZ2luOiAwcHg7XHJcbiAgICBwYWRkaW5nOiAwcHg7XHJcbiAgICB9XHJcbiAgICAubG9naW4ge1xyXG4gICAgYmFja2dyb3VuZDogICMyRjg5QzYgNzUlO1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIH1cclxuICAgIC5hY2NvdW50LWxvZ2luIHtcclxuICAgIHdpZHRoOiA1MDBweDtcclxuICAgIH1cclxuICAgIC5mb3JtLWNvbnRyb2w6Zm9jdXMge1xyXG4gICAgYm94LXNoYWRvdzogbm9uZTtcclxuICAgIH1cclxuICAgIHAgYSB7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDJweDtcclxuICAgIH1cclxuICAgIC5hY2NvdW50LWxvZ2luIGgxIHtcclxuICAgIGZvbnQtc2l6ZTogMjVweDtcclxuICAgIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIH1cclxuICAgIC5sb2dpbi1mb3JtIGlucHV0IHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgcGFkZGluZzogM3B4O1xyXG4gICAgYm94LXNoYWRvdzogbm9uZTtcclxuICAgIGhlaWdodDogNjNweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDBweDtcclxuICAgIH1cclxuICAgIC5sb2dpbi1mb3JtIHtcclxuICAgIGJhY2tncm91bmQ6ICNmZmY7XHJcbiAgICBmbG9hdDogbGVmdDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgcGFkZGluZzogNDBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIGJveC1zaGFkb3c6IC00cHggM3B4IDQ5cHggMTVweCByZ2JhKDI1NSwyNTUsMjU1LDAuNzMpO1xyXG4gICAgLXdlYmtpdC1ib3gtc2hhZG93OiAtNHB4IDNweCA0OXB4IDE1cHggcmdiYSgyNTUsMjU1LDI1NSwwLjczKTtcclxuICAgIC1tb3otYm94LXNoYWRvdzogLTRweCAzcHggNDlweCAxNVxyXG4gICAgfVxyXG4gICAgYnV0dG9uLmJ0biB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDljZmY7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgICBwYWRkaW5nOiAxMXB4O1xyXG4gICAgY29sb3I6ICNmZmY7XHJcbiAgICBib3JkZXI6IDBweDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIG1hcmdpbjogMTBweCAwcHggMjBweDtcclxuICAgIH1cclxuICAgIGJ1dHRvbjpob3ZlcntcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA5Y2ZmO1xyXG4gICAgfVxyXG4gICAgXHJcbiAgICBwIHtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBmb250LXNpemU6IDE0cHg7XHJcbiAgICB9XHJcbiAgICAucmVtZW1iZXIge1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIG1hcmdpbjogMTBweCAwIDA7XHJcbiAgICB9XHJcbiAgICAvKiBDdXN0b21pemUgdGhlIGxhYmVsICh0aGUgY29udGFpbmVyKSAqL1xyXG4gICAgLmN1c3RvbS1jaGVja2JveCB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHBhZGRpbmctbGVmdDogMjdweDtcclxuICAgIG1hcmdpbi1ib3R0b206IDEycHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBmb250LXNpemU6IDEzcHg7XHJcbiAgICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lO1xyXG4gICAgLW1vei11c2VyLXNlbGVjdDogbm9uZTtcclxuICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTtcclxuICAgIHVzZXItc2VsZWN0OiBub25lO1xyXG4gICAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICAgIHBhZGRpbmctdG9wOiAycHg7XHJcbiAgICBmbG9hdDogbGVmdDtcclxuICAgIH1cclxuICAgIC8qIEhpZGUgdGhlIGJyb3dzZXIncyBkZWZhdWx0IGNoZWNrYm94ICovXHJcbiAgICAuY3VzdG9tLWNoZWNrYm94IGlucHV0IHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIG9wYWNpdHk6IDA7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBoZWlnaHQ6IDA7XHJcbiAgICB3aWR0aDogMDtcclxuICAgIH1cclxuICAgIC8qIENyZWF0ZSBhIGN1c3RvbSBjaGVja2JveCAqL1xyXG4gICAgLmN1c3RvbS1jaGVja2JveCAuY2hlY2ttYXJrIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMDtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICB3aWR0aDogMjBweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNiZmJjYmM7XHJcbiAgICB9XHJcbiAgICAvKiBPbiBtb3VzZS1vdmVyLCBhZGQgYSBncmV5IGJhY2tncm91bmQgY29sb3IgKi9cclxuICAgIC5jdXN0b20tY2hlY2tib3g6aG92ZXIgaW5wdXQgfiAuY2hlY2ttYXJrIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM3NDc0NzQ7XHJcbiAgICB9XHJcbiAgICAvKiBXaGVuIHRoZSBjaGVja2JveCBpcyBjaGVja2VkLCBhZGQgYSBibHVlIGJhY2tncm91bmQgKi9cclxuICAgIC5jdXN0b20tY2hlY2tib3ggaW5wdXQ6Y2hlY2tlZCB+IC5jaGVja21hcmsge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzIxOTZGMztcclxuICAgIH1cclxuICAgIC8qIENyZWF0ZSB0aGUgY2hlY2ttYXJrL2luZGljYXRvciAoaGlkZGVuIHdoZW4gbm90IGNoZWNrZWQpICovXHJcbiAgICAuY2hlY2ttYXJrOmFmdGVyIHtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gICAgfVxyXG4gICAgLyogU2hvdyB0aGUgY2hlY2ttYXJrIHdoZW4gY2hlY2tlZCAqL1xyXG4gICAgLmN1c3RvbS1jaGVja2JveCBpbnB1dDpjaGVja2VkIH4gLmNoZWNrbWFyazphZnRlciB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIH1cclxuICAgIC8qIFN0eWxlIHRoZSBjaGVja21hcmsvaW5kaWNhdG9yICovXHJcbiAgICAuY3VzdG9tLWNoZWNrYm94IC5jaGVja21hcms6YWZ0ZXIge1xyXG4gICAgbGVmdDogOXB4O1xyXG4gICAgdG9wOiA1cHg7XHJcbiAgICB3aWR0aDogNXB4O1xyXG4gICAgaGVpZ2h0OiAxMHB4O1xyXG4gICAgYm9yZGVyOiBzb2xpZCB3aGl0ZTtcclxuICAgIGJvcmRlci13aWR0aDogMCAzcHggM3B4IDA7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcclxuICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XHJcbiAgICB9XHJcbiAgICBAbWVkaWEgKG1heC13aWR0aDogNzY3cHgpe1xyXG4gICAgLmFjY291bnQtbG9naW4ge1xyXG4gICAgICAgIHdpZHRoOiA5MCU7XHJcbiAgICAgIH1cclxuICAgIH0iXX0= */"], encapsulation: 2 });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"]], styles: ["/*   #loginContainer {\r\n    margin: auto;\r\n    max-width: 40%;\r\n    background-color: #FAFAFA;\r\n    margin-top: 10%;\r\n    padding-top: 3vw;\r\n    padding-bottom: 3vw;\r\n    max-height: 200vw;\r\n    border-radius: .625rem;\r\n    border:1px solid #ced4da;\r\n} */\r\n\r\n\r\n\r\n/* #forgot{\r\n    padding-left: 0 !important;\r\n    padding-right: 0 !important;\r\n    text-align: right;\r\n} */\r\n\r\n\r\n\r\n/*  .login {\r\n    background-image: url(\"../../../assets/img/website-design-background-1.jpg\"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    height: 100%;\r\n    width: 100%;\r\n    justify-content: center;\r\n    align-items: center;\r\n    display: flex;\r\n    }\r\n    .account-login {\r\n    width: 500px;\r\n    }\r\n    .form-control:focus {\r\n    box-shadow: none;\r\n    }\r\n    p a {\r\n    padding-left: 2px;\r\n    }\r\n    .account-login h1 {\r\n    font-size: 25px;\r\n    text-align: left;\r\n    color: #fff;\r\n    text-transform: uppercase;\r\n    font-weight: bold;\r\n    border-radius: 5px;\r\n    }\r\n    .login-form input {\r\n    width: 100%;\r\n    position: relative;\r\n    padding: 3px;\r\n    box-shadow: none;\r\n    height: 63px;\r\n    border-radius: 0px;\r\n    }\r\n    .login-form {\r\n    background: #fff;\r\n    float: left;\r\n    width: 100%;\r\n    padding: 40px;\r\n    border-radius: 5px;\r\n   \r\n    }\r\n  \r\n  \r\n    p {\r\n    float: left;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-size: 14px;\r\n    } */\r\n\r\n\r\n\r\n/*   .remember {\r\n    float: left;\r\n    width: 100%;\r\n    margin: 10px 0 0;\r\n    }\r\n    .custom-checkbox {\r\n    display: block;\r\n    position: relative;\r\n    padding-left: 27px;\r\n    margin-bottom: 12px;\r\n    cursor: pointer;\r\n    font-size: 13px;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n    font-weight: normal;\r\n    padding-top: 2px;\r\n    float: left;\r\n    }\r\n    .custom-checkbox input {\r\n    position: absolute;\r\n    opacity: 0;\r\n    cursor: pointer;\r\n    height: 0;\r\n    width: 0;\r\n    }\r\n    .custom-checkbox .checkmark {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    height: 20px;\r\n    width: 20px;\r\n    background-color: #bfbcbc;\r\n    }\r\n    .custom-checkbox:hover input ~ .checkmark {\r\n    background-color: #747474;\r\n    }\r\n  \r\n    .checkmark:after {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: none;\r\n    }\r\n    .custom-checkbox input:checked ~ .checkmark:after {\r\n    display: block;\r\n    }\r\n    .custom-checkbox .checkmark:after {\r\n    left: 9px;\r\n    top: 5px;\r\n    width: 5px;\r\n    height: 10px;\r\n    border: solid white;\r\n    border-width: 0 3px 3px 0;\r\n    -webkit-transform: rotate(45deg);\r\n    -ms-transform: rotate(45deg);\r\n    transform: rotate(45deg);\r\n    }\r\n    @media (max-width: 767px){\r\n    .account-login {\r\n        width: 90%;\r\n      }\r\n    } */\r\n\r\n\r\n\r\n* {\r\n    margin: 0px;\r\n    padding: 0px;\r\n}\r\n\r\n\r\n\r\n.main-panel {\r\n    width: 100% !important;\r\n}\r\n\r\n\r\n\r\na {\r\n    text-decoration: none;\r\n}\r\n\r\n\r\n\r\n.btn {\r\n    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);\r\n    padding: .84rem 2.14rem;\r\n    font-size: 1rem;\r\n    transition: .2s ease-in-out;\r\n    margin: .375rem;\r\n    border: 0;\r\n    border-radius: .125rem;\r\n    cursor: pointer;\r\n    text-transform: uppercase;\r\n    white-space: normal;\r\n    word-wrap: break-word;\r\n    color: inherit;\r\n}\r\n\r\n\r\n\r\n.btn-default {\r\n    background-color: #1DC7EA !important;\r\n    color: white;\r\n}\r\n\r\n\r\n\r\n.row {\r\n    padding-left: 0 !important;\r\n    padding-right: 0 !important;\r\n    margin: auto;\r\n    margin-top: 7%;\r\n    max-width: 80%;\r\n}\r\n\r\n\r\n\r\nbutton.btn {\r\n    width: 100%;\r\n    font-size: 20px;\r\n    padding: 11px;\r\n    color: #fff;\r\n    border: 0px;\r\n    cursor: pointer;\r\n    margin: 10px 0px 20px;\r\n}\r\n\r\n\r\n\r\nbody {\r\n    background-image: url('website-design-background-1.jpg');\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n}\r\n\r\n\r\n\r\nh1 {\r\n    color: white;\r\n    margin-top: 30px;\r\n}\r\n\r\n\r\n\r\n.input-group {\r\n    margin-top: 20px;\r\n    \r\n}\r\n\r\n\r\n\r\n.form-control:focus {\r\n    background: transparent !important;\r\n    color: white;\r\n    border: 2px solid gray;\r\n\r\n}\r\n\r\n\r\n\r\n.input-group-addon {\r\n    background: transparent;\r\n    border-bottom: 0;\r\n    border: 0;\r\n    border-bottom: 2px solid gray;\r\n    font-size: 20px;\r\n    padding: 10px;\r\n}\r\n\r\n\r\n\r\n.form-control {\r\n    background: transparent;\r\n    border-radius: 0;\r\n    border: 0;\r\n    border-bottom: 2px solid gray;\r\n    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);\r\n    height: 48px;\r\n    padding: 20px;\r\n    font-size: 20px;\r\n    color: white;\r\n}\r\n\r\n\r\n\r\np {\r\n    font-size: 19px;\r\n    margin-top: 20px;\r\n    color: white;\r\n}\r\n\r\n\r\n\r\n.col-md-6 {\r\n    background: rgba(0, 0, 0, 0.4);\r\n    height: 400px;\r\n    box-shadow: 1px 4px 40px black;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNsdXpiYS1sb2dpbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7O0dBVUc7Ozs7QUFJSDs7OztHQUlHOzs7O0FBRUg7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztPQW1ETzs7OztBQUVQOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztPQThETzs7OztBQUdQO0lBQ0ksV0FBVztJQUNYLFlBQVk7QUFDaEI7Ozs7QUFFQTtJQUNJLHNCQUFzQjtBQUMxQjs7OztBQUNBO0lBQ0kscUJBQXFCO0FBQ3pCOzs7O0FBRUE7SUFDSSx1RUFBdUU7SUFDdkUsdUJBQXVCO0lBQ3ZCLGVBQWU7SUFDZiwyQkFBMkI7SUFDM0IsZUFBZTtJQUNmLFNBQVM7SUFDVCxzQkFBc0I7SUFDdEIsZUFBZTtJQUNmLHlCQUF5QjtJQUN6QixtQkFBbUI7SUFDbkIscUJBQXFCO0lBQ3JCLGNBQWM7QUFDbEI7Ozs7QUFFQTtJQUNJLG9DQUFvQztJQUNwQyxZQUFZO0FBQ2hCOzs7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsMkJBQTJCO0lBQzNCLFlBQVk7SUFDWixjQUFjO0lBQ2QsY0FBYztBQUNsQjs7OztBQUVBO0lBQ0ksV0FBVztJQUNYLGVBQWU7SUFDZixhQUFhO0lBQ2IsV0FBVztJQUNYLFdBQVc7SUFDWCxlQUFlO0lBQ2YscUJBQXFCO0FBQ3pCOzs7O0FBRUE7SUFDSSx3REFBNEU7SUFDNUUsMkJBQTJCO0lBQzNCLDRCQUE0QjtJQUM1QixzQkFBc0I7QUFDMUI7Ozs7QUFFQTtJQUNJLFlBQVk7SUFDWixnQkFBZ0I7QUFDcEI7Ozs7QUFHQTtJQUNJLGdCQUFnQjs7QUFFcEI7Ozs7QUFFQTtJQUNJLGtDQUFrQztJQUNsQyxZQUFZO0lBQ1osc0JBQXNCOztBQUUxQjs7OztBQUdBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGdCQUFnQjtJQUNoQixTQUFTO0lBQ1QsNkJBQTZCO0lBQzdCLGVBQWU7SUFDZixhQUFhO0FBQ2pCOzs7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsZ0JBQWdCO0lBQ2hCLFNBQVM7SUFDVCw2QkFBNkI7SUFDN0IsdUVBQXVFO0lBQ3ZFLFlBQVk7SUFDWixhQUFhO0lBQ2IsZUFBZTtJQUNmLFlBQVk7QUFDaEI7Ozs7QUFFQTtJQUNJLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsWUFBWTtBQUNoQjs7OztBQUVBO0lBQ0ksOEJBQThCO0lBQzlCLGFBQWE7SUFDYiw4QkFBOEI7QUFDbEMiLCJmaWxlIjoic2x1emJhLWxvZ2luLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiAgICNsb2dpbkNvbnRhaW5lciB7XHJcbiAgICBtYXJnaW46IGF1dG87XHJcbiAgICBtYXgtd2lkdGg6IDQwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNGQUZBRkE7XHJcbiAgICBtYXJnaW4tdG9wOiAxMCU7XHJcbiAgICBwYWRkaW5nLXRvcDogM3Z3O1xyXG4gICAgcGFkZGluZy1ib3R0b206IDN2dztcclxuICAgIG1heC1oZWlnaHQ6IDIwMHZ3O1xyXG4gICAgYm9yZGVyLXJhZGl1czogLjYyNXJlbTtcclxuICAgIGJvcmRlcjoxcHggc29saWQgI2NlZDRkYTtcclxufSAqL1xyXG5cclxuXHJcblxyXG4vKiAjZm9yZ290e1xyXG4gICAgcGFkZGluZy1sZWZ0OiAwICFpbXBvcnRhbnQ7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiAwICFpbXBvcnRhbnQ7XHJcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcclxufSAqL1xyXG5cclxuLyogIC5sb2dpbiB7XHJcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCIuLi8uLi8uLi9hc3NldHMvaW1nL3dlYnNpdGUtZGVzaWduLWJhY2tncm91bmQtMS5qcGdcIiksIGxpbmVhci1ncmFkaWVudChyZ2JhKDAsMCwwLDAuNSkscmdiYSgwLDAsMCwwLjUpKTtcclxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgfVxyXG4gICAgLmFjY291bnQtbG9naW4ge1xyXG4gICAgd2lkdGg6IDUwMHB4O1xyXG4gICAgfVxyXG4gICAgLmZvcm0tY29udHJvbDpmb2N1cyB7XHJcbiAgICBib3gtc2hhZG93OiBub25lO1xyXG4gICAgfVxyXG4gICAgcCBhIHtcclxuICAgIHBhZGRpbmctbGVmdDogMnB4O1xyXG4gICAgfVxyXG4gICAgLmFjY291bnQtbG9naW4gaDEge1xyXG4gICAgZm9udC1zaXplOiAyNXB4O1xyXG4gICAgdGV4dC1hbGlnbjogbGVmdDtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgfVxyXG4gICAgLmxvZ2luLWZvcm0gaW5wdXQge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBwYWRkaW5nOiAzcHg7XHJcbiAgICBib3gtc2hhZG93OiBub25lO1xyXG4gICAgaGVpZ2h0OiA2M3B4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMHB4O1xyXG4gICAgfVxyXG4gICAgLmxvZ2luLWZvcm0ge1xyXG4gICAgYmFja2dyb3VuZDogI2ZmZjtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBwYWRkaW5nOiA0MHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICBcclxuICAgIH1cclxuICBcclxuICBcclxuICAgIHAge1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIGZvbnQtc2l6ZTogMTRweDtcclxuICAgIH0gKi9cclxuXHJcbi8qICAgLnJlbWVtYmVyIHtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwO1xyXG4gICAgfVxyXG4gICAgLmN1c3RvbS1jaGVja2JveCB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHBhZGRpbmctbGVmdDogMjdweDtcclxuICAgIG1hcmdpbi1ib3R0b206IDEycHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBmb250LXNpemU6IDEzcHg7XHJcbiAgICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lO1xyXG4gICAgLW1vei11c2VyLXNlbGVjdDogbm9uZTtcclxuICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTtcclxuICAgIHVzZXItc2VsZWN0OiBub25lO1xyXG4gICAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICAgIHBhZGRpbmctdG9wOiAycHg7XHJcbiAgICBmbG9hdDogbGVmdDtcclxuICAgIH1cclxuICAgIC5jdXN0b20tY2hlY2tib3ggaW5wdXQge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIGhlaWdodDogMDtcclxuICAgIHdpZHRoOiAwO1xyXG4gICAgfVxyXG4gICAgLmN1c3RvbS1jaGVja2JveCAuY2hlY2ttYXJrIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMDtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICB3aWR0aDogMjBweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNiZmJjYmM7XHJcbiAgICB9XHJcbiAgICAuY3VzdG9tLWNoZWNrYm94OmhvdmVyIGlucHV0IH4gLmNoZWNrbWFyayB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNzQ3NDc0O1xyXG4gICAgfVxyXG4gIFxyXG4gICAgLmNoZWNrbWFyazphZnRlciB7XHJcbiAgICBjb250ZW50OiBcIlwiO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgZGlzcGxheTogbm9uZTtcclxuICAgIH1cclxuICAgIC5jdXN0b20tY2hlY2tib3ggaW5wdXQ6Y2hlY2tlZCB+IC5jaGVja21hcms6YWZ0ZXIge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICB9XHJcbiAgICAuY3VzdG9tLWNoZWNrYm94IC5jaGVja21hcms6YWZ0ZXIge1xyXG4gICAgbGVmdDogOXB4O1xyXG4gICAgdG9wOiA1cHg7XHJcbiAgICB3aWR0aDogNXB4O1xyXG4gICAgaGVpZ2h0OiAxMHB4O1xyXG4gICAgYm9yZGVyOiBzb2xpZCB3aGl0ZTtcclxuICAgIGJvcmRlci13aWR0aDogMCAzcHggM3B4IDA7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcclxuICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XHJcbiAgICB9XHJcbiAgICBAbWVkaWEgKG1heC13aWR0aDogNzY3cHgpe1xyXG4gICAgLmFjY291bnQtbG9naW4ge1xyXG4gICAgICAgIHdpZHRoOiA5MCU7XHJcbiAgICAgIH1cclxuICAgIH0gKi9cclxuXHJcbiAgICBcclxuKiB7XHJcbiAgICBtYXJnaW46IDBweDtcclxuICAgIHBhZGRpbmc6IDBweDtcclxufVxyXG5cclxuLm1haW4tcGFuZWwge1xyXG4gICAgd2lkdGg6IDEwMCUgIWltcG9ydGFudDtcclxufVxyXG5hIHtcclxuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxufVxyXG5cclxuLmJ0biB7XHJcbiAgICBib3gtc2hhZG93OiAwIDJweCA1cHggMCByZ2IoMCAwIDAgLyAxNiUpLCAwIDJweCAxMHB4IDAgcmdiKDAgMCAwIC8gMTIlKTtcclxuICAgIHBhZGRpbmc6IC44NHJlbSAyLjE0cmVtO1xyXG4gICAgZm9udC1zaXplOiAxcmVtO1xyXG4gICAgdHJhbnNpdGlvbjogLjJzIGVhc2UtaW4tb3V0O1xyXG4gICAgbWFyZ2luOiAuMzc1cmVtO1xyXG4gICAgYm9yZGVyOiAwO1xyXG4gICAgYm9yZGVyLXJhZGl1czogLjEyNXJlbTtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XHJcbiAgICB3aGl0ZS1zcGFjZTogbm9ybWFsO1xyXG4gICAgd29yZC13cmFwOiBicmVhay13b3JkO1xyXG4gICAgY29sb3I6IGluaGVyaXQ7XHJcbn1cclxuXHJcbi5idG4tZGVmYXVsdCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMURDN0VBICFpbXBvcnRhbnQ7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn1cclxuXHJcbi5yb3cge1xyXG4gICAgcGFkZGluZy1sZWZ0OiAwICFpbXBvcnRhbnQ7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiAwICFpbXBvcnRhbnQ7XHJcbiAgICBtYXJnaW46IGF1dG87XHJcbiAgICBtYXJnaW4tdG9wOiA3JTtcclxuICAgIG1heC13aWR0aDogODAlO1xyXG59XHJcblxyXG5idXR0b24uYnRuIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgZm9udC1zaXplOiAyMHB4O1xyXG4gICAgcGFkZGluZzogMTFweDtcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgYm9yZGVyOiAwcHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBtYXJnaW46IDEwcHggMHB4IDIwcHg7XHJcbn1cclxuXHJcbmJvZHkge1xyXG4gICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiLi4vLi4vLi4vYXNzZXRzL2ltZy93ZWJzaXRlLWRlc2lnbi1iYWNrZ3JvdW5kLTEuanBnXCIpO1xyXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xyXG4gICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcclxuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XHJcbn1cclxuXHJcbmgxIHtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIG1hcmdpbi10b3A6IDMwcHg7XHJcbn1cclxuXHJcblxyXG4uaW5wdXQtZ3JvdXAge1xyXG4gICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgIFxyXG59XHJcblxyXG4uZm9ybS1jb250cm9sOmZvY3VzIHtcclxuICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50ICFpbXBvcnRhbnQ7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBib3JkZXI6IDJweCBzb2xpZCBncmF5O1xyXG5cclxufVxyXG5cclxuXHJcbi5pbnB1dC1ncm91cC1hZGRvbiB7XHJcbiAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcclxuICAgIGJvcmRlci1ib3R0b206IDA7XHJcbiAgICBib3JkZXI6IDA7XHJcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgZ3JheTtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICAgIHBhZGRpbmc6IDEwcHg7XHJcbn1cclxuXHJcbi5mb3JtLWNvbnRyb2wge1xyXG4gICAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwO1xyXG4gICAgYm9yZGVyOiAwO1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkIGdyYXk7XHJcbiAgICBib3gtc2hhZG93OiAwIDJweCA1cHggMCByZ2IoMCAwIDAgLyAxNiUpLCAwIDJweCAxMHB4IDAgcmdiKDAgMCAwIC8gMTIlKTtcclxuICAgIGhlaWdodDogNDhweDtcclxuICAgIHBhZGRpbmc6IDIwcHg7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn1cclxuXHJcbnAge1xyXG4gICAgZm9udC1zaXplOiAxOXB4O1xyXG4gICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLmNvbC1tZC02IHtcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC40KTtcclxuICAgIGhlaWdodDogNDAwcHg7XHJcbiAgICBib3gtc2hhZG93OiAxcHggNHB4IDQwcHggYmxhY2s7XHJcbn0iXX0= */"], encapsulation: 2 });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SluzbaLoginComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -1676,7 +1683,7 @@ class AppComponent {
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 6, vars: 1, consts: [[1, "container"], [1, "wrapper"], ["class", "sidebar", "data-color", "azure", "data-image", "", 4, "ngIf"], [1, "main-panel"], ["data-color", "azure", "data-image", "", 1, "sidebar"], [1, "sidebar-background", 2, "background-image", "url(assets/img/sidebar-4.jpg)"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 6, vars: 1, consts: [[1, "container"], [1, "wrapper"], ["class", "sidebar", "data-color", "azzure", "data-image", "", 4, "ngIf"], [1, "main-panel"], ["data-color", "azzure", "data-image", "", 1, "sidebar"], [1, "sidebar-background", 2, "background-image", "url(assets/img/sidebar-4.jpg)"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AppComponent_div_2_Template, 3, 0, "div", 2);
@@ -1719,6 +1726,29 @@ class Enrollment {
         this.endDate = enrollmentCfg.endDate;
         this.student = enrollmentCfg.student;
         this.course = enrollmentCfg.course;
+    }
+}
+
+
+/***/ }),
+
+/***/ "UfuC":
+/*!**********************************!*\
+  !*** ./src/app/model/payment.ts ***!
+  \**********************************/
+/*! exports provided: Payment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Payment", function() { return Payment; });
+class Payment {
+    constructor(paymentCfg) {
+        this.id = paymentCfg.id;
+        this.date = paymentCfg.date;
+        this.amount = paymentCfg.amount;
+        this.purpose = paymentCfg.purpose;
+        this.account = paymentCfg.account;
     }
 }
 
@@ -1854,6 +1884,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sluzba_teachings_sluzba_teachings_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/sluzba-teachings/sluzba-teachings.component */ "7Cke");
 /* harmony import */ var _components_sluzba_student_details_sluzba_student_details_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/sluzba-student-details/sluzba-student-details.component */ "sjrJ");
 /* harmony import */ var _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/sluzba-document-details/sluzba-document-details.component */ "maiF");
+/* harmony import */ var _components_sluzba_payment_details_sluzba_payment_details_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/sluzba-payment-details/sluzba-payment-details.component */ "c704");
+
 
 
 
@@ -1899,9 +1931,9 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
             multi: true
         },
     ], imports: [[
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"],
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"]
@@ -1922,9 +1954,10 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
         _components_sluzba_sidebar_sluzba_sidebar_component__WEBPACK_IMPORTED_MODULE_25__["SluzbaSidebarComponent"],
         _components_sluzba_teachings_sluzba_teachings_component__WEBPACK_IMPORTED_MODULE_26__["SluzbaTeachingsComponent"],
         _components_sluzba_student_details_sluzba_student_details_component__WEBPACK_IMPORTED_MODULE_27__["SluzbaStudentDetailsComponent"],
-        _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_28__["SluzbaDocumentDetailsComponent"]], imports: [_angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
+        _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_28__["SluzbaDocumentDetailsComponent"],
+        _components_sluzba_payment_details_sluzba_payment_details_component__WEBPACK_IMPORTED_MODULE_29__["SluzbaPaymentDetailsComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+        _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
         _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"],
-        _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"]] }); })();
@@ -1948,12 +1981,13 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
                     _components_sluzba_sidebar_sluzba_sidebar_component__WEBPACK_IMPORTED_MODULE_25__["SluzbaSidebarComponent"],
                     _components_sluzba_teachings_sluzba_teachings_component__WEBPACK_IMPORTED_MODULE_26__["SluzbaTeachingsComponent"],
                     _components_sluzba_student_details_sluzba_student_details_component__WEBPACK_IMPORTED_MODULE_27__["SluzbaStudentDetailsComponent"],
-                    _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_28__["SluzbaDocumentDetailsComponent"]
+                    _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_28__["SluzbaDocumentDetailsComponent"],
+                    _components_sluzba_payment_details_sluzba_payment_details_component__WEBPACK_IMPORTED_MODULE_29__["SluzbaPaymentDetailsComponent"]
                 ],
                 imports: [
+                    _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
                     _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"],
-                    _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                     _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
                     _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
                     _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"]
@@ -2160,6 +2194,211 @@ class DocumentType {
         this.name = documentTypeCfg.name;
     }
 }
+
+
+/***/ }),
+
+/***/ "bj8g":
+/*!*****************************************************************************!*\
+  !*** ./src/app/components/sluzba-account/sluzba-account-service.service.ts ***!
+  \*****************************************************************************/
+/*! exports provided: SluzbaAccountServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SluzbaAccountServiceService", function() { return SluzbaAccountServiceService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/auth/authentication-service.service */ "4+CV");
+
+
+
+
+
+class SluzbaAccountServiceService {
+    constructor(http, authService) {
+        this.http = http;
+        this.authService = authService;
+        this.accountUrl = 'accounts';
+        this.RegenerateData = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.RegenerateData$ = this.RegenerateData.asObservable();
+    }
+    announceChange() {
+        this.RegenerateData.next();
+    }
+    getAccount(id) {
+        const url = `${this.accountUrl}/getAccountById/${id}`;
+        return this.http.get(url, { observe: 'response' });
+    }
+    getAvailableFunds(id) {
+        const url = `${this.accountUrl}/getAvailableFundsForAccount/${id}`;
+        return this.http.get(url, { observe: 'response' });
+    }
+}
+SluzbaAccountServiceService.ɵfac = function SluzbaAccountServiceService_Factory(t) { return new (t || SluzbaAccountServiceService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationServiceService"])); };
+SluzbaAccountServiceService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: SluzbaAccountServiceService, factory: SluzbaAccountServiceService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SluzbaAccountServiceService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }, { type: _services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationServiceService"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "c704":
+/*!***************************************************************************************!*\
+  !*** ./src/app/components/sluzba-payment-details/sluzba-payment-details.component.ts ***!
+  \***************************************************************************************/
+/*! exports provided: SluzbaPaymentDetailsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SluzbaPaymentDetailsComponent", function() { return SluzbaPaymentDetailsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var src_app_model_payment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/payment */ "UfuC");
+/* harmony import */ var src_app_model_account__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/account */ "gGTi");
+/* harmony import */ var _sluzba_account_sluzba_account_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sluzba-account/sluzba-account-service.service */ "bj8g");
+/* harmony import */ var _sluzba_payments_sluzba_payments_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sluzba-payments/sluzba-payments-service.service */ "f5gn");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/auth/authentication-service.service */ "4+CV");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+
+
+
+
+
+
+
+
+
+
+
+function SluzbaPaymentDetailsComponent_div_14_Template(rf, ctx) { if (rf & 1) {
+    const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaPaymentDetailsComponent_div_14_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r2); const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r1.save(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "OK");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaPaymentDetailsComponent_div_14_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r2); const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r3.goBack(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "Cancel");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} }
+class SluzbaPaymentDetailsComponent {
+    constructor(accountService, paymentService, route, location, router, authService) {
+        this.accountService = accountService;
+        this.paymentService = paymentService;
+        this.route = route;
+        this.location = location;
+        this.router = router;
+        this.authService = authService;
+        this.payment = new src_app_model_payment__WEBPACK_IMPORTED_MODULE_2__["Payment"]({
+            date: null,
+            purpose: '',
+            amount: 0,
+            account: new src_app_model_account__WEBPACK_IMPORTED_MODULE_3__["Account"]({
+                bankAccount: '',
+                model: '',
+                personalCallToNumber: ''
+            })
+        });
+        this.mode = 'ADD';
+    }
+    ngOnInit() {
+        if (this.route.snapshot.params['id']) {
+            this.mode = 'EDIT';
+            // fetch payment if we edit the existing payment
+            this.route.params.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])((params) => this.paymentService.getPayment(+params['id'])))
+                .subscribe(res => {
+                this.payment = res.body;
+            });
+        }
+        else {
+            this.route.queryParams.subscribe(params => this.accountService.getAccount(params['accountId'])
+                .subscribe(res => this.payment.account = res.body));
+        }
+    }
+    save() {
+        this.mode == 'ADD' ? this.add() : this.edit();
+    }
+    add() {
+        this.paymentService.addPayment(this.payment)
+            .subscribe(payment => {
+            this.paymentService.announceChange();
+            this.goBack();
+        });
+    }
+    edit() {
+        this.paymentService.editPayment(this.payment)
+            .subscribe(payment => {
+            this.paymentService.announceChange();
+            this.goBack();
+        });
+    }
+    goBack() {
+        this.location.back();
+    }
+    isAdmin() {
+        return this.authService.isAdmin();
+    }
+}
+SluzbaPaymentDetailsComponent.ɵfac = function SluzbaPaymentDetailsComponent_Factory(t) { return new (t || SluzbaPaymentDetailsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_account_sluzba_account_service_service__WEBPACK_IMPORTED_MODULE_4__["SluzbaAccountServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_payments_sluzba_payments_service_service__WEBPACK_IMPORTED_MODULE_5__["SluzbaPaymentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_7__["Location"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_8__["AuthenticationServiceService"])); };
+SluzbaPaymentDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaPaymentDetailsComponent, selectors: [["app-sluzba-payment-details"]], decls: 15, vars: 7, consts: [[1, "form-group"], ["for", "field1c", 1, "form-control-label"], ["type", "date", "id", "field1c", "name", "field1", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field2c", 1, "form-control-label"], ["type", "text", "placeholder", "Purpose", "id", "field2c", "name", "field2", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field3c", 1, "form-control-label"], ["type", "number", "placeholder", "Amount", "id", "field3c", "name", "field3", 1, "form-control", 3, "ngModel", "ngModelChange"], ["class", "modal-footer", 4, "ngIf"], [1, "modal-footer"], [1, "btn", "btn-success", 3, "click"], [1, "btn", "btn-danger", 3, "click"]], template: function SluzbaPaymentDetailsComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "label", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Date");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "input", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaPaymentDetailsComponent_Template_input_ngModelChange_4_listener($event) { return ctx.payment.date = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](5, "date");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "label", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Purpose");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaPaymentDetailsComponent_Template_input_ngModelChange_9_listener($event) { return ctx.payment.purpose = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "label", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Amount");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "input", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaPaymentDetailsComponent_Template_input_ngModelChange_13_listener($event) { return ctx.payment.amount = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, SluzbaPaymentDetailsComponent_div_14_Template, 5, 0, "div", 7);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](5, 4, ctx.payment.date, "yyyy-MM-dd"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.payment.purpose);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.payment.amount);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isAdmin());
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NumberValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgIf"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_7__["DatePipe"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtcGF5bWVudC1kZXRhaWxzLmNvbXBvbmVudC5jc3MifQ== */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SluzbaPaymentDetailsComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-sluzba-payment-details',
+                templateUrl: './sluzba-payment-details.component.html',
+                styleUrls: ['./sluzba-payment-details.component.css']
+            }]
+    }], function () { return [{ type: _sluzba_account_sluzba_account_service_service__WEBPACK_IMPORTED_MODULE_4__["SluzbaAccountServiceService"] }, { type: _sluzba_payments_sluzba_payments_service_service__WEBPACK_IMPORTED_MODULE_5__["SluzbaPaymentsServiceService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] }, { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__["Location"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }, { type: src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_8__["AuthenticationServiceService"] }]; }, null); })();
 
 
 /***/ }),
@@ -2464,6 +2703,22 @@ class SluzbaPaymentsServiceService {
         const url = `${this.paymentsUrl}/getAllPaymentsForUser/${username}`;
         return this.http.get(url, { observe: 'response' });
     }
+    getPayment(id) {
+        const url = `${this.paymentsUrl}/getPaymentById/${id}`;
+        return this.http.get(url, { observe: 'response' });
+    }
+    addPayment(payment) {
+        const urlPost = `${this.paymentsUrl}/addPayment/${payment.account.id}`;
+        return this.http.post(urlPost, payment, { observe: 'response' });
+    }
+    editPayment(payment) {
+        const urlPut = `${this.paymentsUrl}/updatePayment/${payment.id}`;
+        return this.http.put(urlPut, payment, { observe: 'response' });
+    }
+    deletePayment(paymentId) {
+        const url = `${this.paymentsUrl}/deletePayment/${paymentId}`;
+        return this.http.delete(url, { observe: 'response' });
+    }
 }
 SluzbaPaymentsServiceService.ɵfac = function SluzbaPaymentsServiceService_Factory(t) { return new (t || SluzbaPaymentsServiceService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationServiceService"])); };
 SluzbaPaymentsServiceService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: SluzbaPaymentsServiceService, factory: SluzbaPaymentsServiceService.ɵfac, providedIn: 'root' });
@@ -2490,7 +2745,9 @@ __webpack_require__.r(__webpack_exports__);
 class Account {
     constructor(accountCfg) {
         this.id = accountCfg.id;
-        this.balance = accountCfg.balance;
+        this.bankAccount = accountCfg.bankAccount;
+        this.model = accountCfg.model;
+        this.personalCallToNumber = accountCfg.personalCallToNumber;
     }
 }
 
@@ -2540,8 +2797,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sluzba_enrollments_service_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sluzba-enrollments-service.service */ "HcuR");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "1kSV");
-
 
 
 
@@ -2556,14 +2811,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SluzbaEnrollmentsComponent_option_6_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const s_r3 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngValue", s_r3);
+    const s_r1 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngValue", s_r1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"]("", s_r3.user.firstName, " ", s_r3.user.lastName, " ", s_r3.cardName, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"]("", s_r1.user.firstName, " ", s_r1.user.lastName, " ", s_r1.cardName, "");
 } }
 class SluzbaEnrollmentsComponent {
     constructor(route, courseService, studentService, enrollmentService, location) {
@@ -2578,7 +2833,9 @@ class SluzbaEnrollmentsComponent {
             student: new src_app_model_student__WEBPACK_IMPORTED_MODULE_2__["Student"]({
                 cardName: '',
                 account: new src_app_model_account__WEBPACK_IMPORTED_MODULE_3__["Account"]({
-                    balance: 0
+                    bankAccount: '',
+                    model: '',
+                    personalCallToNumber: ''
                 }),
                 user: new src_app_model_user__WEBPACK_IMPORTED_MODULE_4__["User"]({
                     username: '',
@@ -2601,9 +2858,6 @@ class SluzbaEnrollmentsComponent {
         this.studentService.getStudents().subscribe(res => this.students = res.body);
     }
     add() {
-        // convert NgbDateStruct dates to Date objects
-        this.enrollment.startDate = new Date(this.ngbStartDate.year, this.ngbStartDate.month - 1, this.ngbStartDate.day);
-        this.enrollment.endDate = new Date(this.ngbEndDate.year, this.ngbEndDate.month - 1, this.ngbEndDate.day);
         this.enrollmentService.addEnrollment(this.enrollment, this.enrollment.course.id)
             .subscribe(enrollment => {
             this.enrollmentService.announceChange();
@@ -2615,8 +2869,7 @@ class SluzbaEnrollmentsComponent {
     }
 }
 SluzbaEnrollmentsComponent.ɵfac = function SluzbaEnrollmentsComponent_Factory(t) { return new (t || SluzbaEnrollmentsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_courses_sluzba_courses_service_service__WEBPACK_IMPORTED_MODULE_7__["SluzbaCoursesServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_students_sluzba_students_service_service__WEBPACK_IMPORTED_MODULE_8__["SluzbaStudentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_enrollments_service_service__WEBPACK_IMPORTED_MODULE_9__["SluzbaEnrollmentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_10__["Location"])); };
-SluzbaEnrollmentsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaEnrollmentsComponent, selectors: [["app-sluzba-enrollments"]], decls: 24, vars: 5, consts: [[1, "form-group"], [1, "form-control", 3, "ngModel", "ngModelChange"], [3, "ngValue", 4, "ngFor", "ngForOf"], [1, "input-group"], ["placeholder", "yyyy-mm-dd", "name", "dp1", "ngbDatepicker", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["d1", "ngbDatepicker"], ["type", "button", 1, "input-group-addon", 3, "click"], [1, "fa", "fa-calendar", 2, "width", "1.2rem", "height", "1rem", "cursor", "pointer"], ["placeholder", "yyyy-mm-dd", "name", "dp2", "ngbDatepicker", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["d2", "ngbDatepicker"], [1, "modal-footer"], ["type", "button", 1, "btn", "btn-primary", 3, "click"], [3, "ngValue"]], template: function SluzbaEnrollmentsComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+SluzbaEnrollmentsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaEnrollmentsComponent, selectors: [["app-sluzba-enrollments"]], decls: 20, vars: 11, consts: [[1, "form-group"], [1, "form-control", 3, "ngModel", "ngModelChange"], [3, "ngValue", 4, "ngFor", "ngForOf"], [1, "input-group"], ["type", "date", "placeholder", "yyyy-mm-dd", "id", "field1c", "name", "dp1", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "date", "placeholder", "yyyy-mm-dd", "id", "field2c", "name", "dp2", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "modal-footer"], ["type", "button", 1, "btn", "btn-primary", 3, "click"], [3, "ngValue"]], template: function SluzbaEnrollmentsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h3");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
@@ -2631,35 +2884,29 @@ SluzbaEnrollmentsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 4, 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaEnrollmentsComponent_Template_input_ngModelChange_9_listener($event) { return ctx.ngbStartDate = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "button", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaEnrollmentsComponent_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4); const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](10); return _r1.toggle(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "i", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaEnrollmentsComponent_Template_input_ngModelChange_9_listener($event) { return ctx.enrollment.startDate = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](10, "date");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "input", 8, 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaEnrollmentsComponent_Template_input_ngModelChange_15_listener($event) { return ctx.ngbEndDate = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "button", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaEnrollmentsComponent_Template_button_click_17_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4); const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](16); return _r2.toggle(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](18, "i", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "input", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaEnrollmentsComponent_Template_input_ngModelChange_13_listener($event) { return ctx.enrollment.endDate = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](14, "date");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "button", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaEnrollmentsComponent_Template_button_click_20_listener() { return ctx.add(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "OK");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "button", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaEnrollmentsComponent_Template_button_click_16_listener() { return ctx.add(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "OK");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "button", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaEnrollmentsComponent_Template_button_click_22_listener() { return ctx.goBack(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "Cancel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "button", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaEnrollmentsComponent_Template_button_click_18_listener() { return ctx.goBack(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "Cancel");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
@@ -2670,10 +2917,10 @@ SluzbaEnrollmentsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.students);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.ngbStartDate);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.ngbEndDate);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_11__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbInputDatepicker"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ɵangular_packages_forms_forms_x"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtZW5yb2xsbWVudHMuY29tcG9uZW50LmNzcyJ9 */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](10, 5, ctx.enrollment.startDate, "yyyy-MM-dd"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](14, 8, ctx.enrollment.endDate, "yyyy-MM-dd"));
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_11__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ɵangular_packages_forms_forms_x"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["DatePipe"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtZW5yb2xsbWVudHMuY29tcG9uZW50LmNzcyJ9 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SluzbaEnrollmentsComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -2959,7 +3206,9 @@ class SluzbaDocumentDetailsComponent {
             student: new src_app_model_student__WEBPACK_IMPORTED_MODULE_3__["Student"]({
                 cardName: '',
                 account: new src_app_model_account__WEBPACK_IMPORTED_MODULE_4__["Account"]({
-                    balance: 0
+                    bankAccount: '',
+                    model: '',
+                    personalCallToNumber: ''
                 }),
                 user: new src_app_model_user__WEBPACK_IMPORTED_MODULE_5__["User"]({
                     username: '',
@@ -3275,11 +3524,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_student__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/student */ "c78S");
 /* harmony import */ var src_app_model_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/user */ "kl1M");
 /* harmony import */ var _sluzba_students_sluzba_students_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sluzba-students/sluzba-students-service.service */ "GoRH");
-/* harmony import */ var _sluzba_documents_sluzba_documents_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../sluzba-documents/sluzba-documents-service.service */ "6Shf");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "tyNb");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/services/auth/authentication-service.service */ "4+CV");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _sluzba_account_sluzba_account_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../sluzba-account/sluzba-account-service.service */ "bj8g");
+/* harmony import */ var _sluzba_documents_sluzba_documents_service_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../sluzba-documents/sluzba-documents-service.service */ "6Shf");
+/* harmony import */ var _sluzba_payments_sluzba_payments_service_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../sluzba-payments/sluzba-payments-service.service */ "f5gn");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/auth/authentication-service.service */ "4+CV");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 
 
 
@@ -3292,46 +3543,127 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function SluzbaStudentDetailsComponent_div_24_tr_11_Template(rf, ctx) { if (rf & 1) {
-    const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+
+
+function SluzbaStudentDetailsComponent_div_24_tr_31_Template(rf, ctx) { if (rf & 1) {
+    const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](3, "date");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](4, "number");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_tr_31_Template_button_click_6_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6); const payment_r4 = ctx.$implicit; const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r5.gotoEditPayment(payment_r4); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "span", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "button", 32);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_tr_31_Template_button_click_8_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6); const payment_r4 = ctx.$implicit; const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r7.deletePayment(payment_r4.id); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](9, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const payment_r4 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate3"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 3, payment_r4.date), " | ", payment_r4.purpose, " | ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](4, 5, payment_r4.amount), " ");
+} }
+function SluzbaStudentDetailsComponent_div_24_tr_41_Template(rf, ctx) { if (rf & 1) {
+    const _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "button", 22);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_tr_11_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r5); const document_r3 = ctx.$implicit; const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r4.gotoEditDocument(document_r3); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "span", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "button", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_tr_41_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10); const document_r8 = ctx.$implicit; const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r9.gotoEditDocument(document_r8); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "span", 31);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_tr_11_Template_button_click_6_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r5); const document_r3 = ctx.$implicit; const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r6.deleteDocument(document_r3.id); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "span", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 32);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_tr_41_Template_button_click_6_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10); const document_r8 = ctx.$implicit; const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r11.deleteDocument(document_r8.id); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "span", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const document_r3 = ctx.$implicit;
+    const document_r8 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", document_r3.type.name, " ", document_r3.title, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", document_r8.type.name, " ", document_r8.title, " ");
 } }
 function SluzbaStudentDetailsComponent_div_24_Template(rf, ctx) { if (rf & 1) {
-    const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "h3");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Documents");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "h3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Account");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "button", 17);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_Template_button_click_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8); const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r7.gotoAddDocument(); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "span", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "form");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "label", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Bank account");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "input", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaStudentDetailsComponent_div_24_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13); const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r12.student.account.bankAccount = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "label", 19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Model");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "input", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaStudentDetailsComponent_div_24_Template_input_ngModelChange_13_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13); const ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r14.student.account.model = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "label", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Personal call to number");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "input", 22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function SluzbaStudentDetailsComponent_div_24_Template_input_ngModelChange_16_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13); const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r15.student.account.personalCallToNumber = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "label", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Available funds");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "p", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 19);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "table", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, SluzbaStudentDetailsComponent_div_24_tr_11_Template, 8, 2, "tr", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "div", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "h3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Payments");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "button", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_Template_button_click_27_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13); const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r16.gotoAddPayment(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](28, "span", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "div", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "table", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](31, SluzbaStudentDetailsComponent_div_24_tr_31_Template, 10, 7, "tr", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "div", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "h3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, "Documents");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "button", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_24_Template_button_click_37_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13); const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r17.gotoAddDocument(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "span", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "table", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](41, SluzbaStudentDetailsComponent_div_24_tr_41_Template, 8, 2, "tr", 29);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3340,26 +3672,38 @@ function SluzbaStudentDetailsComponent_div_24_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r0.student.account.bankAccount);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r0.student.account.model);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r0.student.account.personalCallToNumber);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.available);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r0.payments);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r0.documents);
 } }
 function SluzbaStudentDetailsComponent_div_25_Template(rf, ctx) { if (rf & 1) {
-    const _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    const _r19 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_25_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10); const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r9.save(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_25_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r19); const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r18.save(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "OK");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_25_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10); const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r11.goBack(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function SluzbaStudentDetailsComponent_div_25_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r19); const ctx_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r20.goBack(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "Cancel");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 class SluzbaStudentDetailsComponent {
-    constructor(studentService, documentService, route, location, router, authService) {
+    constructor(studentService, accountService, documentService, paymentService, route, location, router, authService) {
         this.studentService = studentService;
+        this.accountService = accountService;
         this.documentService = documentService;
+        this.paymentService = paymentService;
         this.route = route;
         this.location = location;
         this.router = router;
@@ -3367,7 +3711,9 @@ class SluzbaStudentDetailsComponent {
         this.student = new src_app_model_student__WEBPACK_IMPORTED_MODULE_3__["Student"]({
             cardName: '',
             account: new src_app_model_account__WEBPACK_IMPORTED_MODULE_2__["Account"]({
-                balance: 0
+                bankAccount: '',
+                model: '',
+                personalCallToNumber: ''
             }),
             user: new src_app_model_user__WEBPACK_IMPORTED_MODULE_4__["User"]({
                 username: '',
@@ -3385,12 +3731,20 @@ class SluzbaStudentDetailsComponent {
             this.route.params.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])((params) => this.studentService.getStudent(+params['id'])))
                 .subscribe(res => {
                 this.student = res.body;
+                this.getAvailableFunds();
                 this.getDocuments();
+                this.getPayments();
             });
         }
     }
     getDocuments() {
         this.studentService.getStudentDocuments(this.student.id).subscribe(res => this.documents = res.body);
+    }
+    getPayments() {
+        this.studentService.getAccountPayments(this.student.account.id).subscribe(res => this.payments = res.body);
+    }
+    getAvailableFunds() {
+        this.accountService.getAvailableFunds(this.student.account.id).subscribe(res => this.available = res.body);
     }
     save() {
         this.mode == 'ADD' ? this.add() : this.edit();
@@ -3404,7 +3758,7 @@ class SluzbaStudentDetailsComponent {
     }
     edit() {
         this.studentService.editStudent(this.student)
-            .subscribe(course => {
+            .subscribe(student => {
             this.studentService.announceChange();
             this.goBack();
         });
@@ -3418,6 +3772,15 @@ class SluzbaStudentDetailsComponent {
     deleteDocument(documentId) {
         this.documentService.deleteDocument(documentId).subscribe(() => this.getDocuments());
     }
+    gotoAddPayment() {
+        this.router.navigate(['/addPayment'], { queryParams: { accountId: this.student.account.id } });
+    }
+    gotoEditPayment(payment) {
+        this.router.navigate(['/editPayment', payment.id]);
+    }
+    deletePayment(paymentId) {
+        this.paymentService.deletePayment(paymentId).subscribe(() => this.getPayments());
+    }
     goBack() {
         this.location.back();
     }
@@ -3425,8 +3788,8 @@ class SluzbaStudentDetailsComponent {
         return this.authService.isAdmin();
     }
 }
-SluzbaStudentDetailsComponent.ɵfac = function SluzbaStudentDetailsComponent_Factory(t) { return new (t || SluzbaStudentDetailsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_students_sluzba_students_service_service__WEBPACK_IMPORTED_MODULE_5__["SluzbaStudentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_documents_sluzba_documents_service_service__WEBPACK_IMPORTED_MODULE_6__["SluzbaDocumentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_9__["AuthenticationServiceService"])); };
-SluzbaStudentDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaStudentDetailsComponent, selectors: [["app-sluzba-student-details"]], decls: 26, vars: 7, consts: [[1, "main-content"], [1, "container-fluid"], [1, "row"], [1, "col-md-12"], [1, "card", 2, "padding-left", "10px"], [1, "form-group"], ["for", "field1c", 1, "form-control-label"], ["type", "text", "placeholder", "Firstname", "id", "field1c", "name", "field1", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field2c", 1, "form-control-label"], ["type", "text", "placeholder", "Lastname", "id", "field2c", "name", "field2", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field3c", 1, "form-control-label"], ["type", "text", "placeholder", "Username", "id", "field3c", "name", "field3", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field4c", 1, "form-control-label"], ["type", "password", "placeholder", "Password", "id", "field4c", "name", "field4", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field5c", 1, "form-control-label"], ["type", "text", "placeholder", "Cardname", "id", "field5c", "name", "field5", 1, "form-control", 3, "ngModel", "ngModelChange"], [4, "ngIf"], ["type", "button", "aria-label", "Add", 1, "btn", "btn-primary", 3, "click"], ["aria-hidden", "true", 1, "fa", "fa-plus"], [1, "content", "table-responsive", "table-full-width", 2, "padding-top", "2%"], [1, "table", "table-bordered"], [4, "ngFor", "ngForOf"], ["type", "button", "aria-label", "Edit", 1, "btn", "btn-primary", 3, "click"], ["aria-hidden", "true", 1, "fa", "fa-edit"], ["type", "button", "aria-label", "Delete", 1, "btn", "btn-danger", "right", 3, "click"], ["aria-hidden", "true", 1, "fa", "fa-trash"], [1, "btn", "btn-success", 3, "click"], [1, "btn", "btn-danger", 3, "click"]], template: function SluzbaStudentDetailsComponent_Template(rf, ctx) { if (rf & 1) {
+SluzbaStudentDetailsComponent.ɵfac = function SluzbaStudentDetailsComponent_Factory(t) { return new (t || SluzbaStudentDetailsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_students_sluzba_students_service_service__WEBPACK_IMPORTED_MODULE_5__["SluzbaStudentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_account_sluzba_account_service_service__WEBPACK_IMPORTED_MODULE_6__["SluzbaAccountServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_documents_sluzba_documents_service_service__WEBPACK_IMPORTED_MODULE_7__["SluzbaDocumentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sluzba_payments_sluzba_payments_service_service__WEBPACK_IMPORTED_MODULE_8__["SluzbaPaymentsServiceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_10__["Location"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_11__["AuthenticationServiceService"])); };
+SluzbaStudentDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SluzbaStudentDetailsComponent, selectors: [["app-sluzba-student-details"]], decls: 26, vars: 7, consts: [[1, "main-content"], [1, "container-fluid"], [1, "row"], [1, "col-md-12"], [1, "card", 2, "padding-left", "10px"], [1, "form-group"], ["for", "field1c", 1, "form-control-label"], ["type", "text", "placeholder", "Firstname", "id", "field1c", "name", "field1", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field2c", 1, "form-control-label"], ["type", "text", "placeholder", "Lastname", "id", "field2c", "name", "field2", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field3c", 1, "form-control-label"], ["type", "text", "placeholder", "Username", "id", "field3c", "name", "field3", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field4c", 1, "form-control-label"], ["type", "password", "placeholder", "Password", "id", "field4c", "name", "field4", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field5c", 1, "form-control-label"], ["type", "text", "placeholder", "Cardname", "id", "field5c", "name", "field5", 1, "form-control", 3, "ngModel", "ngModelChange"], [4, "ngIf"], ["for", "field6c", 1, "form-control-label"], ["type", "text", "placeholder", "Bank account", "id", "field6c", "name", "field6", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field7c", 1, "form-control-label"], ["type", "text", "placeholder", "Model", "id", "field7c", "name", "field7", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field8c", 1, "form-control-label"], ["type", "text", "placeholder", "Personal call to number", "id", "field8c", "name", "field8", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "field9c", 1, "form-control-label"], ["id", "field9c", "name", "field9", 1, "form-control"], ["type", "button", "aria-label", "Add", 1, "btn", "btn-primary", 3, "click"], ["aria-hidden", "true", 1, "fa", "fa-plus"], [1, "content", "table-responsive", "table-full-width", 2, "padding-top", "2%"], [1, "table", "table-bordered"], [4, "ngFor", "ngForOf"], ["type", "button", "aria-label", "Edit", 1, "btn", "btn-primary", 3, "click"], ["aria-hidden", "true", 1, "fa", "fa-edit"], ["type", "button", "aria-label", "Delete", 1, "btn", "btn-danger", "right", 3, "click"], ["aria-hidden", "true", 1, "fa", "fa-trash"], [1, "btn", "btn-success", 3, "click"], [1, "btn", "btn-danger", 3, "click"]], template: function SluzbaStudentDetailsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -3472,7 +3835,7 @@ SluzbaStudentDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](24, SluzbaStudentDetailsComponent_div_24_Template, 12, 1, "div", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](24, SluzbaStudentDetailsComponent_div_24_Template, 42, 6, "div", 16);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](25, SluzbaStudentDetailsComponent_div_25_Template, 5, 0, "div", 16);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3491,7 +3854,7 @@ SluzbaStudentDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.student.id);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isAdmin());
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_10__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_10__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_8__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_8__["NgForOf"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtc3R1ZGVudC1kZXRhaWxzLmNvbXBvbmVudC5jc3MifQ== */"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_12__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_12__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_12__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_12__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_12__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_12__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["DatePipe"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["DecimalPipe"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzbHV6YmEtc3R1ZGVudC1kZXRhaWxzLmNvbXBvbmVudC5jc3MifQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SluzbaStudentDetailsComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -3499,7 +3862,7 @@ SluzbaStudentDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__
                 templateUrl: './sluzba-student-details.component.html',
                 styleUrls: ['./sluzba-student-details.component.css']
             }]
-    }], function () { return [{ type: _sluzba_students_sluzba_students_service_service__WEBPACK_IMPORTED_MODULE_5__["SluzbaStudentsServiceService"] }, { type: _sluzba_documents_sluzba_documents_service_service__WEBPACK_IMPORTED_MODULE_6__["SluzbaDocumentsServiceService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] }, { type: _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] }, { type: src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_9__["AuthenticationServiceService"] }]; }, null); })();
+    }], function () { return [{ type: _sluzba_students_sluzba_students_service_service__WEBPACK_IMPORTED_MODULE_5__["SluzbaStudentsServiceService"] }, { type: _sluzba_account_sluzba_account_service_service__WEBPACK_IMPORTED_MODULE_6__["SluzbaAccountServiceService"] }, { type: _sluzba_documents_sluzba_documents_service_service__WEBPACK_IMPORTED_MODULE_7__["SluzbaDocumentsServiceService"] }, { type: _sluzba_payments_sluzba_payments_service_service__WEBPACK_IMPORTED_MODULE_8__["SluzbaPaymentsServiceService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"] }, { type: _angular_common__WEBPACK_IMPORTED_MODULE_10__["Location"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["Router"] }, { type: src_app_services_auth_authentication_service_service__WEBPACK_IMPORTED_MODULE_11__["AuthenticationServiceService"] }]; }, null); })();
 
 
 /***/ }),
@@ -3531,6 +3894,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sluzba_teachings_sluzba_teachings_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/sluzba-teachings/sluzba-teachings.component */ "7Cke");
 /* harmony import */ var _components_sluzba_student_details_sluzba_student_details_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/sluzba-student-details/sluzba-student-details.component */ "sjrJ");
 /* harmony import */ var _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/sluzba-document-details/sluzba-document-details.component */ "maiF");
+/* harmony import */ var _components_sluzba_payment_details_sluzba_payment_details_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/sluzba-payment-details/sluzba-payment-details.component */ "c704");
+
 
 
 
@@ -3567,6 +3932,8 @@ const routes = [
     { path: 'editStudent/:id', component: _components_sluzba_student_details_sluzba_student_details_component__WEBPACK_IMPORTED_MODULE_15__["SluzbaStudentDetailsComponent"] },
     { path: 'addDocument', component: _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_16__["SluzbaDocumentDetailsComponent"] },
     { path: 'editDocument/:id', component: _components_sluzba_document_details_sluzba_document_details_component__WEBPACK_IMPORTED_MODULE_16__["SluzbaDocumentDetailsComponent"] },
+    { path: 'addPayment', component: _components_sluzba_payment_details_sluzba_payment_details_component__WEBPACK_IMPORTED_MODULE_17__["SluzbaPaymentDetailsComponent"] },
+    { path: 'editPayment/:id', component: _components_sluzba_payment_details_sluzba_payment_details_component__WEBPACK_IMPORTED_MODULE_17__["SluzbaPaymentDetailsComponent"] },
     { path: '',
         redirectTo: '/login',
         pathMatch: 'full'

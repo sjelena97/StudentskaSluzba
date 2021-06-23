@@ -30,6 +30,7 @@ import { SluzbaSidebarComponent } from './components/sluzba-sidebar/sluzba-sideb
 import { SluzbaTeachingsComponent } from './components/sluzba-teachings/sluzba-teachings.component';
 import { SluzbaStudentDetailsComponent } from './components/sluzba-student-details/sluzba-student-details.component';
 import { SluzbaDocumentDetailsComponent } from './components/sluzba-document-details/sluzba-document-details.component';
+import { SluzbaPaymentDetailsComponent } from './components/sluzba-payment-details/sluzba-payment-details.component';
 
 @NgModule({
   declarations: [
@@ -49,12 +50,13 @@ import { SluzbaDocumentDetailsComponent } from './components/sluzba-document-det
     SluzbaSidebarComponent,
     SluzbaTeachingsComponent,
     SluzbaStudentDetailsComponent,
-    SluzbaDocumentDetailsComponent
+    SluzbaDocumentDetailsComponent,
+    SluzbaPaymentDetailsComponent
   ],
   imports: [
+    BrowserModule,
     FormsModule,
     NgbModule,
-    BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule

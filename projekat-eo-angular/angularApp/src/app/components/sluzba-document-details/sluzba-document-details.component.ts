@@ -29,7 +29,9 @@ export class SluzbaDocumentDetailsComponent implements OnInit {
     student: new Student({
       cardName: '',
       account: new Account({
-        balance: 0
+        bankAccount:'',
+        model: '',
+        personalCallToNumber:''
       }),
       user: new User({
         username: '',

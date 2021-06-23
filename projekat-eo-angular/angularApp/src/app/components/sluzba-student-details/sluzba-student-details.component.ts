@@ -10,6 +10,9 @@ import { User } from 'src/app/model/user';
 import { SluzbaStudentsServiceService } from '../sluzba-students/sluzba-students-service.service';
 import { Document } from 'src/app/model/document';
 import { SluzbaDocumentsServiceService } from '../sluzba-documents/sluzba-documents-service.service';
+import { Payment } from 'src/app/model/payment';
+import { SluzbaPaymentsServiceService } from '../sluzba-payments/sluzba-payments-service.service';
+import { SluzbaAccountServiceService } from '../sluzba-account/sluzba-account-service.service';
 
 @Component({
   selector: 'app-sluzba-student-details',
@@ -21,7 +24,9 @@ export class SluzbaStudentDetailsComponent implements OnInit {
   student: Student = new Student({ // if we add a new student, create an empty student
     cardName: '',
     account: new Account({
-      balance: 0
+      bankAccount:'',
+      model: '',
+      personalCallToNumber:''
     }),
     user: new User({
       username: '',
@@ -32,10 +37,12 @@ export class SluzbaStudentDetailsComponent implements OnInit {
   });
 
   documents: Document[];
+  payments: Payment[];
+  available: 0 | number;
 
   mode: string = 'ADD';
 
-  constructor(private studentService: SluzbaStudentsServiceService, private documentService: SluzbaDocumentsServiceService,
+  constructor(private studentService: SluzbaStudentsServiceService, private accountService: SluzbaAccountServiceService, private documentService: SluzbaDocumentsServiceService, private paymentService: SluzbaPaymentsServiceService,
     private route: ActivatedRoute, private location: Location, private router: Router, private authService: AuthenticationServiceService) {
   }
 
@@ -47,7 +54,9 @@ export class SluzbaStudentDetailsComponent implements OnInit {
           this.studentService.getStudent(+params['id'])))
         .subscribe(res => {
           this.student = res.body;
+          this.getAvailableFunds();
           this.getDocuments();
+          this.getPayments();
         });
     }
   }
@@ -57,6 +66,15 @@ export class SluzbaStudentDetailsComponent implements OnInit {
       this.documents = res.body);
   }
 
+  private getPayments(): void {
+    this.studentService.getAccountPayments(this.student.account.id).subscribe(res =>
+      this.payments = res.body);
+  }
+
+  private getAvailableFunds(): void {
+    this.accountService.getAvailableFunds(this.student.account.id).subscribe(res =>
+      this.available = res.body);
+  }
 
   save(): void {
     this.mode == 'ADD' ? this.add() : this.edit();
@@ -72,7 +90,7 @@ export class SluzbaStudentDetailsComponent implements OnInit {
 
   private edit(): void {
     this.studentService.editStudent(this.student)
-      .subscribe(course => {
+      .subscribe(student => {
         this.studentService.announceChange();
         this.goBack();
       });
@@ -90,6 +108,21 @@ export class SluzbaStudentDetailsComponent implements OnInit {
   deleteDocument(documentId: number): void {
     this.documentService.deleteDocument(documentId).subscribe(
       () => this.getDocuments()
+    );
+  }
+
+  gotoAddPayment(): void {
+    this.router.navigate(['/addPayment'], { queryParams: { accountId: this.student.account.id } });
+  }
+
+  
+  gotoEditPayment(payment: Payment): void {
+    this.router.navigate(['/editPayment', payment.id]);
+  }
+
+  deletePayment(paymentId: number): void {
+    this.paymentService.deletePayment(paymentId).subscribe(
+      () => this.getPayments()
     );
   }
 

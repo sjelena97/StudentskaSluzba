@@ -7,8 +7,8 @@ INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id
 INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id) VALUES (3, 'danijel', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Danijel', 'Vukovic', 1);
 INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id) VALUES (4, 'sinisa', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Sinisa', 'Nikolic', 2);
 
-INSERT INTO ACCOUNT (account_id, balance) VALUES (1, 500);
-INSERT INTO ACCOUNT (account_id, balance) VALUES (2, 1000);
+INSERT INTO ACCOUNT (account_id, bank_account, model, personal_call_to_number) VALUES (1, '840-1710666-12', '97', '56-99011-1-4532-1836');
+INSERT INTO ACCOUNT (account_id, bank_account, model, personal_call_to_number) VALUES (2, '840-1710666-12', '97', '93-99011-1-4532-1856');
 
 INSERT INTO STUDENT (student_id, card_name, account_id, user_id, active) VALUES (1, 'SF36/2018', 1, 1, 1);
 INSERT INTO STUDENT (student_id, card_name, account_id, user_id, active) VALUES (2, 'SF56/2018', 2, 3, 1);

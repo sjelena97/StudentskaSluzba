@@ -1,8 +1,11 @@
+import { Account } from "./account";
+
 export class Payment implements PaymentInterface{
 	public id: number;
 	public date: Date;
     public amount: number;
     public purpose : string;
+	public account: Account;
 		
 	constructor(paymentCfg: PaymentInterface)
 	{	
@@ -10,6 +13,7 @@ export class Payment implements PaymentInterface{
 		this.date = paymentCfg.date;
         this.amount = paymentCfg.amount;
         this.purpose = paymentCfg.purpose;
+		this.account = paymentCfg.account;
 	}
 }
 
@@ -18,4 +22,5 @@ interface PaymentInterface {
 	date: Date;
     amount: number;
     purpose : string;
+	account: Account;
 }
