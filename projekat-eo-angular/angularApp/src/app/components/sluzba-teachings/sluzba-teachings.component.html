@@ -1,45 +1,55 @@
-<div>
-    <h3>Enroll teachers in course {{teaching.course.name}} </h3>
-  </div>
-  <div>
-  
-      <div class="form-group">
-        <select class="form-control" [(ngModel)]="teaching.teacher">
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="padding-left: 10px;">
+          <h3>Enroll teachers in course {{teaching.course.name}} </h3>
+
+
+          <div class="form-group">
+            <label>Select teacher</label>
+            <select class="form-control" [(ngModel)]="teaching.teacher">
               <option *ngFor="let t of teachers" [ngValue]="t">{{t.user.firstName}} {{t.user.lastName}}</option>
             </select>
-      </div>
+          </div>
 
-      <h4>Select teaching type</h4>
-      <div class="form-group">
-        <select class="form-control" [(ngModel)]="teaching.type">
+          <div class="form-group">
+            <label>Select teaching type</label>
+            <select class="form-control" [(ngModel)]="teaching.type">
               <option *ngFor="let tt of types" [ngValue]="tt">{{tt.name}}</option>
             </select>
-      </div>
-  
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="ngbStartDate" 
-            ngbDatepicker #d1="ngbDatepicker">
-          <button class="input-group-addon" (click)="d1.toggle()" type="button">
-          <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"> </i> 
-        </button>
+          </div>
+
+          <div class="form-group">
+            <label>Choose start date</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="ngbStartDate" ngbDatepicker
+                #d1="ngbDatepicker">
+              <button class="input-group-addon" (click)="d1.toggle()" type="button">
+                <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"> </i>
+              </button>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label>Choose end date</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="ngbEndDate" ngbDatepicker
+                #d2="ngbDatepicker">
+              <button class="input-group-addon" (click)="d2.toggle()" type="button">
+                <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"> </i>
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" type="button" (click)="add()">OK</button>
+          <button class="btn btn-danger" type="button" (click)="goBack()">Cancel</button>
         </div>
       </div>
-      
-  
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="ngbEndDate" 
-            ngbDatepicker #d2="ngbDatepicker">
-          <button class="input-group-addon" (click)="d2.toggle()" type="button">
-         <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"> </i> 
-        </button>
-        </div>
-      </div> 
-  
-  
+    </div>
   </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" type="button" (click)="add()">OK</button>
-    <button class="btn btn-primary" type="button" (click)="goBack()">Cancel</button>
-  </div> 
+</div>
