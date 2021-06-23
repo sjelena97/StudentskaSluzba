@@ -23,8 +23,14 @@ public class Account {
 	@Column(name="account_id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name="balance", nullable = false)
-	private double balance;
+	@Column(name="bank_account", nullable = false)
+	private String bankAccount;
+	
+	@Column(name="model", nullable = false)
+	private String model;
+	
+	@Column(name="personal_call_to_number", nullable = false)
+	private String personalCallToNumber;
 	
 	@OneToOne(mappedBy = "account")
 	private Student student;
@@ -40,12 +46,28 @@ public class Account {
 		this.id = id;
 	}
 
-	public double getBalance() {
-		return balance;
+	public String getBankAccount() {
+		return bankAccount;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getPersonalCallToNumber() {
+		return personalCallToNumber;
+	}
+
+	public void setPersonalCallToNumber(String personalCallToNumber) {
+		this.personalCallToNumber = personalCallToNumber;
 	}
 
 	public Student getStudent() {

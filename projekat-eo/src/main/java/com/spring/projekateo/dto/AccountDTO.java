@@ -7,21 +7,25 @@ import com.spring.projekateo.model.Account;
 public class AccountDTO implements Serializable{
 	
 	private Integer id;
-	private double balance;
+	private String bankAccount;
+	private String model;
+	private String personalCallToNumber;
 	
 	public AccountDTO() {
 		super();
 	}
 	
-	public AccountDTO(Integer id, double balance) {
+	public AccountDTO(Integer id, String bankAccount, String model, String personalCallToNumber) {
 		super();
 		this.id = id;
-		this.balance = balance;
+		this.bankAccount = bankAccount;
+		this.model = model;
+		this.personalCallToNumber = personalCallToNumber;
 	}
 
 	
 	public AccountDTO(Account account) {
-		this(account.getId(), account.getBalance());
+		this(account.getId(), account.getBankAccount(), account.getModel(), account.getPersonalCallToNumber());
 	}
 
 	public Integer getId() {
@@ -32,13 +36,29 @@ public class AccountDTO implements Serializable{
 		this.id = id;
 	}
 
-	public double getBalance() {
-		return balance;
+	public String getBankAccount() {
+		return bankAccount;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
-	
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getPersonalCallToNumber() {
+		return personalCallToNumber;
+	}
+
+	public void setPersonalCallToNumber(String personalCallToNumber) {
+		this.personalCallToNumber = personalCallToNumber;
+	}
+
 }
 
