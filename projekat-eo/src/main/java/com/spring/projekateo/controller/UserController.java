@@ -49,6 +49,7 @@ public class UserController {
 		if(!userDTO.getUsername().equalsIgnoreCase(user.getUsername())) {
 			User user2 = userService.findByUsername(userDTO.getUsername());
 			if(user2 != null) {
+				System.out.println("postoji sa tim usernameom");
 				return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
 			}
 		}
@@ -56,10 +57,7 @@ public class UserController {
 		user.setFirstName(userDTO.getFirstName());
 		user.setLastName(userDTO.getLastName());
 		user.setUsername(userDTO.getUsername());
-		if(userDTO.getPassword() != null) {
-			user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-		}
-		
+
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);	
 		
