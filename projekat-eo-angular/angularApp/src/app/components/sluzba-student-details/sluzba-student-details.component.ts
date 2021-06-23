@@ -105,10 +105,12 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     this.router.navigate(['/editDocument', document.id]);
   }
 
-  deleteDocument(documentId: number): void {
-    this.documentService.deleteDocument(documentId).subscribe(
-      () => this.getDocuments()
-    );
+  deleteDocument(documentId: number, documentTitle: string): void {
+    if(confirm("Are you sure to delete document " + documentTitle + "?")){
+      this.documentService.deleteDocument(documentId).subscribe(
+        () => this.getDocuments()
+      );
+    }
   }
 
   gotoAddPayment(): void {
