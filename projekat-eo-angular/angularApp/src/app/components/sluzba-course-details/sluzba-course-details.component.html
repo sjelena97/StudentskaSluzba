@@ -39,7 +39,7 @@
                   </td>
                   <td>
                     <button type="button" class="btn btn-danger right" aria-label="Delete"
-                      (click)="deleteTeaching(teaching.id)">
+                      (click)="deleteTeaching(teaching.id,teaching.teacher.user.firstName,teaching.teacher.user.lastName ,course.name)">
                       <span class="fa fa-trash" aria-hidden="true"></span>
                     </button>
                   </td>
@@ -67,7 +67,7 @@
                   </td>
                   <td>
                     <button type="button" class="btn btn-danger right" aria-label="Delete"
-                      (click)="deleteEnrollment(enrollment.id)">
+                      (click)="deleteEnrollment(enrollment.id,enrollment.student.user.firstName,enrollment.student.user.lastName ,course.name)">
                       <span class="fa fa-trash" aria-hidden="true"></span>
                     </button>
                   </td>

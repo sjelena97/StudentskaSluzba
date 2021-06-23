@@ -105,10 +105,12 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     this.router.navigate(['/editDocument', document.id]);
   }
 
-  deleteDocument(documentId: number): void {
-    this.documentService.deleteDocument(documentId).subscribe(
-      () => this.getDocuments()
-    );
+  deleteDocument(documentId: number, documentTitle: string): void {
+    if(confirm("Are you sure to delete document " + documentTitle + "?")){
+      this.documentService.deleteDocument(documentId).subscribe(
+        () => this.getDocuments()
+      );
+    }
   }
 
   gotoAddPayment(): void {
@@ -126,6 +128,21 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     );
   }
 
+/*   gotoAddPayment(): void {
+    this.router.navigate(['/addPayment'], { queryParams: { accountId: this.student.account.id } });
+  }
+
+  
+  gotoEditPayment(payment: Payment): void {
+    this.router.navigate(['/editPayment', payment.id]);
+  }
+
+  deletePayment(paymentId: number): void {
+    this.paymentService.deletePayment(paymentId).subscribe(
+      () => this.getPayments()
+    );
+  }
+ */
   goBack(): void {
     this.location.back();
   }
