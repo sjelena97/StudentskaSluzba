@@ -37,4 +37,9 @@ export class SluzbaProfileServiceService {
     const url = `${this.studentsUrl}/getStudentByUsername/${username}`;
     return this.http.get<Student>(url, {observe: 'response'});
   }
+
+  editUser(user: User): Observable<HttpResponse<User>> {
+    const urlPut =`${this.usersUrl}/updateUser/${user.id}`;
+    return this.http.put<User>(urlPut, user, {observe: 'response'});
+  }
 }

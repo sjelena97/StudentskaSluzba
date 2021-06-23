@@ -53,7 +53,7 @@
     </div>
 </div> -->
 
-<div class="main-content" >
+<div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
@@ -63,59 +63,67 @@
                     </div>
                     <div class="content">
                         <form>
-                            <div *ngIf="isStudent()" class="row">
-                            
-                                <div  class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" placeholder="Username" value='{{ user? user.username : "" }}'>
+                                        <label for="field1c" class="form-control-label">First Name</label>
+                                        <input type="text" class="form-control" placeholder="First name"
+                                        [(ngModel)]="user.firstName" id="field1c" name="field1">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Cardname</label>
-                                        <input type="text" class="form-control" placeholder="Cardname" value='{{ student? student.cardName : "" }}'>
+                                        <label for="field2c" class="form-control-label">Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Last Name"
+                                        [(ngModel)]="user.lastName" id="field2c" name="field2">
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <label for="field3c" class="form-control-label">Username</label>
+                                        <input type="text" class="form-control" placeholder="Username"
+                                        [(ngModel)]="user.username" id="field3c" name="field3">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="field11c" class="form-control-label">Email address</label>
+                                        <input type="email" class="form-control" placeholder="Email" id="field11c" name="field11">
                                     </div>
                                 </div>
                             </div>
-                            <div *ngIf="!isStudent()" class="row">
-                            
-                                <div  class="col-md-6">
+                            <div *ngIf="isStudent()" class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" placeholder="Username" value='{{ user? user.username : "" }}'>
+                                        <label for="field4c" class="form-control-label">Cardname</label>
+                                        <input type="text" class="form-control" placeholder="Cardname"
+                                        [(ngModel)]="student.cardName" id="field4c" name="field4">
                                     </div>
                                 </div>
-                               
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div *ngIf="isStudent()" class="row">
+                                <div class="col-md-12">
+                                    <div class="card" style="padding-left: 10px;">
+                                        <h3>Account</h3>
+                                        <div class="form-group">
+                                            <label for="field6c" class="form-control-label">Bank account</label>
+                                            <input type="text" [(ngModel)]="student.account.bankAccount"
+                                                placeholder="Bank account" class="form-control" id="field6c" name="field6">
+                                            <label for="field7c" class="form-control-label">Model</label>
+                                            <input type="text" [(ngModel)]="student.account.model"
+                                                placeholder="Model" class="form-control" id="field7c" name="field7">
+                                            <label for="field8c" class="form-control-label">Personal call to number</label>
+                                            <input type="text"
+                                            [(ngModel)]="student.account.personalCallToNumber"
+                                                placeholder="Personal call to number" class="form-control" id="field8c" name="field8">
+                                            <label for="field9c" class="form-control-label">Available funds</label>
+                                            <p id="field9c" name="field9" class="form-control">{{ available }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div  class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" class="form-control" placeholder="First name" value='{{ user? user.firstName : "" }}'>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control" placeholder="Last Name" value='{{ user? user.lastName : "" }}'>
-                                    </div>
-                                </div>
-                            </div>
-<!-- 
+                            <!-- 
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -146,7 +154,9 @@
                                 </div>
                             </div>
  -->
-                            <button *ngIf="isAdmin()" type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div *ngIf="isAdmin()">
+                                <button (click)="save()" class="btn btn-info btn-fill pull-right">Save</button>
+                            </div>
                             <div class="clearfix"></div>
                         </form>
                     </div>
@@ -155,16 +165,17 @@
             <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
-                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+                            alt="..." />
                     </div>
                     <div class="content">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="assets/img/faces/face-6.jpg" alt="..."/>
+                                <img class="avatar border-gray" src="assets/img/faces/face-6.jpg" alt="..." />
 
-                                <h4 class="title">{{ user? user.firstName : "" }}  {{ user? user.lastName : "" }}  <br />
+                                <h4 class="title">{{ user? user.firstName : "" }} {{ user? user.lastName : "" }} <br />
                                     <small>{{ user? user.username : "" }}</small><BR>
-                                    <small *ngIf="isStudent()">Balance: 500RSD</small>
+                                    <small *ngIf="isStudent()">Balance: {{ available }}</small>
                                 </h4>
                             </a>
                         </div>
