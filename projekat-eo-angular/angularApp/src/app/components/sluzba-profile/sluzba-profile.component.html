@@ -2,155 +2,205 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
+                <div  *ngIf="(isAdmin || isStudent())" class="card">
                     <div class="header">
                         <h4 class="title">Profile</h4>
                     </div>
                     <div class="content">
                         <form [formGroup]="userForm">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" placeholder="First name" formControlName="firstName"
-                                    class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && u.firstName.errors }" />
-                                <div *ngIf="submitted && u.firstName.errors" class="invalid-feedback">
-                                    <div *ngIf="u.firstName.errors.required">First Name is required</div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" placeholder="Last Name" formControlName="lastName"
-                                        class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && u.lastName.errors }" />
-                                    <div *ngIf="submitted && u.lastName.errors" class="invalid-feedback">
-                                        <div *ngIf="u.lastName.errors.required">Last Name is required</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input [readonly]= "isStudent()" type="text" placeholder="First name" formControlName="firstName"
+                                            class="form-control text"
+                                            [ngClass]="{ 'is-invalid': submitted && u.firstName.errors }" />
+                                        <div *ngIf="submitted && u.firstName.errors"
+                                            class="invalid-feedback alert alert-danger">
+                                            <div *ngIf="u.firstName.errors.required">First Name is required</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" placeholder="Username" formControlName="username"
-                                        class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && u.username.errors }" />
-                                    <div *ngIf="submitted && u.username.errors" class="invalid-feedback">
-                                        <div *ngIf="u.username.errors.required">Username is required</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email address</label>
-                                    <input type="email" placeholder="Email" formControlName="email" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && u.email.errors }" />
-                                    <div *ngIf="submitted && u.email.errors" class="invalid-feedback">
-                                        <div *ngIf="u.email.errors.required">Email is required</div>
-                                        <div *ngIf="u.email.errors.email">Email must be a valid email address</div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input  [readonly]= "isStudent()" type="text" placeholder="Last Name" formControlName="lastName"
+                                            class="form-control text"
+                                            [ngClass]="{ 'is-invalid': submitted && u.lastName.errors }" />
+                                        <div *ngIf="submitted && u.lastName.errors"
+                                            class="invalid-feedback alert alert-danger">
+                                            <div *ngIf="u.lastName.errors.required">Last Name is required</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <form [formGroup]="studentForm">
-                            <div *ngIf="isStudent()" class="row">
-                                <div class="form-group">
-                                    <label>Cardname</label>
-                                    <input type="text" class="form-control" placeholder="Cardname"
-                                        formControlName="cardName"
-                                        [ngClass]="{ 'is-invalid': submitted && s.cardName.errors }" />
-                                    <div *ngIf="submitted && s.cardName.errors" class="invalid-feedback">
-                                        <div *ngIf="s.cardName.errors.required">Cardname is required</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input  [readonly]= "isStudent()" type="text" placeholder="Username" formControlName="username"
+                                            class="form-control text"
+                                            [ngClass]="{ 'is-invalid': submitted && u.username.errors }" />
+                                        <div *ngIf="submitted && u.username.errors"
+                                            class="invalid-feedback alert alert-danger">
+                                            <div *ngIf="u.username.errors.required">Username is required</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <h3>Account</h3>
-                                    <label>Bank account</label>
-                                    <input type="text" placeholder="Bank account" class="form-control"
-                                        formControlName="bankAccount"
-                                        [ngClass]="{ 'is-invalid': submitted && s.bankAccount.errors }" />
-                                    <div *ngIf="submitted && s.bankAccount.errors" class="invalid-feedback">
-                                        <div *ngIf="s.bankAccount.errors.required">Bank account is required
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email address</label>
+                                        <input  [readonly]= "isStudent()" type="email" placeholder="Email" formControlName="email"
+                                            class="form-control text"
+                                            [ngClass]="{ 'is-invalid': submitted && u.email.errors }" />
+                                        <div *ngIf="submitted && u.email.errors"
+                                            class="invalid-feedback alert alert-danger">
+                                            <div *ngIf="u.email.errors.required">Email is required</div>
+                                            <div *ngIf="u.email.errors.email">Email must be a valid email address
+                                            </div>
                                         </div>
                                     </div>
-                                    <label>Model</label>
-                                    <input type="text" placeholder="Model" class="form-control" formControlName="model"
-                                        [ngClass]="{ 'is-invalid': submitted && s.model.errors }" />
-                                    <div *ngIf="submitted && s.model.errors" class="invalid-feedback">
-                                        <div *ngIf="s.model.errors.required">Model is required
-                                        </div>
-                                    </div>
-                                    <label>Personal call to number</label>
-                                    <input type="text" placeholder="Personal call to number" class="form-control"
-                                        formControlName="personalCallToNumber"
-                                        [ngClass]="{ 'is-invalid': submitted && s.personalCallToNumber.errors }" />
-                                    <div *ngIf="submitted && s.personalCallToNumber.errors" class="invalid-feedback">
-                                        <div *ngIf="s.personalCallToNumber.errors.required">Personal call to
-                                            number is required
-                                        </div>
-                                    </div>
-                                    <label for="field9c" class="form-control-label">Available funds</label>
-                                    <p id="field9c" name="field9" class="form-control">{{ available }}</p>
                                 </div>
                             </div>
-                        </form>
-                        <form [formGroup]="passwordForm">
+
                             <button (click)=toggleDisplayDiv() class="btn btn-secondary btn-fill pull-left">Change
                                 password</button>
+                            <div *ngIf="isAdmin()">
+                                <button (click)="save()" class="btn btn-info btn-fill pull-right">Save</button>
+                            </div>
                             <div class="clearfix"></div>
-                            <div [hidden]="!isShowDiv" class="card">
-                                <div class="content">
-                                    <div class="row form-group inner-addon right-addon">
-                                        <div class="col-md-6 input-group">
-                                            <label>New password</label>
-                                            <input [type]="showPassword ? 'text' : 'password'"
-                                                formControlName="newPassword" class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && p.newPassword.errors }"
-                                                placeholder="New password" name="newPassword" />
-                                            <div *ngIf="submitted && p.newPassword.errors" class="invalid-feedback">
-                                                <div *ngIf="p.newPassword.errors.required">Password is required</div>
-                                                <div *ngIf="p.newPassword.errors.minlength">Password must be at least 6
-                                                    characters</div>
-                                            </div>
-                                            <div>
-                                                <i alt="show" class="fa fa-eye eye-show"
-                                                    (click)="showPassword = !showPassword"
-                                                    [class.hide]="showPassword"></i>
-                                                <i alt="hide" class="fa fa-eye-slash eye-hide"
-                                                    (click)="showPassword = !showPassword"
-                                                    [class.hide]="!showPassword"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="card" [hidden]="!isShowDiv">
+                    <div class="header">
+                        <h4 class="title">Change password</h4>
+                    </div>
+                    <div class="content">
+                        <form [formGroup]="passwordForm">
+
+                            <div class="row form-group inner-addon right-addon">
+                                <div class="col-md-6 input-group">
+                                    <label>New password</label>
+                                    <input [type]="showPassword ? 'text' : 'password'" formControlName="newPassword"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && p.newPassword.errors }"
+                                        placeholder="New password" name="newPassword" />
+
+                                    <div>
+                                        <i alt="show" class="fa fa-eye eye-show" (click)="showPassword = !showPassword"
+                                            [class.hide]="showPassword"></i>
+                                        <i alt="hide" class="fa fa-eye-slash eye-hide"
+                                            (click)="showPassword = !showPassword" [class.hide]="!showPassword"></i>
+                                    </div>
+                                    <div *ngIf="submitted && p.newPassword.errors"
+                                        class="invalid-feedback alert alert-danger">
+                                        <div *ngIf="p.newPassword.errors.required">Password is required</div>
+                                        <div *ngIf="p.newPassword.errors.minlength">Password must be at least 6
+                                            characters</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group inner-addon right-addon">
+                                <div class="col-md-6 input-group">
+                                    <label>Repeat password</label>
+                                    <input [type]="showPassword2 ? 'text' : 'password'" placeholder="Repeat password"
+                                        formControlName="confirmPassword" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && p.confirmPassword.errors }" />
+
+                                    <div>
+                                        <i alt="show" class="fa fa-eye eye-show"
+                                            (click)="showPassword2 = !showPassword2" [class.hide]="showPassword2"></i>
+                                        <i alt="hide" class="fa fa-eye-slash eye-hide"
+                                            (click)="showPassword2 = !showPassword2" [class.hide]="!showPassword2"></i>
+                                    </div>
+                                    <div *ngIf="submitted && p.confirmPassword.errors"
+                                        class="invalid-feedback alert alert-danger">
+                                        <div *ngIf="p.confirmPassword.errors.required">Confirm Password is
+                                            required</div>
+                                        <div *ngIf="p.confirmPassword.errors.mustMatch">Passwords must match
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button (click)="updatePassword()" class="btn btn-info btn-fill">Update
+                                password</button>
+
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card"  *ngIf="isStudent()">
+                    <div class="header">
+                        <h4 class="title">Account</h4>
+                    </div>
+                    <div class="content">
+                        <form [formGroup]="studentForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Cardname</label>
+                                        <input [readonly]="true" type="text" class="form-control text" placeholder="Cardname"
+                                            formControlName="cardName"
+                                            [ngClass]="{ 'is-invalid': submitted && s.cardName.errors }" />
+                                        <div *ngIf="submitted && s.cardName.errors" class="invalid-feedback">
+                                            <div *ngIf="s.cardName.errors.required">Cardname is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="field9c" class="form-control-label text">Available funds</label>
+                                    <p id="field9c" name="field9" class="form-control">{{ available }} RSD</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Model</label>
+                                        <input [readonly]="true" type="text" placeholder="Model" class="form-control text"
+                                            formControlName="model"
+                                            [ngClass]="{ 'is-invalid': submitted && s.model.errors }" />
+                                        <div *ngIf="submitted && s.model.errors" class="invalid-feedback">
+                                            <div *ngIf="s.model.errors.required">Model is required
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row form-group inner-addon right-addon">
-                                        <div class="col-md-6 input-group">
-                                            <label>Repeat password</label>
-                                            <input [type]="showPassword2 ? 'text' : 'password'"
-                                                placeholder="Repeat password" formControlName="confirmPassword"
-                                                class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && p.confirmPassword.errors }" />
-                                            <div *ngIf="submitted && p.confirmPassword.errors" class="invalid-feedback">
-                                                <div *ngIf="p.confirmPassword.errors.required">Confirm Password is
-                                                    required</div>
-                                                <div *ngIf="p.confirmPassword.errors.mustMatch">Passwords must match
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <i alt="show" class="fa fa-eye eye-show"
-                                                    (click)="showPassword2 = !showPassword2"
-                                                    [class.hide]="showPassword2"></i>
-                                                <i alt="hide" class="fa fa-eye-slash eye-hide"
-                                                    (click)="showPassword2 = !showPassword2"
-                                                    [class.hide]="!showPassword2"></i>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Personal call to number</label>
+                                        <input [readonly]="true" type="text" placeholder="Personal call to number" class="form-control text"
+                                            formControlName="personalCallToNumber"
+                                            [ngClass]="{ 'is-invalid': submitted && s.personalCallToNumber.errors }" />
+                                        <div *ngIf="submitted && s.personalCallToNumber.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="s.personalCallToNumber.errors.required">Personal call to
+                                                number is required
                                             </div>
                                         </div>
                                     </div>
-                                    <button (click)="updatePassword()" class="btn btn-info btn-fill">Update
-                                        password</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <!-- <h3>Account</h3> -->
+                                        <label>Bank account</label>
+                                        <input [readonly]="true" type="text" placeholder="Bank account" class="form-control text"
+                                            formControlName="bankAccount"
+                                            [ngClass]="{ 'is-invalid': submitted && s.bankAccount.errors }" />
+                                        <div *ngIf="submitted && s.bankAccount.errors" class="invalid-feedback">
+                                            <div *ngIf="s.bankAccount.errors.required">Bank account is required
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
-                        <div *ngIf="isAdmin()">
-                            <button (click)="save()" class="btn btn-info btn-fill pull-right">Save</button>
-                        </div>
-                        <div class="clearfix"></div>
-
                     </div>
                 </div>
             </div>
+
+
+
             <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
@@ -164,7 +214,7 @@
 
                                 <h4 class="title">{{ user? user.firstName : "" }} {{ user? user.lastName : "" }} <br />
                                     <small>{{ user? user.username : "" }}</small><BR>
-                                    <small *ngIf="isStudent()">Balance: {{ available }}</small>
+                                    <small *ngIf="isStudent()">Balance: {{ available }} RSD</small>
                                 </h4>
                             </a>
                         </div>
