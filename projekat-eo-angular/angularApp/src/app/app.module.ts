@@ -11,7 +11,7 @@ import { SluzbaLoginComponent } from './components/sluzba-login/sluzba-login.com
 import { SluzbaNotFoundPageComponent } from './components/sluzba-not-found-page/sluzba-not-found-page.component';
 import { SluzbaCoursesComponent } from './components/sluzba-courses/sluzba-courses.component';
 import { SluzbaCoursesServiceService } from './components/sluzba-courses/sluzba-courses-service.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtUtilsService } from './services/auth/jwt-utils.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
@@ -56,6 +56,7 @@ import { SluzbaPaymentDetailsComponent } from './components/sluzba-payment-detai
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
     AppRoutingModule,
