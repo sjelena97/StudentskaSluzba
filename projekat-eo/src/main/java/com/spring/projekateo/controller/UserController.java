@@ -63,6 +63,21 @@ public class UserController {
 		
 	}
 	
+	@PutMapping("updatePassword/{user_id}")
+	public ResponseEntity<UserDTO> updatePassword(@RequestBody String newPassword, @PathVariable("user_id") int id) {
+	
+		User user = userService.findById(id);
+		if (user == null) {
+			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		user.setPassword(passwordEncoder.encode(newPassword));
+
+		user = userService.save(user);
+		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);	
+		
+	}
+	
 	// Endpoint za dodavanje novog korisnika
 	@PostMapping("/addUser")
 	public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO newUser) {
