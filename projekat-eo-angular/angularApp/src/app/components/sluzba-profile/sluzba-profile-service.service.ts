@@ -42,4 +42,9 @@ export class SluzbaProfileServiceService {
     const urlPut =`${this.usersUrl}/updateUser/${user.id}`;
     return this.http.put<User>(urlPut, user, {observe: 'response'});
   }
+
+  updatePassword(id: number, password: String): Observable<HttpResponse<User>> {
+    const urlPut =`${this.usersUrl}/updatePassword/${id}`;
+    return this.http.put<User>(urlPut, password, {observe: 'response'});
+  }
 }

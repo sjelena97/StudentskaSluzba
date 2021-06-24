@@ -31,6 +31,9 @@ export class SluzbaProfileComponent implements OnInit {
   student: Student;
   available: 0 | number;
 
+  newPassword: String = '';
+  repeatedPassword: String = '';
+
   subscription: Subscription;
   public showPassword: boolean;
   public showPassword2: boolean;
@@ -83,6 +86,15 @@ export class SluzbaProfileComponent implements OnInit {
       });
   }
 
+  updatePassword(): void {
+    console.log("pass: " + this.newPassword)
+    this.profileService.updatePassword(this.user.id, this.newPassword)
+      .subscribe(user => {
+        this.profileService.announceChange();
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
+      });
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
