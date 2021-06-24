@@ -24,3 +24,13 @@
 .right-addon input {
     padding-right: 30px;
 }
+.card{
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+    padding-right: 10px !important;
+
+}
+.btn{
+    margin-right: 5px;
+}
+.text {cursor: text !important;}

@@ -175,6 +175,7 @@ export class SluzbaProfileComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
+
   isStudent(): boolean {
     return this.authService.isStudent();
   }
