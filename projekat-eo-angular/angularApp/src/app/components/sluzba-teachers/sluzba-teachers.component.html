@@ -1,34 +1,46 @@
-<div *ngIf="isLoggedIn()  && isAdmin()" class= "main-content" style="padding-top: 2%;">
+<div *ngIf="isLoggedIn()  && isAdmin()" class="main-content" style="padding-top: 2%;">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-          <div class="card">
-          <!--         <div class="header">
-                        <h4 class="title">Striped Table with Hover</h4>
-                        <p class="category">Here is a subtitle for this table</p>
-                    </div> -->
-        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+        <div class="card">
+          <div class="content table-responsive table-full-width" style="padding-top: 2%;">
             <table class="table table-hover" style="text-align: center;">
               <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Username</th>
-
-              </tr>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Firstname</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Email</th>
+                </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let teacher of teachers">
-                <th scope="row">{{ teacher.id }}</th>
-                <td>{{ teacher.user.firstName }}</td>
-                <td>{{ teacher.user.lastName }}</td>
-                <td>{{ teacher.user.username }}</td>
-              </tr>
+                <tr *ngFor="let teacher of teachers">
+                  <th scope="row">{{ teacher.id }}</th>
+                  <td>{{ teacher.user.firstName }}</td>
+                  <td>{{ teacher.user.lastName }}</td>
+                  <td>{{ teacher.user.username }}</td>
+                  <td>{{ teacher.user.email }}</td>
+                  <td *ngIf="isAdmin()">
+                    <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(teacher)">
+                      <span class="fa fa-edit" aria-hidden="true"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger" aria-label="Delete"
+                      (click)="deleteTeacher(teacher.id, teacher.user.firstName, teacher.user.lastName)">
+                      <span class="fa fa-trash" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
-          </div>
+        </div>
+        <div *ngIf="isAdmin()" class="right">
+          <button type="button" class="btn btn-success" aria-label="Add" (click)="gotoAdd()">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

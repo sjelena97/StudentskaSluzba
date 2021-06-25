@@ -45,5 +45,20 @@ export class SluzbaTeachersComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
+  gotoAdd(): void {
+    this.router.navigate(['/addTeacher']);
+  }
+
+  gotoEdit(teacher: Teacher): void {
+    this.router.navigate(['/editTeacher', teacher.id]);
+  }
+
+  deleteTeacher(teacherId: number, teacherFirstName: string, teacherLastName: string): void {
+    if(confirm("Are you sure to delete teacher " + teacherFirstName + " " + teacherLastName + "?")){
+    this.teacherService.deleteTeacher(teacherId).subscribe(
+      () => this.getTeachers()
+    );
+    }
+  }
 
 }

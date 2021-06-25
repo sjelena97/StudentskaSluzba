@@ -15,6 +15,7 @@ import { Payment } from 'src/app/model/payment';
 import { SluzbaPaymentsServiceService } from '../sluzba-payments/sluzba-payments-service.service';
 import { SluzbaAccountServiceService } from '../sluzba-account/sluzba-account-service.service';
 import { SluzbaProfileServiceService } from '../sluzba-profile/sluzba-profile-service.service';
+import { Enrollment } from 'src/app/model/enrollment';
 
 @Component({
   selector: 'app-sluzba-student-details',
@@ -44,6 +45,7 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     })
   });
 
+  enrollments: Enrollment[];
   documents: Document[];
   payments: Payment[];
   available: 0 | number;
@@ -99,6 +101,7 @@ export class SluzbaStudentDetailsComponent implements OnInit {
           this.studentForm.get('model').setValue(this.student.account.model);
           this.studentForm.get('personalCallToNumber').setValue(this.student.account.personalCallToNumber);
           this.getAvailableFunds();
+          this.getEnrollments();
           this.getDocuments();
           this.getPayments();
         });
@@ -109,6 +112,11 @@ export class SluzbaStudentDetailsComponent implements OnInit {
   get u() { return this.userForm.controls; }
   get s() { return this.studentForm.controls; }
   get p() { return this.passwordForm.controls; }
+
+  private getEnrollments(): void {
+    this.studentService.getStudentEnrollments(this.student.id).subscribe(res =>
+      this.enrollments = res.body);
+  }
 
   private getDocuments(): void {
     this.studentService.getStudentDocuments(this.student.id).subscribe(res =>
@@ -152,7 +160,7 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.userForm.invalid) {
+    if (this.userForm.invalid || this.studentForm.invalid) {
       return;
     }
 
@@ -176,7 +184,7 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.userForm.invalid) {
+    if (this.userForm.invalid || this.studentForm.invalid) {
       return;
     }
 
@@ -247,21 +255,6 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     }
   }
 
-  /*   gotoAddPayment(): void {
-      this.router.navigate(['/addPayment'], { queryParams: { accountId: this.student.account.id } });
-    }
-  
-    
-    gotoEditPayment(payment: Payment): void {
-      this.router.navigate(['/editPayment', payment.id]);
-    }
-  
-    deletePayment(paymentId: number): void {
-      this.paymentService.deletePayment(paymentId).subscribe(
-        () => this.getPayments()
-      );
-    }
-   */
   goBack(): void {
     this.location.back();
   }
