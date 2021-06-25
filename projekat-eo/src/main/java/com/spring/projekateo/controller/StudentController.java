@@ -108,6 +108,7 @@ public class StudentController {
 		user.setFirstName(studentDTO.getUser().getFirstName());
 		user.setLastName(studentDTO.getUser().getLastName());
 		user.setUsername(studentDTO.getUser().getUsername());
+		user.setEmail(studentDTO.getUser().getEmail());
 		student.setUser(user);
 		
 		Account account = student.getAccount();
@@ -140,8 +141,10 @@ public class StudentController {
 		user.setFirstName(newStudent.getUser().getFirstName());
 		user.setLastName(newStudent.getUser().getLastName());
 		user.setUsername(newStudent.getUser().getUsername());
+		user.setEmail(newStudent.getUser().getEmail());
+		String defaultPassword = "123";
 		// pre nego sto postavimo lozinku u atribut hesiramo je
-		user.setPassword(passwordEncoder.encode(newStudent.getUser().getPassword()));
+		user.setPassword(passwordEncoder.encode(defaultPassword));
 		user.setAuthority(authority);
 		user = userService.save(user);
 		student.setUser(user);
