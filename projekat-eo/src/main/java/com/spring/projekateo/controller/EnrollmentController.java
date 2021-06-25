@@ -41,7 +41,12 @@ public class EnrollmentController {
 	
 	@GetMapping("/getAllEnrollmentsForStudent/{student_id}")
 	public ResponseEntity<List<EnrollmentDTO>> getAllEnrollmentsForStudent(@PathVariable("student_id") int student_id){
+		
 			Student student = studentService.findById(student_id);
+			if(student == null) {
+				return new ResponseEntity<List<EnrollmentDTO>>(HttpStatus.BAD_REQUEST);
+			}
+			
 		 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
 		 	List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
 			for (Enrollment e: enrollments) {
