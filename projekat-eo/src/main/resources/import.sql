@@ -2,10 +2,10 @@ INSERT INTO AUTHORITY (authority_id, name) VALUES (1, 'STUDENT');
 INSERT INTO AUTHORITY (authority_id, name) VALUES (2, 'TEACHER');
 INSERT INTO AUTHORITY (authority_id, name) VALUES (3, 'ADMIN');
 
-INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id) VALUES (1, 'sjelena', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Jelena', 'Stokanovic', 1);
-INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id) VALUES (2, 'petra', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Petra', 'Petrovic', 3);
-INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id) VALUES (3, 'danijel', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Danijel', 'Vukovic', 1);
-INSERT INTO USER (user_id, username, password, firstname, lastname, authority_id) VALUES (4, 'sinisa', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Sinisa', 'Nikolic', 2);
+INSERT INTO USER (user_id, username, password, firstname, lastname, email, authority_id) VALUES (1, 'sjelena', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Jelena', 'Stokanovic', 'lelaug97@hotmail.com', 1);
+INSERT INTO USER (user_id, username, password, firstname, lastname, email, authority_id) VALUES (2, 'petra', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Petra', 'Petrovic', 'petrap@gmail.com', 3);
+INSERT INTO USER (user_id, username, password, firstname, lastname, email, authority_id) VALUES (3, 'danijel', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Danijel', 'Vukovic', 'danijel_vuk@hotmail.com', 1);
+INSERT INTO USER (user_id, username, password, firstname, lastname, email, authority_id) VALUES (4, 'sinisa', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 'Sinisa', 'Nikolic', 'sima@hotmail.com', 2);
 
 INSERT INTO ACCOUNT (account_id, bank_account, model, personal_call_to_number) VALUES (1, '840-1710666-12', '97', '56-99011-1-4532-1836');
 INSERT INTO ACCOUNT (account_id, bank_account, model, personal_call_to_number) VALUES (2, '840-1710666-12', '97', '93-99011-1-4532-1856');
