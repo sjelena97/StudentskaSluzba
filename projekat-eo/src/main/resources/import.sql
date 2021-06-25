@@ -13,7 +13,7 @@ INSERT INTO ACCOUNT (account_id, bank_account, model, personal_call_to_number) V
 INSERT INTO STUDENT (student_id, card_name, account_id, user_id, active) VALUES (1, 'SF36/2018', 1, 1, 1);
 INSERT INTO STUDENT (student_id, card_name, account_id, user_id, active) VALUES (2, 'SF56/2018', 2, 3, 1);
 
-INSERT INTO TEACHER (teacher_id, user_id) VALUES (1, 4);
+INSERT INTO TEACHER (teacher_id, user_id, active) VALUES (1, 4, 1);
 
 INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (1, 6, 'EO', 'eObrazovanje', 1);
 INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (2, 6, 'EU', 'eUprava', 1);

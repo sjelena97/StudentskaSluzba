@@ -47,7 +47,12 @@ public class TeachingController {
 	
 	@GetMapping("/getAllTeachingsForTeacher/{teacher_id}") 
 	public ResponseEntity<List<TeachingDTO>> getAllTeachingsForTeacher(@PathVariable("teacher_id") int teacher_id) {
+		
 		Teacher teacher = teacherService.findById(teacher_id);
+		if(teacher == null) {
+			return new ResponseEntity<List<TeachingDTO>>(HttpStatus.BAD_REQUEST);
+		}
+		
 	 	Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
 	 	List<TeachingDTO> teachingsDTO = new ArrayList<>();
 		for (Teaching t : teachings) {
@@ -64,7 +69,6 @@ public class TeachingController {
 		}
 		return new ResponseEntity<>(teachingsDTO, HttpStatus.OK);
 	}
-	
 	
 	@GetMapping("/getAllTeachingsForCourse/{course_id}") 
 	public ResponseEntity<List<TeachingDTO>> getAllTeachingsForCourse(@PathVariable("course_id") int course_id) {

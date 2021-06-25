@@ -74,17 +74,15 @@ public class StudentController {
 		User user = userService.findByUsername(username);
 		Student student = studentService.findByUser(user);
 		if (student == null) {
-			System.out.println("Student is null");
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		} else {
-			System.out.println("student founded");
 			return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);
 		}
 	}
 	
 	@PutMapping(value = "updateStudent/{student_id}")
-	public ResponseEntity<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO , @PathVariable("student_id") int id) {
-		Student student = studentService.findById(id);
+	public ResponseEntity<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO , @PathVariable("student_id") int student_id) {
+		Student student = studentService.findById(student_id);
 		if (student == null) {
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		}
@@ -94,7 +92,7 @@ public class StudentController {
 				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 			}
 		}
-		if(!studentDTO.getUser().getUsername().equalsIgnoreCase(studentDTO.getUser().getUsername())) {
+		if(!studentDTO.getUser().getUsername().equalsIgnoreCase(student.getUser().getUsername())) {
 			User user2 = userService.findByUsername(studentDTO.getUser().getUsername());
 			if(user2 != null) {
 				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
@@ -123,37 +121,46 @@ public class StudentController {
 	
 	@PostMapping("/addStudent")
 	public ResponseEntity<StudentDTO> addStudent(@RequestBody StudentDTO newStudent) {
+		
 		User existUser = userService.findByUsername(newStudent.getUser().getUsername());
 		if(existUser != null) {
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		}
+		
 		Student existStudent = studentService.findByCardName(newStudent.getCardName());
 		if(existStudent != null) {
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		}
+		
 		Student student = new Student();
 		student.setCardName(newStudent.getCardName());
+		
 		User user = new User();
+		
 		Authority authority = authorityService.findByName("STUDENT");
 		if(authority == null) {
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		}
+		user.setAuthority(authority);
+		
 		user.setFirstName(newStudent.getUser().getFirstName());
 		user.setLastName(newStudent.getUser().getLastName());
 		user.setUsername(newStudent.getUser().getUsername());
 		user.setEmail(newStudent.getUser().getEmail());
-		String defaultPassword = "123";
+		String defaultPassword = "student";
 		// pre nego sto postavimo lozinku u atribut hesiramo je
 		user.setPassword(passwordEncoder.encode(defaultPassword));
-		user.setAuthority(authority);
+		
 		user = userService.save(user);
 		student.setUser(user);
+		
 		Account account = new Account();
 		account.setBankAccount(newStudent.getAccount().getBankAccount());
 		account.setModel(newStudent.getAccount().getModel());
 		account.setPersonalCallToNumber(newStudent.getAccount().getPersonalCallToNumber());
 		account = accountService.save(account);
 		student.setAccount(account);
+		
 		student = studentService.save(student);
 		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.CREATED);	
 	}
@@ -166,9 +173,8 @@ public class StudentController {
 			student.setActive(false);
 			student = studentService.save(student);
 			return new ResponseEntity<Void>(HttpStatus.OK);
-		} else {		
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-		}
+		} 		
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		
 	}
 
