@@ -57,6 +57,7 @@ public class UserController {
 		user.setFirstName(userDTO.getFirstName());
 		user.setLastName(userDTO.getLastName());
 		user.setUsername(userDTO.getUsername());
+		user.setEmail(userDTO.getEmail());
 
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.OK);	
@@ -90,8 +91,10 @@ public class UserController {
 		user.setFirstName(newUser.getFirstName());
 		user.setLastName(newUser.getLastName());
 		user.setUsername(newUser.getUsername());
+		user.setEmail(newUser.getEmail());
+		String defaultPassword = "123";
 		// pre nego sto postavimo lozinku u atribut hesiramo je
-		user.setPassword(passwordEncoder.encode(newUser.getPassword()));
+		user.setPassword(passwordEncoder.encode(defaultPassword));
 		user = userService.save(user);
 		return new ResponseEntity<UserDTO>(new UserDTO(user), HttpStatus.CREATED);	
 	}

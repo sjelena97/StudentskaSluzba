@@ -29,8 +29,11 @@ public class User{
 	@Column(name="lastname", nullable = false)
 	private String lastName;
 	
-	@Column(name="username", nullable = false)
+	@Column(name="username", nullable = false, unique = true)
 	private String username;
+	
+	@Column(name="email", nullable = false, unique = true)
+	private String email;
 	
 	@Column(name = "password", nullable = false)
 	@JsonIgnore
@@ -73,6 +76,14 @@ public class User{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
