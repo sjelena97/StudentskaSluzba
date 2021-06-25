@@ -31,6 +31,7 @@ export class SluzbaProfileComponent implements OnInit {
     username: '',
     firstName: '',
     lastName: '',
+    email: '',
     password: ''
   });
 
@@ -59,7 +60,7 @@ export class SluzbaProfileComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: [this.user.username, Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
       
     });
@@ -88,6 +89,7 @@ export class SluzbaProfileComponent implements OnInit {
       this.userForm.get('firstName').setValue(this.user.firstName);
       this.userForm.get('lastName').setValue(this.user.lastName);
       this.userForm.get('username').setValue(this.user.username);
+      this.userForm.get('email').setValue(this.user.email);
     });
     if (this.authService.isStudent()) {
       this.getStudent();
@@ -144,6 +146,7 @@ export class SluzbaProfileComponent implements OnInit {
     this.user.firstName =  this.userForm.get('firstName').value;
     this.user.lastName =  this.userForm.get('lastName').value;
     this.user.username =  this.userForm.get('username').value;
+    this.user.email =  this.userForm.get('email').value;
 
     this.profileService.editUser(this.user)
       .subscribe(user => {

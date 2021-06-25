@@ -37,6 +37,7 @@ export class SluzbaDocumentDetailsComponent implements OnInit {
         username: '',
         firstName: '',
         lastName: '',
+        email: '',
         password: ''
       })
     })

@@ -1,116 +1,262 @@
 <div class="main-content">
-    <div class="container-fluid">
+    <div class="container-fluid" *ngIf="isAdmin()">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card" style="padding-left: 10px;">
-                    <h3>Student</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="field1c" class="form-control-label">Firstname</label>
-                            <input type="text" [(ngModel)]="student.user.firstName" placeholder="Firstname"
-                                class="form-control" id="field1c" name="field1">
-                            <label for="field2c" class="form-control-label">Lastname</label>
-                            <input type="text" [(ngModel)]="student.user.lastName" placeholder="Lastname"
-                                class="form-control" id="field2c" name="field2">
-                            <label for="field3c" class="form-control-label">Username</label>
-                            <input type="text" [(ngModel)]="student.user.username" placeholder="Username"
-                                class="form-control" id="field3c" name="field3">
-                            <label for="field4c" class="form-control-label">Password</label>
-                            <input type="password" [(ngModel)]="student.user.password" placeholder="Password"
-                                class="form-control" id="field4c" name="field4">
-                            <label for="field5c" class="form-control-label">Cardname</label>
-                            <input type="text" [(ngModel)]="student.cardName" placeholder="Cardname"
-                                class="form-control" id="field5c" name="field5">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Student</h4>
+                </div>
+                <div class="content">
+                    <form [formGroup]="userForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" placeholder="First name"
+                                        formControlName="firstName" class="form-control text"
+                                        [ngClass]="{ 'is-invalid': submitted && u.firstName.errors }" />
+                                    <div *ngIf="submitted && u.firstName.errors"
+                                        class="invalid-feedback alert alert-danger">
+                                        <div *ngIf="u.firstName.errors.required">First Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" placeholder="Last Name"
+                                        formControlName="lastName" class="form-control text"
+                                        [ngClass]="{ 'is-invalid': submitted && u.lastName.errors }" />
+                                    <div *ngIf="submitted && u.lastName.errors"
+                                        class="invalid-feedback alert alert-danger">
+                                        <div *ngIf="u.lastName.errors.required">Last Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" placeholder="Username"
+                                        formControlName="username" class="form-control text"
+                                        [ngClass]="{ 'is-invalid': submitted && u.username.errors }" />
+                                    <div *ngIf="submitted && u.username.errors"
+                                        class="invalid-feedback alert alert-danger">
+                                        <div *ngIf="u.username.errors.required">Username is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" placeholder="Email"
+                                        formControlName="email" class="form-control text"
+                                        [ngClass]="{ 'is-invalid': submitted && u.email.errors }" />
+                                    <div *ngIf="submitted && u.email.errors"
+                                        class="invalid-feedback alert alert-danger">
+                                        <div *ngIf="u.email.errors.required">Email is required</div>
+                                        <div *ngIf="u.email.errors.email">Email must be a valid email address
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="student.id">
+                            <button (click)=toggleDisplayDiv() class="btn btn-secondary btn-fill pull-left">Change
+                                password</button>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="student.id" class="card" [hidden]="!isShowDiv">
+                <div class="header">
+                    <h4 class="title">Change password</h4>
+                </div>
+                <div class="content">
+                    <form [formGroup]="passwordForm">
+
+                        <div class="row form-group inner-addon right-addon">
+                            <div class="col-md-6 input-group">
+                                <label>New password</label>
+                                <input [type]="showPassword ? 'text' : 'password'" formControlName="newPassword"
+                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && p.newPassword.errors }"
+                                    placeholder="New password" name="newPassword" />
+
+                                <div>
+                                    <i alt="show" class="fa fa-eye eye-show" (click)="showPassword = !showPassword"
+                                        [class.hide]="showPassword"></i>
+                                    <i alt="hide" class="fa fa-eye-slash eye-hide"
+                                        (click)="showPassword = !showPassword" [class.hide]="!showPassword"></i>
+                                </div>
+                                <div *ngIf="submitted && p.newPassword.errors"
+                                    class="invalid-feedback alert alert-danger">
+                                    <div *ngIf="p.newPassword.errors.required">Password is required</div>
+                                    <div *ngIf="p.newPassword.errors.minlength">Password must be at least 6
+                                        characters</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group inner-addon right-addon">
+                            <div class="col-md-6 input-group">
+                                <label>Repeat password</label>
+                                <input [type]="showPassword2 ? 'text' : 'password'" placeholder="Repeat password"
+                                    formControlName="confirmNewPassword" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && p.confirmNewPassword.errors }" />
+
+                                <div>
+                                    <i alt="show" class="fa fa-eye eye-show" (click)="showPassword2 = !showPassword2"
+                                        [class.hide]="showPassword2"></i>
+                                    <i alt="hide" class="fa fa-eye-slash eye-hide"
+                                        (click)="showPassword2 = !showPassword2" [class.hide]="!showPassword2"></i>
+                                </div>
+                                <div *ngIf="submitted && p.confirmNewPassword.errors"
+                                    class="invalid-feedback alert alert-danger">
+                                    <div *ngIf="p.confirmNewPassword.errors.required">Confirm Password is
+                                        required</div>
+                                    <div *ngIf="p.confirmNewPassword.errors.mustMatch">Passwords must match
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button (click)="updatePassword()" class="btn btn-info btn-fill">Update
+                            password</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <form [formGroup]="studentForm">
+                        <div class="row">
+                            <div class="header">
+                                <h4 class="title">Student informations</h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Cardname</label>
+                                    <input type="text" class="form-control text"
+                                        placeholder="Cardname" formControlName="cardName"
+                                        [ngClass]="{ 'is-invalid': submitted && s.cardName.errors }" />
+                                    <div *ngIf="submitted && s.cardName.errors" class="invalid-feedback">
+                                        <div *ngIf="s.cardName.errors.required">Cardname is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="header">
+                                <h4 class="title">Account</h4>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="field9c" class="form-control-label text">Available funds</label>
+                                <p id="field9c" name="field9" class="form-control">{{ available }} RSD</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Model</label>
+                                    <input type="text" placeholder="Model" class="form-control text"
+                                        formControlName="model"
+                                        [ngClass]="{ 'is-invalid': submitted && s.model.errors }" />
+                                    <div *ngIf="submitted && s.model.errors" class="invalid-feedback">
+                                        <div *ngIf="s.model.errors.required">Model is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Personal call to number</label>
+                                    <input type="text" placeholder="Personal call to number"
+                                        class="form-control text" formControlName="personalCallToNumber"
+                                        [ngClass]="{ 'is-invalid': submitted && s.personalCallToNumber.errors }" />
+                                    <div *ngIf="submitted && s.personalCallToNumber.errors" class="invalid-feedback">
+                                        <div *ngIf="s.personalCallToNumber.errors.required">Personal call to
+                                            number is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <!-- <h3>Account</h3> -->
+                                    <label>Bank account</label>
+                                    <input type="text" placeholder="Bank account"
+                                        class="form-control text" formControlName="bankAccount"
+                                        [ngClass]="{ 'is-invalid': submitted && s.bankAccount.errors }" />
+                                    <div *ngIf="submitted && s.bankAccount.errors" class="invalid-feedback">
+                                        <div *ngIf="s.bankAccount.errors.required">Bank account is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div *ngIf="student.id">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="padding-left: 10px;">
-                        <h3>Account</h3>
-                        <form>
-                            <div class="form-group">
-                                <label for="field6c" class="form-control-label">Bank account</label>
-                                <input type="text" [(ngModel)]="student.account.bankAccount" placeholder="Bank account"
-                                    class="form-control" id="field6c" name="field6">
-                                <label for="field7c" class="form-control-label">Model</label>
-                                <input type="text" [(ngModel)]="student.account.model" placeholder="Model"
-                                    class="form-control" id="field7c" name="field7">
-                                <label for="field8c" class="form-control-label">Personal call to number</label>
-                                <input type="text" [(ngModel)]="student.account.personalCallToNumber" placeholder="Personal call to number"
-                                    class="form-control" id="field8c" name="field8">
-                                <label for="field9c" class="form-control-label">Available funds</label>
-                                <p class="form-control" id="field9c" name="field9">{{ available }}</p>
-                            </div>
-                        </form>
+        <div *ngIf="student.id" class="row">
+            <div class="col-md-12">
+                <div class="card" style="padding-left: 10px;">
+                    <div>
+                        <h3>Payments</h3>
+                        <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddPayment()">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+                        <table class="table table-bordered">
+                            <tr *ngFor="let payment of payments">
+                                <td>
+                                    {{payment.date | date }} | {{ payment.purpose }} | {{payment.amount | number }}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" aria-label="Edit"
+                                        (click)="gotoEditPayment(payment)">
+                                        <span class="fa fa-edit" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger right" aria-label="Delete"
+                                        (click)="deletePayment(payment.id)">
+                                        <span class="fa fa-trash" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="padding-left: 10px;">
-                        <div>
-                            <h3>Payments</h3>
-                            <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddPayment()">
-                                <span class="fa fa-plus" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
-                            <table class="table table-bordered">
-                                <tr *ngFor="let payment of payments">
-                                    <td>
-                                        {{payment.date | date }} | {{ payment.purpose }} | {{payment.amount | number }}
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" aria-label="Edit"
-                                            (click)="gotoEditPayment(payment)">
-                                            <span class="fa fa-edit" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger right" aria-label="Delete"
-                                            (click)="deletePayment(payment.id)">
-                                            <span class="fa fa-trash" aria-hidden="true"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+            <div class="col-md-12">
+                <div class="card" style="padding-left: 10px;">
+                    <div>
+                        <h3>Documents</h3>
+                        <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddDocument()">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                        </button>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card" style="padding-left: 10px;">
-                        <div>
-                            <h3>Documents</h3>
-                            <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddDocument()">
-                                <span class="fa fa-plus" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <div class="content table-responsive table-full-width" style="padding-top: 2%;">
-                            <table class="table table-bordered">
-                                <tr *ngFor="let document of documents">
-                                    <td>
-                                        {{ document.type.name }} {{document.title}}
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" aria-label="Edit"
-                                            (click)="gotoEditDocument(document)">
-                                            <span class="fa fa-edit" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger right" aria-label="Delete"
-                                            (click)="deleteDocument(document.id, document.title)">
-                                            <span class="fa fa-trash" aria-hidden="true"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="content table-responsive table-full-width" style="padding-top: 2%;">
+                        <table class="table table-bordered">
+                            <tr *ngFor="let document of documents">
+                                <td>
+                                    {{ document.type.name }} {{document.title}}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" aria-label="Edit"
+                                        (click)="gotoEditDocument(document)">
+                                        <span class="fa fa-edit" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger right" aria-label="Delete"
+                                        (click)="deleteDocument(document.id, document.title)">
+                                        <span class="fa fa-trash" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div *ngIf="isAdmin()">
+        <div>
             <button class="btn btn-success" (click)="save()">OK</button>
             <button class="btn btn-danger" (click)="goBack()">Cancel</button>
         </div>

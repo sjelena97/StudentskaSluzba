@@ -36,6 +36,7 @@ export class SluzbaTeachingsComponent implements OnInit {
           username: '',
           firstName: '',
           lastName: '',
+          email: '',
           password: ''
         })
       }),

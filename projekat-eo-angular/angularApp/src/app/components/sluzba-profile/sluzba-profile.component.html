@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div  *ngIf="(isAdmin || isStudent())" class="card">
+                <div class="card">
                     <div class="header">
                         <h4 class="title">Profile</h4>
                     </div>
@@ -125,19 +125,17 @@
                             </div>
                             <button (click)="updatePassword()" class="btn btn-info btn-fill">Update
                                 password</button>
-
-
                         </form>
                     </div>
                 </div>
                 <div class="card"  *ngIf="isStudent()">
-                    <div class="header">
-                        <h4 class="title">Account</h4>
-                    </div>
                     <div class="content">
                         <form [formGroup]="studentForm">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="header">
+                                    <h4 class="title">Student informations</h4>
+                                </div>
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Cardname</label>
                                         <input [readonly]="true" type="text" class="form-control text" placeholder="Cardname"
@@ -148,13 +146,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row">
+                                <div class="header">
+                                    <h4 class="title">Account</h4>
+                                </div>
+                                <div class="col-md-3">
                                     <label for="field9c" class="form-control-label text">Available funds</label>
                                     <p id="field9c" name="field9" class="form-control">{{ available }} RSD</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Model</label>
                                         <input [readonly]="true" type="text" placeholder="Model" class="form-control text"
@@ -166,7 +167,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Personal call to number</label>
                                         <input [readonly]="true" type="text" placeholder="Personal call to number" class="form-control text"
@@ -180,7 +181,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <!-- <h3>Account</h3> -->
                                         <label>Bank account</label>

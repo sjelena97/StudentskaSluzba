@@ -40,6 +40,7 @@ export class SluzbaEnrollmentsComponent implements OnInit {
           username: '',
           firstName: '',
           lastName: '',
+          email: '',
           password: ''
         })
       }),
