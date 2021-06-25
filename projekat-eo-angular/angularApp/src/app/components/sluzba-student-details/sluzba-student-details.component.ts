@@ -160,8 +160,6 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     this.student.user.lastName = this.userForm.get('lastName').value;
     this.student.user.username = this.userForm.get('username').value;
     this.student.user.email = this.userForm.get('email').value;
-    console.log("email: " + this.student.user.email);
-    console.log("field: " + this.userForm.get('email').value);
     this.student.cardName = this.studentForm.get('cardName').value;
     this.student.account.bankAccount = this.studentForm.get('bankAccount').value;
     this.student.account.model = this.studentForm.get('model').value;
