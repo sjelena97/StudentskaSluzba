@@ -241,10 +241,12 @@ export class SluzbaStudentDetailsComponent implements OnInit {
     this.router.navigate(['/editPayment', payment.id]);
   }
 
-  deletePayment(paymentId: number): void {
-    this.paymentService.deletePayment(paymentId).subscribe(
-      () => this.getPayments()
-    );
+  deletePayment(paymentId: number, amount: number, purpose: string): void {
+    if (confirm("Are you sure to delete paymemt "  + purpose + " | " + amount + " ?")) {
+      this.paymentService.deletePayment(paymentId).subscribe(
+        () => this.getPayments()
+      );
+    }
   }
 
   /*   gotoAddPayment(): void {
