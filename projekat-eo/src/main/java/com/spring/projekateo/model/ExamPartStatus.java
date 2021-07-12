@@ -29,7 +29,7 @@ public class ExamPartStatus {
 	private String code;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "status")
-	private Set<ExamPart> parts = new HashSet<ExamPart>();
+	private Set<ExamPartTaking> takings = new HashSet<ExamPartTaking>();
 	
 	public ExamPartStatus() {
 		
@@ -59,12 +59,12 @@ public class ExamPartStatus {
 		this.code = code;
 	}
 
-	public Set<ExamPart> getParts() {
-		return parts;
+	public Set<ExamPartTaking> getTakings() {
+		return takings;
 	}
 
-	public void setParts(Set<ExamPart> parts) {
-		this.parts = parts;
+	public void setTakings(Set<ExamPartTaking> takings) {
+		this.takings = takings;
 	}
 
 }

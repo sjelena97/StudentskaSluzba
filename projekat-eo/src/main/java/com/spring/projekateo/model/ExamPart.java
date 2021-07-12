@@ -1,14 +1,19 @@
 package com.spring.projekateo.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +26,7 @@ public class ExamPart {
 	private Integer id;
 	 
 	@Column(name = "points")
-	private int points;
+	private double points;
 	 
 	@Column(name = "date", nullable = false)
 	private Date date;
@@ -30,16 +35,19 @@ public class ExamPart {
 	private String location;
 	
 	@ManyToOne
-	@JoinColumn(name = "exam_id", referencedColumnName = "exam_id", nullable = false)
-	private Exam exam;
-	
-	@ManyToOne
 	@JoinColumn(name = "type_id", referencedColumnName = "exam_part_type_id", nullable = false)
 	private ExamPartType type;
 	
 	@ManyToOne
-	@JoinColumn(name = "status_id", referencedColumnName = "exam_part_status_id")
-	private ExamPartStatus status;
+	@JoinColumn(name = "exam_period_id", referencedColumnName = "exam_period_id", nullable = false)
+	private ExamPeriod period;
+	
+	@ManyToOne
+	@JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
+	private Course course;
+
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "part")
+	private Set<ExamPartTaking> takings = new HashSet<ExamPartTaking>();
 	
 	public ExamPart() {
 
@@ -53,11 +61,11 @@ public class ExamPart {
 		this.id = id;
 	}
 
-	public int getPoints() {
+	public double getPoints() {
 		return points;
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(double points) {
 		this.points = points;
 	}
 
@@ -77,14 +85,6 @@ public class ExamPart {
 		this.location = location;
 	}
 
-	public Exam getExam() {
-		return exam;
-	}
-
-	public void setExam(Exam exam) {
-		this.exam = exam;
-	}
-
 	public ExamPartType getType() {
 		return type;
 	}
@@ -93,12 +93,28 @@ public class ExamPart {
 		this.type = type;
 	}
 
-	public ExamPartStatus getStatus() {
-		return status;
+	public ExamPeriod getPeriod() {
+		return period;
 	}
 
-	public void setStatus(ExamPartStatus status) {
-		this.status = status;
+	public void setPeriod(ExamPeriod period) {
+		this.period = period;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Set<ExamPartTaking> getTakings() {
+		return takings;
+	}
+
+	public void setTakings(Set<ExamPartTaking> takings) {
+		this.takings = takings;
 	}
 	
 }

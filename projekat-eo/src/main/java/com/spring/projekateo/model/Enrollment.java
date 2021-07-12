@@ -40,7 +40,7 @@ public class Enrollment {
 	private Course course;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "enrollment")
-	private Set<Exam> exams = new HashSet<Exam>();
+	private Set<ExamPartTaking> takings = new HashSet<ExamPartTaking>();
 	
 	@Column(name = "active", nullable = false)
 	private boolean active = true;
@@ -89,12 +89,12 @@ public class Enrollment {
 		this.course = course;
 	}
 
-	public Set<Exam> getExams() {
-		return exams;
+	public Set<ExamPartTaking> getTakings() {
+		return takings;
 	}
 
-	public void setExams(Set<Exam> exams) {
-		this.exams = exams;
+	public void setTakings(Set<ExamPartTaking> takings) {
+		this.takings = takings;
 	}
 
 	public boolean isActive() {
