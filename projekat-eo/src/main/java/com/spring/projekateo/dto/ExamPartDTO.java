@@ -3,36 +3,37 @@ package com.spring.projekateo.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.ExamPart;
 
 public class ExamPartDTO implements Serializable{
 	
 	private Integer id;
-	private int points;
+	private double points;
 	private Date date;
 	private String location;
-	private ExamDTO exam;
+	private ExamPeriodDTO period;
 	private ExamPartTypeDTO type;
-	private ExamPartStatusDTO status;
+	private CourseDTO course;
 	
 	public ExamPartDTO() {
 		super();
 	}
 
-	public ExamPartDTO(Integer id, int points, Date date, String location, ExamDTO exam, ExamPartTypeDTO type, ExamPartStatusDTO status) {
+	public ExamPartDTO(Integer id, double points, Date date, String location, ExamPeriodDTO period, ExamPartTypeDTO type, CourseDTO course) {
 		super();
 		this.id = id;
 		this.points = points;
 		this.date = date;
 		this.location = location;
-		this.exam = exam;
+		this.period = period;
 		this.type = type;
-		this.status = status;
+		this.course = course;
 	}
 	
 	
 	public ExamPartDTO(ExamPart examPart){
-		this(examPart.getId(), examPart.getPoints(), examPart.getDate(), examPart.getLocation(), new ExamDTO(examPart.getExam()), new ExamPartTypeDTO(examPart.getType()), new ExamPartStatusDTO(examPart.getStatus()));
+		this(examPart.getId(), examPart.getPoints(), examPart.getDate(), examPart.getLocation(), new ExamPeriodDTO(examPart.getPeriod()), new ExamPartTypeDTO(examPart.getType()), new CourseDTO(examPart.getCourse()));
 	}
 
 	public Integer getId() {
@@ -43,11 +44,11 @@ public class ExamPartDTO implements Serializable{
 		this.id = id;
 	}
 
-	public int getPoints() {
+	public double getPoints() {
 		return points;
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(double points) {
 		this.points = points;
 	}
 
@@ -67,12 +68,12 @@ public class ExamPartDTO implements Serializable{
 		this.location = location;
 	}
 
-	public ExamDTO getExam() {
-		return exam;
+	public ExamPeriodDTO getPeriod() {
+		return period;
 	}
 
-	public void setExam(ExamDTO exam) {
-		this.exam = exam;
+	public void setPeriod(ExamPeriodDTO period) {
+		this.period = period;
 	}
 
 	public ExamPartTypeDTO getType() {
@@ -83,12 +84,12 @@ public class ExamPartDTO implements Serializable{
 		this.type = type;
 	}
 
-	public ExamPartStatusDTO getStatus() {
-		return status;
+	public CourseDTO getCourse() {
+		return course;
 	}
 
-	public void setStatus(ExamPartStatusDTO status) {
-		this.status = status;
+	public void setCourse(CourseDTO course) {
+		this.course = course;
 	}
 
 }

@@ -33,7 +33,7 @@ public class ExamPeriod {
 	private Date endDate;
 	
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "period")
-	private Set<Exam> exams = new HashSet<Exam>();
+	private Set<ExamPart> examParts = new HashSet<ExamPart>();
 	
 	@Column(name = "active", nullable = false)
 	private boolean active = true;
@@ -74,12 +74,12 @@ public class ExamPeriod {
 		this.endDate = endDate;
 	}
 
-	public Set<Exam> getExams() {
-		return exams;
+	public Set<ExamPart> getExamParts() {
+		return examParts;
 	}
 
-	public void setExams(Set<Exam> exams) {
-		this.exams = exams;
+	public void setExamParts(Set<ExamPart> examParts) {
+		this.examParts = examParts;
 	}
 
 	public boolean isActive() {
