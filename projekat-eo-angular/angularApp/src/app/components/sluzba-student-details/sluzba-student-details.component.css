@@ -34,3 +34,10 @@
     margin-right: 5px;
 }
 .text {cursor: text !important;}
+
+td{
+    padding: 5px;
+}
+tr{
+    border-bottom: 0.5px solid #DCDCDE;
+}
