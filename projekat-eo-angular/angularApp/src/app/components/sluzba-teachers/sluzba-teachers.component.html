@@ -1,6 +1,14 @@
 <div *ngIf="isLoggedIn()  && isAdmin()" class="main-content" style="padding-top: 2%;">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input type="text" class="form-control inputSearch" placeholder="Search" autocomplete="off" id="search" />
+          <label></label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="content table-responsive table-full-width" style="padding-top: 2%;">

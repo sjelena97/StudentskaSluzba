@@ -24,11 +24,24 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card" style="padding-left: 10px;">
-            <div>
-              <h3>Teachers</h3>
-              <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddTeaching()">
-                <span class="fa fa-plus" aria-hidden="true"></span>
-              </button>
+            <div class="row">
+              <div class="col-md-6 col-xs-6" >
+                <h3>Teachers</h3>
+              </div>
+              <div class="col-md-6 col-xs-6"  style="float: right; padding-top: 15px;">
+                <button style="float: right;" type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddTeaching()">
+                  <span class="fa fa-plus" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mx-auto">
+                <div class="md-form">
+                  <input type="text" class="form-control inputSearch" placeholder="Search" autocomplete="off"
+                    id="search" />
+                  <label></label>
+                </div>
+              </div>
             </div>
             <div class="content table-responsive table-full-width" style="padding-top: 2%;">
               <table class="table table-bordered">
@@ -37,7 +50,7 @@
                     {{teaching.type.name}} {{teaching.teacher.user.firstName}} {{teaching.teacher.user.lastName}}
                     [Since {{teaching.startDate | date: 'dd.MM.yyyy'}} until {{teaching.endDate | date: 'dd.MM.yyyy'}}]
                   </td>
-                  <td>
+                  <td style="float: right">
                     <button type="button" class="btn btn-danger right" aria-label="Delete"
                       (click)="deleteTeaching(teaching.id,teaching.teacher.user.firstName,teaching.teacher.user.lastName ,course.name)">
                       <span class="fa fa-trash" aria-hidden="true"></span>
@@ -50,11 +63,24 @@
         </div>
         <div class="col-md-12">
           <div class="card" style="padding-left: 10px;">
-            <div>
-              <h3>Students</h3>
-              <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddEnrollment()">
-                <span class="fa fa-plus" aria-hidden="true"></span>
-              </button>
+            <div class="row">
+              <div class="col-md-6 col-xs-6">
+                <h3>Students</h3>
+              </div>
+              <div class="col-md-6 col-xs-6" style="float: right; padding-top: 15px;">
+                <button style="float: right;" type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddEnrollment()">
+                  <span class="fa fa-plus" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mx-auto">
+                <div class="md-form">
+                  <input type="text" class="form-control inputSearch" placeholder="Search" autocomplete="off"
+                    id="search" />
+                  <label></label>
+                </div>
+              </div>
             </div>
             <div class="content table-responsive table-full-width" style="padding-top: 2%;">
               <table class="table table-bordered">
@@ -65,7 +91,7 @@
                     [Since {{enrollment.startDate | date: 'dd.MM.yyyy'}} until {{enrollment.endDate | date:
                     'dd.MM.yyyy'}}]
                   </td>
-                  <td>
+                  <td style="float: right">
                     <button type="button" class="btn btn-danger right" aria-label="Delete"
                       (click)="deleteEnrollment(enrollment.id,enrollment.student.user.firstName,enrollment.student.user.lastName ,course.name)">
                       <span class="fa fa-trash" aria-hidden="true"></span>

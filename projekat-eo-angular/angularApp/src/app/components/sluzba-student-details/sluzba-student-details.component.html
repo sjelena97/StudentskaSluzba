@@ -11,8 +11,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" placeholder="First name"
-                                        formControlName="firstName" class="form-control text"
+                                    <input type="text" placeholder="First name" formControlName="firstName"
+                                        class="form-control text"
                                         [ngClass]="{ 'is-invalid': submitted && u.firstName.errors }" />
                                     <div *ngIf="submitted && u.firstName.errors"
                                         class="invalid-feedback alert alert-danger">
@@ -23,8 +23,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" placeholder="Last Name"
-                                        formControlName="lastName" class="form-control text"
+                                    <input type="text" placeholder="Last Name" formControlName="lastName"
+                                        class="form-control text"
                                         [ngClass]="{ 'is-invalid': submitted && u.lastName.errors }" />
                                     <div *ngIf="submitted && u.lastName.errors"
                                         class="invalid-feedback alert alert-danger">
@@ -37,8 +37,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" placeholder="Username"
-                                        formControlName="username" class="form-control text"
+                                    <input type="text" placeholder="Username" formControlName="username"
+                                        class="form-control text"
                                         [ngClass]="{ 'is-invalid': submitted && u.username.errors }" />
                                     <div *ngIf="submitted && u.username.errors"
                                         class="invalid-feedback alert alert-danger">
@@ -49,8 +49,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email address</label>
-                                    <input type="email" placeholder="Email"
-                                        formControlName="email" class="form-control text"
+                                    <input type="email" placeholder="Email" formControlName="email"
+                                        class="form-control text"
                                         [ngClass]="{ 'is-invalid': submitted && u.email.errors }" />
                                     <div *ngIf="submitted && u.email.errors"
                                         class="invalid-feedback alert alert-danger">
@@ -136,8 +136,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Cardname</label>
-                                    <input type="text" class="form-control text"
-                                        placeholder="Cardname" formControlName="cardName"
+                                    <input type="text" class="form-control text" placeholder="Cardname"
+                                        formControlName="cardName"
                                         [ngClass]="{ 'is-invalid': submitted && s.cardName.errors }" />
                                     <div *ngIf="submitted && s.cardName.errors" class="invalid-feedback">
                                         <div *ngIf="s.cardName.errors.required">Cardname is required</div>
@@ -151,7 +151,13 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="field9c" class="form-control-label text">Available funds</label>
-                                <p id="field9c" name="field9" class="form-control">{{ available }} RSD</p>
+                                <div *ngIf="router.url === '/addStudent'" >
+                                    <p class="form-control"> 0 RSD</p>
+                                </div>
+                                <div *ngIf="router.url !== '/addStudent'">
+                                    <p id="field9c" name="field9" class="form-control">{{ available }} RSD</p>
+                                </div>
+                              
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -168,8 +174,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Personal call to number</label>
-                                    <input type="text" placeholder="Personal call to number"
-                                        class="form-control text" formControlName="personalCallToNumber"
+                                    <input type="text" placeholder="Personal call to number" class="form-control text"
+                                        formControlName="personalCallToNumber"
                                         [ngClass]="{ 'is-invalid': submitted && s.personalCallToNumber.errors }" />
                                     <div *ngIf="submitted && s.personalCallToNumber.errors" class="invalid-feedback">
                                         <div *ngIf="s.personalCallToNumber.errors.required">Personal call to
@@ -182,8 +188,8 @@
                                 <div class="form-group">
                                     <!-- <h3>Account</h3> -->
                                     <label>Bank account</label>
-                                    <input type="text" placeholder="Bank account"
-                                        class="form-control text" formControlName="bankAccount"
+                                    <input type="text" placeholder="Bank account" class="form-control text"
+                                        formControlName="bankAccount"
                                         [ngClass]="{ 'is-invalid': submitted && s.bankAccount.errors }" />
                                     <div *ngIf="submitted && s.bankAccount.errors" class="invalid-feedback">
                                         <div *ngIf="s.bankAccount.errors.required">Bank account is required
@@ -202,12 +208,22 @@
                     <div>
                         <h3>Enrollmets</h3>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="md-form">
+                                <input type="text" class="form-control inputSearch" placeholder="Search"
+                                    autocomplete="off" id="search" />
+                                <label></label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="content table-responsive table-full-width" style="padding-top: 2%;">
                         <table class="table table-bordered">
                             <tr *ngFor="let enrollment of enrollments">
                                 <td>
                                     {{enrollment.course.name}}
-                                    [Since {{enrollment.startDate | date: 'dd.MM.yyyy'}} until {{enrollment.endDate | date:
+                                    [Since {{enrollment.startDate | date: 'dd.MM.yyyy'}} until {{enrollment.endDate |
+                                    date:
                                     'dd.MM.yyyy'}}]
                                 </td>
                             </tr>
@@ -217,11 +233,25 @@
             </div>
             <div class="col-md-12">
                 <div class="card" style="padding-left: 10px;">
-                    <div>
-                        <h3>Payments</h3>
-                        <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddPayment()">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                        </button>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <h3>Payments</h3>
+                        </div>
+                        <div class="col-md-6 col-xs-6"  style="float: right; padding-top: 15px;">
+                            <button style="float: right; "type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddPayment()">
+                                <span class="fa fa-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <label></label>
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="md-form">
+                                <input type="text" class="form-control inputSearch" placeholder="Search"
+                                    autocomplete="off" id="search" />
+                                <label></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="content table-responsive table-full-width" style="padding-top: 2%;">
                         <table class="table table-bordered">
@@ -229,7 +259,7 @@
                                 <td>
                                     {{payment.date | date }} | {{ payment.purpose }} | {{payment.amount | number }}
                                 </td>
-                                <td>
+                                <td style="float: right;">
                                     <button type="button" class="btn btn-primary" aria-label="Edit"
                                         (click)="gotoEditPayment(payment)">
                                         <span class="fa fa-edit" aria-hidden="true"></span>
@@ -246,11 +276,24 @@
             </div>
             <div class="col-md-12">
                 <div class="card" style="padding-left: 10px;">
-                    <div>
-                        <h3>Documents</h3>
-                        <button type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddDocument()">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                        </button>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <h3>Documents</h3>
+                        </div>
+                        <div class="col-md-6 col-xs-6" style="float: right; padding-top: 15px;">
+                            <button style="float: right;" type="button" class="btn btn-primary" aria-label="Add" (click)="gotoAddDocument()">
+                                <span class="fa fa-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <div class="md-form">
+                                <input type="text" class="form-control inputSearch" placeholder="Search"
+                                    autocomplete="off" id="search" />
+                                <label></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="content table-responsive table-full-width" style="padding-top: 2%;">
                         <table class="table table-bordered">
@@ -258,7 +301,7 @@
                                 <td>
                                     {{ document.type.name }} {{document.title}}
                                 </td>
-                                <td>
+                                <td style="float: right;">
                                     <button type="button" class="btn btn-primary" aria-label="Edit"
                                         (click)="gotoEditDocument(document)">
                                         <span class="fa fa-edit" aria-hidden="true"></span>

@@ -44,3 +44,24 @@ body {
 table tr th td {
 	text-align: center !important; 
 }
+.inputSearch{
+	background-color: transparent !important;
+    border: 1px solid #E3E3E3;
+    border-radius: 0 !important;
+    border-color: transparent !important;
+    border-bottom: 1px solid #E3E3E3 !important;
+	padding-left: 0;
+	font-weight: 100;
+}
+.inputSearch:focus{
+	background-color: transparent !important;
+    border: 1px solid #E3E3E3;
+    border-radius: 0 !important;
+    border-color: transparent !important;
+    border-bottom: 2px solid #4285f4 !important;
+	padding-left: 0;
+}
+.inputSearch::placeholder{
+	color:#767676;
+	font-weight: 100;
+}
