@@ -42,6 +42,7 @@
                   <th scope="col">Max points</th>
                   <th scope="col">Status</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -53,6 +54,11 @@
                   <td>{{ examPart.location}}</td>
                   <td>{{ examPart.points | number }}</td>
                   <td>{{ examPart.active? 'active':'canceled' }}</td>
+                  <td>
+                    <button type="button" class="btn btn-success" aria-label="Takings" (click)="gotoTakings(examPart)">
+                      <span>Takings</span>
+                    </button>
+                  </td>
                   <td *ngIf="isAdmin()">
                     <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(examPart)">
                       <span class="fa fa-edit" aria-hidden="true"></span>

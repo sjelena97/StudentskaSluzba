@@ -21,6 +21,8 @@ import { SluzbaPaymentDetailsComponent } from './components/sluzba-payment-detai
 import { SluzbaTeacherDetailsComponent } from './components/sluzba-teacher-details/sluzba-teacher-details.component';
 import { SluzbaExamsComponent } from './components/sluzba-exams/sluzba-exams.component';
 import { SluzbaExamDetailsComponent } from './components/sluzba-exam-details/sluzba-exam-details.component';
+import { SluzbaExamTakingsComponent } from './components/sluzba-exam-takings/sluzba-exam-takings.component';
+import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-taking-details/sluzba-exam-taking-details.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'profile', component: SluzbaProfileComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'exams', component: SluzbaExamsComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'takings', component: SluzbaExamTakingsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'signingExam', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'payments', component: SluzbaPaymentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'documents', component: SluzbaDocumentsComponent, canActivate: [CanActivateAuthGuardService]},
@@ -47,6 +50,7 @@ const routes: Routes = [
   { path: 'editTeacher/:id', component: SluzbaTeacherDetailsComponent },
   { path: 'addExamPart', component: SluzbaExamDetailsComponent },
   { path: 'editExamPart/:id', component: SluzbaExamDetailsComponent },
+  { path: 'editTaking/:id', component: SluzbaExamTakingDetailsComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'

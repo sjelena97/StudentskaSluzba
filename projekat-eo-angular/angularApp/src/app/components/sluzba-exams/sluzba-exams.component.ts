@@ -70,6 +70,14 @@ export class SluzbaExamsComponent implements OnInit {
     this.router.navigate(['/editExamPart', examPart.id]);
   }
 
+  gotoTakings(examPart: ExamPart): void {
+    if(this.isStudent()){
+      this.router.navigate(['/takings'], { queryParams: { examPartId: examPart.id, enrollmentId: this.selectedEnrollment.id } });
+    }else{
+      this.router.navigate(['/takings'], { queryParams: { examPartId: examPart.id } });
+    }
+  }
+
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
