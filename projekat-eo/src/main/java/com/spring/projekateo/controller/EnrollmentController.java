@@ -22,9 +22,11 @@ import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Enrollment;
 import com.spring.projekateo.model.Student;
+import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.CourseService;
 import com.spring.projekateo.service.EnrollmentService;
 import com.spring.projekateo.service.StudentService;
+import com.spring.projekateo.service.UserService;
 
 @RestController
 @RequestMapping(value = "/enrollments", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,7 +39,31 @@ public class EnrollmentController {
     private StudentService studentService;
 	
 	@Autowired
+    private UserService userService;
+	
+	@Autowired
 	private CourseService courseService;
+	
+	@GetMapping("/getAllEnrollmentsForUser/{username}")
+	public ResponseEntity<List<EnrollmentDTO>> getAllEnrollmentsForUser(@PathVariable("username") String username){
+			User user = userService.findByUsername(username);
+			Student student = studentService.findByUser(user);
+			Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+			
+			List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
+			for (Enrollment e: enrollments) {
+				EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
+				enrollmentDTO.setId(e.getId());
+				enrollmentDTO.setStartDate(e.getStartDate());
+				enrollmentDTO.setEndDate(e.getEndDate());
+				enrollmentDTO.setCourse(new CourseDTO(e.getCourse()));
+				enrollmentDTO.setActive(e.isActive());
+				//we leave student field empty
+				
+				enrollmentsDTO.add(enrollmentDTO);
+			}
+			return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
+	}
 	
 	@GetMapping("/getAllEnrollmentsForStudent/{student_id}")
 	public ResponseEntity<List<EnrollmentDTO>> getAllEnrollmentsForStudent(@PathVariable("student_id") int student_id){

@@ -24,10 +24,12 @@ import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Teacher;
 import com.spring.projekateo.model.Teaching;
 import com.spring.projekateo.model.TeachingType;
+import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.CourseService;
 import com.spring.projekateo.service.TeacherService;
 import com.spring.projekateo.service.TeachingService;
 import com.spring.projekateo.service.TeachingTypeService;
+import com.spring.projekateo.service.UserService;
 
 @RestController
 @RequestMapping(value = "/teachings", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,10 +42,35 @@ public class TeachingController {
 	private TeacherService teacherService;
 	
 	@Autowired 
+	private UserService userService;
+	
+	@Autowired 
 	private CourseService courseService;
 	
 	@Autowired 
 	private TeachingTypeService teachingTypeService;
+	
+	@GetMapping("/getAllTeachingsForUser/{username}")
+	public ResponseEntity<List<TeachingDTO>> getAllTeachingsForUser(@PathVariable("username") String username){
+			User user = userService.findByUsername(username);
+			Teacher teacher = teacherService.findByUser(user);
+			Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
+			
+			List<TeachingDTO> teachingsDTO = new ArrayList<>();
+			for (Teaching t : teachings) {
+				TeachingDTO teachingDTO = new TeachingDTO();
+				teachingDTO.setId(t.getId());
+				teachingDTO.setStartDate(t.getStartDate());
+				teachingDTO.setEndDate(t.getEndDate());
+				teachingDTO.setCourse(new CourseDTO(t.getCourse()));
+				teachingDTO.setType(new TeachingTypeDTO(t.getType()));
+				teachingDTO.setActive(t.isActive());
+				//we leave teacher field empty
+				
+				teachingsDTO.add(teachingDTO);
+			}
+			return new ResponseEntity<>(teachingsDTO, HttpStatus.OK);
+		}
 	
 	@GetMapping("/getAllTeachingsForTeacher/{teacher_id}") 
 	public ResponseEntity<List<TeachingDTO>> getAllTeachingsForTeacher(@PathVariable("teacher_id") int teacher_id) {

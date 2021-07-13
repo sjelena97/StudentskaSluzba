@@ -49,6 +49,9 @@ public class ExamPart {
 	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "part")
 	private Set<ExamPartTaking> takings = new HashSet<ExamPartTaking>();
 	
+	@Column(name = "active", nullable = false)
+	private boolean active = true;
+	
 	public ExamPart() {
 
 	}
@@ -116,5 +119,13 @@ public class ExamPart {
 	public void setTakings(Set<ExamPartTaking> takings) {
 		this.takings = takings;
 	}
-	
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 }

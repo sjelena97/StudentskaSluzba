@@ -15,12 +15,13 @@ public class ExamPartDTO implements Serializable{
 	private ExamPeriodDTO period;
 	private ExamPartTypeDTO type;
 	private CourseDTO course;
+	private boolean active;
 	
 	public ExamPartDTO() {
 		super();
 	}
 
-	public ExamPartDTO(Integer id, double points, Date date, String location, ExamPeriodDTO period, ExamPartTypeDTO type, CourseDTO course) {
+	public ExamPartDTO(Integer id, double points, Date date, String location, ExamPeriodDTO period, ExamPartTypeDTO type, CourseDTO course, boolean active) {
 		super();
 		this.id = id;
 		this.points = points;
@@ -29,11 +30,12 @@ public class ExamPartDTO implements Serializable{
 		this.period = period;
 		this.type = type;
 		this.course = course;
+		this.active = active;
 	}
 	
 	
 	public ExamPartDTO(ExamPart examPart){
-		this(examPart.getId(), examPart.getPoints(), examPart.getDate(), examPart.getLocation(), new ExamPeriodDTO(examPart.getPeriod()), new ExamPartTypeDTO(examPart.getType()), new CourseDTO(examPart.getCourse()));
+		this(examPart.getId(), examPart.getPoints(), examPart.getDate(), examPart.getLocation(), new ExamPeriodDTO(examPart.getPeriod()), new ExamPartTypeDTO(examPart.getType()), new CourseDTO(examPart.getCourse()), examPart.isActive());
 	}
 
 	public Integer getId() {
@@ -92,4 +94,12 @@ public class ExamPartDTO implements Serializable{
 		this.course = course;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 }
