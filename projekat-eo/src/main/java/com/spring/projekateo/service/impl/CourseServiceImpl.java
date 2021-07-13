@@ -30,7 +30,6 @@ public class CourseServiceImpl implements CourseService{
 		return courseRepository.save(course);
 	}
 	
-	
 	@Override
     public List<Course> getAllCourses(){
 		List<Course> allCourses= courseRepository.findAll();

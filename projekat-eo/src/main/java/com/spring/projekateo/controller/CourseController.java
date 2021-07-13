@@ -79,6 +79,9 @@ public class CourseController {
 	@GetMapping("/getAllCoursesForUser/{username}")
 	public ResponseEntity<List<CourseDTO>> getAllCoursesForUser(@PathVariable("username") String username){
 			User user = userService.findByUsername(username);
+			if (user == null) {
+				return new ResponseEntity<List<CourseDTO>>(HttpStatus.BAD_REQUEST);
+			}
 			Authority authority = user.getAuthority();
 			Set<Course> courses = new HashSet<Course>();
 			if(authority.getName().equalsIgnoreCase("ADMIN")){

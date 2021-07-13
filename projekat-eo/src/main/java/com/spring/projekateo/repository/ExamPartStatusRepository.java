@@ -8,4 +8,6 @@ public interface ExamPartStatusRepository extends JpaRepository<ExamPartStatus, 
 
 	ExamPartStatus findByCode(String code);
 
+	ExamPartStatus findById(Integer id);
+
 }
