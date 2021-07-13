@@ -61,3 +61,16 @@ INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period
 INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period_id, course_id, active) VALUES (4, 30, '2021-07-05', 'NTP103', 2, 3, 2, 1);
 INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period_id, course_id, active) VALUES (5, 70, '2021-07-09', '308', 4, 3, 2, 1);
 INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period_id, course_id, active) VALUES (6, 100, '2021-07-16', 'NTP305', 3, 3, 1, 1);
+
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (1, 'RG', 'REGISTRED');
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (2, 'PSD', 'PASSED');
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (3, 'FLD', 'FAILED');
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (4, 'CLD', 'CANCELED');
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (5, 'NA', 'NA');
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (6, 'NS', 'NS');
+
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (1, 0, 4, 3, 4);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (2, 69, 2, 5, 2);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (3, 57, 2, 5, 4);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (4, 0, 1, 6, 1);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (5, 0, 1, 6, 3);

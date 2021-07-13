@@ -1,5 +1,7 @@
 package com.spring.projekateo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,19 @@ public class ExamPartStatusServiceImpl implements ExamPartStatusService{
 	private ExamPartStatusRepository examPartStatusRepository;
 	
 	@Override
+	public ExamPartStatus findById(Integer id) {
+		return examPartStatusRepository.findById(id);
+	}
+	
+	@Override
 	public ExamPartStatus findByCode(String code) {
 		ExamPartStatus eps = examPartStatusRepository.findByCode(code);
 		return eps;
 	}
 
+	@Override
+    public List<ExamPartStatus> getAllExamPartStatuses(){
+		List<ExamPartStatus> allExamPartStatuses= examPartStatusRepository.findAll();
+        return allExamPartStatuses;
+	}
 }
