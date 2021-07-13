@@ -33,6 +33,6 @@ export class SluzbaDocumentsServiceService {
   deleteDocument(documentId: number): Observable<HttpResponse<any>> {
     const url = `${this.documentsUrl}/deleteDocument/${documentId}`;
     return this.http.put<any>(url, {observe: 'response'});
-}
+  }
 
 }

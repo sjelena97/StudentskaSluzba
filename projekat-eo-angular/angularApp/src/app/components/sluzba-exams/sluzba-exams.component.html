@@ -1,0 +1,77 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="padding-left: 10px;">
+
+          <div class="form-group">
+            <label>Select course</label>
+            <select *ngIf="isAdmin()" class="form-control" [(ngModel)]="selectedCourse" (ngModelChange)="onChange($event)" name="sel1">
+              <option *ngFor="let c of courses" [ngValue]="c">{{c.name}}</option>
+            </select>
+            <select *ngIf="isStudent()" class="form-control" [(ngModel)]="selectedEnrollment" (ngModelChange)="onChange($event)" name="sel2">
+              <option *ngFor="let e of enrollments" [ngValue]="e">{{e.course.name}} {{ e.startDate | date: 'dd.MM.yyyy'}} - {{ e.endDate | date: 'dd.MM.yyyy'}}</option>
+            </select>
+            <select *ngIf="isTeacher()" class="form-control" [(ngModel)]="selectedTeaching" (ngModelChange)="onChange($event)" name="sel3">
+              <option *ngFor="let t of teachings" [ngValue]="t">{{t.course.name}} {{ t.startDate | date: 'dd.MM.yyyy'}} - {{ t.endDate | date: 'dd.MM.yyyy'}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input type="text" class="form-control inputSearch" placeholder="Search" autocomplete="off" id="search" />
+          <label></label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div *ngIf="isLoggedIn()" class="content table-responsive table-full-width" style="padding-top: 2%;">
+            <table class="table table-hover" style="text-align: center;">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Period</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Max points</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let examPart of examParts">
+                  <th scope="row">{{ examPart.id }}</th>
+                  <td>{{ examPart.type.name }}</td>
+                  <td>{{ examPart.period.name }}</td>
+                  <td>{{ examPart.date | date: 'dd.MM.yyyy'}}</td>
+                  <td>{{ examPart.location}}</td>
+                  <td>{{ examPart.points | number }}</td>
+                  <td *ngIf="isAdmin()">
+                    <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(examPart)">
+                      <span class="fa fa-edit" aria-hidden="true"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger" aria-label="Delete"
+                      (click)="deleteExamPart(examPart.id, examPart.type.name)">
+                      <span class="fa fa-trash" aria-hidden="true"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="isAdmin()" class="right">
+          <button type="button" class="btn btn-success" aria-label="Add" (click)="gotoAdd()">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

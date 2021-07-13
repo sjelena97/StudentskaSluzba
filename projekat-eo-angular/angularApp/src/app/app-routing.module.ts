@@ -19,12 +19,15 @@ import { SluzbaStudentDetailsComponent } from './components/sluzba-student-detai
 import { SluzbaDocumentDetailsComponent } from './components/sluzba-document-details/sluzba-document-details.component';
 import { SluzbaPaymentDetailsComponent } from './components/sluzba-payment-details/sluzba-payment-details.component';
 import { SluzbaTeacherDetailsComponent } from './components/sluzba-teacher-details/sluzba-teacher-details.component';
+import { SluzbaExamsComponent } from './components/sluzba-exams/sluzba-exams.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
   { path: 'login', component: SluzbaLoginComponent },
   { path: 'profile', component: SluzbaProfileComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'exams', component: SluzbaExamsComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'signingExam', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'payments', component: SluzbaPaymentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'documents', component: SluzbaDocumentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'students', component: SluzbaStudentsComponent, canActivate: [CanActivateAuthGuardService]},
