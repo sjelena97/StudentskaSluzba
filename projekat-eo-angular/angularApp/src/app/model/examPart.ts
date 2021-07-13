@@ -10,6 +10,7 @@ export class ExamPart implements ExamPartInterface{
     public type: ExamPartType;
     public period: ExamPeriod;
     public course: Course;
+    public active: boolean;
 		
 	constructor(examPartCfg:ExamPartInterface)
 	{	
@@ -20,6 +21,7 @@ export class ExamPart implements ExamPartInterface{
         this.type = examPartCfg.type;
         this.period = examPartCfg.period;
         this.course = examPartCfg.course;
+        this.active = examPartCfg.active;
 	}
 }
 
@@ -31,4 +33,5 @@ interface ExamPartInterface{
     type: ExamPartType;
     period: ExamPeriod;
     course: Course;
+    active: boolean;
 }

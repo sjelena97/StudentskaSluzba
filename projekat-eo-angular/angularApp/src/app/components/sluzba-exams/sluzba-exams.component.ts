@@ -32,49 +32,57 @@ export class SluzbaExamsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.isAdmin()){
+    if (this.isAdmin()) {
       this.courseService.getCourses().subscribe(res =>
         this.courses = res.body);
-    }else if(this.isTeacher()){
+    } else if (this.isTeacher()) {
       this.teachingService.getTeachings().subscribe(res =>
         this.teachings = res.body);
-    }else if(this.isStudent()){
+    } else if (this.isStudent()) {
       this.enrollmentService.getEnrollments().subscribe(res =>
         this.enrollments = res.body);
     }
-   
+
   }
 
   onChange(newValue) {
     console.log(newValue);
-    if(this.isAdmin()){
+    if (this.isAdmin()) {
       this.selectedCourse = newValue;
       this.examPartsService.getExamPartsForCourse(this.selectedCourse.id).subscribe(res =>
         this.examParts = res.body);
-    }else if(this.isStudent()){
+    } else if (this.isStudent()) {
       this.selectedEnrollment = newValue;
       this.examPartsService.getExamPartsForEnrollment(this.selectedEnrollment.id).subscribe(res =>
         this.examParts = res.body);
-    }else if(this.isTeacher()){
+    } else if (this.isTeacher()) {
       this.selectedTeaching = newValue;
       this.examPartsService.getExamPartsForTeaching(this.selectedTeaching.id).subscribe(res =>
         this.examParts = res.body);
     }
-}
+  }
 
-  isLoggedIn():boolean{
+  gotoAdd(): void {
+    this.router.navigate(['/addExamPart']);
+  }
+
+  gotoEdit(examPart: ExamPart): void {
+    this.router.navigate(['/editExamPart', examPart.id]);
+  }
+
+  isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  isAdmin():boolean{
+  isAdmin(): boolean {
     return this.authService.isAdmin();
   }
 
-  isTeacher():boolean{
+  isTeacher(): boolean {
     return this.authService.isTeacher();
   }
 
-  isStudent():boolean{
+  isStudent(): boolean {
     return this.authService.isStudent();
   }
 }
