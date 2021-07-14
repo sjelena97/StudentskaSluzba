@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,16 @@ public class ExamPeriodController {
 	
 	@Autowired
 	private ExamPeriodService examPeriodService;
+	
+	@GetMapping("getExamPeriodById/{exam_period_id}")
+	public ResponseEntity<ExamPeriodDTO> getExamPeriodById(@PathVariable("exam_period_id") int exam_period_id) {
+		ExamPeriod ep = examPeriodService.findById(exam_period_id);
+		if (ep == null) {
+			return new ResponseEntity<ExamPeriodDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<ExamPeriodDTO>(new ExamPeriodDTO(ep), HttpStatus.OK);
+		}
+	}
 	
 	@GetMapping("/getAllExamPeriods")
 	public ResponseEntity<List<ExamPeriodDTO>> getAllPeriods() {
@@ -58,7 +69,8 @@ public class ExamPeriodController {
 		ep.setName(examPeriodDTO.getName());
 		ep.setStartDate(examPeriodDTO.getStartDate());
 		ep.setEndDate(examPeriodDTO.getEndDate());
-
+		ep.setActive(examPeriodDTO.isActive());
+		
 		ep = examPeriodService.save(ep);
 
 		return new ResponseEntity<ExamPeriodDTO>(new ExamPeriodDTO(ep), HttpStatus.CREATED);
@@ -81,6 +93,18 @@ public class ExamPeriodController {
 		examPeriod = examPeriodService.save(examPeriod);
 
 		return new ResponseEntity<ExamPeriodDTO>(new ExamPeriodDTO(examPeriod), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/deleteExamPeriod/{exam_period_id}")
+	public ResponseEntity<Void> deleteExamPeriod(@PathVariable("exam_period_id") int exam_period_id){
+		System.out.println("delete period");
+		ExamPeriod examPeriod = examPeriodService.findById(exam_period_id);
+		if (examPeriod != null){
+			examPeriodService.remove(examPeriod);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {		
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }

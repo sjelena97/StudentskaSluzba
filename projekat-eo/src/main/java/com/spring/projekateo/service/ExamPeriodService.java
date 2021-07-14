@@ -12,4 +12,6 @@ public interface ExamPeriodService {
 
 	List<ExamPeriod> getAllExamPeriods();
 
+	void remove(ExamPeriod examPeriod);
+
 }
