@@ -62,7 +62,7 @@ INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period
 INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period_id, course_id, active) VALUES (5, 70, '2021-07-09', '308', 4, 3, 2, 1);
 INSERT INTO EXAM_PART(exam_part_id, points, date, location, type_id, exam_period_id, course_id, active) VALUES (6, 100, '2021-07-16', 'NTP305', 3, 3, 1, 1);
 
-INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (1, 'RG', 'REGISTRED');
+INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (1, 'RGD', 'REGISTRED');
 INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (2, 'PSD', 'PASSED');
 INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (3, 'FLD', 'FAILED');
 INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (4, 'CLD', 'CANCELED');
