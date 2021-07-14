@@ -23,8 +23,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let teacher of teachers">
-                  <th scope="row">{{ teacher.id }}</th>
+                <tr *ngFor="let teacher of teachers; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
                   <td>{{ teacher.user.firstName }}</td>
                   <td>{{ teacher.user.lastName }}</td>
                   <td>{{ teacher.user.username }}</td>
