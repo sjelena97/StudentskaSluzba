@@ -24,11 +24,16 @@ public class UserServiceImpl implements UserService{
 	public User findById(Integer id) {
 		return userRepository.findById(id);
 	}
-	
 
 	@Override
 	public User findByUsername(String username) throws UsernameNotFoundException {
 		User u = userRepository.findByUsername(username);
+		return u;
+	}
+	
+	@Override
+	public User findByEmail(String email) {
+		User u = userRepository.findByEmail(email);
 		return u;
 	}
 	
