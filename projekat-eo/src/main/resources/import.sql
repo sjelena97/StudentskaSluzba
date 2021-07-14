@@ -43,8 +43,8 @@ INSERT INTO PAYMENT (payment_id, amount, date, purpose, account_id) VALUES (3, 1
 INSERT INTO DOCUMENT_TYPE (document_type_id, code, name) VALUES (1, 'F', 'FORM');
 INSERT INTO DOCUMENT_TYPE (document_type_id, code, name) VALUES (2, 'D', 'DIPLOMA');
 
-INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id, active) VALUES (1, 'Diploma', 'C:/Users/Jelena', 1, 2, 1);
-INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id, active) VALUES (2, 'Diploma', 'C:/Users/Jelena', 2, 2, 1);
+INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id, active) VALUES (1, 'Diploma', 'C:/Users/Jelena/git/StudentskaSluzba/projekat-eo/src/main/resources/files/sjelena/Diploma.pdf', 1, 2, 1);
+INSERT INTO DOCUMENT (document_id, title, url, student_id, type_id, active) VALUES (2, 'Diploma', 'C:/Users/Jelena/git/StudentskaSluzba/projekat-eo/src/main/resources/files/danijel/Diploma.pdf', 2, 2, 1);
 
 INSERT INTO EXAM_PERIOD(exam_period_id, name, start_date, end_date, active) VALUES (1, 'julski', '2020-07-01', '2021-07-20', 0);
 INSERT INTO EXAM_PERIOD(exam_period_id, name, start_date, end_date, active) VALUES (2, 'junski', '2021-06-14', '2021-06-25', 0);
