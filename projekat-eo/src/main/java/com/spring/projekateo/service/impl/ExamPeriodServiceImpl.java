@@ -31,4 +31,9 @@ public class ExamPeriodServiceImpl implements ExamPeriodService{
         return allPeriods;
 	}
 	
+	@Override
+	public void remove(ExamPeriod examPeriod) {
+		examPeriodRepository.delete(examPeriod);
+	}
+	
 }
