@@ -19,4 +19,6 @@ public interface ExamPartTakingRepository extends JpaRepository<ExamPartTaking, 
 
 	List<ExamPartTaking> findAllByPartAndEnrollment(ExamPart examPart, Enrollment enrollment);
 
+	ExamPartTaking findByPartAndStatusAndEnrollment(ExamPart examPart, ExamPartStatus status, Enrollment enrollment);
+
 }
