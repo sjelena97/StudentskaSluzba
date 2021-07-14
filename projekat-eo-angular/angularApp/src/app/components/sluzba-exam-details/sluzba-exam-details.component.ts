@@ -23,7 +23,8 @@ export class SluzbaExamDetailsComponent implements OnInit {
     period: new ExamPeriod({
       startDate: null,
       endDate: null,
-      name: ''
+      name: '',
+      active:true
     }),
     type: new ExamPartType({
       name: '',
