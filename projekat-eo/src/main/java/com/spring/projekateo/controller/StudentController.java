@@ -86,15 +86,24 @@ public class StudentController {
 		if (student == null) {
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		}
+		
 		if(!studentDTO.getCardName().equalsIgnoreCase(student.getCardName())) {
 			Student student2 = studentService.findByCardName(studentDTO.getCardName());
 			if(student2 != null) {
 				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 			}
 		}
+		
 		if(!studentDTO.getUser().getUsername().equalsIgnoreCase(student.getUser().getUsername())) {
 			User user2 = userService.findByUsername(studentDTO.getUser().getUsername());
 			if(user2 != null) {
+				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
+			}
+		}
+		
+		if(!studentDTO.getUser().getEmail().equalsIgnoreCase(student.getUser().getEmail())) {
+			User user3 = userService.findByEmail(studentDTO.getUser().getEmail());
+			if(user3 != null) {
 				return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 			}
 		}
@@ -124,6 +133,11 @@ public class StudentController {
 		
 		User existUser = userService.findByUsername(newStudent.getUser().getUsername());
 		if(existUser != null) {
+			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		User existUser2 = userService.findByEmail(newStudent.getUser().getEmail());
+		if(existUser2 != null) {
 			return new ResponseEntity<StudentDTO>(HttpStatus.BAD_REQUEST);
 		}
 		

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.projekateo.dto.UserDTO;
+import com.spring.projekateo.model.Authority;
 import com.spring.projekateo.model.User;
+import com.spring.projekateo.service.AuthorityService;
 import com.spring.projekateo.service.UserService;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    private AuthorityService authorityService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -50,6 +55,13 @@ public class UserController {
 			User user2 = userService.findByUsername(userDTO.getUsername());
 			if(user2 != null) {
 				System.out.println("postoji sa tim usernameom");
+				return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+			}
+		}
+		
+		if(!userDTO.getEmail().equalsIgnoreCase(user.getEmail())) {
+			User user3 = userService.findByEmail(userDTO.getEmail());
+			if(user3 != null) {
 				return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
 			}
 		}
@@ -87,12 +99,24 @@ public class UserController {
 		if (existUser != null) {
 			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
 		}
+		
+		User existUser2 = userService.findByEmail(newUser.getEmail());
+		if(existUser2 != null) {
+			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Authority authority = authorityService.findByName("ADMIN");
+		if(authority == null) {
+			return new ResponseEntity<UserDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
 		User user = new User();
 		user.setFirstName(newUser.getFirstName());
 		user.setLastName(newUser.getLastName());
 		user.setUsername(newUser.getUsername());
 		user.setEmail(newUser.getEmail());
-		String defaultPassword = "123";
+		user.setAuthority(authority);
+		String defaultPassword = "admin";
 		// pre nego sto postavimo lozinku u atribut hesiramo je
 		user.setPassword(passwordEncoder.encode(defaultPassword));
 		user = userService.save(user);

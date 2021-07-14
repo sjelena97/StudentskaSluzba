@@ -37,6 +37,7 @@ import { SluzbaExamDetailsComponent } from './components/sluzba-exam-details/slu
 import { SluzbaExamPeriodsComponent } from './components/sluzba-exam-periods/sluzba-exam-periods.component';
 import { SluzbaExamTakingsComponent } from './components/sluzba-exam-takings/sluzba-exam-takings.component';
 import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-taking-details/sluzba-exam-taking-details.component';
+import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-takin
     SluzbaExamDetailsComponent,
     SluzbaExamPeriodsComponent,
     SluzbaExamTakingsComponent,
-    SluzbaExamTakingDetailsComponent
+    SluzbaExamTakingDetailsComponent,
+    SluzbaUserComponent
   ],
   imports: [
     BrowserModule,

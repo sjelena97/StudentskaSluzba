@@ -73,5 +73,11 @@
                 <p>Teachers</p>
             </a> 
         </li>
+        <li *ngIf="isAdmin()">
+            <a routerLink="/addUser">
+                <i class="pe-7s-add-user"></i>
+                <p>Add new admin</p>
+            </a> 
+        </li>
     </ul>
 </div>
