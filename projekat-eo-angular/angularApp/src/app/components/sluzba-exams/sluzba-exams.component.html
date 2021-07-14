@@ -6,14 +6,19 @@
 
           <div class="form-group">
             <label>Select course</label>
-            <select *ngIf="isAdmin()" class="form-control" [(ngModel)]="selectedCourse" (ngModelChange)="onChange($event)" name="sel1">
+            <select *ngIf="isAdmin()" class="form-control" [(ngModel)]="selectedCourse"
+              (ngModelChange)="onChange($event)" name="sel1">
               <option *ngFor="let c of courses" [ngValue]="c">{{c.name}}</option>
             </select>
-            <select *ngIf="isStudent()" class="form-control" [(ngModel)]="selectedEnrollment" (ngModelChange)="onChange($event)" name="sel2">
-              <option *ngFor="let e of enrollments" [ngValue]="e">{{e.course.name}} {{ e.startDate | date: 'dd.MM.yyyy'}} - {{ e.endDate | date: 'dd.MM.yyyy'}}</option>
+            <select *ngIf="isStudent()" class="form-control" [(ngModel)]="selectedEnrollment"
+              (ngModelChange)="onChange($event)" name="sel2">
+              <option *ngFor="let e of enrollments" [ngValue]="e">{{e.course.name}} {{ e.startDate | date:
+                'dd.MM.yyyy'}} - {{ e.endDate | date: 'dd.MM.yyyy'}}</option>
             </select>
-            <select *ngIf="isTeacher()" class="form-control" [(ngModel)]="selectedTeaching" (ngModelChange)="onChange($event)" name="sel3">
-              <option *ngFor="let t of teachings" [ngValue]="t">{{t.course.name}} {{ t.startDate | date: 'dd.MM.yyyy'}} - {{ t.endDate | date: 'dd.MM.yyyy'}}</option>
+            <select *ngIf="isTeacher()" class="form-control" [(ngModel)]="selectedTeaching"
+              (ngModelChange)="onChange($event)" name="sel3">
+              <option *ngFor="let t of teachings" [ngValue]="t">{{t.course.name}} {{ t.startDate | date: 'dd.MM.yyyy'}}
+                - {{ t.endDate | date: 'dd.MM.yyyy'}}</option>
             </select>
           </div>
         </div>

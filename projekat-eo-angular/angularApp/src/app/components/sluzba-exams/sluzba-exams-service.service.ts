@@ -57,4 +57,5 @@ export class SluzbaExamsServiceService {
     const urlPut =`${this.examPartsUrl}/updateExamPart/${examPart.id}`;
     return this.http.put<ExamPart>(urlPut, examPart, {observe: 'response'});
   }
+  
 }

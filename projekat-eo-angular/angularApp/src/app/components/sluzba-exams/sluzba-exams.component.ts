@@ -11,6 +11,7 @@ import { Enrollment } from 'src/app/model/enrollment';
 import { SluzbaEnrollmentsServiceService } from '../sluzba-enrollments/sluzba-enrollments-service.service';
 import { SluzbaTeachingsServiceService } from '../sluzba-teachings/sluzba-teachings-service.service';
 import { ExamPart } from 'src/app/model/examPart';
+import { SluzbaExamTakingsServiceService } from '../sluzba-exam-takings/sluzba-exam-takings-service.service';
 
 @Component({
   selector: 'app-sluzba-exams',
@@ -71,9 +72,9 @@ export class SluzbaExamsComponent implements OnInit {
   }
 
   gotoTakings(examPart: ExamPart): void {
-    if(this.isStudent()){
+    if (this.isStudent()) {
       this.router.navigate(['/takings'], { queryParams: { examPartId: examPart.id, enrollmentId: this.selectedEnrollment.id } });
-    }else{
+    } else {
       this.router.navigate(['/takings'], { queryParams: { examPartId: examPart.id } });
     }
   }

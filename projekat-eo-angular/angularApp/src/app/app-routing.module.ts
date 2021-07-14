@@ -31,7 +31,6 @@ const routes: Routes = [
   { path: 'courses', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'exams', component: SluzbaExamsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'takings', component: SluzbaExamTakingsComponent, canActivate: [CanActivateAuthGuardService]},
-  { path: 'signingExam', component: SluzbaCoursesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'payments', component: SluzbaPaymentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'documents', component: SluzbaDocumentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'students', component: SluzbaStudentsComponent, canActivate: [CanActivateAuthGuardService]},

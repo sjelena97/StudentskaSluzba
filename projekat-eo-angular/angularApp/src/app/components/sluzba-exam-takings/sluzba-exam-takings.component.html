@@ -1,10 +1,24 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div *ngIf="examPart.id">
+        <div>
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Exam {{ examPart.course.name }} : {{ examPart.type.name }} on {{ examPart.date | date: 'dd.MM.yyyy'}} in {{
+                    <h2>Exam {{ examPart.course.name }} : {{ examPart.type.name }} on {{ examPart.date | date:
+                        'dd.MM.yyyy'}} in {{
                         examPart.location}}</h2>
+                </div>
+            </div>
+            <div *ngIf="isStudent()" class="row">
+                <div *ngIf="canSignUp">
+                    <button type="button" class="btn btn-primary" aria-label="Sign up" (click)="signUp()">
+                        <span>Sign Up</span>
+                    </button>
+                </div>
+                <div *ngIf="canSignOut">
+                    <button type="button" class="btn btn-danger" aria-label="Sign out"
+                        (click)="signOut()">
+                        <span>Sign Out</span>
+                    </button>
                 </div>
             </div>
             <div class="row">
@@ -35,7 +49,9 @@
                                 <tbody>
                                     <tr *ngFor="let taking of takings">
                                         <th scope="row">{{ taking.id }}</th>
-                                        <td>{{ taking.enrollment.student.cardName }} {{ taking.enrollment.student.user.firstName }} {{ taking.enrollment.student.user.lastName }}</td>
+                                        <td>{{ taking.enrollment.student.cardName }} {{
+                                            taking.enrollment.student.user.firstName }} {{
+                                            taking.enrollment.student.user.lastName }}</td>
                                         <td>{{ taking.score }} / {{examPart.points}}</td>
                                         <td>{{ taking.status.name }}</td>
                                         <td *ngIf="isAdmin() || isTeacher()">

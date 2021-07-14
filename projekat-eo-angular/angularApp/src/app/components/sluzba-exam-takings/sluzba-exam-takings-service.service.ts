@@ -52,4 +52,24 @@ export class SluzbaExamTakingsServiceService {
     return this.http.put<ExamPartTaking>(urlPut, examTaking, {observe: 'response'});
   }
 
+  canSignUpExam(examPartId: number, selectedEnrollmentId: number): Observable<HttpResponse<Boolean>>{
+    const url =`${this.examTakingsUrl}/canSignUp/${examPartId}/${selectedEnrollmentId}`;
+    return this.http.get<Boolean>(url, {observe: 'response'});
+  }
+
+  canSignOutExam(examPartId: number, selectedEnrollmentId: number): Observable<HttpResponse<Boolean>>{
+    const url =`${this.examTakingsUrl}/canSignOut/${examPartId}/${selectedEnrollmentId}`;
+    return this.http.get<Boolean>(url, {observe: 'response'});
+  }
+
+  signUp(examPartId: number, selectedEnrollmentId: number): Observable<ExamPartTaking>{
+    const url =`${this.examTakingsUrl}/signUp/${examPartId}/${selectedEnrollmentId}`;
+    return this.http.post<ExamPartTaking>(url, {observe: 'response'});
+  }
+
+  signOut(examPartId: number, selectedEnrollmentId: number): Observable<ExamPartTaking>{
+    const url =`${this.examTakingsUrl}/signOut/${examPartId}/${selectedEnrollmentId}`;
+    return this.http.put<ExamPartTaking>(url, {observe: 'response'});
+  }
+
 }
