@@ -30,7 +30,11 @@
                   <th scope="row">{{i + 1 }}</th>
                   <td>{{ document.title }}</td>
                   <td>{{ document.type.name }}</td>
-                  <td><a href="#">Download</a></td>
+                  <td>
+                    <button type="button" class="btn btn-primary" aria-label="Download" (click)="download(document)">
+                      <span class="pe-7s-download" aria-hidden="true"></span>
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -6,6 +6,7 @@ import { SluzbaDocumentsServiceService } from './sluzba-documents-service.servic
 import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
 import { Student } from 'src/app/model/student';
 import { DocumentType } from 'src/app/model/document-type';
+import { saveAs } from 'file-saver';
 
 interface Document {
   id?: number;
@@ -34,6 +35,12 @@ export class SluzbaDocumentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDocuments();
+  }
+
+  download(document: Document): void {
+    this.documentService
+      .download(document.id)
+      .subscribe(blob => saveAs(blob, document.title));
   }
 
   getDocuments() {

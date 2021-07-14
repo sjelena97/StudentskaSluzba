@@ -22,6 +22,11 @@ export class SluzbaDocumentsServiceService {
   announceChange() {
       this.RegenerateData.next();
   }
+
+  download(documentId: number): Observable<Blob> {
+    const url = `${this.documentsUrl}/download/${documentId}`;
+    return this.http.get(url, {responseType: 'blob'});
+  }
   
   getDocuments(): Observable<HttpResponse<Document[]>> {
       let username = this.authService.getCurrentUser().username;
