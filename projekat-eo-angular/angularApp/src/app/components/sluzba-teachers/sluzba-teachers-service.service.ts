@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpResponse, HttpClient } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
-import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
 import { Teacher } from '../../model/teacher';
 import { Teaching } from 'src/app/model/teaching';
 
@@ -14,7 +13,7 @@ export class SluzbaTeachersServiceService {
   private teachersUrl = 'teachers';
   private teachingsUrl = 'teachings';
 
-  constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
+  constructor(private http: HttpClient) { }
 
   private RegenerateData = new Subject<void>();
 

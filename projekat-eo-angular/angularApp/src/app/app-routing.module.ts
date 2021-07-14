@@ -23,6 +23,7 @@ import { SluzbaExamsComponent } from './components/sluzba-exams/sluzba-exams.com
 import { SluzbaExamDetailsComponent } from './components/sluzba-exam-details/sluzba-exam-details.component';
 import { SluzbaExamTakingsComponent } from './components/sluzba-exam-takings/sluzba-exam-takings.component';
 import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-taking-details/sluzba-exam-taking-details.component';
+import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'addExamPart', component: SluzbaExamDetailsComponent },
   { path: 'editExamPart/:id', component: SluzbaExamDetailsComponent },
   { path: 'editTaking/:id', component: SluzbaExamTakingDetailsComponent },
+  { path: 'addUser', component: SluzbaUserComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
