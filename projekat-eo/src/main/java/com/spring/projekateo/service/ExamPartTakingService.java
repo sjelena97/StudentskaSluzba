@@ -19,4 +19,7 @@ public interface ExamPartTakingService {
 
 	ExamPartTaking save(ExamPartTaking examPartTaking);
 
+	ExamPartTaking getTakingByPartAndStatusAndEnrollment(ExamPart examPart, ExamPartStatus status,
+			Enrollment enrollment);
+
 }
