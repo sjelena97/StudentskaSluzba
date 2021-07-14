@@ -16,4 +16,6 @@ public interface UserService {
 
 	User findByUsername(String username) throws UsernameNotFoundException;
 
+	User findByEmail(String email);
+
 }

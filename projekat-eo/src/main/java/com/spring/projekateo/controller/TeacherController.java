@@ -78,6 +78,13 @@ public class TeacherController {
 			}
 		}
 		
+		if(!teacherDTO.getUser().getEmail().equalsIgnoreCase(teacher.getUser().getEmail())) {
+			User user3 = userService.findByEmail(teacherDTO.getUser().getEmail());
+			if(user3 != null) {
+				return new ResponseEntity<TeacherDTO>(HttpStatus.BAD_REQUEST);
+			}
+		}
+		
 		teacher.setActive(teacherDTO.isActive());
 		
 		User user = teacher.getUser();
@@ -99,6 +106,12 @@ public class TeacherController {
 		if(existUser != null) {
 			return new ResponseEntity<TeacherDTO>(HttpStatus.BAD_REQUEST);
 		}
+		
+		User existUser2 = userService.findByEmail(newTeacher.getUser().getEmail());
+		if(existUser2 != null) {
+			return new ResponseEntity<TeacherDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
 		Teacher teacher = new Teacher();
 		
 		User user = new User();
