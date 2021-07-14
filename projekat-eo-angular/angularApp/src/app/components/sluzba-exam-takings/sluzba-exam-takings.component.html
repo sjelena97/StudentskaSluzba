@@ -2,28 +2,29 @@
     <div class="container-fluid">
         <div>
             <div class="row">
-                <div class="col-md-12">
-                    <h2>Exam {{ examPart.course.name }} : {{ examPart.type.name }} on {{ examPart.date | date:
+                <div class="col-md-9">
+                    <h3>Exam {{ examPart.course.name }} : {{ examPart.type.name }} on {{ examPart.date | date:
                         'dd.MM.yyyy'}} in {{
-                        examPart.location}}</h2>
+                        examPart.location}}</h3>
+                </div>
+                <div *ngIf="isStudent()" class="col-md-3" style="float: right; padding-top: 15px;">
+                    <div *ngIf="canSignUp">
+                        <button style="float: right;" type="button" class="btn btn-primary" aria-label="Sign up" (click)="signUp()">
+                            <span>Sign Up</span>
+                        </button>
+                    </div>
+                    <div *ngIf="canSignOut">
+                        <button style="float: right;" type="button" class="btn btn-danger" aria-label="Sign out"
+                            (click)="signOut()">
+                            <span>Sign Out</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div *ngIf="isStudent()" class="row">
-                <div *ngIf="canSignUp">
-                    <button type="button" class="btn btn-primary" aria-label="Sign up" (click)="signUp()">
-                        <span>Sign Up</span>
-                    </button>
-                </div>
-                <div *ngIf="canSignOut">
-                    <button type="button" class="btn btn-danger" aria-label="Sign out"
-                        (click)="signOut()">
-                        <span>Sign Out</span>
-                    </button>
-                </div>
-            </div>
+           
             <div class="row">
-                <h3>Takings</h3>
                 <div class="col-md-12 mx-auto">
+                    <h4>Takings</h4>
                     <div class="md-form">
                         <input type="text" class="form-control inputSearch" placeholder="Search" autocomplete="off"
                             id="search" />
@@ -47,8 +48,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let taking of takings">
-                                        <th scope="row">{{ taking.id }}</th>
+                                    <tr *ngFor="let taking of takings;let k = index">
+                                        <th scope="row">{{ k + 1 }}</th>
                                         <td>{{ taking.enrollment.student.cardName }} {{
                                             taking.enrollment.student.user.firstName }} {{
                                             taking.enrollment.student.user.lastName }}</td>
