@@ -1,10 +1,14 @@
 package com.spring.projekateo.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -155,6 +159,27 @@ public class DocumentController {
 		} else {		
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+		
+	}
+	
+	@GetMapping("/download/{document_id}")
+	public ResponseEntity<Resource> download(@PathVariable("document_id") int documentId) throws Exception {
+		System.out.println("uslo u download");
+		
+		// Pronalazimo dokument koji treba preuzeti
+		Document document = documentService.findById(documentId);
+		String username = document.getStudent().getUser().getUsername();
+		System.out.println(username + "- je username");
+		
+		Resource file = documentService.download(document.getUrl());
+	    Path path = file.getFile()
+                .toPath();
+
+	    return ResponseEntity.ok()
+                     .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(path))
+                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                     .body(file);
+
 		
 	}
 
