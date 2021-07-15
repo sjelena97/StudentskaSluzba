@@ -20,6 +20,14 @@ export class SluzbaTeachersComponent implements OnInit {
 
   teachers: Teacher[];
 
+  search = '';
+  sort = '';
+
+  page = 0;
+  count = 0;
+  size = 3;
+  pageSizes = [3, 6, 9];
+
   subscription: Subscription;
 
   constructor(private teacherService: SluzbaTeachersServiceService, private router: Router, private authService: AuthenticationServiceService) {
@@ -32,10 +40,62 @@ export class SluzbaTeachersComponent implements OnInit {
     this.getTeachers();
   }
 
-  getTeachers() {
-    this.teacherService.getTeachers().subscribe(res =>
-      this.teachers = res.body);
+  
+  getRequestParams(search: string, page: number, pageSize: number, sort: string): any {
+    // tslint:disable-next-line:prefer-const
+    let params: any = {};
+
+    if (search) {
+      params[`search`] = search;
+    }
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    if (sort) {
+      params[`sort`] = sort;
+    }
+
+    return params;
   }
+
+  getTeachers(): void {
+    const params = this.getRequestParams(this.search, this.page, this.size,this.sort);
+
+    this.teacherService.getTeachers(params)
+    .subscribe(
+      response => {
+        const { teachers, totalItems, currentPage} = response;
+        this.teachers = teachers;
+        this.count = totalItems;
+        this.page = currentPage +1;
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.getTeachers();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.size = event.target.value;
+    this.page = 1;
+    this.getTeachers();
+  }
+
+  // getTeachers() {
+  //   this.teacherService.getTeachers().subscribe(res =>
+  //     this.teachers = res.body);
+  // }
 
   isLoggedIn():boolean{
     return this.authService.isLoggedIn();

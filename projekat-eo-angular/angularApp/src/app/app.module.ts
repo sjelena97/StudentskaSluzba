@@ -39,6 +39,7 @@ import { SluzbaExamTakingsComponent } from './components/sluzba-exam-takings/slu
 import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-taking-details/sluzba-exam-taking-details.component';
 import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
 import { SluzbaExamPeriodDetailsComponent } from './components/sluzba-exam-period-details/sluzba-exam-period-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { SluzbaExamPeriodDetailsComponent } from './components/sluzba-exam-perio
     NgbModule,
     HttpClientModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule
   ],
   providers: [
     SluzbaCoursesServiceService,

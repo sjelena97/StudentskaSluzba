@@ -61,7 +61,7 @@ export class SluzbaEnrollmentsComponent implements OnInit {
           this.enrollment.course = res.body 
         ));
 
-    this.studentService.getStudents().subscribe(res =>
+    this.studentService.getStudentsList().subscribe(res =>
       this.students = res.body);
   }
 

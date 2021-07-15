@@ -23,10 +23,15 @@ export class SluzbaTeachersServiceService {
       this.RegenerateData.next();
   }
   
-  getTeachers(): Observable<HttpResponse<Teacher[]>> {
-      const url = `${this.teachersUrl}/getAllTeachers`;
-      return this.http.get<Teacher[]>(url, {observe: 'response'});
+  getTeachers(params: any): Observable<any>{
+    const url = `${this.teachersUrl}/getAllTeachers`;
+    return this.http.get<any>(  url, { params });
   }
+
+  getTeachersList(): Observable<HttpResponse<Teacher[]>> {
+    const url = `${this.teachersUrl}/getAllTeachersList`;
+    return this.http.get<Teacher[]>(url, {observe: 'response'});
+}
 
   getTeacher(id: number): Observable<HttpResponse<Teacher>> {
     const url = `${this.teachersUrl}/getTeacherById/${id}`;
