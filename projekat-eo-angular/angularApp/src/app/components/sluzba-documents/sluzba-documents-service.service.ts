@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
@@ -21,6 +21,11 @@ export class SluzbaDocumentsServiceService {
 
   announceChange() {
       this.RegenerateData.next();
+  }
+
+  download(documentId: number): Observable<Blob> {
+    const url = `${this.documentsUrl}/download/${documentId}`;
+    return this.http.get(url, {responseType: 'blob'});
   }
   
   getDocuments(): Observable<HttpResponse<Document[]>> {

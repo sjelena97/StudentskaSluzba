@@ -1,1 +1,54 @@
-<p>sluzba-exam-periods works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <div class="md-form">
+            <input type="text" class="form-control inputSearch" placeholder="Search" autocomplete="off" id="search" />
+            <label></label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div *ngIf="isLoggedIn()" class="content table-responsive table-full-width" style="padding-top: 2%;">
+              <table class="table table-hover" style="text-align: center;">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Exam period name</th>
+                    <th scope="col">Start date-End date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let period of periods; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ period.name }}</td>
+                    <td>[Since {{period.startDate | date: 'dd.MM.yyyy'}} until {{period.endDate |
+                        date:
+                        'dd.MM.yyyy'}}]</td>
+                    <td *ngIf="isAdmin()">
+                      <button type="button" class="btn btn-primary" aria-label="Edit" (click)="gotoEdit(period)">
+                        <span class="fa fa-edit" aria-hidden="true"></span>
+                      </button>
+  
+                      <button type="button" class="btn btn-danger" aria-label="Delete"
+                        (click)="deletePeriod(period.id, period.name)">
+                        <span class="fa fa-trash" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="isAdmin()" class="right">
+            <button type="button" class="btn btn-success" aria-label="Add" (click)="gotoAdd()">
+              <span class="fa fa-plus" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -4,6 +4,7 @@ export class ExamPeriod implements ExamPeriodInterface{
 	public startDate: Date;
 	public endDate: Date;
 	public name: String;
+	public active: boolean;
 		
 	constructor(examPeriodCfg:ExamPeriodInterface)
 	{	
@@ -11,6 +12,7 @@ export class ExamPeriod implements ExamPeriodInterface{
 		this.startDate = examPeriodCfg.startDate;
 		this.endDate = examPeriodCfg.endDate;	
 		this.name = examPeriodCfg.name;
+		this.active = examPeriodCfg.active;
 	}
 }
 
@@ -19,4 +21,5 @@ interface ExamPeriodInterface{
 	startDate: Date;
 	endDate: Date;
     name: String;
+	active: boolean;
 }

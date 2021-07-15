@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { saveAs } from 'file-saver';
 
 import { switchMap } from 'rxjs/operators';
 import { AuthenticationServiceService } from 'src/app/services/auth/authentication-service.service';
@@ -221,13 +222,10 @@ export class SluzbaStudentDetailsComponent implements OnInit {
 
   }
 
-  gotoAddDocument(): void {
-    this.router.navigate(['/addDocument'], { queryParams: { studentId: this.student.id } });
-  }
-
-
-  gotoEditDocument(document: Document): void {
-    this.router.navigate(['/editDocument', document.id]);
+  download(document: Document): void {
+    this.documentService
+      .download(document.id)
+      .subscribe(blob => saveAs(blob, document.title));
   }
 
   deleteDocument(documentId: number, documentTitle: string): void {
@@ -253,6 +251,10 @@ export class SluzbaStudentDetailsComponent implements OnInit {
         () => this.getPayments()
       );
     }
+  }
+
+  gotoAddDocument(): void {
+    this.router.navigate(['/addDocument'], { queryParams: { studentId: this.student.id } });
   }
 
   goBack(): void {

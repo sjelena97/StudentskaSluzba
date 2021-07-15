@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import {switchMap} from 'rxjs/operators';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import { SluzbaStudentsServiceService } from '../sluzba-students/sluzba-students-service.service';
 import { SluzbaDocumentDetailsServiceService } from './sluzba-document-details-service.service';
@@ -18,6 +19,11 @@ import { Document } from 'src/app/model/document';
   styleUrls: ['./sluzba-document-details.component.css']
 })
 export class SluzbaDocumentDetailsComponent implements OnInit {
+
+  selectedFiles?: FileList;
+  currentFile?: File;
+  message = '';
+  errorMsg = '';
 
   document: Document= new Document({ // if we add a new document, create an empty document
     title: '',
@@ -45,8 +51,6 @@ export class SluzbaDocumentDetailsComponent implements OnInit {
 
   types: DocumentType[];
 
-  mode: string = 'ADD';
-
   constructor(private studentService: SluzbaStudentsServiceService, private documentService: SluzbaDocumentDetailsServiceService, 
     private route: ActivatedRoute, private location: Location, private router: Router, private authService: AuthenticationServiceService) {
   }
@@ -55,42 +59,14 @@ export class SluzbaDocumentDetailsComponent implements OnInit {
     this.documentService.getDocumentTypes().subscribe(res =>
       this.types = res.body);
 
-    if (this.route.snapshot.params['id']) {
-      this.mode = 'EDIT';
-      // fetch document if we edit the existing document
-      this.route.params.pipe(switchMap((params: Params) =>
-          this.documentService.getDocument(+params['id'])))
-        .subscribe(res => {
-          this.document = res.body;
-        });
-    }else{
+
       this.route.queryParams.subscribe(params =>
         this.studentService.getStudent(params['studentId'])
           .subscribe(res => 
             this.document.student = res.body 
           ));
-    }
   }
 
-  save(): void {
-    this.mode == 'ADD' ? this.add() : this.edit();
-  }
-
-  private add(): void {
-    this.documentService.addDocument(this.document)
-      .subscribe(document => {
-        this.documentService.announceChange();
-        this.goBack();
-      });
-  }
-
-  private edit(): void {
-    this.documentService.editDocument(this.document)
-      .subscribe(document => {
-        this.documentService.announceChange();
-        this.goBack();
-      });
-  }
 
   goBack(): void {
     this.location.back();
@@ -98,6 +74,31 @@ export class SluzbaDocumentDetailsComponent implements OnInit {
 
   isAdmin():boolean{
     return this.authService.isAdmin();
+  }
+
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+    console.log(this.selectedFiles);
+  }
+
+  upload(): void {
+    this.errorMsg = '';
+
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+
+      if (file) {
+        this.currentFile = file;
+
+        this.documentService.upload(this.currentFile, this.document.student.id, this.document.type.id).subscribe(
+          document => {
+            this.documentService.announceChange();
+            this.goBack();
+          });
+      }
+
+      this.selectedFiles = undefined;
+    }
   }
 
 }

@@ -1,10 +1,17 @@
 package com.spring.projekateo.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.projekateo.dto.DocumentDTO;
 import com.spring.projekateo.dto.DocumentTypeDTO;
@@ -42,6 +51,9 @@ public class DocumentController {
 	
 	@Autowired
     private StudentService studentService;
+	
+	@Value("${dataDir}")
+    private String dataDirPath;
 	
 	@GetMapping("/getAllDocumentsForUser/{username}")
 	public ResponseEntity<List<DocumentDTO>> getAllDocumentsForStudent(@PathVariable("username") String username){
@@ -121,28 +133,6 @@ public class DocumentController {
 		return new ResponseEntity<DocumentDTO>(new DocumentDTO(document), HttpStatus.CREATED);	
 	}
 	
-	@PutMapping("/updateDocument/{document_id}")
-	public ResponseEntity<DocumentDTO> updateDocument(@RequestBody DocumentDTO documentDTO, @PathVariable("document_id") int document_id){
-		//a document must exist
-		Document document = documentService.findById(document_id);
-		if (document == null) {
-			return new ResponseEntity<DocumentDTO>(HttpStatus.BAD_REQUEST);
-		}
-		
-		DocumentType type = documentTypeService.findById(documentDTO.getType().getId());
-		if (type == null) {
-			return new ResponseEntity<DocumentDTO>(HttpStatus.BAD_REQUEST);
-		}
-		
-		document.setTitle(documentDTO.getTitle());
-		document.setUrl(documentDTO.getUrl());
-		document.setType(type);
-		document.setActive(documentDTO.isActive());
-		
-		document = documentService.save(document);
-		
-		return new ResponseEntity<DocumentDTO>(new DocumentDTO(document), HttpStatus.OK);	
-	}
 	
 	@PutMapping("/deleteDocument/{document_id}")
 	public ResponseEntity<Void> deleteDocument(@PathVariable("document_id") int document_id) {
@@ -157,5 +147,68 @@ public class DocumentController {
 		}
 		
 	}
+	
+	@GetMapping("/download/{document_id}")
+	public ResponseEntity<Resource> download(@PathVariable("document_id") int documentId) throws Exception {
+		
+		// Pronalazimo dokument koji treba preuzeti
+		Document document = documentService.findById(documentId);
+
+		Resource file = documentService.download(document.getUrl());
+	    Path path = file.getFile()
+                .toPath();
+
+	    return ResponseEntity.ok()
+                     .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(path))
+                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                     .body(file);
+
+		
+	}
+	
+	 @PostMapping("/upload/{student_id}/{type_id}")
+	 public ResponseEntity<DocumentDTO> uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("student_id") int student_id, @PathVariable("type_id") int type_id) throws FileUploadException {
+		 
+		 Student student = studentService.findById(student_id);
+		 if (student == null) {
+			 return new ResponseEntity<DocumentDTO>(HttpStatus.BAD_REQUEST);
+		 }
+			
+		 DocumentType type = documentTypeService.findById(type_id);
+		 if (type == null) {
+			 return new ResponseEntity<DocumentDTO>(HttpStatus.BAD_REQUEST);
+		 }
+			
+		 try {
+			 String path = dataDirPath + "/" + student.getUser().getUsername();
+	         Path root = Paths.get(path);
+	         Path resolve = root.resolve(file.getOriginalFilename());
+	         if (resolve.toFile().exists()) {
+	                throw new FileUploadException("File already exists: " + file.getOriginalFilename());
+	         }
+	         Files.copy(file.getInputStream(), resolve);
+	     } catch (Exception e) {
+	    	 throw new FileUploadException("Could not store the file. Error: " + e.getMessage());
+	     }
+		 
+		 Document document = new Document();
+		 
+		 String fileName = file.getOriginalFilename();
+		 String title = fileName.substring(0, fileName.lastIndexOf('.'));
+		 System.out.println("title: " + title);
+		 
+		 document.setTitle(title);
+		 
+		 String url = dataDirPath + "/" + student.getUser().getUsername() + "/" + file.getOriginalFilename();
+		 document.setUrl(url);
+		 
+		 document.setStudent(student);
+		 document.setType(type);
+
+		 document = documentService.save(document);
+			
+		 return ResponseEntity.status(HttpStatus.CREATED)
+	                             .body(new DocumentDTO(document));
+	 }
 
 }

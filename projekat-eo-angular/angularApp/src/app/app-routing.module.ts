@@ -24,6 +24,8 @@ import { SluzbaExamDetailsComponent } from './components/sluzba-exam-details/slu
 import { SluzbaExamTakingsComponent } from './components/sluzba-exam-takings/sluzba-exam-takings.component';
 import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-taking-details/sluzba-exam-taking-details.component';
 import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
+import { SluzbaExamPeriodsComponent } from './components/sluzba-exam-periods/sluzba-exam-periods.component';
+import { SluzbaExamPeriodDetailsComponent } from './components/sluzba-exam-period-details/sluzba-exam-period-details.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
@@ -36,6 +38,7 @@ const routes: Routes = [
   { path: 'documents', component: SluzbaDocumentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'students', component: SluzbaStudentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'teachers', component: SluzbaTeachersComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'periods', component: SluzbaExamPeriodsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'addCourse', component: SluzbaCourseDetailsComponent },
   { path: 'editCourse/:id', component: SluzbaCourseDetailsComponent },
   { path: 'addEnrollment', component: SluzbaEnrollmentsComponent },
@@ -43,7 +46,6 @@ const routes: Routes = [
   { path: 'addStudent', component: SluzbaStudentDetailsComponent },
   { path: 'editStudent/:id', component: SluzbaStudentDetailsComponent },
   { path: 'addDocument', component: SluzbaDocumentDetailsComponent },
-  { path: 'editDocument/:id', component: SluzbaDocumentDetailsComponent },
   { path: 'addPayment', component: SluzbaPaymentDetailsComponent },
   { path: 'editPayment/:id', component: SluzbaPaymentDetailsComponent },
   { path: 'addTeacher', component: SluzbaTeacherDetailsComponent },
@@ -51,6 +53,8 @@ const routes: Routes = [
   { path: 'addExamPart', component: SluzbaExamDetailsComponent },
   { path: 'editExamPart/:id', component: SluzbaExamDetailsComponent },
   { path: 'editTaking/:id', component: SluzbaExamTakingDetailsComponent },
+  { path: 'addExamPeriod', component: SluzbaExamPeriodDetailsComponent },
+  { path: 'editExamPeriod/:id', component: SluzbaExamPeriodDetailsComponent },
   { path: 'addUser', component: SluzbaUserComponent },
   { path: '',
     redirectTo: '/login',

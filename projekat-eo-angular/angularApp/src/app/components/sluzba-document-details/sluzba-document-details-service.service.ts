@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 import { AuthenticationServiceService } from '../../services/auth/authentication-service.service';
@@ -34,14 +34,12 @@ export class SluzbaDocumentDetailsServiceService {
     return this.http.get<DocumentType[]>(url, {observe: 'response'});
   }
 
-  addDocument(document: Document): Observable<HttpResponse<Document>> {
-    const urlPost = `${this.documentUrl}/addDocument/${document.student.id}`;
-    return this.http.post<Document>(urlPost, document, {observe: 'response'});
-  } 
+  upload(file: File, studentId: number, typeId: number): Observable<HttpResponse<Document>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
 
-  editDocument(document: Document): Observable<HttpResponse<Document>> {
-    const urlPut =`${this.documentUrl}/updateDocument/${document.id}`;
-    return this.http.put<Document>(urlPut, document, {observe: 'response'});
+    const urlPost = `${this.documentUrl}/upload/${studentId}/${typeId}`;
+    return this.http.post<Document>(urlPost, formData, {observe: 'response'});
   }
 
 }
