@@ -3,6 +3,8 @@ package com.spring.projekateo.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.Course;
@@ -34,6 +36,16 @@ public class CourseServiceImpl implements CourseService{
     public List<Course> getAllCourses(){
 		List<Course> allCourses= courseRepository.findAll();
         return allCourses;
+	}
+
+	@Override
+	public Page<Course> findAll(Pageable paging) {
+		return courseRepository.getAll(paging);
+	}
+
+	@Override
+	public Page<Course> findByNameContaining(String name, Pageable paging) {
+		return courseRepository.getAllByNameLikeOrESPB(name, paging);
 	}
 	
 
