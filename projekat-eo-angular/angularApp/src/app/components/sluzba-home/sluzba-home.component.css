@@ -1,0 +1,24 @@
+.card .table tbody td:first-child, .card .table thead th:first-child {
+    padding-left: 10px !important;
+}
+
+tr{
+    text-align: left;
+}
+
+.btn{
+    margin-right: 5px;
+}
+.card{
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right: 10px;
+
+}
+.btn{
+    margin-right: 5px;
+}
+
+td{
+    padding: 5px;
+}

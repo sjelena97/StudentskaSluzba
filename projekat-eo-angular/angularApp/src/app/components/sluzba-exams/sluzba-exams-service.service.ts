@@ -13,7 +13,7 @@ export class SluzbaExamsServiceService {
   private examPartsUrl = 'examParts';
   private examPartTypesUrl = 'examPartTypes';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
 
   private RegenerateData = new Subject<void>();
 
@@ -26,6 +26,12 @@ export class SluzbaExamsServiceService {
   getExamPart(id: number): Observable<HttpResponse<ExamPart>> {
     const url = `${this.examPartsUrl}/getExamPartById/${id}`;
     return this.http.get<ExamPart>(url, {observe: 'response'});
+  }
+
+  getComingExamPartsForUser(): Observable<HttpResponse<ExamPart[]>> {
+    let username = this.authService.getCurrentUser().username;
+    const url = `${this.examPartsUrl}/getComingExamParts/${username}`;
+    return this.http.get<ExamPart[]>(url, { observe: 'response' });
   }
 
   getExamPartsForCourse(id: number): Observable<HttpResponse<ExamPart[]>> {
