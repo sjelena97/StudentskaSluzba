@@ -3,6 +3,8 @@ package com.spring.projekateo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.spring.projekateo.model.Teacher;
@@ -32,9 +34,19 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 	
 	@Override
-    public List<Teacher> getAllTeachers(){
-		List<Teacher> allTeachers= teacherRepository.findAll();
-        return allTeachers;
+    public Page<Teacher> getAllTeachers(Pageable pageable){
+        return teacherRepository.getAll(pageable);
+	}
+
+	@Override
+	public Page<Teacher> findByNameContaining(String search, Pageable paging) {
+		// TODO Auto-generated method stub
+		return teacherRepository.getAllBySearch(search,paging);
+	}
+
+	@Override
+	public List<Teacher> getAllTeachersList() {
+		return teacherRepository.findAll();
 	}
 	
 }
