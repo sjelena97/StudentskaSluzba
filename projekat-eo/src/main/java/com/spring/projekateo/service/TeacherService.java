@@ -2,6 +2,9 @@ package com.spring.projekateo.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.spring.projekateo.model.Teacher;
 import com.spring.projekateo.model.User;
 
@@ -11,8 +14,13 @@ public interface TeacherService {
 
 	Teacher save(Teacher teacher);
 
-	List<Teacher> getAllTeachers();
+	Page<Teacher> getAllTeachers(Pageable pageable);
 
 	Teacher findByUser(User user);
+
+	Page<Teacher> findByNameContaining(String search, Pageable paging);
+	
+	List<Teacher> getAllTeachersList();
+
 
 }

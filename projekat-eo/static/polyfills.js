@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jelena\Desktop\Faks 3 godina(2 semestar)\eObrazovanje\studentskaSluzbaGit\StudentskaSluzba\projekat-eo-angular\angularApp\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\Users\hp\Desktop\Angular project\StudentskaSluzba\projekat-eo-angular\angularApp\src\polyfills.ts */"hN/g");
 
 
 /***/ }),
