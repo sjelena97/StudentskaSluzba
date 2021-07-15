@@ -46,7 +46,6 @@ const routes: Routes = [
   { path: 'addStudent', component: SluzbaStudentDetailsComponent },
   { path: 'editStudent/:id', component: SluzbaStudentDetailsComponent },
   { path: 'addDocument', component: SluzbaDocumentDetailsComponent },
-  { path: 'editDocument/:id', component: SluzbaDocumentDetailsComponent },
   { path: 'addPayment', component: SluzbaPaymentDetailsComponent },
   { path: 'editPayment/:id', component: SluzbaPaymentDetailsComponent },
   { path: 'addTeacher', component: SluzbaTeacherDetailsComponent },

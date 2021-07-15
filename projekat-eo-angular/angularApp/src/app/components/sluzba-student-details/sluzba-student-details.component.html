@@ -302,18 +302,20 @@
                                     {{ document.type.name }} {{document.title}}
                                 </td>
                                 <td style="float: right;">
-                                    <button type="button" class="btn btn-primary" aria-label="Edit"
-                                        (click)="gotoEditDocument(document)">
-                                        <span class="fa fa-edit" aria-hidden="true"></span>
-                                    </button>
                                     <button type="button" class="btn btn-danger right" aria-label="Delete"
                                         (click)="deleteDocument(document.id, document.title)">
                                         <span class="fa fa-trash" aria-hidden="true"></span>
                                     </button>
+                                    <button type="button" class="btn btn-primary" aria-label="Download" (click)="download(document)">
+                                        <span class="pe-7s-download" aria-hidden="true"></span>
+                                      </button>
                                 </td>
                             </tr>
                         </table>
                     </div>
+                    
+                    <div *ngIf="message" class="alert alert-success" role="alert">{{ message }}</div>
+                    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">{{ errorMsg }}</div>
                 </div>
             </div>
         </div>
