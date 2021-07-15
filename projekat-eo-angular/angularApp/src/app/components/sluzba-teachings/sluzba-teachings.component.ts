@@ -61,7 +61,7 @@ export class SluzbaTeachingsComponent implements OnInit {
           this.teaching.course = res.body 
         ));
 
-    this.teacherService.getTeachers().subscribe(res =>
+    this.teacherService.getTeachersList().subscribe(res =>
       this.teachers = res.body);
 
     this.teachingService.getTeachingTypes().subscribe(res =>
