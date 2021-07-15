@@ -27,10 +27,15 @@ export class SluzbaStudentsServiceService {
   announceChange() {
       this.RegenerateData.next();
   }
+
+  getStudentsList(): Observable<HttpResponse<Student[]>> {
+    const url = `${this.studentsUrl}/getAllStudentsList`;
+    return this.http.get<Student[]>(url, {observe: 'response'});
+}
   
-  getStudents(): Observable<HttpResponse<Student[]>> {
+  getStudents(params: any): Observable<any>{
       const url = `${this.studentsUrl}/getAllStudents`;
-      return this.http.get<Student[]>(url, {observe: 'response'});
+      return this.http.get<any>(  url, { params });
   }
 
   getStudent(id: number): Observable<HttpResponse<Student>> {

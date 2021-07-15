@@ -21,6 +21,14 @@ export class SluzbaStudentsComponent implements OnInit {
 
   students: Student[];
 
+  search = '';
+  sort = '';
+
+  page = 0;
+  count = 0;
+  size = 3;
+  pageSizes = [3, 6, 9];
+
   subscription: Subscription;
 
   constructor(private studentService: SluzbaStudentsServiceService, private router: Router, private authService: AuthenticationServiceService) {
@@ -33,10 +41,61 @@ export class SluzbaStudentsComponent implements OnInit {
     this.getStudents();
   }
 
-  getStudents() {
-    this.studentService.getStudents().subscribe(res =>
-      this.students = res.body);
+  getRequestParams(search: string, page: number, pageSize: number, sort: string): any {
+    // tslint:disable-next-line:prefer-const
+    let params: any = {};
+
+    if (search) {
+      params[`search`] = search;
+    }
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    if (sort) {
+      params[`sort`] = sort;
+    }
+
+    return params;
   }
+
+  getStudents(): void {
+    const params = this.getRequestParams(this.search, this.page, this.size,this.sort);
+
+    this.studentService.getStudents(params)
+    .subscribe(
+      response => {
+        const { students, totalItems, currentPage} = response;
+        this.students = students;
+        this.count = totalItems;
+        this.page = currentPage +1;
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.getStudents();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.size = event.target.value;
+    this.page = 1;
+    this.getStudents();
+  }
+
+  // getStudents() {
+  //   this.studentService.getStudents().subscribe(res =>
+  //     this.students = res.body);
+  // }
 
   
   gotoAdd(): void {
