@@ -10,6 +10,7 @@ public class EnrollmentDTO implements Serializable{
 	private Integer id;
 	private Date startDate;
 	private Date endDate;
+	private int grade;
 	private StudentDTO student;
 	private CourseDTO course;
 	private boolean active;
@@ -18,11 +19,12 @@ public class EnrollmentDTO implements Serializable{
 		super();
 	}
 
-	public EnrollmentDTO(Integer id, Date startDate, Date endDate, StudentDTO student, CourseDTO course, boolean active) {
+	public EnrollmentDTO(Integer id, Date startDate, Date endDate, int grade, StudentDTO student, CourseDTO course, boolean active) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.grade = grade;
 		this.student = student;
 		this.course = course;
 		this.active = active;
@@ -30,7 +32,7 @@ public class EnrollmentDTO implements Serializable{
 	
 	
 	public EnrollmentDTO(Enrollment enrollment){
-		this(enrollment.getId(), enrollment.getStartDate(), enrollment.getEndDate(), new StudentDTO(enrollment.getStudent()), new CourseDTO(enrollment.getCourse()), enrollment.isActive());
+		this(enrollment.getId(), enrollment.getStartDate(), enrollment.getEndDate(), enrollment.getGrade(), new StudentDTO(enrollment.getStudent()), new CourseDTO(enrollment.getCourse()), enrollment.isActive());
 	}
 
 	public Integer getId() {
@@ -55,6 +57,14 @@ public class EnrollmentDTO implements Serializable{
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 	public StudentDTO getStudent() {

@@ -1,11 +1,13 @@
 package com.spring.projekateo.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.projekateo.dto.StudentDTO;
 import com.spring.projekateo.model.Account;
 import com.spring.projekateo.model.Authority;
-import com.spring.projekateo.model.Course;
 import com.spring.projekateo.model.Student;
 import com.spring.projekateo.model.User;
 import com.spring.projekateo.service.AccountService;
@@ -53,6 +54,9 @@ public class StudentController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Value("${dataDir}")
+    private String dataDirPath;
 	
 	private Sort.Direction getSortDirection(String direction) {
 	    if (direction.equals("asc")) {
@@ -246,6 +250,13 @@ public class StudentController {
 		student.setAccount(account);
 
 		student = studentService.save(student);
+		
+		String dirPath = dataDirPath + "/" + student.getUser().getUsername();
+		File theDir = new File(dirPath);
+		if (!theDir.exists()){
+		    theDir.mkdirs();
+		}
+		
 		return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.CREATED);
 	}
 
