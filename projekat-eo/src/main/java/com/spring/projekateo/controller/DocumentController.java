@@ -1,5 +1,6 @@
 package com.spring.projekateo.controller;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -141,6 +142,14 @@ public class DocumentController {
 		if (document != null){
 			document.setActive(false);
 			document = documentService.save(document);
+			
+			File file = new File(document.getUrl()); 
+		    if (file.delete()) { 
+		      System.out.println("Deleted the file: " + file.getName());
+		    } else {
+		      System.out.println("Failed to delete the file.");
+		    } 
+			 
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);

@@ -142,6 +142,23 @@ public class ExamPartTakingController {
 		}
 	}
 	
+	@GetMapping("getPointsByEnrollment/{enrollment_id}")
+	public ResponseEntity<Double> getPointsByEnrollment(@PathVariable("enrollment_id") int enrollment_id) {
+		Enrollment enrollment = enrollmentService.findById(enrollment_id);
+		if (enrollment == null) {
+			return new ResponseEntity<Double>(HttpStatus.BAD_REQUEST);
+		}
+		
+		double points = 0;
+		ExamPartStatus status = examPartStatusService.findByCode("PSD");
+		List<ExamPartTaking> takings = examPartTakingService.getAllTakingsByEnrollmentAndStatus(enrollment, status);
+		for(ExamPartTaking ept : takings) {
+			points+=ept.getScore();
+		}
+		
+		return new ResponseEntity<Double>(points, HttpStatus.OK);
+	}
+	
 	@PutMapping("/updateExamTaking/{exam_taking_id}")
 	public ResponseEntity<ExamPartTakingDTO> updateExamPartTaking(@RequestBody ExamPartTakingDTO examPartTakingDTO, @PathVariable("exam_taking_id") int exam_taking_id){
 		//a exam taking must exist

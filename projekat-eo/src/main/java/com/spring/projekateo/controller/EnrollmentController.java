@@ -1,6 +1,7 @@
 package com.spring.projekateo.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -52,15 +53,48 @@ public class EnrollmentController {
 			
 			List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
 			for (Enrollment e: enrollments) {
-				EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
-				enrollmentDTO.setId(e.getId());
-				enrollmentDTO.setStartDate(e.getStartDate());
-				enrollmentDTO.setEndDate(e.getEndDate());
-				enrollmentDTO.setCourse(new CourseDTO(e.getCourse()));
-				enrollmentDTO.setActive(e.isActive());
-				//we leave student field empty
-				
-				enrollmentsDTO.add(enrollmentDTO);
+				if(e.isActive()) {
+					EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
+					enrollmentDTO.setId(e.getId());
+					enrollmentDTO.setStartDate(e.getStartDate());
+					enrollmentDTO.setEndDate(e.getEndDate());
+					enrollmentDTO.setGrade(e.getGrade());
+					enrollmentDTO.setCourse(new CourseDTO(e.getCourse()));
+					enrollmentDTO.setActive(e.isActive());
+					//we leave student field empty
+					
+					enrollmentsDTO.add(enrollmentDTO);
+				}
+			}
+			return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllPassedEnrollmentsForUser/{username}")
+	public ResponseEntity<List<EnrollmentDTO>> getAllPassedEnrollmentsForUser(@PathVariable("username") String username){
+			User user = userService.findByUsername(username);
+			Student student = studentService.findByUser(user);
+			Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+			Set<Enrollment> passedEnrollments = new HashSet<Enrollment>();
+			for(Enrollment e : enrollments) {
+				if(e.getGrade() > 5) {
+					passedEnrollments.add(e);
+				}
+			}
+			
+			List<EnrollmentDTO> enrollmentsDTO = new ArrayList<>();
+			for (Enrollment e: passedEnrollments) {
+				if(e.isActive()) {
+					EnrollmentDTO enrollmentDTO = new EnrollmentDTO();
+					enrollmentDTO.setId(e.getId());
+					enrollmentDTO.setStartDate(e.getStartDate());
+					enrollmentDTO.setEndDate(e.getEndDate());
+					enrollmentDTO.setGrade(e.getGrade());
+					enrollmentDTO.setCourse(new CourseDTO(e.getCourse()));
+					enrollmentDTO.setActive(e.isActive());
+					//we leave student field empty
+					
+					enrollmentsDTO.add(enrollmentDTO);
+				}
 			}
 			return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
 	}
@@ -80,6 +114,7 @@ public class EnrollmentController {
 				enrollmentDTO.setId(e.getId());
 				enrollmentDTO.setStartDate(e.getStartDate());
 				enrollmentDTO.setEndDate(e.getEndDate());
+				enrollmentDTO.setGrade(e.getGrade());
 				enrollmentDTO.setCourse(new CourseDTO(e.getCourse()));
 				enrollmentDTO.setActive(e.isActive());
 				//we leave student field empty
@@ -100,6 +135,7 @@ public class EnrollmentController {
 				enrollmentDTO.setId(e.getId());
 				enrollmentDTO.setStartDate(e.getStartDate());
 				enrollmentDTO.setEndDate(e.getEndDate());
+				enrollmentDTO.setGrade(e.getGrade());
 				enrollmentDTO.setStudent(new StudentDTO(e.getStudent()));
 				enrollmentDTO.setActive(e.isActive());
 				//we leave course field empty
@@ -108,6 +144,16 @@ public class EnrollmentController {
 			}
 		}
 		return new ResponseEntity<>(enrollmentsDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("getEnrollmentById/{enrollment_id}")
+	public ResponseEntity<EnrollmentDTO> getEnrollmentById(@PathVariable("enrollment_id") int enrollment_id) {
+		Enrollment e = enrollmentService.findById(enrollment_id);
+		if (e == null) {
+			return new ResponseEntity<EnrollmentDTO>(HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<EnrollmentDTO>(new EnrollmentDTO(e), HttpStatus.OK);
+		}
 	}
 	
 	@PostMapping("/addEnrollment/{course_id}")
@@ -126,6 +172,7 @@ public class EnrollmentController {
 		enrollment.setCourse(course);
 		enrollment.setStartDate(newEnrollment.getStartDate());
 		enrollment.setEndDate(newEnrollment.getEndDate());
+		enrollment.setGrade(5);
 		enrollment.setStudent(student);
 		
 		enrollment = enrollmentService.save(enrollment);
@@ -152,8 +199,24 @@ public class EnrollmentController {
 		enrollment.setCourse(course);
 		enrollment.setStartDate(enrollmentDTO.getStartDate());
 		enrollment.setEndDate(enrollmentDTO.getEndDate());
+		enrollment.setGrade(enrollmentDTO.getGrade());
 		enrollment.setStudent(student);
 		enrollment.setActive(enrollmentDTO.isActive());
+		
+		enrollment = enrollmentService.save(enrollment);
+		
+		return new ResponseEntity<EnrollmentDTO>(new EnrollmentDTO(enrollment), HttpStatus.OK);	
+	}
+	
+	@PutMapping("/updateEnrollmentGrade/{enrollment_id}")
+	public ResponseEntity<EnrollmentDTO> updateEnrollmentGrade(@RequestBody int grade, @PathVariable("enrollment_id") int enrollment_id){
+
+		Enrollment enrollment = enrollmentService.findById(enrollment_id);
+		if(enrollment == null) {
+			return new ResponseEntity<EnrollmentDTO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		enrollment.setGrade(grade);
 		
 		enrollment = enrollmentService.save(enrollment);
 		

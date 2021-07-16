@@ -22,11 +22,11 @@ INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (2, 6, 'EU', 'eU
 INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (3, 8, 'M1', 'Matematika 1', 1);
 INSERT INTO COURSE (course_id, espb, code, name, active) VALUES (4, 4, 'P', 'Projekat', 1);
 
-INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, active) VALUES (1, 1, 1, '2021-03-01', '2021-10-01', 1);
-INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, active) VALUES (2, 1, 2, '2021-03-01', '2021-10-01', 1);
-INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, active) VALUES (3, 2, 1, '2021-03-01', '2021-10-01', 1);
-INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, active) VALUES (4, 2, 2, '2021-03-01', '2021-10-01', 1);
-INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, active) VALUES (5, 1, 4, '2021-03-01', '2021-10-01', 1);
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, grade, active) VALUES (1, 1, 1, '2021-03-01', '2021-10-01', 5, 1);
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, grade, active) VALUES (2, 1, 2, '2021-03-01', '2021-10-01', 10, 1);
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, grade, active) VALUES (3, 2, 1, '2021-03-01', '2021-10-01', 5, 1);
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, grade, active) VALUES (4, 2, 2, '2021-03-01', '2021-10-01', 9, 1);
+INSERT INTO ENROLLMENT (enrollment_id, student_id, course_id, start_date, end_date, grade, active) VALUES (5, 1, 4, '2021-03-01', '2021-10-01', 5, 1);
 
 INSERT INTO TEACHING_TYPE (teaching_type_id, code, name) VALUES (1, 'L', 'LECTURER');
 INSERT INTO TEACHING_TYPE (teaching_type_id, code, name) VALUES (2, 'TA', 'TEACHING ASSISTANT');
@@ -70,7 +70,9 @@ INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (5, 'NA', 
 INSERT INTO EXAM_PART_STATUS (exam_part_status_id, code, name) VALUES (6, 'NS', 'NS');
 
 INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (1, 0, 4, 3, 4);
-INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (2, 69, 2, 5, 2);
-INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (3, 57, 2, 5, 4);
-INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (4, 0, 1, 6, 1);
-INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (5, 0, 1, 6, 3);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (2, 30, 2, 2, 2);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (3, 25, 2, 2, 4);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (4, 69, 2, 5, 2);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (5, 57, 2, 5, 4);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (6, 0, 1, 6, 1);
+INSERT INTO EXAM_PART_TAKING(exam_part_taking_id, score, status_id, exam_part_id, enrollment_id) VALUES (7, 0, 1, 6, 3);

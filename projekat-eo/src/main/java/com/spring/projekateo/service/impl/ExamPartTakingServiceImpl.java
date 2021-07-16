@@ -48,6 +48,12 @@ public class ExamPartTakingServiceImpl implements ExamPartTakingService{
 	}
 	
 	@Override
+    public List<ExamPartTaking> getAllTakingsByEnrollmentAndStatus(Enrollment enrollment, ExamPartStatus status){
+		List<ExamPartTaking> takings = examPartTakingRepository.findAllByEnrollmentAndStatus(enrollment, status);
+        return takings;
+	}
+	
+	@Override
 	public ExamPartTaking save(ExamPartTaking examPartTaking) {
 		return examPartTakingRepository.save(examPartTaking);
 	}

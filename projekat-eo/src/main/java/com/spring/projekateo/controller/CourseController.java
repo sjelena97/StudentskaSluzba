@@ -1,18 +1,11 @@
 package com.spring.projekateo.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Sort.Order;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.projekateo.dto.CourseDTO;
 import com.spring.projekateo.model.Authority;
 import com.spring.projekateo.model.Course;
@@ -66,15 +55,15 @@ public class CourseController {
 	private UserService userService;
 
 	
-	private Sort.Direction getSortDirection(String direction) {
-		    if (direction.equals("asc")) {
-		      return Sort.Direction.ASC;
-		    } else if (direction.equals("desc")) {
-		      return Sort.Direction.DESC;
-		    }
-
-		    return Sort.Direction.ASC;
-		  }
+//	private Sort.Direction getSortDirection(String direction) {
+//		    if (direction.equals("asc")) {
+//		      return Sort.Direction.ASC;
+//		    } else if (direction.equals("desc")) {
+//		      return Sort.Direction.DESC;
+//		    }
+//
+//		    return Sort.Direction.ASC;
+//		  }
 	
 	
 //	@GetMapping("/{username}")
@@ -256,19 +245,25 @@ public class CourseController {
 		if (authority.getName().equalsIgnoreCase("ADMIN")) {
 			List<Course> allCourses = courseService.getAllCourses();
 			for (Course c : allCourses) {
-				courses.add(c);
+				if(c.isActive()) {
+					courses.add(c);
+				}
 			}
 		} else if (authority.getName().equalsIgnoreCase("TEACHER")) {
 			Teacher teacher = teacherService.findByUser(user);
 			Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
 			for (Teaching t : teachings) {
-				courses.add(t.getCourse());
+				if(t.isActive()) {
+					courses.add(t.getCourse());
+				}
 			}
 		} else if (authority.getName().equalsIgnoreCase("STUDENT")) {
 			Student student = studentService.findByUser(user);
 			Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
 			for (Enrollment e : enrollments) {
-				courses.add(e.getCourse());
+				if(e.isActive()) {
+					courses.add(e.getCourse());
+				}
 			}
 		}
 
