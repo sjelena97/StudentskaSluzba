@@ -58,16 +58,18 @@ public class TeachingController {
 			
 			List<TeachingDTO> teachingsDTO = new ArrayList<>();
 			for (Teaching t : teachings) {
-				TeachingDTO teachingDTO = new TeachingDTO();
-				teachingDTO.setId(t.getId());
-				teachingDTO.setStartDate(t.getStartDate());
-				teachingDTO.setEndDate(t.getEndDate());
-				teachingDTO.setCourse(new CourseDTO(t.getCourse()));
-				teachingDTO.setType(new TeachingTypeDTO(t.getType()));
-				teachingDTO.setActive(t.isActive());
-				//we leave teacher field empty
-				
-				teachingsDTO.add(teachingDTO);
+				if(t.isActive()) {
+					TeachingDTO teachingDTO = new TeachingDTO();
+					teachingDTO.setId(t.getId());
+					teachingDTO.setStartDate(t.getStartDate());
+					teachingDTO.setEndDate(t.getEndDate());
+					teachingDTO.setCourse(new CourseDTO(t.getCourse()));
+					teachingDTO.setType(new TeachingTypeDTO(t.getType()));
+					teachingDTO.setActive(t.isActive());
+					//we leave teacher field empty
+					
+					teachingsDTO.add(teachingDTO);
+				}
 			}
 			return new ResponseEntity<>(teachingsDTO, HttpStatus.OK);
 		}

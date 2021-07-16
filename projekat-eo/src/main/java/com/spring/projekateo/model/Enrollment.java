@@ -31,6 +31,9 @@ public class Enrollment {
 	@Column(name = "endDate")
 	private Date endDate;
 	
+	@Column(name = "grade")
+	private int grade = 5;
+	
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false)
 	private Student student;
@@ -71,6 +74,14 @@ public class Enrollment {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 	public Student getStudent() {

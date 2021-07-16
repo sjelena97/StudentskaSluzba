@@ -22,4 +22,6 @@ public interface ExamPartTakingService {
 	ExamPartTaking getTakingByPartAndStatusAndEnrollment(ExamPart examPart, ExamPartStatus status,
 			Enrollment enrollment);
 
+	List<ExamPartTaking> getAllTakingsByEnrollmentAndStatus(Enrollment enrollment, ExamPartStatus status);
+
 }

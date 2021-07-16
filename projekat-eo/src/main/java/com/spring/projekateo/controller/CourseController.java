@@ -38,21 +38,180 @@ public class CourseController {
 
 	@Autowired
 	private CourseService courseService;
-	
+
 	@Autowired
-    private EnrollmentService enrollmentService;
-	
+	private EnrollmentService enrollmentService;
+
 	@Autowired
-    private StudentService studentService;
-	
+	private StudentService studentService;
+
 	@Autowired
-    private TeacherService teacherService;
-	
+	private TeacherService teacherService;
+
 	@Autowired
-    private TeachingService teachingService;
-	
+	private TeachingService teachingService;
+
 	@Autowired
-    private UserService userService;
+	private UserService userService;
+
+	
+//	private Sort.Direction getSortDirection(String direction) {
+//		    if (direction.equals("asc")) {
+//		      return Sort.Direction.ASC;
+//		    } else if (direction.equals("desc")) {
+//		      return Sort.Direction.DESC;
+//		    }
+//
+//		    return Sort.Direction.ASC;
+//		  }
+	
+	
+//	@GetMapping("/{username}")
+//	public ResponseEntity<Map<String, Object>> getAll(@PathVariable("username") String username,@RequestParam(required = false) String search,
+//			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size,
+//			@RequestParam(defaultValue = "course_id,desc") String[] sort) {
+//		
+//		
+//		
+//		
+//		System.out.println("dobio sam " +username+ " "+search + " " + page + " " + size + " " + sort.toString());
+//		try {
+//
+//			List<Course> courses = new ArrayList<Course>();
+//			
+//			List<Order> orders = new ArrayList<Order>();
+//
+//		      if (sort[0].contains(",")) {
+//		        // will sort more than 2 fields
+//		        // sortOrder="field, direction"
+//		        for (String sortOrder : sort) {
+//		          String[] _sort = sortOrder.split(",");
+//		          orders.add(new Order(getSortDirection(_sort[1]), _sort[0]));
+//		        }
+//		      } else {
+//		        // sort=[field, direction]
+//		        orders.add(new Order(getSortDirection(sort[1]), sort[0]));
+//		      }
+//
+//
+//			Pageable paging = PageRequest.of(page, size,Sort.by(orders));
+//
+//			Page<Course> pageTuts;
+//			if (search == null)
+//				pageTuts = courseService.findAll(paging);
+//			else
+//				pageTuts = courseService.findByNameContaining(search, paging);
+//
+//			courses = pageTuts.getContent();
+//			
+//			
+//			User user = userService.findByUsername(username);
+//			if (user == null) {
+//				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//			}
+//			Authority authority = user.getAuthority();
+//			List<Course> courses1 = new ArrayList<Course>();
+//			
+//			if (authority.getName().equalsIgnoreCase("ADMIN")) {
+//				List<Course> allCourses = courseService.getAllCourses();
+//				for (Course c : allCourses) {
+//					courses1.add(c);
+//				}
+//			} else if (authority.getName().equalsIgnoreCase("TEACHER")) {
+//				Teacher teacher = teacherService.findByUser(user);
+//				Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
+//				for (Teaching t : teachings) {
+//					courses1.add(t.getCourse());
+//				}
+//			} else if (authority.getName().equalsIgnoreCase("STUDENT")) {
+//				Student student = studentService.findByUser(user);
+//				Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+//				for (Enrollment e : enrollments) {
+//					courses1.add(e.getCourse());
+//				}
+//			}
+//
+//			List<CourseDTO> coursesDTOforUser = new ArrayList<>();
+//			for (Course c : courses1) {
+//				if (c.isActive()) {
+//					CourseDTO courseDTO = new CourseDTO();
+//					courseDTO.setId(c.getId());
+//					courseDTO.setName(c.getName());
+//					courseDTO.setCode(c.getCode());
+//					courseDTO.setESPB(c.getESPB());
+//					courseDTO.setActive(c.isActive());
+//
+//					coursesDTOforUser.add(courseDTO);
+//				}
+//			}
+//			
+//			
+//
+//
+//			List<CourseDTO> coursesDTO = new ArrayList<>();
+//			for (Course c : courses) {
+//				coursesDTO.add(new CourseDTO(c));
+//			}
+//			
+//			
+//			
+//			List<CourseDTO> coursesDTOfinal = new ArrayList<>();
+//
+//			for(CourseDTO c1 : coursesDTO) {
+//					System.out.println("c1 je " + c1.getCode());
+//					for(CourseDTO c2: coursesDTOforUser ) {
+//						if(c2.getCode().equals(c1.getCode())) {
+//							System.out.println("c1 je " + c1.getCode());
+//							System.out.println("c2 je " + c2.getCode());
+//							coursesDTOfinal.add(c1);
+//							
+//					}
+//					
+//				}
+//			}
+//
+//			System.out.println("prva je" +coursesDTO.toString());
+//			System.out.println("druga je" +coursesDTOforUser.toString());
+//			System.out.println("treca je" +coursesDTOfinal.toString());
+//
+//			Page<CourseDTO> page1 = new PageImpl<>(coursesDTOfinal, paging, coursesDTOfinal.size());
+//
+//
+//			Map<String, Object> response = new HashMap<>();
+//			response.put("courses", coursesDTOfinal);
+//			response.put("currentPage", page1.getNumber());
+//			response.put("totalItems", page1.getTotalElements());
+//			response.put("totalPages", page1.getTotalPages());
+//
+//			return new ResponseEntity<>(response, HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+
+//	  @GetMapping("/published")
+//	  public ResponseEntity<Map<String, Object>> findByPublished(
+//	        @RequestParam(defaultValue = "1") int page,
+//	        @RequestParam(defaultValue = "3") int size
+//	      ) {
+//	    try {      
+//	      List<Tutorial> tutorials = new ArrayList<Tutorial>();
+//	      Pageable paging = PageRequest.of(page, size);
+//	      
+//	      Page<Tutorial> pageTuts = tutorialRepository.findByPublished(true, paging);
+//	      tutorials = pageTuts.getContent();
+//	            
+//	      Map<String, Object> response = new HashMap<>();
+//	      response.put("tutorials", tutorials);
+//	      response.put("currentPage", pageTuts.getNumber());
+//	      response.put("totalItems", pageTuts.getTotalElements());
+//	      response.put("totalPages", pageTuts.getTotalPages());
+//	      
+//	      return new ResponseEntity<>(response, HttpStatus.OK);
+//	    } catch (Exception e) {
+//	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//	    }
+//	  }
 
 	@GetMapping("/getAllCourses")
 	public ResponseEntity<List<CourseDTO>> getAllCourses() {
@@ -64,7 +223,7 @@ public class CourseController {
 		}
 		return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("getCourseById/{course_id}")
 	public ResponseEntity<CourseDTO> getCourseById(@PathVariable("course_id") int course_id) {
 		Course course = courseService.findById(course_id);
@@ -75,48 +234,53 @@ public class CourseController {
 		}
 	}
 
-	
 	@GetMapping("/getAllCoursesForUser/{username}")
-	public ResponseEntity<List<CourseDTO>> getAllCoursesForUser(@PathVariable("username") String username){
-			User user = userService.findByUsername(username);
-			if (user == null) {
-				return new ResponseEntity<List<CourseDTO>>(HttpStatus.BAD_REQUEST);
-			}
-			Authority authority = user.getAuthority();
-			Set<Course> courses = new HashSet<Course>();
-			if(authority.getName().equalsIgnoreCase("ADMIN")){
-			 	List<Course> allCourses = courseService.getAllCourses();
-			 	for (Course c: allCourses) {
-			 		courses.add(c);
-				}
-			}else if(authority.getName().equalsIgnoreCase("TEACHER")) {
-				Teacher teacher = teacherService.findByUser(user);
-			 	Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
-			 	for (Teaching t: teachings) {
-			 		courses.add(t.getCourse());
-				}
-			}else if(authority.getName().equalsIgnoreCase("STUDENT")){
-				Student student = studentService.findByUser(user);
-			 	Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
-			 	for (Enrollment e: enrollments) {
-			 		courses.add(e.getCourse());
-				}
-			}
-			
-		 	List<CourseDTO> coursesDTO = new ArrayList<>();
-			for (Course c: courses) {
+	public ResponseEntity<List<CourseDTO>> getAllCoursesForUser(@PathVariable("username") String username) {
+		User user = userService.findByUsername(username);
+		if (user == null) {
+			return new ResponseEntity<List<CourseDTO>>(HttpStatus.BAD_REQUEST);
+		}
+		Authority authority = user.getAuthority();
+		Set<Course> courses = new HashSet<Course>();
+		if (authority.getName().equalsIgnoreCase("ADMIN")) {
+			List<Course> allCourses = courseService.getAllCourses();
+			for (Course c : allCourses) {
 				if(c.isActive()) {
-					CourseDTO courseDTO = new CourseDTO();
-					courseDTO.setId(c.getId());
-					courseDTO.setName(c.getName());
-					courseDTO.setCode(c.getCode());
-					courseDTO.setESPB(c.getESPB());
-					courseDTO.setActive(c.isActive());
-					
-					coursesDTO.add(courseDTO);
+					courses.add(c);
 				}
 			}
-			return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
+		} else if (authority.getName().equalsIgnoreCase("TEACHER")) {
+			Teacher teacher = teacherService.findByUser(user);
+			Set<Teaching> teachings = teachingService.getAllTeachingsByTeacher(teacher);
+			for (Teaching t : teachings) {
+				if(t.isActive()) {
+					courses.add(t.getCourse());
+				}
+			}
+		} else if (authority.getName().equalsIgnoreCase("STUDENT")) {
+			Student student = studentService.findByUser(user);
+			Set<Enrollment> enrollments = enrollmentService.getAllEnrollmentsByStudent(student);
+			for (Enrollment e : enrollments) {
+				if(e.isActive()) {
+					courses.add(e.getCourse());
+				}
+			}
+		}
+
+		List<CourseDTO> coursesDTO = new ArrayList<>();
+		for (Course c : courses) {
+			if (c.isActive()) {
+				CourseDTO courseDTO = new CourseDTO();
+				courseDTO.setId(c.getId());
+				courseDTO.setName(c.getName());
+				courseDTO.setCode(c.getCode());
+				courseDTO.setESPB(c.getESPB());
+				courseDTO.setActive(c.isActive());
+
+				coursesDTO.add(courseDTO);
+			}
+		}
+		return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
 
 	@PostMapping("/addCourse")
@@ -164,20 +328,19 @@ public class CourseController {
 
 		return new ResponseEntity<CourseDTO>(new CourseDTO(course), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/deleteCourse/{course_id}")
 	public ResponseEntity<Void> deleteCourse(@PathVariable("course_id") int course_id) {
 
 		Course course = courseService.findById(course_id);
-		if (course != null){
+		if (course != null) {
 			course.setActive(false);
 			course = courseService.save(course);
 			return new ResponseEntity<Void>(HttpStatus.OK);
-		} else {		
+		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
-		
-	}
 
+	}
 
 }
