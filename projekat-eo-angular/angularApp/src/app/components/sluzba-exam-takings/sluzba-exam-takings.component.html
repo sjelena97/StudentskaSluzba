@@ -9,7 +9,8 @@
                 </div>
                 <div *ngIf="isStudent()" class="col-md-3" style="float: right; padding-top: 15px;">
                     <div *ngIf="canSignUp">
-                        <button style="float: right;" type="button" class="btn btn-primary" aria-label="Sign up" (click)="signUp()">
+                        <button style="float: right;" type="button" class="btn btn-primary" aria-label="Sign up"
+                            (click)="signUp()">
                             <span>Sign Up</span>
                         </button>
                     </div>
@@ -21,7 +22,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <h4>Takings</h4>
@@ -59,6 +60,10 @@
                                             <button type="button" class="btn btn-primary" aria-label="Edit"
                                                 (click)="gotoEdit(taking)">
                                                 <span class="fa fa-edit" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success" aria-label="Grade"
+                                                (click)="gotoEditGrade(taking)">
+                                                <span>Grade</span>
                                             </button>
                                         </td>
                                     </tr>

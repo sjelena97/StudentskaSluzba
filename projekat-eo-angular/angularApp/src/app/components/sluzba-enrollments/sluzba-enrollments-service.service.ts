@@ -21,10 +21,22 @@ export class SluzbaEnrollmentsServiceService {
     this.RegenerateData.next();
   }
 
+  getEnrollment(id: number): Observable<HttpResponse<Enrollment>> {
+    const url = `${this.enrollmentsUrl}/getEnrollmentById/${id}`;
+    return this.http.get<Enrollment>(url, {observe: 'response'});
+  }
+
   getEnrollments(): Observable<HttpResponse<Enrollment[]>> {
     let username = this.authService.getCurrentUser().username;
     console.log("username: " + username);
     const url = `${this.enrollmentsUrl}/getAllEnrollmentsForUser/${username}`;
+    return this.http.get<Enrollment[]>(url, { observe: 'response' });
+  }
+
+  getPassedEnrollments(): Observable<HttpResponse<Enrollment[]>> {
+    let username = this.authService.getCurrentUser().username;
+    console.log("username: " + username);
+    const url = `${this.enrollmentsUrl}/getAllPassedEnrollmentsForUser/${username}`;
     return this.http.get<Enrollment[]>(url, { observe: 'response' });
   }
 
@@ -36,5 +48,10 @@ export class SluzbaEnrollmentsServiceService {
   deleteEnrollment(enrollmentId: number): Observable<HttpResponse<any>> {
     const url = `${this.enrollmentsUrl}/deleteEnrollment/${enrollmentId}`;
     return this.http.put<any>(url, { observe: 'response' });
+  }
+
+  updateGrade(enrollmentId: number, grade: number): Observable<HttpResponse<any>> {
+    const urlPut =`${this.enrollmentsUrl}/updateEnrollmentGrade/${enrollmentId}`;
+    return this.http.put<any>(urlPut, grade, {observe: 'response'});
   }
 }

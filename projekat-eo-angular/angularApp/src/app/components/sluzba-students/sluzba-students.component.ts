@@ -26,8 +26,8 @@ export class SluzbaStudentsComponent implements OnInit {
 
   page = 0;
   count = 0;
-  size = 3;
-  pageSizes = [3, 6, 9];
+  size = 1;
+  pageSizes = [1, 3, 5, 10, 15, 25];
 
   subscription: Subscription;
 

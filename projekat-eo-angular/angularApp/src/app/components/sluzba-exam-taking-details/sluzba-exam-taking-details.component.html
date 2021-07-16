@@ -1,4 +1,4 @@
-<div class="main-content" *ngIf="isLoggedIn()">
+<div class="main-content" *ngIf="isAdmin() || isTeacher()">
     <div class="container-fluid">
         <div *ngIf="examTaking.id">
             <div class="row">
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="isAdmin()">
+        <div *ngIf="isAdmin() || isTeacher()">
             <button class="btn btn-success" (click)="save()">OK</button>
             <button class="btn btn-danger" (click)="goBack()">Cancel</button>
         </div>

@@ -56,6 +56,10 @@ export class SluzbaExamTakingDetailsComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
+  isTeacher(): boolean {
+    return this.authService.isTeacher();
+  }
+
   isAdmin(): boolean {
     return this.authService.isAdmin();
   }

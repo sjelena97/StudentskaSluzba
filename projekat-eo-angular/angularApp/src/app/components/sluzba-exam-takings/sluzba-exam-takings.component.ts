@@ -68,21 +68,34 @@ export class SluzbaExamTakingsComponent implements OnInit {
   signUp(){
     if(confirm("Registering for this exam will reduce 200RSD from your account. Are you sure?")){
       this.examTakingsService.signUp(this.examPart.id, this.selectedEnrollmentId).subscribe(
-        () => this.getTakings()
-      );
+        () => { this.getTakings()
+        },
+        error => {
+          alert("ERROR. Cannot sign up for exam.");
+          console.log(error);
+        });
       }
   }
 
   signOut(){
     if(confirm("You wont be registered anymore for this exam. Are you sure?")){
       this.examTakingsService.signOut(this.examPart.id, this.selectedEnrollmentId).subscribe(
-        () => this.getTakings()
+        () => { this.getTakings()
+        },
+        error => {
+          alert("ERROR. Cannot sign out exam.");
+          console.log(error);
+        }
       );
       }
   }
 
   gotoEdit(taking: ExamPartTaking): void {
     this.router.navigate(['/editTaking', taking.id]);
+  }
+
+  gotoEditGrade(taking: ExamPartTaking): void {
+    this.router.navigate(['/editGrade', taking.enrollment.id]);
   }
 
   isLoggedIn(): boolean {

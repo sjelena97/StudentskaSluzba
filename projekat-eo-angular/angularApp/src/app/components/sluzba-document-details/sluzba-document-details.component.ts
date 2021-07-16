@@ -94,6 +94,10 @@ export class SluzbaDocumentDetailsComponent implements OnInit {
           document => {
             this.documentService.announceChange();
             this.goBack();
+          },
+          error => {
+            alert("ERROR. Cannot upload document.");
+            console.log(error);
           });
       }
 

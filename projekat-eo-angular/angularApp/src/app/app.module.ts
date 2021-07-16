@@ -40,6 +40,8 @@ import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-takin
 import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
 import { SluzbaExamPeriodDetailsComponent } from './components/sluzba-exam-period-details/sluzba-exam-period-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SluzbaGradeDetailsComponent } from './components/sluzba-grade-details/sluzba-grade-details.component';
+import { SluzbaGradesComponent } from './components/sluzba-grades/sluzba-grades.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SluzbaExamTakingsComponent,
     SluzbaExamTakingDetailsComponent,
     SluzbaUserComponent,
-    SluzbaExamPeriodDetailsComponent
+    SluzbaExamPeriodDetailsComponent,
+    SluzbaGradeDetailsComponent,
+    SluzbaGradesComponent
   ],
   imports: [
     BrowserModule,

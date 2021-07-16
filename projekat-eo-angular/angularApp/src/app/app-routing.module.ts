@@ -26,6 +26,8 @@ import { SluzbaExamTakingDetailsComponent } from './components/sluzba-exam-takin
 import { SluzbaUserComponent } from './components/sluzba-user/sluzba-user.component';
 import { SluzbaExamPeriodsComponent } from './components/sluzba-exam-periods/sluzba-exam-periods.component';
 import { SluzbaExamPeriodDetailsComponent } from './components/sluzba-exam-period-details/sluzba-exam-period-details.component';
+import { SluzbaGradeDetailsComponent } from './components/sluzba-grade-details/sluzba-grade-details.component';
+import { SluzbaGradesComponent } from './components/sluzba-grades/sluzba-grades.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SluzbaHomeComponent },
@@ -39,6 +41,7 @@ const routes: Routes = [
   { path: 'students', component: SluzbaStudentsComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'teachers', component: SluzbaTeachersComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'periods', component: SluzbaExamPeriodsComponent, canActivate: [CanActivateAuthGuardService]},
+  { path: 'grades', component: SluzbaGradesComponent, canActivate: [CanActivateAuthGuardService]},
   { path: 'addCourse', component: SluzbaCourseDetailsComponent },
   { path: 'editCourse/:id', component: SluzbaCourseDetailsComponent },
   { path: 'addEnrollment', component: SluzbaEnrollmentsComponent },
@@ -56,6 +59,7 @@ const routes: Routes = [
   { path: 'addExamPeriod', component: SluzbaExamPeriodDetailsComponent },
   { path: 'editExamPeriod/:id', component: SluzbaExamPeriodDetailsComponent },
   { path: 'addUser', component: SluzbaUserComponent },
+  { path: 'editGrade/:id', component: SluzbaGradeDetailsComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'

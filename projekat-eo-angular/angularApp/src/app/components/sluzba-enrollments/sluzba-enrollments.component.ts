@@ -29,6 +29,7 @@ export class SluzbaEnrollmentsComponent implements OnInit {
     this.enrollment = new Enrollment({
       startDate: null,
       endDate: null,
+      grade: null,
       student: new Student({
         cardName: '',
         account: new Account({

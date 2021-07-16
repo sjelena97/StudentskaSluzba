@@ -28,6 +28,11 @@ export class SluzbaExamTakingsServiceService {
     return this.http.get<ExamPartTaking>(url, {observe: 'response'});
   }
 
+  getPointsByEnrollment(id: number): Observable<HttpResponse<number>> {
+    const url = `${this.examTakingsUrl}/getPointsByEnrollment/${id}`;
+    return this.http.get<number>(url, {observe: 'response'});
+  }
+
   getExamTakings(examPartId: number): Observable<HttpResponse<ExamPartTaking[]>> {
     let username = this.authService.getCurrentUser().username;
     console.log("username: " + username);
