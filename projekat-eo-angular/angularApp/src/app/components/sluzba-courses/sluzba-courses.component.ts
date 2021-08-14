@@ -58,6 +58,7 @@ export class SluzbaCoursesComponent implements OnInit {
     if(confirm("Are you sure to delete course " + courseName + "?")){
     this.courseService.deleteCourse(courseId).subscribe(
       () => this.getCourses()
+      
     );
     }
   }
